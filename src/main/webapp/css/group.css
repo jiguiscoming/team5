@@ -1,0 +1,5 @@
+@charset "UTF-8";
+
+#group_listTbl, #group_writeTbl, #group_regionTbl{
+	width: 100vw;
+}

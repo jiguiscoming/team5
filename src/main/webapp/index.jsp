@@ -6,6 +6,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/group.css">
+<link rel="stylesheet" href="css/group_detail.css">
 </head>
 <body>
 <!-- loginPage , contentPage 컨트롤러 생성시 꼭 넣어주세요! -->
@@ -21,7 +23,7 @@
 	</tr>
 	<tr>
 		<td><a href="#">레시피 공유</a></td>
-		<td><a href="#">공구</a></td>
+		<td><a href="GroupController">공구</a></td>
 		<td><a href="#">밀키트 몰</a></td>
 		<td><a href="#">오늘 뭐 먹지?</a></td>
 	</tr>
