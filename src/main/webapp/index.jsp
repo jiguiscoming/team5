@@ -22,7 +22,7 @@
 		<td><a href="#">레시피 공유</a></td>
 		<td><a href="#">공구</a></td>
 		<td><a href="#">밀키트 몰</a></td>
-		<td><a href="#">오늘 뭐 먹지?</a></td>
+		<td><a href="FoodRecipeC">오늘 뭐 먹지?</a></td>
 	</tr>
 	<tr>
 		<td colspan="4"><jsp:include page="${contentPage }"></jsp:include></td>
