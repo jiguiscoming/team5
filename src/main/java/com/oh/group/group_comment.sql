@@ -13,3 +13,5 @@ select * from group_comment;
 create sequence group_comment_seq start with 1 increment by 1;
 
 insert into group_comment values(group_comment_seq.nextval, 2, 'test', 'comment', sysdate);
+
+select * from group_comment order by group_comment_date desc;

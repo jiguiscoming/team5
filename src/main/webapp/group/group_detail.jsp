@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,16 +31,27 @@
 	</tr>
 </table>
 <h3>댓글</h3>
+<form action="GroupCommentController">
 <table id="group_commentTbl" border="1">
 	<tr>
-		<td colspan="2"><input></td>
-		<td><button>댓글입력</button></td>
+		<td colspan="2"><textarea name="comment"></textarea></td>
+		<td><button name="no" value="${group.no}">댓글입력</button></td>
+	</tr>
+</table>
+</form>
+<h3>댓글리스트</h3>
+<table border="1">
+<c:forEach var="comment" items="${comments }">
+	<tr>
+		<td><h4>${comment.id}</h4></td>
 	</tr>
 	<tr>
-		<td>작성자</td>
-		<td>댓글내용</td>
-		<td>시간</td>
+		<td>${comment.date}</td>
 	</tr>
+	<tr>
+		<td>${comment.txt}</td>
+	</tr>
+</c:forEach>
 </table>
 </body>
 </html>

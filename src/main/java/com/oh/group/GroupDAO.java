@@ -51,7 +51,7 @@ public class GroupDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select * from group_purchase";
+		String sql = "select * from group_purchase order by group_date desc";
 		
 		try {
 
@@ -216,6 +216,78 @@ public class GroupDAO {
 			
 			
 			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			Group_DBManager.close(con, pstmt, rs);
+		}
+	}
+
+	public static void commentReg(HttpServletRequest request) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "insert into group_comment values(group_comment_seq.nextval, ?, ?, ?, sysdate)";
+		
+		try {
+			
+			request.setCharacterEncoding("utf-8");
+			con = Group_DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			String listno = request.getParameter("no");
+			String comment = request.getParameter("comment");
+			
+			System.out.println(listno);
+			System.out.println(comment);
+			
+//			id는 세션으로 받기
+			pstmt.setString(1, listno);
+			pstmt.setString(2, "id");
+			pstmt.setString(3, comment);
+			
+			if(pstmt.executeUpdate() == 1) {
+				request.setAttribute("result", "등록성공");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("result", "서버오류");
+		}finally {
+			Group_DBManager.close(con, pstmt, null);
+		}
+	}
+
+	public static void getComments(HttpServletRequest request) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from group_comment where group_comment_listno=? order by group_comment_date desc";
+		
+		try {
+
+			request.setCharacterEncoding("utf-8");
+			con = Group_DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			int listno =Integer.parseInt(request.getParameter("no"));
+			pstmt.setInt(1, listno);
+			rs = pstmt.executeQuery();
+			
+			ArrayList<GroupComment> comments = new ArrayList<GroupComment>();
+			GroupComment comment = null;
+
+			while(rs.next()) {
+				int comment_no = rs.getInt("group_comment_no");
+				int list_no = rs.getInt("group_comment_listno");
+				String id = rs.getString("group_comment_id");
+				String txt = rs.getString("group_comment_txt"); 
+				Date date = rs.getDate("group_comment_date");
+				
+				comment = new GroupComment(comment_no, list_no, id, txt, date);
+				comments.add(comment);				
+			}
+			
+			request.setAttribute("comment", comment);
+			request.setAttribute("comments", comments);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
