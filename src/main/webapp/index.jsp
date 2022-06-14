@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="css/group.css">
 <link rel="stylesheet" href="css/group_detail.css">
+<script type="text/javascript" src="js/group.js"></script>
 </head>
 <body>
 <!-- loginPage , contentPage 컨트롤러 생성시 꼭 넣어주세요! -->

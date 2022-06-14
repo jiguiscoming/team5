@@ -98,11 +98,12 @@ public class GroupDAO {
 			con = Group_DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			
+			
 			String area = request.getParameter("area");
 			String title = request.getParameter("title");
 			String txt = request.getParameter("txt");
 			int no =Integer.parseInt(request.getParameter("no"));
-			
+
 			pstmt.setString(1, title);
 			pstmt.setString(2, txt);
 			pstmt.setString(3, area);
@@ -153,6 +154,68 @@ public class GroupDAO {
 				group1 = new Group(no, group_id, group_title, group_txt, group_date, group_area, group_like, group_hits);
 				request.setAttribute("group", group1);
 			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			Group_DBManager.close(con, pstmt, rs);
+		}
+	}
+
+	public static void groupDelete(HttpServletRequest request) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "delete group_purchase where group_no = ?";
+		int no = Integer.parseInt(request.getParameter("no"));
+		
+		try {
+			con = Group_DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			
+			if(pstmt.executeUpdate() == 1) {
+				request.setAttribute("result", "삭제 성공");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("result", "서버오류");
+		} finally {
+			Group_DBManager.close(con, pstmt, null);
+		}
+	}
+
+	public static void hitsUp(HttpServletRequest request) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+//			해당 게시글 db 먼저 읽음
+			String sql1 = "select * from group_purchase where group_no=?";
+			con = Group_DBManager.connect();
+			pstmt = con.prepareStatement(sql1);
+			int no =Integer.parseInt(request.getParameter("no"));
+			pstmt.setInt(1, no);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				int hits = rs.getInt("group_hits");
+				hits ++;
+
+				String sql2 = "update group_purchase set group_hits=? where group_no=?";
+				pstmt = con.prepareStatement(sql2);
+				pstmt.setInt(1, hits);
+				pstmt.setInt(2, no);
+				
+				if(pstmt.executeUpdate() == 1) {
+					request.setAttribute("result", "조회수 up");
+				}
+			}
+			
+			
+			
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();

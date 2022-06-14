@@ -7,17 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/GroupDetailController")
-public class GroupDetailController extends HttpServlet {
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		// 조회수 up
-		GroupDAO.hitsUp(request);
+@WebServlet("/GroupDeleteController")
+public class GroupDeleteController extends HttpServlet {
 	
-		// 게시글 하나 정보 들고옴
-		GroupDAO.getGroup(request);
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+		//삭제하기
+		GroupDAO.groupDelete(request);
+		//목록가기 : 객체 다 가져오기
+		GroupDAO.getGroups(request);
 		request.setAttribute("loginPage", "account/loginBtn.jsp");
-		request.setAttribute("contentPage", "group/group_detail.jsp");
+		request.setAttribute("contentPage", "group/group_purchase.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	
 	}

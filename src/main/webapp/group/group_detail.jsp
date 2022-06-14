@@ -12,6 +12,14 @@
 		<td colspan="4"><h2>${group.title }</h2></td>
 	</tr>
 	<tr>
+		<td></td>
+		<td></td>
+		<td>조회수 ${group.hits }</td>
+		<td class="group_like">
+			<input type="checkbox" name="like"><label for="like"></label>${group.like }
+		</td>
+	</tr>
+	<tr>
 		<td>${group.area }</td>
 		<td>${group.id }</td>
 		<td>${group.date }</td>
@@ -21,7 +29,7 @@
 		<td colspan="4">${group.txt }</td>
 	</tr>
 </table>
-
+<h3>댓글</h3>
 <table id="group_commentTbl" border="1">
 	<tr>
 		<td colspan="2"><input></td>

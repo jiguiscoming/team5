@@ -4,3 +4,19 @@
 	width: 100vw;
 }
 
+.group_like > input[type="checkbox"]+label {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background: url('../img/unfull.png') no-repeat 0 0px / contain;
+	cursor: pointer;
+}
+
+.group_like > input[type="checkbox"]:checked+label {
+    background: url('../img/full.png') no-repeat 0 1px / contain;
+	cursor: pointer;
+}
+
+/* .group_like > input[type="checkbox"] {
+    display: none;
+} */

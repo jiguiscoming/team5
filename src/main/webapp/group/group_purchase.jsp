@@ -44,18 +44,14 @@
 <!-- 게시글 목록 -->
 <table id="group_listTbl" border="1">
 	<tr>
-		<td>title</td>
-		<td>writer</td>
-		<td>date</td>
-		<td>hits</td>
-		<td>like</td>
+		<td>제목</td>
+		<td>작성자</td>
+		<td>작성일</td>
+		<td>조회수</td>
+		<td>찜</td>
 	</tr>
 	<tr>
-		<td>${result }</td>
-		<td>1</td>
-		<td>2</td>
-		<td>3</td>
-		<td>4</td>
+		<td colspan="5">${result }</td>
 	</tr>
 	<c:forEach var="group" items="${groups }">
 	<tr>
