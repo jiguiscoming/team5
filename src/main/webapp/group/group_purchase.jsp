@@ -15,35 +15,38 @@
 		<td colspan="17">지역 찾기</td>
 	</tr>
 	<tr>
-		<td><a href="#">전국</a></td>
-		<td><a href="#">서울</a></td>
-		<td><a href="#">부산</a></td>
-		<td><a href="#">대구</a></td>
-		<td><a href="#">인천</a></td>
-		<td><a href="#">광주</a></td>
-		<td><a href="#">대전</a></td>
-		<td><a href="#">울산</a></td>
-		<td><a href="#">세종</a></td>
-		<td><a href="#">경기</a></td>
-		<td><a href="#">경남</a></td>
-		<td><a href="#">경북</a></td>
-		<td><a href="#">충북</a></td>
-		<td><a href="#">전남</a></td>
-		<td><a href="#">전북</a></td>
-		<td><a href="#">강원</a></td>
-		<td><a href="#">제주</a></td>
+		<td><a href="GroupResearchController?region=전국">전국</a></td>
+		<td><a href="GroupResearchController?region=서울">서울</a></td>
+		<td><a href="GroupResearchController?region=부산">부산</a></td>
+		<td><a href="GroupResearchController?region=대구">대구</a></td>
+		<td><a href="GroupResearchController?region=인천">인천</a></td>
+		<td><a href="GroupResearchController?region=광주">광주</a></td>
+		<td><a href="GroupResearchController?region=대전">대전</a></td>
+		<td><a href="GroupResearchController?region=울산">울산</a></td>
+		<td><a href="GroupResearchController?region=세종">세종</a></td>
+		<td><a href="GroupResearchController?region=경기">경기</a></td>
+		<td><a href="GroupResearchController?region=경남">경남</a></td>
+		<td><a href="GroupResearchController?region=경북">경북</a></td>
+		<td><a href="GroupResearchController?region=충북">충북</a></td>
+		<td><a href="GroupResearchController?region=전남">전남</a></td>
+		<td><a href="GroupResearchController?region=전북">전북</a></td>
+		<td><a href="GroupResearchController?region=강원">강원</a></td>
+		<td><a href="GroupResearchController?region=제주">제주</a></td>
 	</tr>
 </table>
-<!-- 글쓰기 버튼 및 검색창 -->
+<!-- 글쓰기 버튼(btn) 및 검색창(form) -->
+<form action="GroupResearchController" method="post">
 <table id="group_writeTbl" border="1">
 	<tr>
-		<td><input placeholder="검색"></td>
-		<td><button onclick="location.href='GroupRegController'">글쓰기</button></td>
+		<td><input name="research" placeholder="${param.research }"><button>검색</button></td>
+		<td><button type="button" onclick="location.href='GroupRegController'">글쓰기</button></td>
 	</tr>
 </table>
+</form>
 <!-- 게시글 목록 -->
 <table id="group_listTbl" border="1">
 	<tr>
+		<td>지역</td>
 		<td>제목</td>
 		<td>작성자</td>
 		<td>작성일</td>
@@ -55,6 +58,7 @@
 	</tr>
 	<c:forEach var="group" items="${groups }">
 	<tr>
+		<td>${group.area }</td>
 		<td><a href="GroupDetailController?no=${group.no }">${group.title}</a></td>
 		<td>${group.id }</td>
 		<td>${group.date }</td>

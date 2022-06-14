@@ -20,3 +20,7 @@
 /* .group_like > input[type="checkbox"] {
     display: none;
 } */
+
+#group_comment_listTbl{
+	width: 100vw;
+}

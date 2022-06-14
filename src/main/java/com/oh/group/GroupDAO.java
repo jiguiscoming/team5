@@ -77,7 +77,6 @@ public class GroupDAO {
 				groups.add(group);				
 			}
 			
-			request.setAttribute("group", group);
 			request.setAttribute("groups", groups);
 			
 		} catch (Exception e) {
@@ -288,6 +287,88 @@ public class GroupDAO {
 			
 			request.setAttribute("comment", comment);
 			request.setAttribute("comments", comments);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			Group_DBManager.close(con, pstmt, rs);
+		}
+	}
+
+	public static void getRegionGroups(HttpServletRequest request) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from group_purchase where group_area=? order by group_date desc";
+		
+		try {
+
+			request.setCharacterEncoding("utf-8");
+			con = Group_DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			String region = request.getParameter("region"); 
+			pstmt.setString(1, region);
+			rs = pstmt.executeQuery();
+			
+			ArrayList<Group> groups = new ArrayList<Group>();
+			Group group = null;
+
+			while(rs.next()) {
+				int group_no = rs.getInt("group_no");
+				String group_id = rs.getString("group_id");
+				String group_title = rs.getString("group_title");
+				String group_txt = rs.getString("group_txt");
+				Date group_date = rs.getDate("group_date");
+				String group_area = rs.getString("group_area");
+				int group_like = rs.getInt("group_like");
+				int group_hits = rs.getInt("group_hits");
+				
+				group = new Group(group_no, group_id, group_title, group_txt, group_date, group_area, group_like, group_hits);
+				groups.add(group);				
+			}
+			
+			request.setAttribute("groups", groups);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			Group_DBManager.close(con, pstmt, rs);
+		}
+	}
+
+	public static void getGroupResearch(HttpServletRequest request) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from group_purchase where group_title like ? order by group_date desc";
+		
+		try {
+
+			request.setCharacterEncoding("utf-8");
+			con = Group_DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			String research = request.getParameter("research"); 
+			pstmt.setString(1, "%" + research + "%");
+			rs = pstmt.executeQuery();
+			
+			ArrayList<Group> groups = new ArrayList<Group>();
+			Group group = null;
+
+			while(rs.next()) {
+				int group_no = rs.getInt("group_no");
+				String group_id = rs.getString("group_id");
+				String group_title = rs.getString("group_title");
+				String group_txt = rs.getString("group_txt");
+				Date group_date = rs.getDate("group_date");
+				String group_area = rs.getString("group_area");
+				int group_like = rs.getInt("group_like");
+				int group_hits = rs.getInt("group_hits");
+				
+				group = new Group(group_no, group_id, group_title, group_txt, group_date, group_area, group_like, group_hits);
+				groups.add(group);				
+			}
+			
+			request.setAttribute("groups", groups);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

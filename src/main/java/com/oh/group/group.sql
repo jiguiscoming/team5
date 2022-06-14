@@ -29,3 +29,5 @@ where group_no = 2;
 select * from group_purchase where group_no=3;
 
 select * from group_purchase order by group_date desc;
+
+select * from group_purchase where group_title like '%°æ±â%' order by group_date desc;

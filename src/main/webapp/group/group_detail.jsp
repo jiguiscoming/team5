@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +24,7 @@
 	<tr>
 		<td>${group.area }</td>
 		<td>${group.id }</td>
-		<td>${group.date }</td>
+		<td><fmt:formatDate value="${group.date }" type="both"/> </td>
 		<td><button onclick="location.href='GroupUpdateController?no=${group.no}'">수정</button></td>
 	</tr>
 	<tr>
@@ -40,13 +41,13 @@
 </table>
 </form>
 <h3>댓글리스트</h3>
-<table border="1">
+<table id="group_comment_listTbl" border="1">
 <c:forEach var="comment" items="${comments }">
 	<tr>
 		<td><h4>${comment.id}</h4></td>
 	</tr>
 	<tr>
-		<td>${comment.date}</td>
+		<td><fmt:formatDate value="${comment.date}" type="both" dateStyle="long" timeStyle="short"/> </td>
 	</tr>
 	<tr>
 		<td>${comment.txt}</td>
