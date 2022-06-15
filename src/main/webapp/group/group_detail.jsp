@@ -11,9 +11,10 @@
 <body>
 <table id="group_detailTbl" border="1">
 	<tr>
-		<td colspan="4"><h2>${group.title }</h2></td>
+		<td colspan="5"><h2>${group.title }</h2></td>
 	</tr>
 	<tr>
+		<td></td>
 		<td></td>
 		<td></td>
 		<td>조회수 ${group.hits }</td>
@@ -26,13 +27,14 @@
 		<td>${group.id }</td>
 		<td><fmt:formatDate value="${group.date }" type="both"/> </td>
 		<td><button onclick="location.href='GroupUpdateController?no=${group.no}'">수정</button></td>
+		<td><button onclick="groupDel(${group.no})">삭제</button></td>
 	</tr>
 	<tr>
-		<td colspan="4">${group.txt }</td>
+		<td colspan="5">${group.txt }</td>
 	</tr>
 </table>
 <h3>댓글</h3>
-<form action="GroupCommentController">
+<form action="GroupCommentController" onsubmit="return groupComment()" name="groupCmtForm">
 <table id="group_commentTbl" border="1">
 	<tr>
 		<td colspan="2"><textarea name="comment"></textarea></td>

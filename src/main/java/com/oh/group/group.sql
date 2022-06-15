@@ -17,6 +17,10 @@ create sequence group_purchase_seq start with 1 increment by 1;
 
 select * from group_purchase;
 
+select rownum,group_purchase.* from group_purchase;
+
+select rownum, group_purchase.* from group_purchase order by group_date desc;
+
 insert into group_purchase values(group_purchase_seq.nextval, 'id', 'title', 'txt', sysdate, 'area', 20, 10);
 
 update group_purchase

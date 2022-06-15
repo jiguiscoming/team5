@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="GroupRegController" method="post">
+<form name="groupRegForm" action="GroupRegController" method="post" onsubmit="return groupReg_isEmpty()">
 <table>
 	<tr>
 		<td>
@@ -39,7 +39,7 @@
 		<td><textarea name="txt"></textarea></td>
 	</tr>
 	<tr>
-		<td><button onclick="history.back()">취소</button></td>
+		<td><button type="button" onclick="history.back()">취소</button></td>
 		<td><button>등록</button></td>
 	</tr>
 </table>

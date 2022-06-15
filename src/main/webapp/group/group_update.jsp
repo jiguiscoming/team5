@@ -7,10 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="GroupUpdateController" method="post" >
+<form name="groupUpdateForm" action="GroupUpdateController" method="post" onsubmit=" return groupUpdate_isEmpty()">
 <table id="" border="1">
 	<tr>
-		<td colspan="2">
+		<td>
 			<select name="area">
 				<option value="서울">서울</option>
 				<option value="부산">부산</option>
@@ -33,14 +33,13 @@
 	</tr>
 	
 	<tr>
-		<td colspan="2"><input value="${group.title}" name="title"></td>
+		<td><input value="${group.title}" name="title"></td>
 	</tr>
 	<tr>
-		<td colspan="2"><textarea name="txt">${group.txt }</textarea></td>
+		<td><textarea name="txt">${group.txt }</textarea></td>
 	</tr>
 	<tr>
 		<td><button name="no" value="${group.no }">수정하기</button></td>
-		<td><button type="button" onclick="location.href='GroupDeleteController?no=${group.no}'">삭제하기</button></td>
 	</tr>
 </table>
 </form>
