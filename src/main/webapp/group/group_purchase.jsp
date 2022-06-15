@@ -38,6 +38,7 @@
 <form action="GroupResearchController" method="post">
 <table id="group_writeTbl" border="1">
 	<tr>
+		<td><h4>${total }</h4></td>
 		<td><input name="research" placeholder="${param.research }"><button>검색</button></td>
 		<td><button type="button" onclick="location.href='GroupRegController'">글쓰기</button></td>
 	</tr>
@@ -46,6 +47,7 @@
 <!-- 게시글 목록 -->
 <table id="group_listTbl" border="1">
 	<tr>
+		<td>번호</td>
 		<td>지역</td>
 		<td>제목</td>
 		<td>작성자</td>
@@ -54,10 +56,11 @@
 		<td>찜</td>
 	</tr>
 	<tr>
-		<td colspan="5">${result }</td>
+		<td colspan="7">${result }</td>
 	</tr>
 	<c:forEach var="group" items="${groups }">
 	<tr>
+		<td>${group.posting }</td>
 		<td>${group.area }</td>
 		<td><a href="GroupDetailController?no=${group.no }">${group.title}</a></td>
 		<td>${group.id }</td>
@@ -66,6 +69,19 @@
 		<td>${group.like }</td>
 	</tr>
 	</c:forEach>
+</table>
+<table border="1">
+	<tr>
+		<c:if test="${startPage > 2}">
+		<td><a href="GroupController?pageNum=${startPage-2}">이전</a></td>
+		</c:if>
+		<c:forEach var="page" items="${page}">
+		<td><a href="GroupController?pageNum=${page}">${page}</a></td>
+		</c:forEach>
+		<c:if test="${endPage < pageCount }">
+		<td><a href="GroupController?pageNum=${startPage+2}">다음</a></td>
+		</c:if>
+	</tr>
 </table>
 </body>
 </html>

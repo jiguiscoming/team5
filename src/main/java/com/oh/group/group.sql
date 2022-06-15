@@ -13,15 +13,26 @@ create table group_purchase (
 
 );
 
+
+select count(*) from group_purchase;
+
+ALTER TABLE group_purchase DROP COLUMN group_page;
+
 create sequence group_purchase_seq start with 1 increment by 1;
 
 select * from group_purchase;
 
 select rownum,group_purchase.* from group_purchase;
 
-select rownum, group_purchase.* from group_purchase order by group_date desc;
+select rownum, a.* from (select * from group_purchase order by group_date asc)a order by a.group_date desc;
 
-insert into group_purchase values(group_purchase_seq.nextval, 'id', 'title', 'txt', sysdate, 'area', 20, 10);
+select * from (select rownum as num, group_purchase.* from GROUP_PURCHASE) where num between 6 and 10 order by group_date desc;
+
+select rownum, * from (select * from group_purchase where group_area='¿ï»ê') order by group_date desc;
+
+select rownum, a.* from (select * from group_purchase where group_title like '%¤·%' order by group_date asc)a order by group_date desc;
+
+insert into group_purchase values(group_purchase_seq.nextval, 1,'id', 'title', 'txt', sysdate, 'area', 20, 10);
 
 update group_purchase
 set group_txt = ''

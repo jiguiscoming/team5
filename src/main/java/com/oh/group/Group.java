@@ -5,6 +5,7 @@ import java.util.Date;
 public class Group {
 	
 	private int no;
+	private int posting;
 	private String id;
 	private String title;
 	private String txt;
@@ -17,9 +18,11 @@ public class Group {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Group(int no, String id, String title, String txt, Date date, String area, int like, int hits) {
+
+	public Group(int no, int posting, String id, String title, String txt, Date date, String area, int like, int hits) {
 		super();
 		this.no = no;
+		this.posting = posting;
 		this.id = id;
 		this.title = title;
 		this.txt = txt;
@@ -35,6 +38,15 @@ public class Group {
 
 	public void setNo(int no) {
 		this.no = no;
+	}
+
+
+	public int getPosting() {
+		return posting;
+	}
+
+	public void setPosting(int posting) {
+		this.posting = posting;
 	}
 
 	public String getId() {
@@ -92,8 +104,6 @@ public class Group {
 	public void setHits(int hits) {
 		this.hits = hits;
 	}
-	
-	
 	
 	
 }
