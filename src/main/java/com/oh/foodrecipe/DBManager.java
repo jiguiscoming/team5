@@ -1,4 +1,4 @@
-package com.oh.main;
+package com.oh.foodrecipe;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

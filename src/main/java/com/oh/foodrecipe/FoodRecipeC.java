@@ -13,7 +13,6 @@ public class FoodRecipeC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		RecipeDAO.getAllRecipe(request);
-	
 		request.setAttribute("contentPage", "foodRecipe/food_recipe.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
