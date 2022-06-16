@@ -41,7 +41,11 @@
 	</tr>
 	<tr>
 		<td><button type="button" onclick="history.back()">취소</button></td>
-		<td><button>등록</button></td>
+		<td>
+			<input type="hidden" name="region" value="전국">
+			<input type="hidden" name="research">
+			<button name="pageNum" value="1">등록</button>
+		</td>
 	</tr>
 </table>
 </form>

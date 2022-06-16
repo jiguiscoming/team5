@@ -40,7 +40,12 @@
 		<td><textarea name="txt">${group.txt }</textarea></td>
 	</tr>
 	<tr>
-		<td><button name="no" value="${group.no }">수정하기</button></td>
+		<td>
+			<input type="hidden" name="region" value="전국">
+			<input type="hidden" name="research">
+			<input type="hidden" name="pageNum" value="1">
+			<button name="no" value="${group.no }">수정하기
+		</button></td>
 	</tr>
 </table>
 </form>

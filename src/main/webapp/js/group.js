@@ -54,7 +54,7 @@ function groupDel(no){
 	
 	let ok = confirm('진짜 삭제하시겠습니까?');
 	if(ok){
-		location.href='GroupDeleteController?no=' + no;
+		location.href='GroupDeleteController?no=' + no + '&region=전국&pageNum=1&research=';
 	}
 	
 }

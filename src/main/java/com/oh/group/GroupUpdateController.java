@@ -27,8 +27,25 @@ public class GroupUpdateController extends HttpServlet {
 		} else {
 			// 수정하기
 			GroupDAO.groupUpdate(request);
-			// 목록가기 : 목록 불러오기
-			GroupDAO.getGroups(request);
+			// 공구 메뉴 || 전국 : 게시글 다 받기
+			if (request.getParameter("region").equals("전국")) {
+				// 페이징한 게시글 정보 받기
+				GroupDAO.groupPaging(request);
+//				System.out.println("전국");
+			}else {
+				if(request.getParameter("research").equals("")) {
+				// 지역 : 파라미터로 지역 값 넘겨서 게시글 골라 받기 (select where) + 페이징 적용
+				GroupDAO.getRegionGroups(request);
+//				System.out.println("지역");
+				}
+			}
+			if(!request.getParameter("research").equals("")) {
+				// 검색 : 파라미터로 검색 값 넘겨서 게시글 골라받기 +  페이징
+				GroupDAO.getGroupResearch(request);
+//				System.out.println("검색");
+			} 
+			// 페이지 이동버튼 만들기 (a태그)
+			GroupDAO.groupPageMove(request,(String)request.getAttribute("sql"));
 			request.setAttribute("contentPage", "group/group_purchase.jsp");
 		}
 		request.setAttribute("loginPage", "account/loginBtn.jsp");
