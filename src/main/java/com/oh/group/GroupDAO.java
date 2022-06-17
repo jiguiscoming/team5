@@ -527,7 +527,8 @@ public class GroupDAO {
 		try {
 			// 연결
 			con = Group_DBManager.connect();
-			System.out.println(sql);
+			// sql 문 잘 가져왔는지 확인
+//			System.out.println(sql);
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			

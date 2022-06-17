@@ -46,7 +46,7 @@
 		<td>
 			<input name="research">
 			<input type="hidden" name="region" value="${param.region}">
-			<button name="pageNum" value="${param.pageNum}">검색</button>
+			<button name="pageNum" value=1>검색</button>
 		</td>
 		<td><button type="button" onclick="location.href='GroupRegController'">글쓰기</button></td>
 	</tr>
