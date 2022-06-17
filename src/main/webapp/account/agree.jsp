@@ -11,7 +11,7 @@
 
 <!-- 이용 약관 동의 -->
 
-<form action="">
+<form action="joinus.jsp">
 
 <h1> 야나두 레시피 </h1>
 <h5> 이용 약관</h5>
@@ -59,11 +59,16 @@
  </table>
 </div>
 
- <p> <input type="checkbox" name="agree" value="selectall" onclick='selectAll(this)'>전체 선택 </p>
-<p> <input type="checkbox" name="agree" value="agree1">이용 약관 동의 </p>
-<p> <input type="checkbox" name="agree" value="agree2">개인정보 수집 및 이용 동의 </p>
-<p> <input type="checkbox" name="agree" value="agree3">프로모션 정보 수신 동의(선택) </p>
-<p> <input type="checkbox" name="agree" value="agree4">위치기반서비스 이용약관 동의(선택) </p>
+ <p> <input type="checkbox" name="agree" value="selectall" onclick='selectAll(this)'>전체 선택~ </p>
+<p> <input type="checkbox" name="agree1" value="O" id="agree1" onclick='is_checked(this)'>이용 약관 동의 </p>
+<p> <input type="checkbox" name="agree2" value="O" id="agree2" onclick='is_checked(this)'>개인정보 수집 및 이용 동의 </p>
+<p> <input type="checkbox" name="agree3" value="O" id="agree3" onclick='is_checked(this)'>프로모션 정보 수신 동의(선택) </p>
+<p> <input type="checkbox" name="agree4" value="O" id="agree4" onclick='is_checked(this)'>위치기반서비스 이용약관 동의(선택) </p>
+<input type="hidden" name="agree1" value='X' id="agree1_hidden"/>
+<input type="hidden" name="agree2" value='X' id="agree2_hidden"/>
+<input type="hidden" name="agree3" value='X' id="agree3_hidden"/>
+<input type="hidden" name="agree4" value='X' id="agree4_hidden"/>
+
 
 
 

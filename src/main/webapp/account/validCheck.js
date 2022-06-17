@@ -13,10 +13,10 @@
 //<input>을 넣으면..
 // 거기에 글자가 없으면 true, 있으면 false
 
-function isEmpty(input){
+function isEmpty(input) {
 	return !input.value; // 값이 없다는 뜻!
-	
-	
+
+
 	/*if(input.value==""){
 		return true;
 	}else{
@@ -27,9 +27,13 @@ function isEmpty(input){
 // <input> 과 글자 수를 넣으면
 // 그 글자수보다 적으면 true , 아니면 false
 
-function lessThan(input, length){
+function lessThan(input, length) {
 	return input.value.length < length;
-	
+
+}
+function moreThan(input, length) {
+	return input.value.length > length;
+
 }
 
 // <input>을 넣으면
@@ -38,45 +42,45 @@ function lessThan(input, length){
 
 // input.value = "엠지";
 
-function containKR(input){
+function containKR(input) {
 	let ok = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM@._";
 	//0123456789
-	for(let i=0; ㅑ < input.value.length; i++){
-		if(ok.indexOf(input.value[i]) == -1){
+	for (let i = 0; i < input.value.length; i++) {
+		if (ok.indexOf(input.value[i]) == -1) {
 			return true;
-			
+
 		}
-		
-		
+
+
 	}
-	
+
 }
 
-function containKRN(input){
+function containKRN(input) {
 	let ok = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM@._1234567890";
 	//0123456789
-	for(let i=0; ㅑ < input.value.length; i++){
-		if(ok.indexOf(input.value[i]) == -1){
+	for (let i = 0; i < input.value.length; i++) {
+		if (ok.indexOf(input.value[i]) == -1) {
 			return true;
-			
+
 		}
-		
-		
+
+
 	}
-	
+
 }
-function notcontainN(input){
+function notcontainN(input) {
 	let ok = "1234567890";
 	//0123456789
-	for(let i=0; ㅑ < input.value.length; i++){
-		if(ok.indexOf(input.value[i]) == -1){
+	for (let i = 0; i < input.value.length; i++) {
+		if (ok.indexOf(input.value[i]) == -1) {
 			return true;
-			
+
 		}
-		
-		
+
+
 	}
-	
+
 }
 
 // Test
@@ -85,10 +89,10 @@ function notcontainN(input){
 // <input> x2 넣으면 (비번확인)
 // 내용이 다르면 true, 아니면 false
 
-function notEquals(input1, input2){
-/*	if(input1 != input2){
-		return true;
-	}else{return false;}*/
+function notEquals(input1, input2) {
+	/*	if(input1 != input2){
+			return true;
+		}else{return false;}*/
 	return input1.value != input2.value;
 }
 
@@ -98,21 +102,21 @@ function notEquals(input1, input2){
 
 // 조합
 
-function notContains(input, set){
-	
+function notContains(input, set) {
+
 	// input : 1qwerASD
 	// input : ASD
-	
-	
+
+
 	// set: 123456789 숫자를 반드시 포함시켜라
 	// set : QWERTYUIOPASDFGHJKLZXCVBNM
-	for(let i=0; i< set.length; i++){
-		if(input.value.indexOf(set[i]) != -1){
+	for (let i = 0; i < set.length; i++) {
+		if (input.value.indexOf(set[i]) != -1) {
 			return false;
 		}
 	}
 	return true;
-	
+
 }
 
 // <input> 을 넣어서
@@ -121,11 +125,11 @@ function notContains(input, set){
 // input : 123
 // input : aaa
 
-function isNotNumber(input){
+function isNotNumber(input) {
 	return isNaN(input.value);
-	
-	
-	
+
+
+
 }
 
 

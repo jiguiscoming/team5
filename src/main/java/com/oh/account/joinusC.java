@@ -12,11 +12,24 @@ public class joinusC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		
+		request.setAttribute("loginPage", "account/loginBtn.jsp");
+		request.setAttribute("contentPage", "account/joinus.jsp");
+		request.getRequestDispatcher("index.jsp").forward(request, response);
 		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
+	
+		 UserDAO.fileUpload(request); 
+				//	UserDAO.confirmJoin(request);
+				
+				request.setAttribute("loginPage", "account/loginBtn.jsp");
+				request.setAttribute("contentPage", "account/joinusconfirm.jsp");
+				request.getRequestDispatcher("index.jsp").forward(request, response);
+				
+		
+		
 		
 	}
 

@@ -7,21 +7,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/agreeC")
-public class agreeC extends HttpServlet {
+@WebServlet("/idCheckC")
+public class idCheckC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		UserDAO.agree(request);
-		request.setAttribute("loginPage", "account/loginBtn.jsp");
-		request.setAttribute("contentPage", "account/agree.jsp");
-		request.getRequestDispatcher("index.jsp").forward(request, response);
+	
+	
+	
+	
 	
 	
 	}
-
+	
+	
+	
+	
+	
+	
+	
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		
+	
 		
 	}
 
