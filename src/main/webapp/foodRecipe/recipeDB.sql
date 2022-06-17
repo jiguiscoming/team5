@@ -23,9 +23,7 @@ insert into RecipeBasicCourse values(recipe_seq.nextval, '레시피이름', '요
 select * from RecipeBasicCourse;
 
 drop table RecipeBasicCourse
-
-
-
+alter table RecipeBasicCourse ADD RECIPE_NO number(30);
 
 CREATE TABLE RecipeIngredients(
 RECIPE_ID varchar2(1000 char) not null,
@@ -48,10 +46,10 @@ drop table RecipeIngredients
 
 CREATE TABLE Recipeprocessinformation(
 RECIPE_ID varchar2(1000 char) not null,
-COOKING_NO varchar2(1000 char) not null,
-COOKING_DC varchar2(1000 char) not null,
-STRE_STEP_IMAGE_URL varchar2(1000 char) not null,
-STEP_TIP varchar2(1000 char) not null
+RECIPE_COOKING_NO varchar2(1000 char) not null,
+RECIPE_COOKING_DC varchar2(1000 char) not null,
+RECIPE_STRE_STEP_IMAGE_URL varchar2(1000 char) not null,
+RECIPE_STEP_TIP varchar2(1000 char) not null
 );
 
 create sequence Recipeprocessinformation_seq;

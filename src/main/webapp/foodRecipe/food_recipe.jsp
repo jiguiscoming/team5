@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +10,7 @@
 <link rel="stylesheet" href="../recipe_css/recipe.css">
 <body>
 	
-	<form action="FoodRecipeC" method="get">
+	
 	<div>
 		<table border="1">
 			<tr>
@@ -67,44 +68,19 @@
 		<ul class="list_recipe">
 			<li>
 				<div>
-					<img src="http://file.okdab.com/UserFiles/searching/recipe/000200.jpg">
+					<img src="${r.RECIPE_IMG_URL }">
 				</div>
 				<div>
-					<div>육수로 지은 밥에 야채를 듬뿍 넣은 영양만점 나물비빔밥!</div>
+					<div>${r.RECIPE_SUMRY }</div>
 				</div>
 			</li>
-			<li>
-				<div>
-					<img src="http://file.okdab.com/UserFiles/searching/recipe/000300.jpg">
-				</div>
-				<div>
-					<div>정월대보름에 먹던 오곡밥! 영양을 한그릇에 담았습니다.</div>
-				</div>
-			</li>
-			<li>
-				<div>
-					<img src="http://file.okdab.com/UserFiles/searching/recipe/000400.jpg">
-				</div>
-				<div>
-					<div>잡채밥 한 그릇이면 오늘 저녁 끝! 입 맛 없을 때 먹으면 그만이지요~</div>
-				</div>
-			</li>
-			<li>
-				<div>
-					<img src="http://file.okdab.com/UserFiles/searching/recipe/000600.jpg">
-				</div>
-				<div>
-					<div>다이어트에 으뜸인 콩나물밥. 밥 물 넣을때 평소보다 적게 넣는거 잊지마세요!</div>
-				</div>
-			</li>
-			<li> <button> <a href="recipe_update.jsp">레시피 등록하기</a> </button> </li>
-		
+			
 		</ul>
 		
 		
 		</div>
 		</div>
-	</form>
+
 		
 
 </body>

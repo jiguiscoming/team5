@@ -1,167 +1,168 @@
 package com.oh.foodrecipe;
 
 public class recipe {
-	private String ricipe_id;
-	private String ricipe_nm_ko;
-	private String ricipe_sumry;
-	private String ricipe_nation_code;
-	private String ricipe_nation_nm;
-	private String ricipe_ty_code;
-	private String ricipe_ty_nm;
-	private String ricipe_cooking_time;
-	private String ricipe_calorie;
-	private String ricipe_qnt;
-	private String ricipe_level_nm;
-	private String ricipe_irdnt_code;
-	private String ricipe_pc_nm;
-	private String ricipe_img_url;
-	private String ricipe_det_url;
+	private String recipe_id;
+	private String recipe_nm_ko;
+	private String recipe_sumry;
+	private String recipe_nation_code;
+	private String recipe_nation_nm;
+	private String recipe_ty_code;
+	private String recipe_ty_nm;
+	private String recipe_cooking_time;
+	private String recipe_calorie;
+	private String recipe_qnt;
+	private String recipe_level_nm;
+	private String recipe_irdnt_code;
+	private String recipe_pc_nm;
+	private String recipe_img_url;
+	private String recipe_det_url;
 	
-	public recipe() {
-		// TODO Auto-generated constructor stub
-	}
+public recipe() {
+	// TODO Auto-generated constructor stub
+}
 
-	public recipe(String ricipe_id, String ricipe_nm_ko, String ricipe_sumry, String ricipe_nation_code,
-			String ricipe_nation_nm, String ricipe_ty_code, String ricipe_ty_nm, String ricipe_cooking_time,
-			String ricipe_calorie, String ricipe_qnt, String ricipe_level_nm, String ricipe_irdnt_code,
-			String ricipe_pc_nm, String ricipe_img_url, String ricipe_det_url) {
-		super();
-		this.ricipe_id = ricipe_id;
-		this.ricipe_nm_ko = ricipe_nm_ko;
-		this.ricipe_sumry = ricipe_sumry;
-		this.ricipe_nation_code = ricipe_nation_code;
-		this.ricipe_nation_nm = ricipe_nation_nm;
-		this.ricipe_ty_code = ricipe_ty_code;
-		this.ricipe_ty_nm = ricipe_ty_nm;
-		this.ricipe_cooking_time = ricipe_cooking_time;
-		this.ricipe_calorie = ricipe_calorie;
-		this.ricipe_qnt = ricipe_qnt;
-		this.ricipe_level_nm = ricipe_level_nm;
-		this.ricipe_irdnt_code = ricipe_irdnt_code;
-		this.ricipe_pc_nm = ricipe_pc_nm;
-		this.ricipe_img_url = ricipe_img_url;
-		this.ricipe_det_url = ricipe_det_url;
-	}
+public recipe(String recipe_id, String recipe_nm_ko, String recipe_sumry, String recipe_nation_code,
+		String recipe_nation_nm, String recipe_ty_code, String recipe_ty_nm, String recipe_cooking_time,
+		String recipe_calorie, String recipe_qnt, String recipe_level_nm, String recipe_irdnt_code, String recipe_pc_nm,
+		String recipe_img_url, String recipe_det_url) {
+	super();
+	this.recipe_id = recipe_id;
+	this.recipe_nm_ko = recipe_nm_ko;
+	this.recipe_sumry = recipe_sumry;
+	this.recipe_nation_code = recipe_nation_code;
+	this.recipe_nation_nm = recipe_nation_nm;
+	this.recipe_ty_code = recipe_ty_code;
+	this.recipe_ty_nm = recipe_ty_nm;
+	this.recipe_cooking_time = recipe_cooking_time;
+	this.recipe_calorie = recipe_calorie;
+	this.recipe_qnt = recipe_qnt;
+	this.recipe_level_nm = recipe_level_nm;
+	this.recipe_irdnt_code = recipe_irdnt_code;
+	this.recipe_pc_nm = recipe_pc_nm;
+	this.recipe_img_url = recipe_img_url;
+	this.recipe_det_url = recipe_det_url;
+}
 
-	public String getRicipe_id() {
-		return ricipe_id;
-	}
+public String getRecipe_id() {
+	return recipe_id;
+}
 
-	public void setRicipe_id(String ricipe_id) {
-		this.ricipe_id = ricipe_id;
-	}
+public void setRecipe_id(String recipe_id) {
+	this.recipe_id = recipe_id;
+}
 
-	public String getRicipe_nm_ko() {
-		return ricipe_nm_ko;
-	}
+public String getRecipe_nm_ko() {
+	return recipe_nm_ko;
+}
 
-	public void setRicipe_nm_ko(String ricipe_nm_ko) {
-		this.ricipe_nm_ko = ricipe_nm_ko;
-	}
+public void setRecipe_nm_ko(String recipe_nm_ko) {
+	this.recipe_nm_ko = recipe_nm_ko;
+}
 
-	public String getRicipe_sumry() {
-		return ricipe_sumry;
-	}
+public String getRecipe_sumry() {
+	return recipe_sumry;
+}
 
-	public void setRicipe_sumry(String ricipe_sumry) {
-		this.ricipe_sumry = ricipe_sumry;
-	}
+public void setRecipe_sumry(String recipe_sumry) {
+	this.recipe_sumry = recipe_sumry;
+}
 
-	public String getRicipe_nation_code() {
-		return ricipe_nation_code;
-	}
+public String getRecipe_nation_code() {
+	return recipe_nation_code;
+}
 
-	public void setRicipe_nation_code(String ricipe_nation_code) {
-		this.ricipe_nation_code = ricipe_nation_code;
-	}
+public void setRecipe_nation_code(String recipe_nation_code) {
+	this.recipe_nation_code = recipe_nation_code;
+}
 
-	public String getRicipe_nation_nm() {
-		return ricipe_nation_nm;
-	}
+public String getRecipe_nation_nm() {
+	return recipe_nation_nm;
+}
 
-	public void setRicipe_nation_nm(String ricipe_nation_nm) {
-		this.ricipe_nation_nm = ricipe_nation_nm;
-	}
+public void setRecipe_nation_nm(String recipe_nation_nm) {
+	this.recipe_nation_nm = recipe_nation_nm;
+}
 
-	public String getRicipe_ty_code() {
-		return ricipe_ty_code;
-	}
+public String getRecipe_ty_code() {
+	return recipe_ty_code;
+}
 
-	public void setRicipe_ty_code(String ricipe_ty_code) {
-		this.ricipe_ty_code = ricipe_ty_code;
-	}
+public void setRecipe_ty_code(String recipe_ty_code) {
+	this.recipe_ty_code = recipe_ty_code;
+}
 
-	public String getRicipe_ty_nm() {
-		return ricipe_ty_nm;
-	}
+public String getRecipe_ty_nm() {
+	return recipe_ty_nm;
+}
 
-	public void setRicipe_ty_nm(String ricipe_ty_nm) {
-		this.ricipe_ty_nm = ricipe_ty_nm;
-	}
+public void setRecipe_ty_nm(String recipe_ty_nm) {
+	this.recipe_ty_nm = recipe_ty_nm;
+}
 
-	public String getRicipe_cooking_time() {
-		return ricipe_cooking_time;
-	}
+public String getRecipe_cooking_time() {
+	return recipe_cooking_time;
+}
 
-	public void setRicipe_cooking_time(String ricipe_cooking_time) {
-		this.ricipe_cooking_time = ricipe_cooking_time;
-	}
+public void setRecipe_cooking_time(String recipe_cooking_time) {
+	this.recipe_cooking_time = recipe_cooking_time;
+}
 
-	public String getRicipe_calorie() {
-		return ricipe_calorie;
-	}
+public String getRecipe_calorie() {
+	return recipe_calorie;
+}
 
-	public void setRicipe_calorie(String ricipe_calorie) {
-		this.ricipe_calorie = ricipe_calorie;
-	}
+public void setRecipe_calorie(String recipe_calorie) {
+	this.recipe_calorie = recipe_calorie;
+}
 
-	public String getRicipe_qnt() {
-		return ricipe_qnt;
-	}
+public String getRecipe_qnt() {
+	return recipe_qnt;
+}
 
-	public void setRicipe_qnt(String ricipe_qnt) {
-		this.ricipe_qnt = ricipe_qnt;
-	}
+public void setRecipe_qnt(String recipe_qnt) {
+	this.recipe_qnt = recipe_qnt;
+}
 
-	public String getRicipe_level_nm() {
-		return ricipe_level_nm;
-	}
+public String getRecipe_level_nm() {
+	return recipe_level_nm;
+}
 
-	public void setRicipe_level_nm(String ricipe_level_nm) {
-		this.ricipe_level_nm = ricipe_level_nm;
-	}
+public void setRecipe_level_nm(String recipe_level_nm) {
+	this.recipe_level_nm = recipe_level_nm;
+}
 
-	public String getRicipe_irdnt_code() {
-		return ricipe_irdnt_code;
-	}
+public String getRecipe_irdnt_code() {
+	return recipe_irdnt_code;
+}
 
-	public void setRicipe_irdnt_code(String ricipe_irdnt_code) {
-		this.ricipe_irdnt_code = ricipe_irdnt_code;
-	}
+public void setRecipe_irdnt_code(String recipe_irdnt_code) {
+	this.recipe_irdnt_code = recipe_irdnt_code;
+}
 
-	public String getRicipe_pc_nm() {
-		return ricipe_pc_nm;
-	}
+public String getRecipe_pc_nm() {
+	return recipe_pc_nm;
+}
 
-	public void setRicipe_pc_nm(String ricipe_pc_nm) {
-		this.ricipe_pc_nm = ricipe_pc_nm;
-	}
+public void setRecipe_pc_nm(String recipe_pc_nm) {
+	this.recipe_pc_nm = recipe_pc_nm;
+}
 
-	public String getRicipe_img_url() {
-		return ricipe_img_url;
-	}
+public String getRecipe_img_url() {
+	return recipe_img_url;
+}
 
-	public void setRicipe_img_url(String ricipe_img_url) {
-		this.ricipe_img_url = ricipe_img_url;
-	}
+public void setRecipe_img_url(String recipe_img_url) {
+	this.recipe_img_url = recipe_img_url;
+}
 
-	public String getRicipe_det_url() {
-		return ricipe_det_url;
-	}
+public String getRecipe_det_url() {
+	return recipe_det_url;
+}
 
-	public void setRicipe_det_url(String ricipe_det_url) {
-		this.ricipe_det_url = ricipe_det_url;
-	}
-	
+public void setRecipe_det_url(String recipe_det_url) {
+	this.recipe_det_url = recipe_det_url;
+}
+
+
 	
 }
