@@ -19,48 +19,48 @@ public class UserDAO {
 	System.out.println(path); MultipartRequest mr = new MultipartRequest(request,
 			path, 20*1024*1024, "utf-8", new DefaultFileRenamePolicy());
 	
-	String j_profile = mr.getFilesystemName("j_profile");
-	System.out.println(j_profile); request.setAttribute("j_profile", j_profile);
+	String join_profile = mr.getFilesystemName("join_profile");
+	System.out.println(join_profile); request.setAttribute("join_profile", join_profile);
 	
-	String j_name = mr.getParameter("j_name");
-	String j_nick = mr.getParameter("j_nick");
-	String j_id = mr.getParameter("j_id");
-	String j_age = mr.getParameter("j_age");
-	String j_gender = mr.getParameter("j_gender");
-	String j_birth = mr.getParameter("j_birth");
-	String j_pw = mr.getParameter("j_pw");
-	String j_pw2 = mr.getParameter("j_pw2");
-	String j_pwquestion = mr.getParameter("j_pwquestion");
-	String j_pwquestiona = mr.getParameter("j_pwquestiona");
-	String j_email = mr.getParameter("j_email");
-	String j_phone = mr.getParameter("j_phone");
-	String j_addr = mr.getParameter("j_addr");
-	String j_agree1 = mr.getParameter("agree1");
-	String j_agree2 = mr.getParameter("agree2");
-	String j_agree3 = mr.getParameter("agree3");
-	String j_agree4 = mr.getParameter("agree4");
+	String join_name = mr.getParameter("join_name");
+	String join_nick = mr.getParameter("join_nick");
+	String join_id = mr.getParameter("join_id");
+	String join_age = mr.getParameter("join_age");
+	String join_gender = mr.getParameter("join_gender");
+	String join_birth = mr.getParameter("join_birth");
+	String join_pw = mr.getParameter("join_pw");
+	String join_pw2 = mr.getParameter("join_pw2");
+	String join_pwquestion = mr.getParameter("join_pwquestion");
+	String join_pwquestiona = mr.getParameter("join_pwquestiona");
+	String join_email = mr.getParameter("join_email");
+	String join_phone = mr.getParameter("join_phone");
+	String join_addr = mr.getParameter("join_addr");
+	String join_agree1 = mr.getParameter("agree1");
+	String join_agree2 = mr.getParameter("agree2");
+	String join_agree3 = mr.getParameter("agree3");
+	String join_agree4 = mr.getParameter("agree4");
 	
 	
 	
 
-	request.setAttribute("j_name", j_name);
-	request.setAttribute("j_id", j_id);
-	request.setAttribute("j_age", j_age);
-	request.setAttribute("j_gender", j_gender);
-	request.setAttribute("j_birth", j_birth);
-	request.setAttribute("j_pw", j_pw);
-	request.setAttribute("j_pw2", j_pw2);
-	request.setAttribute("j_pwquestion", j_pwquestion);
-	request.setAttribute("j_pwquestiona", j_pwquestiona);
-	request.setAttribute("j_email", j_email);
-	request.setAttribute("j_phone", j_phone);
-	request.setAttribute("j_addr", j_addr);
-	request.setAttribute("j_agree1", j_agree1);
-	request.setAttribute("j_agree2", j_agree2);
-	request.setAttribute("j_agree3", j_agree3);
-	request.setAttribute("j_agree4", j_agree4);
+	request.setAttribute("join_name", join_name);
+	request.setAttribute("join_id", join_id);
+	request.setAttribute("join_age", join_age);
+	request.setAttribute("join_gender", join_gender);
+	request.setAttribute("join_birth", join_birth);
+	request.setAttribute("join_pw", join_pw);
+	request.setAttribute("join_pw2", join_pw2);
+	request.setAttribute("join_pwquestion", join_pwquestion);
+	request.setAttribute("join_pwquestiona", join_pwquestiona);
+	request.setAttribute("join_email", join_email);
+	request.setAttribute("join_phone", join_phone);
+	request.setAttribute("join_addr", join_addr);
+	request.setAttribute("join_agree1", join_agree1);
+	request.setAttribute("join_agree2", join_agree2);
+	request.setAttribute("join_agree3", join_agree3);
+	request.setAttribute("join_agree4", join_agree4);
 	
-	System.out.println(j_name);
+	System.out.println(join_name);
 	
 	
 	
@@ -100,19 +100,19 @@ public static void createAccount(HttpServletRequest request) {
 		con = DBManager.connect();
 		pstmt = con.prepareStatement(sql);
 		
-		String j_name=request.getParameter("j_name");
-		String j_nick=request.getParameter("j_nick");
-		String j_id=request.getParameter("j_id");
-		String j_pw=request.getParameter("j_pw");
-		String j_gender=request.getParameter("j_gender");
-		String j_birth=request.getParameter("j_birth");
-		String j_addr=request.getParameter("j_addr");
-		String j_age=request.getParameter("j_age");
-		String j_pwquestion=request.getParameter("j_pwquestion");
-		String j_pwquestiona=request.getParameter("j_pwquestiona");
-		String j_email=request.getParameter("j_email");
-		String j_profile=request.getParameter("j_profile");
-		String j_phone=request.getParameter("j_phone");
+		String join_name=request.getParameter("join_name");
+		String join_nick=request.getParameter("join_nick");
+		String join_id=request.getParameter("join_id");
+		String join_pw=request.getParameter("join_pw");
+		String join_gender=request.getParameter("join_gender");
+		String join_birth=request.getParameter("join_birth");
+		String join_addr=request.getParameter("join_addr");
+		String join_age=request.getParameter("join_age");
+		String join_pwquestion=request.getParameter("join_pwquestion");
+		String join_pwquestiona=request.getParameter("join_pwquestiona");
+		String join_email=request.getParameter("join_email");
+		String join_profile=request.getParameter("join_profile");
+		String join_phone=request.getParameter("join_phone");
 		String agree1=request.getParameter("agree1");
 		String agree2=request.getParameter("agree2");
 		String agree3=request.getParameter("agree3");
@@ -120,19 +120,19 @@ public static void createAccount(HttpServletRequest request) {
 
 		
 		
-		pstmt.setString(1, j_name);
-		pstmt.setString(2, j_nick);
-		pstmt.setString(3, j_id);
-		pstmt.setString(4, j_pw);
-		pstmt.setString(5, j_gender);
-		pstmt.setString(6, j_birth);
-		pstmt.setString(7, j_addr);
-		pstmt.setString(8, j_age);
-		pstmt.setString(9, j_phone);
-		pstmt.setString(10, j_pwquestion);
-		pstmt.setString(11, j_pwquestiona);
-		pstmt.setString(12, j_email);
-		pstmt.setString(13, j_profile);
+		pstmt.setString(1, join_name);
+		pstmt.setString(2, join_nick);
+		pstmt.setString(3, join_id);
+		pstmt.setString(4, join_pw);
+		pstmt.setString(5, join_gender);
+		pstmt.setString(6, join_birth);
+		pstmt.setString(7, join_addr);
+		pstmt.setString(8, join_age);
+		pstmt.setString(9, join_phone);
+		pstmt.setString(10, join_pwquestion);
+		pstmt.setString(11, join_pwquestiona);
+		pstmt.setString(12, join_email);
+		pstmt.setString(13, join_profile);
 		pstmt.setString(14, agree1);
 		pstmt.setString(15, agree2);
 		pstmt.setString(16, agree3);
@@ -169,36 +169,36 @@ public static void createAccount(HttpServletRequest request) {
 
 public static void confirmJoin(HttpServletRequest request)  {
 	
-//		String j_name = request.getParameter("j_name");
-//		String j_id = request.getParameter("j_id");
-//		String j_age = request.getParameter("j_age");
-//		String j_gender = request.getParameter("j_gender");
-//		String j_birth = request.getParameter("j_birth");
-//		String j_pw = request.getParameter("j_pw");
-//		String j_pw2 = request.getParameter("j_pw2");
-//		String j_pwquestion = request.getParameter("j_pwquestion");
-//		String j_pwquestiona = request.getParameter("j_pwquestiona");
-//		String j_email = request.getParameter("j_email");
-//		String j_phone = request.getParameter("j_phone");
-//		String j_addr = request.getParameter("j_addr");
+//		String join_name = request.getParameter("join_name");
+//		String join_id = request.getParameter("join_id");
+//		String join_age = request.getParameter("join_age");
+//		String join_gender = request.getParameter("join_gender");
+//		String join_birth = request.getParameter("join_birth");
+//		String join_pw = request.getParameter("join_pw");
+//		String join_pw2 = request.getParameter("join_pw2");
+//		String join_pwquestion = request.getParameter("join_pwquestion");
+//		String join_pwquestiona = request.getParameter("join_pwquestiona");
+//		String join_email = request.getParameter("join_email");
+//		String join_phone = request.getParameter("join_phone");
+//		String join_addr = request.getParameter("join_addr");
 //		
 //		
 //		
 //		
 //	
-//		request.setAttribute("j_name", j_name);
-//		request.setAttribute("j_id", j_id);
-//		request.setAttribute("j_age", j_age);
-//		request.setAttribute("j_gender", j_gender);
-//		request.setAttribute("j_birth", j_birth);
-//		request.setAttribute("j_pw", j_pw);
-//		request.setAttribute("j_pw2", j_pw2);
-//		request.setAttribute("j_pwquestion", j_pwquestion);
-//		request.setAttribute("j_pwquestiona", j_pwquestiona);
-//		request.setAttribute("j_email", j_email);
-//		request.setAttribute("j_phone", j_phone);
-//		request.setAttribute("j_addr", j_addr);
-//		System.out.println(j_name);
+//		request.setAttribute("join_name", join_name);
+//		request.setAttribute("join_id", join_id);
+//		request.setAttribute("join_age", join_age);
+//		request.setAttribute("join_gender", join_gender);
+//		request.setAttribute("join_birth", join_birth);
+//		request.setAttribute("join_pw", join_pw);
+//		request.setAttribute("join_pw2", join_pw2);
+//		request.setAttribute("join_pwquestion", join_pwquestion);
+//		request.setAttribute("join_pwquestiona", join_pwquestiona);
+//		request.setAttribute("join_email", join_email);
+//		request.setAttribute("join_phone", join_phone);
+//		request.setAttribute("join_addr", join_addr);
+//		System.out.println(join_name);
 	
 }
 }

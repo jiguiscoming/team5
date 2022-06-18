@@ -23,48 +23,48 @@
 
 <tr>
 <td>이름!~ </td>
-<td><input name="j_name" placeholder="이름을 입력하세요" ></td>
+<td><input name="join_name" placeholder="이름을 입력하세요" ></td>
 </tr>
 
 
 <tr>
 <td >닉네임 </td>
-<td><input name="j_nick" placeholder="닉네임을 입력하세요" ></td>
+<td><input name="join_nick" placeholder="닉네임을 입력하세요" ></td>
 </tr>
 
 
 <tr>
-<td>나이</td><td><input name="j_age"  type="number" placeholder="나이를 입력하세요""></td>
+<td>나이</td><td><input name="join_age"  type="number" placeholder="나이를 입력하세요""></td>
 </tr>
 
 
 <tr>
-<td>성별</td><td><input name="j_gender"  type="radio" checked="checked" value="남">남<input name="j_gender"  type="radio"  value="여">여</td>
+<td>성별</td><td><input name="join_gender"  type="radio" checked="checked" value="남">남<input name="join_gender"  type="radio"  value="여">여</td>
 </tr>
 
 
 <tr>
-<td>생년월일</td><td><input name="j_birth" placeholder="주민등록상으로 기재된 생년월일을 입력해 주세요" ></td>
+<td>생년월일</td><td><input name="join_birth" placeholder="주민등록상으로 기재된 생년월일을 입력해 주세요" ></td>
 </tr>
 
 
 <tr>
-<td>아이디</td><td><input name="j_id" placeholder="아이디를 입력하세요" ><button>중복확인</button></td>
+<td>아이디</td><td><input name="join_id" placeholder="아이디를 입력하세요" ><button>중복확인</button></td>
 </tr>
 
 
 <tr>
-<td>비밀번호</td><td><input  type="password"  name="j_pw" placeholder="8~15글자로 대문자, 소문자, 숫자 포함하여 만들어 주세요" ></td>
+<td>비밀번호</td><td><input  type="password"  name="join_pw" placeholder="8~15글자로 대문자, 소문자, 숫자 포함하여 만들어 주세요" ></td>
 </tr>
 
 
 <tr>
-<td>비밀번호 확인</td><td><input type="password" name="j_pw2" placeholder="비밀번호를 한 번 더 입력해 주세요" ></td>
+<td>비밀번호 확인</td><td><input type="password" name="join_pw2" placeholder="비밀번호를 한 번 더 입력해 주세요" ></td>
 </tr>
 
 
 <tr>
-<td>비밀번호 확인 질문</td><td><select name="j_pwquestion">
+<td>비밀번호 확인 질문</td><td><select name="join_pwquestion">
 <option value=" 기억에 남는 추억의 장소는?"> 기억에 남는 추억의 장소는?</option>
 <option value="q2">자신의 인생 좌우명은?</option>
 <option value="q3">자신의 보물 제1호는?</option>
@@ -88,27 +88,27 @@
 
 
 <tr>
-<td>답변</td><td><input name="j_pwquestiona"<%--  placeholder="${비밀번호확인질문 }" --%>></td>
+<td>답변</td><td><input name="join_pwquestiona"<%--  placeholder="${비밀번호확인질문 }" --%>></td>
 </tr>
 
 
 <tr>
-<td>이메일</td><td><input name="j_email" type="email" placeholder="이메일을 입력하세요" ></td>
+<td>이메일</td><td><input name="join_email" type="email" placeholder="이메일을 입력하세요" ></td>
 </tr>
 
 
 <tr>
-<td>휴대폰</td><td><input name="j_phone" placeholder="전화번호를 입력하세요" ></td>
+<td>휴대폰</td><td><input name="join_phone" placeholder="전화번호를 입력하세요" ></td>
 </tr>
 
 
 <tr>
-<td>주소</td><td><input name="j_addr" placeholder="주소를 입력하세요" ></td>
+<td>주소</td><td><input name="join_addr" placeholder="주소를 입력하세요" ></td>
 </tr>
 
 
 <tr>
-<td>프로필 사진 등록</td><td><input type="file" name="j_profile" id=""></td>
+<td>프로필 사진 등록</td><td><input type="file" name="join_profile" id=""></td>
 </tr>
 
 <tr>

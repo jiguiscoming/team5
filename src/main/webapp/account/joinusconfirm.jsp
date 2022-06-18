@@ -19,78 +19,78 @@
 
 <tr>
 <td>이름</td>
-<td>${j_name }<td>
+<td>${join_name }<td>
 </tr>
 <tr>
 <td>닉네임</td>
-<td>${j_nick }<td>
+<td>${join_nick }<td>
 </tr>
 
 
 <tr>
 <td>나이</td>
-<td>${j_age }<td>
+<td>${join_age }<td>
 </tr>
 
 
 <tr>
 <td>성별</td>
-<td>${j_gender }<td>
+<td>${join_gender }<td>
 <td></td>
 </tr>
 
 
 <tr>
 <td>생년월일</td>
-<td>${j_name }<td>
+<td>${join_name }<td>
 <td></td>
 </tr>
 
 
 <tr>
 <td>아이디</td>
-<td>${j_id }<td>
+<td>${join_id }<td>
 </tr>
 
 
 <tr>
 <td>비밀번호 확인 질문</td>
-<td>${j_pwquestion }<td>
+<td>${join_pwquestion }<td>
 <td></td>
 </tr>
 
 
 <tr>
 <td>답변</td>
-<td>${j_pwquestiona }<td>
+<td>${join_pwquestiona }<td>
 <td></td>
 </tr>
 
 
 <tr>
 <td>이메일</td>
-<td>${j_email }<td>
+<td>${join_email }<td>
 <td></td>
 </tr>
 
 
 <tr>
 <td>휴대폰</td>
-<td>${j_phone }<td>
+<td>${join_phone }<td>
 <td></td>
 </tr>
 
 
 <tr>
 <td>주소</td>
-<td>${j_addr }<td>
+<td>${join_addr }<td>
 <td></td>
 </tr>
 
 
 <tr>
 <td>프로필 사진 등록</td>
-<td><img src="account/img/${j_profile}"><td>
+<td><img src="account/img/${join_profile}"><td>
 <td></td>
 </tr>
 
@@ -105,19 +105,19 @@
 <input type="hidden" name="agree2" value="${param.agree2 }"> 
 <input type="hidden" name="agree3" value="${param.agree3 }"> 
 <input type="hidden" name="agree4" value="${param.agree4 }"> 
-<input type="hidden" name="j_name" value="${param.j_name }"> 
-<input type="hidden" name="j_nick" value="${param.j_nick }"> 
-<input type="hidden" name="j_id" value="${param.j_id }"> 
-<input type="hidden" name="j_age" value="${param.j_age }"> 
-<input type="hidden" name="j_gender" value="${param.j_gender }"> 
-<input type="hidden" name="j_birth" value="${param.j_birth }"> 
-<input type="hidden" name="j_pw" value="${param.j_pw }"> 
-<input type="hidden" name="j_pw2" value="${param.j_pw2 }"> 
-<input type="hidden" name="j_pwquestion" value="${param.j_pwquestion }"> 
-<input type="hidden" name="j_pwquestiona" value="${param.j_pwquestiona }"> 
-<input type="hidden" name="j_email" value="${param.j_email }"> 
-<input type="hidden" name="j_addr" value="${param.j_addr }"> 
-<input type="hidden" name="j_profile" value="${j_profile}"> 
+<input type="hidden" name="join_name" value="${param.join_name }"> 
+<input type="hidden" name="join_nick" value="${param.join_nick }"> 
+<input type="hidden" name="join_id" value="${param.join_id }"> 
+<input type="hidden" name="join_age" value="${param.join_age }"> 
+<input type="hidden" name="join_gender" value="${param.join_gender }"> 
+<input type="hidden" name="join_birth" value="${param.join_birth }"> 
+<input type="hidden" name="join_pw" value="${param.join_pw }"> 
+<input type="hidden" name="join_pw2" value="${param.join_pw2 }"> 
+<input type="hidden" name="join_pwquestion" value="${param.join_pwquestion }"> 
+<input type="hidden" name="join_pwquestiona" value="${param.join_pwquestiona }"> 
+<input type="hidden" name="join_email" value="${param.join_email }"> 
+<input type="hidden" name="join_addr" value="${param.join_addr }"> 
+<input type="hidden" name="join_profile" value="${join_profile}"> 
 </td></tr>
 
 
