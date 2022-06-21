@@ -33,13 +33,13 @@ public class GroupUpdateController extends HttpServlet {
 				GroupDAO.groupPaging(request);
 //				System.out.println("전국");
 			}else {
-				if(request.getParameter("research").equals("")) {
+				if(request.getParameter("search").equals("")) {
 				// 지역 : 파라미터로 지역 값 넘겨서 게시글 골라 받기 (select where) + 페이징 적용
 				GroupDAO.getRegionGroups(request);
 //				System.out.println("지역");
 				}
 			}
-			if(!request.getParameter("research").equals("")) {
+			if(!request.getParameter("search").equals("")) {
 				// 검색 : 파라미터로 검색 값 넘겨서 게시글 골라받기 +  페이징
 				GroupDAO.getGroupResearch(request);
 //				System.out.println("검색");

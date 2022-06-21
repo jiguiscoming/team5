@@ -9,28 +9,38 @@
 <title>Insert title here</title>
 </head>
 <body>
-<table id="group_detailTbl" border="1">
+<!-- 글제목 -->
+<div class="group_detail_title_box">
+	<div class="group_detail_title">
+		<h3>[${group.area }] ${group.title }</h3>
+	</div>
+	<div class="group_detail_date">
+		<fmt:formatDate value="${group.date }" type="both"/> 
+	</div>
+	<div class="group_detail_btn">
+		<button onclick="location.href='GroupUpdateController?no=${group.no}'">수정</button>
+	</div>
+</div>
+
+<!-- 글내용 -->
+<table id="group_detailTbl">
 	<tr>
-		<td colspan="5"><h2>${group.title }</h2></td>
-	</tr>
-	<tr>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td>조회수 ${group.hits }</td>
-		<td class="group_like">
-			<input type="checkbox" name="like"><label for="like"></label>${group.like }
+		<td class="group_detail_hits">조회수 ${group.hits }</td>
+		<td class="group_detailTd">
+	<%-- 	<c:choose> --%>
+			<%-- <c:when test="${empty groupLike.id}"> --%>
+			<span id="like">♡</span>
+			<%-- </c:when> --%>
+<%-- 			<c:otherwise>
+			<span id="like">♥</span>
+			</c:otherwise>
+		</c:choose> --%>
+			<span id="like_count">${group.like }</span>
 		</td>
+		<td>작성자 ${group.id }</td>
 	</tr>
 	<tr>
-		<td>${group.area }</td>
-		<td>${group.id }</td>
-		<td><fmt:formatDate value="${group.date }" type="both"/> </td>
-		<td><button onclick="location.href='GroupUpdateController?no=${group.no}'">수정</button></td>
-		<td><button onclick="groupDel(${group.no})">삭제</button></td>
-	</tr>
-	<tr>
-		<td colspan="5">${group.txt }</td>
+		<td class="group_detail_content" colspan="3">${group.txt }</td>
 	</tr>
 </table>
 <h3>댓글</h3>

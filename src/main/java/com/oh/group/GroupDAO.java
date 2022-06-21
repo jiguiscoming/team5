@@ -584,4 +584,54 @@ public class GroupDAO {
 		
 	}
 
+	public static void likeUp(HttpServletRequest request) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from group_purchase where group_no = ?";
+		
+		try {
+			
+			con = Group_DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			
+			// 게시글 넘버
+			int no = Integer.parseInt(request.getParameter("no"));
+			System.out.println(no);
+			pstmt.setInt(1, no);
+			
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				sql = "update group_purchase set group_like =? where group_no =?";
+				pstmt = con.prepareStatement(sql);
+				
+				// 좋아요 수 up
+				pstmt.setInt(1, rs.getInt("group_like")+1);
+				pstmt.setInt(2, no);
+				
+				// 업데이트 되면 객체 담기
+				String id = rs.getString("group_id");
+				String title = rs.getString("group_title");
+				String txt = rs.getString("group_txt");
+				Date date = rs.getDate("group_date");
+				String area = rs.getString("group_area");
+				int like = rs.getInt("group_like");
+				int hits = rs.getInt("group_hits");
+				Group group;
+				if(pstmt.executeUpdate()==1) {
+					group = new Group(no, id, title, txt, date, area, like, hits);
+					request.setAttribute("group", group);
+					System.out.println("등록성공");
+				}
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("서버 오류");
+		} finally {
+			Group_DBManager.close(con, pstmt, rs);
+		}
+	}
+
 }

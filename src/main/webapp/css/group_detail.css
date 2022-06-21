@@ -1,26 +1,59 @@
 @charset "UTF-8";
 
 #group_detailTbl, #group_commentTbl{
-	width: 100vw;
+	width: 100%;
 }
 
-.group_like > input[type="checkbox"]+label {
-    display: inline-block;
-    width: 24px;
-    height: 24px;
-    background: url('../img/unfull.png') no-repeat 0 0px / contain;
-	cursor: pointer;
-}
-
-.group_like > input[type="checkbox"]:checked+label {
-    background: url('../img/full.png') no-repeat 0 1px / contain;
-	cursor: pointer;
-}
-
-/* .group_like > input[type="checkbox"] {
-    display: none;
-} */
 
 #group_comment_listTbl{
 	width: 100vw;
+}
+
+.group_detail_title_box{
+	position: relative;
+	border-bottom: 2px solid gray;
+	padding-left: 5px;
+	padding-bottom: 10px;
+}
+
+.group_detail_date{
+	color: gray;
+	font-size: 8pt;
+	display: inline-block;
+}
+
+.group_detail_title{
+	height: 30px;
+}
+
+.group_detail_btn{
+	display: inline-block;
+	position: absolute;
+	right: 0px;
+	padding: 10px;
+	bottom: 0px;
+}
+
+.group_detail_btn > button{
+	background-color: transparent;
+	color: black;
+	font-size: 10pt;
+}
+
+.group_detail_hits{
+	width: 70px;
+	font-size: 10pt;
+	color: black;
+}
+
+.group_detailTd{
+	width: 800px;
+	font-size: 10pt;
+	color: black;
+}
+
+.group_detail_content{
+	width: 100%;
+	height: 1000px;
+	border: 2px solid gray;
 }

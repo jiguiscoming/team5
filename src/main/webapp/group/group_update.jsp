@@ -45,6 +45,7 @@
 			<input type="hidden" name="research">
 			<input type="hidden" name="pageNum" value="1">
 			<button name="no" value="${group.no }">수정하기
+			<button onclick="groupDel(${group.no})">삭제</button>
 		</button></td>
 	</tr>
 </table>

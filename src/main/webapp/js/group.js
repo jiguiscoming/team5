@@ -69,3 +69,23 @@ function groupComment(){
 		return false;
 	}
 }
+
+$(function(){
+	$('#like').click(function(){
+		
+		let no = urlParams.get('no');
+		alert(no);
+		
+		$.ajax({
+			url : 'GroupDetailController',
+			type : 'post',
+			data : {no : no},
+			success : function(){
+				$('')
+			}
+			
+			
+		});
+	});
+		
+});
