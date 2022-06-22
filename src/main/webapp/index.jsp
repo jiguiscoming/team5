@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="css/group.css">
+<link rel="stylesheet" href="css/group_reg.css">
+<link rel="stylesheet" href="css/group_update.css">
 <link rel="stylesheet" href="css/group_detail.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript" src="js/group.js"></script>
@@ -17,11 +19,11 @@
 
 <table border="1" id="indexTbl">
 	<tr>
+		<div>
 		<td class="index_title" colspan="2">야너두 레시피</td>
 		<td colspan="2"><jsp:include page="${loginPage}"></jsp:include></td>
-	</tr>
-	<tr>
-		<td colspan="4"><input value="검색창"></td>
+		<div colspan="4"><input value="검색창"></div>
+		</div>
 	</tr>
 	<tr>
 		<td><a href="#">레시피 공유</a></td>

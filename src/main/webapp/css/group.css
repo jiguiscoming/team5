@@ -1,14 +1,14 @@
 @charset "UTF-8";
 
 #group_listTbl, #group_writeTbl, #group_regionTbl{
-	width: 100vw;
+	width: 100%;
 }
 .group_title{
 	height: 30px;
 	width: 80px;
 	padding-bottom: 5px;
 	padding-left: 5px;
-	margin: 5px;
+	margin-left: 5px;
 }
 
 .group_title > h2{
@@ -20,6 +20,7 @@
 	height: 40px;
 	border-top: 2px solid black;
 	padding-top: 10px;
+	padding-left: 10px;
 	border-bottom: 1px solid gray;
 }
 
@@ -52,14 +53,13 @@
 }
 
 .group_write > button{
-	width: 100px;
-	height: 40px;
-	border: 2px solid gray;
-	border-radius: 10px;
+	width: 60px;
+	height: 30px;
+	border: 2px solid black;
 	cursor: pointer;
 	background-color: transparent;
-	font-weight: 900;
-	font-size: 12pt;
+	font-weight: 600;
+	font-size: 10pt;
 }
 
 .group_list_box{
@@ -137,4 +137,11 @@
 	border: 1px solid black;
 	position: absolute;
 	bottom: 0px;
+}
+
+.group_list_count{
+	position: absolute;
+	bottom: 27px;
+	font-size: 10pt;
+	width: 100%;
 }

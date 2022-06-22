@@ -29,6 +29,12 @@ function groupReg_isEmpty(){
 
 }
 
+// 수정사이트 넘어가기 전
+// 아이디 세션 받아와서 확인
+function groupUpdate_idOK(){
+	alert('작성자가 아닙니다');
+}
+
 /*수정페이지 유효성체크*/
 function groupUpdate_isEmpty(){
 

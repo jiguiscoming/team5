@@ -8,9 +8,14 @@
 </head>
 <body>
 <form name="groupRegForm" action="GroupRegController" method="post" onsubmit="return groupReg_isEmpty()">
-<table>
+<table id="group_regTbl" border="1">
 	<tr>
 		<td>
+			<div class="group_reg_info">내 동네에서 공구 구하기</div>
+		</td>
+	</tr>
+	<tr>
+		<td class="group_reg_title">
 			<select name="area">
 				<option value="서울">서울</option>
 				<option value="부산">부산</option>
@@ -30,20 +35,17 @@
 				<option value="강원">강원</option>
 				<option value="제주">제주</option>
 			</select>
+			<input placeholder="제목" name="title">
 		</td>
 	</tr>
 	<tr>
-		<td><input placeholder="title" name="title"></td>
+		<td class="group_reg_txt"><textarea name="txt"></textarea></td>
 	</tr>
 	<tr>
-	
-		<td><textarea name="txt"></textarea></td>
-	</tr>
-	<tr>
-		<td><button type="button" onclick="history.back()">취소</button></td>
-		<td>
+		<td class="group_reg_btn">
+			<button type="button" onclick="history.back()">취소</button>
 			<input type="hidden" name="region" value="전국">
-			<input type="hidden" name="research">
+			<input type="hidden" name="search">
 			<button name="pageNum" value="1">등록</button>
 		</td>
 	</tr>

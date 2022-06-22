@@ -78,7 +78,7 @@
 		
 		작성자 ${group.id }
 		
-		<div>
+		<div class="group_list_count">
 		조회수 ${group.hits }
 		♥ ${group.like }
 		</div>
