@@ -5,7 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="css/main.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&family=Sunflower:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/index.css">
 <link rel="stylesheet" href="css/group.css">
 <link rel="stylesheet" href="css/group_reg.css">
 <link rel="stylesheet" href="css/group_update.css">
@@ -17,24 +20,38 @@
 <!-- loginPage , contentPage 컨트롤러 생성시 꼭 넣어주세요! -->
 <!-- href="#"는 이동 안 되게 넣어뒀습니다. 본인 컨트롤러로 이동하게 만드시면 됩니다. -->
 
-<table border="1" id="indexTbl">
+<div class="index_login_box">
+	<div><jsp:include page="${loginPage}"></jsp:include></div>
+</div>
+<table id="indexTbl">
 	<tr>
-		<div>
-		<td class="index_title" colspan="2">야너두 레시피</td>
-		<td colspan="2"><jsp:include page="${loginPage}"></jsp:include></td>
-		<div colspan="4"><input value="검색창"></div>
-		</div>
+		<td class="index_titleTd" colspan="5">
+			<div class="index_title">
+				<a href="HC">야너두 레시피<img src="img/you.png"></a>
+			</div>
+		</td>
 	</tr>
 	<tr>
-		<td><a href="#">레시피 공유</a></td>
-		<td><a href="GroupController?region=전국&pageNum=1&search=">공구</a></td>
-		<td><a href="#">밀키트 몰</a></td>
-		<td><a href="#">오늘 뭐 먹지?</a></td>
+		<td colspan="5" style="height: 130px;">
+			<div class="index_search">
+				<input placeholder="검색어를 입력하세요">
+				<button>검색</button>
+			</div>
+		</td>
 	</tr>
+	<tr>
+		<td class="index_menu"><a href="#">레시피 공유</a></td>
+		<td class="index_menu"><a href="GroupController?region=전국&pageNum=1&search=">공구</a></td>
+		<td class="index_menu"><a href="#">밀키트 몰</a></td>
+		<td class="index_menu"><a href="#">오늘 뭐 먹지?</a></td>
+		<td></td>
+	</tr>
+</table>
+<table id="index_contentTbl">
 	<tr>
 		<td colspan="4"><jsp:include page="${contentPage }"></jsp:include></td>
 	</tr>
-</table>
+</table>	
 
 
 </body>
