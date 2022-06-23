@@ -11,38 +11,38 @@
 	<table>
 
 		<tr>
-			<td clospan="2">(내프로필사진)</td>
+			<td clospan="2"><img alt="" src="img/<!-- 이미지의  attribute 명 -->"></td>
 
-			<td>- 내 게시글 / 댓글</td>
+			<td><button> 내 게시글 / 댓글</button></td>
 		</tr>
 		<tr>
 			<td></td>
-			<td>- 내 정보 - 비밀번호 수정
+			<td> <button>내 정보 - 비밀번호 수정</button>
 			</td>
 		</tr>
 		<tr>
 			<td></td>
-			<td>- 찜
+			<td><button> 찜</button>
 			</td>
 		</tr>
 		<tr>
 			<td></td>
-			<td>- 결제정보
+			<td><button>결제정보</button>
 			</td>
 		</tr>
 		<tr>
 			<td></td>
-			<td>- 탈퇴 (회원 탈퇴 ~~ 님과 야너두 레시피가 함께한 시간..)
+			<td> <button>탈퇴 </button>
 			</td>
 		</tr>
 		<tr>
 			<td></td>
-			<td>- 공지사항
+			<td> <button>공지사항</button>
 			</td>
 		</tr>
 		<tr>
 			<td></td>
-			<td>- 1:1 문의하기
+			<td> <button>1:1 문의하기</button>
 
 			</td>
 		</tr>

@@ -259,6 +259,8 @@ public static void logout(HttpServletRequest request) {
 	
 }
 
+// 세션 유지를 위해 모든 컨트롤러에 넣어 주세요.!
+
 public static void loginCheck(HttpServletRequest request) {
 	// TODO Auto-generated method stub
 	
@@ -266,13 +268,12 @@ public static void loginCheck(HttpServletRequest request) {
 	accountB acc = (accountB) hs.getAttribute("accountInfo");
 	
 	if (acc == null) {
-		request.setAttribute("loginPage", "loginBtn.jsp");
-	} else {
-		request.setAttribute("loginPage", "loginOK.jsp");
+		request.setAttribute("loginPage", "account/loginBtn.jsp");
+		} else {
+			request.setAttribute("loginPage", "account/loginOK.jsp");
+			
+		}
 		
-	}
-	
-	
 
 	
 	

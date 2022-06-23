@@ -16,7 +16,6 @@ public class mypageHomeC extends HttpServlet {
 		UserDAO.loginCheck(request);
 		
 		
-		request.setAttribute("loginPage", "account/loginBtn.jsp");
 		request.setAttribute("contentPage", "myPage/myPageHome.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 		
