@@ -32,7 +32,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td colspan="5" style="height: 130px;">
+		<td colspan="5" class="index_searchTd">
 			<div class="index_search">
 				<input placeholder="검색어를 입력하세요">
 				<button>검색</button>
@@ -40,10 +40,10 @@
 		</td>
 	</tr>
 	<tr>
-		<td class="index_menu"><a href="#">레시피 공유</a></td>
-		<td class="index_menu"><a href="GroupController?region=전국&pageNum=1&search=">공구</a></td>
-		<td class="index_menu"><a href="#">밀키트 몰</a></td>
-		<td class="index_menu"><a href="#">오늘 뭐 먹지?</a></td>
+		<td class="index_menu"><div class="index_menu_box"><a href="#">레시피 공유</a></div></td>
+		<td class="index_menu"><div class="index_menu_box"><a href="GroupController?region=전국&pageNum=1&search=">공구</a></div></td>
+		<td class="index_menu"><div class="index_menu_box"><a href="#">밀키트 몰</a></div></td>
+		<td class="index_menu"><div class="index_menu_box"><a href="#">오늘 뭐 먹지?</a></div></td>
 		<td></td>
 	</tr>
 </table>
