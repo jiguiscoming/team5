@@ -33,8 +33,10 @@
 }
 
 .index_search{
-	display: inline-block;
-	margin-left: 360px;
+	border : 1px solid red;
+	display: block;
+	margin: 0 auto;
+	text-align: center;
 }
 
 .index_search > input{
@@ -42,7 +44,6 @@
 	width: 280px;
 	height: 50px;
 	border-radius: 30px;
-	margin: 0 auto;
 	padding-left: 30px;
 	padding-right: 80px;
 }
