@@ -1,4 +1,4 @@
-package com.oh.main;
+package com.oh.group;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,7 +9,7 @@ import java.sql.SQLException;
 //DB 관련 작업을 할때 매번 연결코드를 쓴 이후 작업 해옴
 
 // 그거 AOP하자
-public class DBManager {
+public class Group_DBManager {
 	
 	//db 작업시엔 어쨋든 연결 해야됨
 	public static Connection connect() throws SQLException {
