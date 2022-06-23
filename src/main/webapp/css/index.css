@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+body{
+	margin: 0;
+}
+
 #indexTbl{
 	width: 90%;
 	height: 200px;
@@ -33,6 +37,7 @@
 }
 
 .index_search{
+	display: inline-block;
 	border : 1px solid red;
 	display: block;
 	margin: 0 auto;
@@ -40,12 +45,15 @@
 }
 
 .index_search > input{
+.index_search>input{
 	vertical-align: middle;
 	width: 280px;
 	height: 50px;
 	border-radius: 30px;
+	margin: 0 auto;
 	padding-left: 30px;
 	padding-right: 80px;
+	margin: 0 auto;
 }
 
 .index_search > button{
@@ -90,4 +98,34 @@
 
 .index_menu_box{
 	padding-bottom: 3px;
+}
+
+#homeTbl{
+	width: 100%;
+}
+
+#footerTbl{
+	width: 100%;
+	margin: 50px 0 0 0;
+	background-color: #ebebeb;
+	border-left: none;
+	border-right: none;
+	border-bottom: none;
+	border-top: 2px solid black;
+	padding: 100px;
+}
+
+.footer_title{
+	font-family: 'Sunflower', sans-serif;
+	color:black;
+	margin-bottom: 10px;
+	font-weight: 500;
+	font-size: 20pt;
+	margin: 10px;
+}
+
+.footer_title > img{
+	width: 50px;
+	margin-bottom: -12px;
+	margin-left: -10px;
 }

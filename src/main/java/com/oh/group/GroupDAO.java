@@ -10,30 +10,41 @@ import java.util.Iterator;
 import javax.servlet.http.HttpServletRequest;
 
 import com.oh.group.Group_DBManager;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 public class GroupDAO {
 
 	public static void groupReg(HttpServletRequest request) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String sql = "insert into group_purchase values(group_purchase_seq.nextval, ?, ?, ?, sysdate, ?, ?, ?)";
+		String sql = "insert into group_purchase values(group_purchase_seq.nextval, ?, ?, ?, sysdate, ?, ?, ?, ?, ?)";
 		
 		try {
+			String saveDirectory = request.getServletContext().getRealPath("group_imgFolder");
+			MultipartRequest mr = new MultipartRequest(request, saveDirectory, 31457280,"utf-8",new DefaultFileRenamePolicy());
 			
-			request.setCharacterEncoding("utf-8");
+			System.out.println(saveDirectory);
+			
 			con = Group_DBManager.connect();
+			
 			pstmt = con.prepareStatement(sql);
-			String title = request.getParameter("title");
-			String txt = request.getParameter("txt");
-			String area = request.getParameter("area");
+			String title = mr.getParameter("title");
+			String txt = mr.getParameter("txt");
+			String area = mr.getParameter("area");
+			String file = mr.getFilesystemName("file");
+			
 			
 //			id는 세션으로 받기
+//			닉네임도 세션으로 받기
 			pstmt.setString(1, "id");
 			pstmt.setString(2, title);
 			pstmt.setString(3, txt);
 			pstmt.setString(4, area);
 			pstmt.setInt(5, 0);
 			pstmt.setInt(6, 0);
+			pstmt.setString(7, "nick");
+			pstmt.setString(8, file);
 			
 			if(pstmt.executeUpdate() == 1) {
 				request.setAttribute("result", "등록성공");
@@ -73,8 +84,10 @@ public class GroupDAO {
 				String group_area = rs.getString("group_area");
 				int group_like = rs.getInt("group_like");
 				int group_hits = rs.getInt("group_hits");
+				String group_nick = rs.getString("group_nickname");
+				String group_img = rs.getString("group_img");
 				
-				group = new Group(group_no, group_id, group_title, group_txt, group_date, group_area, group_like, group_hits);
+				group = new Group(group_no, group_id, group_title, group_txt, group_date, group_area, group_like, group_hits,group_nick,group_img);
 				groups.add(group);				
 			}
 			
@@ -150,8 +163,10 @@ public class GroupDAO {
 				String group_area = rs.getString("group_area");
 				int group_like = rs.getInt("group_like");
 				int group_hits = rs.getInt("group_hits");
+				String group_nick = rs.getString("group_nickname");
+				String group_img = rs.getString("group_img");
 				
-				group1 = new Group(no, group_id, group_title, group_txt, group_date, group_area, group_like, group_hits);
+				group1 = new Group(no, group_id, group_title, group_txt, group_date, group_area, group_like, group_hits,group_nick,group_img);
 				request.setAttribute("group", group1);
 			}
 			
@@ -306,14 +321,9 @@ public class GroupDAO {
 			pstmt = con.prepareStatement(sql);
 			
 			// 한페이지에 보여줄 게시글 수 : 5
-			int pageSize = 5;
+			int pageSize = 4;
 			// 현제 페이지
 			String pageNum = request.getParameter("pageNum");
-			
-			// 메뉴 버튼 누르면 null : 메뉴 누르자마자 첫페이지 이동
-			if(pageNum == null) {
-				pageNum = "1";
-			}
 			
 			// 현재페이지(int로 파싱), 시작게시글번호, 끝게시글번호 선언 및 초기화
 			int currentPage = Integer.parseInt(pageNum);
@@ -339,8 +349,10 @@ public class GroupDAO {
 				String group_area = rs.getString("group_area");
 				int group_like = rs.getInt("group_like");
 				int group_hits = rs.getInt("group_hits");
+				String group_nick = rs.getString("group_nickname");
+				String group_img = rs.getString("group_img");
 				
-				group = new Group(group_no,group_id, group_title, group_txt, group_date, group_area, group_like, group_hits);
+				group = new Group(group_no,group_id, group_title, group_txt, group_date, group_area, group_like, group_hits,group_nick,group_img);
 				groups.add(group);				
 			}
 			
@@ -354,7 +366,7 @@ public class GroupDAO {
 		}
 	}
 
-	public static void getGroupResearch(HttpServletRequest request) {
+	public static void getGroupSearch(HttpServletRequest request) {
 		// 연결준비
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -373,18 +385,13 @@ public class GroupDAO {
 			pstmt = con.prepareStatement(sql);
 			
 			// 검색한 값
-			String research = request.getParameter("research"); 
+			String search = request.getParameter("search"); 
 			
 			// 한페이지에 보여줄 게시글 수 : 5
-			int pageSize = 5;
+			int pageSize = 4;
 			
 			// 현제 페이지
 			String pageNum = request.getParameter("pageNum");
-			
-			// 메뉴 버튼 누르면 null : 메뉴 누르자마자 첫페이지 이동
-			if(pageNum == null) {
-				pageNum = "1";
-			}
 			
 			// 현재페이지(int로 파싱), 시작게시글번호, 끝게시글번호 선언 및 초기화
 			int currentPage = Integer.parseInt(pageNum);
@@ -393,12 +400,12 @@ public class GroupDAO {
 			
 			// 첫번째 ? : 검색한 값  두번째 ? : 첫 게시글 번호  세번째 ? : 마지막 게시글 번호
 			if(region.equals("전국")) {
-				pstmt.setString(1, "%" + research + "%");
+				pstmt.setString(1, "%" + search + "%");
 				pstmt.setInt(2, startRow);
 				pstmt.setInt(3, endRow);
 			} else {
 				pstmt.setString(1, region);
-				pstmt.setString(2, "%" + research + "%");
+				pstmt.setString(2, "%" + search + "%");
 				pstmt.setInt(3, startRow);
 				pstmt.setInt(4, endRow);
 			}
@@ -417,17 +424,19 @@ public class GroupDAO {
 				String group_area = rs.getString("group_area");
 				int group_like = rs.getInt("group_like");
 				int group_hits = rs.getInt("group_hits");
+				String group_nick = rs.getString("group_nickname");
+				String group_img = rs.getString("group_img");
 				
-				group = new Group(group_no,group_id, group_title, group_txt, group_date, group_area, group_like, group_hits);
+				group = new Group(group_no,group_id, group_title, group_txt, group_date, group_area, group_like, group_hits,group_nick,group_img);
 				groups.add(group);				
 			}
 			
 			// arraylist를 attribute에 담기
 			request.setAttribute("groups", groups);
 			if(region.equals("전국")) {
-			request.setAttribute("sql", "select count(*) from group_purchase where group_title like '%" + research + "%'");
+			request.setAttribute("sql", "select count(*) from group_purchase where group_title like '%" + search + "%'");
 			} else {
-				request.setAttribute("sql", "select count(*) from(select * from group_purchase where group_area='" + region + "') where group_title like '%" + research + "%'");
+				request.setAttribute("sql", "select count(*) from(select * from group_purchase where group_area='" + region + "') where group_title like '%" + search + "%'");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -447,14 +456,10 @@ public class GroupDAO {
 		String sql = "select * from (select rownum as num, a.* from (select * from group_purchase order by group_date desc)a) where num between ? and ?";
 		
 		// 한페이지에 보여줄 게시글 수 : 5
-		int pageSize = 5;
+		int pageSize = 4;
 		// 현제 페이지
 		String pageNum = request.getParameter("pageNum");
 		
-		// 메뉴 버튼 누르면 null : 메뉴 누르자마자 첫페이지 이동
-		if(pageNum == null) {
-			pageNum = "1";
-		}
 		
 		// 현재페이지(int로 파싱), 시작게시글번호, 끝게시글번호 선언 및 초기화
 		int currentPage = Integer.parseInt(pageNum);
@@ -486,8 +491,10 @@ public class GroupDAO {
 				String group_area = rs.getString("group_area");
 				int group_like = rs.getInt("group_like");
 				int group_hits = rs.getInt("group_hits");
+				String group_nick = rs.getString("group_nickname");
+				String group_img = rs.getString("group_img");
 				
-				group = new Group(group_no, group_id, group_title, group_txt, group_date, group_area, group_like, group_hits);
+				group = new Group(group_no, group_id, group_title, group_txt, group_date, group_area, group_like, group_hits,group_nick,group_img);
 				groups.add(group);				
 				
 			}
@@ -512,15 +519,11 @@ public class GroupDAO {
 		ResultSet rs = null;
 		
 		// 한 페이지에 보여줄 게시글 수 : 5
-		int pageSize = 5;
+		int pageSize = 4;
 		
 		// 현재 접속중인 페이지
 		String pageNum = request.getParameter("pageNum");
 		
-		// 메뉴 누르면 바로 페이지 1로 이동 ( 페이지값 없음 )
-		if(pageNum == null) {
-			pageNum = "1";
-		}
 		// 현재페이지(pageNum) int로 다시 담음
 		int currentPage = Integer.parseInt(pageNum);
 		
@@ -617,9 +620,12 @@ public class GroupDAO {
 				String area = rs.getString("group_area");
 				int like = rs.getInt("group_like");
 				int hits = rs.getInt("group_hits");
+				String group_nick = rs.getString("group_nickname");
+				String group_img = rs.getString("group_img");
+				
 				Group group;
 				if(pstmt.executeUpdate()==1) {
-					group = new Group(no, id, title, txt, date, area, like, hits);
+					group = new Group(no, id, title, txt, date, area, like, hits,group_nick,group_img);
 					request.setAttribute("group", group);
 					System.out.println("등록성공");
 				}

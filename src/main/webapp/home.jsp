@@ -7,6 +7,25 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>home</h1>
+<table id="homeTbl" border="1">
+	<tr>
+		<td><h2>밀키트 best5</h2></td>
+	</tr>
+	<tr>
+		<td></td>
+	</tr>
+	<tr>
+		<td><h2>추천 레시피</h2></td>
+	</tr>
+	<tr>
+		<td></td>
+	</tr>
+	<tr>
+		<td><h2>오늘의 레시피</h2></td>
+	</tr>
+	<tr>
+		<td></td>
+	</tr>
+</table>
 </body>
 </html>

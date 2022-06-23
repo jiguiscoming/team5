@@ -10,7 +10,7 @@
 </head>
 <body>
 <!-- 글제목 -->
-<form action="GroupUpdateController?no=${group.no}" onsubmit="return groupUpdate_idOK()">
+<!-- 나중에 작성지 확인 기능 불러오기 -->
 <div class="group_detail_title_box">
 	<div class="group_detail_title">
 		<h3>[${group.area }] ${group.title }</h3>
@@ -19,10 +19,9 @@
 		<fmt:formatDate value="${group.date }" type="both"/> 
 	</div>
 	<div class="group_detail_btn">
-		<button>수정</button>
+		<button onclick="location.href='GroupUpdateController?no=${group.no}'">수정</button>
 	</div>
 </div>
-</form>
 
 
 <!-- 글내용 -->
