@@ -23,6 +23,21 @@
         }
 
    </script>
+	  <script type="text/javascript">
+	  function setThumbnail(event) {
+			var reader = new FileReader();
+
+			reader.onload = function(event) {
+				var img = document.createElement("img");
+				img.setAttribute("src", event.target.result);
+				img.setAttribute("class", "col-lg-6");
+				document.querySelector("div#image_container").appendChild(img);
+			};
+
+			reader.readAsDataURL(event.target.files[0]);
+		}
+
+	  </script>
 </head>
 <body onload="setParentText()">		
 			
@@ -60,7 +75,13 @@
 			</tr>
 			<tr>
 			<td class="mk_QnA_td1">내용</td>
-			<td> <a id="summernote" name="mealkit_QnA_txt"></a> </td>
+			<td> <textarea style="width: 650px ; height:350px;" type="text"  name="mealkit_QnA_txt"></textarea> </td>
+			</tr>
+			<tr>
+			<td ><input class="form-control form-control-user"
+							type="file" name="mealkit_QnA_img" id="mealkit_QnA_img"
+							onchange="setThumbnail(event);"></td>
+						<td><div  id="image_container"></div></td>
 			</tr>
 			</table>
 			

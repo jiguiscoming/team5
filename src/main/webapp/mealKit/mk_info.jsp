@@ -35,11 +35,7 @@
 	integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
 	crossorigin="anonymous"></script>
 
-<link
-	href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css"
-	rel="stylesheet">
-<script
-	src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
 
 
 
@@ -286,7 +282,7 @@
 					</tr>
 
 					<tr>
-						<td colspan="2"><input class="form-control form-control-user"
+						<td colspan="1"><input class="form-control form-control-user"
 							type="file" name="mealkit_review_img" id="mealkit_review_img"
 							onchange="setThumbnail(event);"></td>
 						<td><div id="image_container"></div></td>
@@ -311,15 +307,8 @@
 	</div>
 
 
-	<table class="mk_Info_review">
-		<thead border="1" class="mk_Info_review_thd">
-			<tr>
-				<th class="mk_Info_review_td1">글 번호</th>
-				<th class="mk_Info_review_td2">제 목</th>
-				<th class="mk_Info_review_td3">날 짜</th>
-			</tr>
-		</thead>
-
+	<table class="mk_Info_review" border="1">
+		
 		<c:forEach var="r" items="${MealkitReviewlist }">
 			<!-- <table id="faq-title" border="1"> -->
 			<tr class="faq-content">
@@ -359,12 +348,32 @@
 				class="btn_qna_more">상품문의 전체보기</a></td>
 			<td ><a 
 				href="javascript:review_QnA()" 
-				 class="btn_qna_write" >상품문의 글쓰기</a> <input id="mk_no" value="${Mealkit.mealkit_no }" > </td>
+				 class="btn_qna_write" >상품문의 글쓰기</a></td>
 				
 		</tr>
 
 	</table>
+		
+		<table border="1" class="mk_Info_QnA">
+		
+		<c:forEach var="q" items="${MealkitQnAlist }">
+			<!-- <table id="faq-title" border="1"> -->
+			<tr class="faq-content" >
+				<td style="width: 60px; text-align: center;"> ${q.mealkit_QnA_no } </td>
+				<td><button class="Qna" id="q-${q.mealkit_QnA_no }">${q.mealkit_QnA_title }</button></td>
+				<td>${q.mealkit_QnA_id }</td>
+				<td>${q.mealkit_QnA_date }</td>
+			</tr>
+			<tr class="mk_Info_QnA_bottom">
+				
+				<td class="qnA" id="a-${q.mealkit_QnA_no }"> ${q.mealkit_QnA_txt }</td>
 
+
+			</tr>
+		</c:forEach>
+
+		</table>
+		
 	
 	
 
@@ -374,7 +383,6 @@
 
 
 <script type="text/javascript">
-
 const items = document.querySelectorAll('.question');
 function openCloseAnswer() {
 	const answerId = this.id.replace('que', 'ans');
@@ -390,5 +398,23 @@ function openCloseAnswer() {
 items.forEach(item => item.addEventListener('click', openCloseAnswer));
 
 
+
 </script>
+<script type="text/javascript">
+const its = document.querySelectorAll('.Qna');
+function openCloseAnswer() {
+	const qnAId = this.id.replace('q', 'a');
+
+	if (document.getElementById(qnAId).style.display === 'block') {
+		document.getElementById(qnAId).style.display = 'none';
+		document.getElementById(this.id + '-toggle').textContent = '+';
+	} else {
+		document.getElementById(qnAId).style.display = 'block';
+		document.getElementById(this.id + '-toggle').textContent = '-';
+	}
+}
+its.forEach(item => item.addEventListener('click', openCloseAnswer));
+
+</script>
+
 </html>

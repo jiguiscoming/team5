@@ -258,7 +258,7 @@ public class MealkitDAO {
 		PreparedStatement pstmt = null;
 
 		try {
-			String sql = "insert into mealkit_review_test values (mealkit_QnA_test_seq.nextval ,?,?,?,?,?,?,sysdate )";
+			String sql = "insert into mealkit_QnA_test values (mealkit_QnA_test_seq.nextval ,?,?,?,?,?,?,sysdate )";
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			
@@ -273,7 +273,7 @@ public class MealkitDAO {
 			String mealkit_QnA_id = mr.getParameter("mealkit_QnA_id");
 			int mealkit_QnA_pw = Integer.parseInt(mr.getParameter("mealkit_QnA_pw"));
 			String mealkit_QnA_title = mr.getParameter("mealkit_QnA_title");
-			String mealkit_QnA_img = mr.getFilesystemName("files");
+			String mealkit_QnA_img = mr.getFilesystemName("mealkit_QnA_img");
 			String mealkit_QnA_txt = mr.getParameter("mealkit_QnA_txt");
 
 			// System.out.println(mealkit_review_id);
@@ -303,6 +303,47 @@ public class MealkitDAO {
 			DBManager.close(con, pstmt, null);
 		}
 		
+		
+	}
+
+	public static void viewQnAMealkit(HttpServletRequest request) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Connection con = null;
+
+		try {
+			ArrayList<MealkitQnA> MealkitQnAlist = new ArrayList<MealkitQnA>();
+
+			MealkitQnA m = null;
+
+			String sql = "select * from mealkit_QnA_test where mealkit_QnA_mk_no=?";
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, Integer.parseInt(request.getParameter("no")));
+			rs = pstmt.executeQuery();
+	
+			
+			while (rs.next()) {
+				
+				m = new MealkitQnA();
+				m.setMealkit_QnA_no(rs.getInt("mealkit_QnA_no"));
+				m.setMealkit_QnA_id(rs.getString("mealkit_QnA_id"));
+				m.setMealkit_QnA_title(rs.getString("mealkit_QnA_title"));
+				m.setMealkit_QnA_txt(rs.getString("mealkit_QnA_txt"));
+				m.setMealkit_QnA_date(rs.getDate("mealkit_QnA_date"));
+
+			
+				MealkitQnAlist.add(m);
+
+			}
+
+			request.setAttribute("MealkitQnAlist", MealkitQnAlist);
+
+		} catch (Exception e) {
+
+		} finally {
+			DBManager.close(con, pstmt, rs);
+		}
 		
 	}
 
