@@ -7,6 +7,11 @@
  <script type="text/javascript" src="agree.js"> </script>
  <script type="text/javascript" src="ACCheck.js"> </script>
  <script type="text/javascript" src="validCheck.js"> </script>
+<script type="text/javascript" src = "jQuery.js"></script>
+
+
+</script>
+
 
 <title>Insert title here</title>
 </head>
@@ -49,7 +54,9 @@
 
 
 <tr>
-<td>아이디</td><td><input name="join_id" placeholder="아이디를 입력하세요" ><button>중복확인</button></td>
+<td>아이디</td>
+<input class="checkInfo" name="join_id" placeholder="아이디를 입력하세요" />  <!-- id 중복검사를 위한 class -->
+<button  name="join_id" type="button" onclick="idCheck(joinform, '${root}')">중복확인</button>
 </tr>
 
 
@@ -101,11 +108,11 @@
 <td>휴대폰</td><td><input name="join_phone" placeholder="전화번호를 입력하세요" ></td>
 </tr>
 
-
-<tr>
+<!-- 따로 마이페이지에 저장하는 곳을 만들 예정 -->
+<!-- <tr>
 <td>주소</td><td><input name="join_addr" placeholder="주소를 입력하세요" ></td>
 </tr>
-
+ -->
 
 <tr>
 <td>프로필 사진 등록</td><td><input type="file" name="join_profile" id=""></td>

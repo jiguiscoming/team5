@@ -4,9 +4,11 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
-
+import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -73,18 +75,6 @@ public class UserDAO {
 	}
 
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 
@@ -165,6 +155,13 @@ public static void createAccount(HttpServletRequest request) {
 	
 }
 
+	
+
+	
+	
+	
+	
+
 
 
 public static void confirmJoin(HttpServletRequest request)  {
@@ -201,4 +198,112 @@ public static void confirmJoin(HttpServletRequest request)  {
 //		System.out.println(join_name);
 	
 }
+
+public static void login(HttpServletRequest request) {
+
+	String userId= request.getParameter("id");
+	String userPw = request.getParameter("pw");
+	
+	
+	
+	
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	
+	try {
+		String sql = "select * from oh_account where account_id= ?";
+		con = DBManager.connect();
+		pstmt = con.prepareStatement(sql);
+		
+		pstmt.setString(1, userId);
+		rs = pstmt.executeQuery();
+		
+		
+		if (rs.next()) {
+			if (userPw.equals(rs.getString("account_pw"))) {
+				request.setAttribute("r", "어서 오세요!");
+				
+				accountB a = new accountB();
+				
+				a.setaccount_id(rs.getString("account_id"));
+				a.setaccount_pw(rs.getString("account_pw"));
+				a.setaccount_name(rs.getString("account_name"));
+				
+				HttpSession hs = request.getSession();
+				hs.setAttribute("accountInfo", a);
+				hs.setMaxInactiveInterval(600);
+				
+			}else {
+				request.setAttribute("r", "패스워드를 확인해 주세요!");
+			}
+		} else {
+			request.setAttribute("r", "가입하지 않은 회원입니다!");  
+		}
+	
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally {
+		DBManager.close(con, pstmt, rs);
+	}
+	
+	
+}
+
+public static void logout(HttpServletRequest request) {
+	// TODO Auto-generated method stub
+	
+	HttpSession hs = request.getSession();
+	hs.invalidate();
+	
+	
+}
+
+public static void loginCheck(HttpServletRequest request) {
+	// TODO Auto-generated method stub
+	
+	HttpSession hs = request.getSession();
+	accountB acc = (accountB) hs.getAttribute("accountInfo");
+	
+	if (acc == null) {
+		request.setAttribute("loginPage", "loginBtn.jsp");
+	} else {
+		request.setAttribute("loginPage", "loginOK.jsp");
+		
+	}
+	
+	
+
+	
+	
+}
+
+ // id 중복체크
+public int idCheck(String id) {
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	int value = 0;
+	
+	try {
+	    String sql = "select account_id from oh_account where account_id = ?";
+	    
+		con = DBManager.connect();
+		pstmt = con.prepareStatement(sql);
+	    pstmt.setString(1,  id);
+	    rs = pstmt.executeQuery();
+	    
+	    if(rs.next()) value = 1;
+	    
+	}catch (Exception e) {
+	    e.printStackTrace();
+
+	} finally {
+		DBManager.close(con, pstmt, rs);
+	}
+	return value;
+   }
+
+
+
 }

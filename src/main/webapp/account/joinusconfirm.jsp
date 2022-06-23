@@ -81,12 +81,6 @@
 </tr>
 
 
-<tr>
-<td>주소</td>
-<td>${join_addr }<td>
-<td></td>
-</tr>
-
 
 <tr>
 <td>프로필 사진 등록</td>

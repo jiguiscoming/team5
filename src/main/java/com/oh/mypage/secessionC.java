@@ -7,30 +7,31 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.oh.account.UserDAO;
 
-@WebServlet("/mypageHomeC")
-public class mypageHomeC extends HttpServlet {
+@WebServlet("/secessionC")
+public class secessionC extends HttpServlet {
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		UserDAO.loginCheck(request);
-		
-		
+	
+
 		request.setAttribute("loginPage", "account/loginBtn.jsp");
-		request.setAttribute("contentPage", "myPage/myPageHome.jsp");
+		request.setAttribute("contentPage", "home.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
-		
+	
+	
+	
+	
+	
+	
 	}
 
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-//				request.setAttribute("loginPage", "account/loginBtn.jsp");
-//				request.setAttribute("contentPage", "account/joinusconfirm.jsp");
-//				request.getRequestDispatcher("index.jsp").forward(request, response);
-//				
-		
-		
-		
+	
+	
+	
 	}
 
 }

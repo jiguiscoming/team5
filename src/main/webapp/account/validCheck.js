@@ -131,12 +131,17 @@ function isNotNumber(input) {
 
 
 }
+/*
+function DBconfirm(input, set) {
+	/*	if(input1 != input2){
+			return true;
+		}else{return false;}
+	return input1.value != input2.value;
+}
 
 
 
-
-
-
+*/
 
 
 
