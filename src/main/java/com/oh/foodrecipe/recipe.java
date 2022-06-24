@@ -18,7 +18,7 @@ public class recipe {
 	private String recipe_img_url;
 	private String recipe_det_url;
 	
-	
+	aaa
 	
 	public recipe() {
 		// TODO Auto-generated constructor stub
