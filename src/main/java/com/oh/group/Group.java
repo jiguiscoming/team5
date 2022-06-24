@@ -12,12 +12,15 @@ public class Group {
 	private String area;
 	private int like;
 	private int hits;
+	private String nickname;
+	private String img;
 	
 public Group() {
 	// TODO Auto-generated constructor stub
 }
 
-public Group(int no, String id, String title, String txt, Date date, String area, int like, int hits) {
+public Group(int no, String id, String title, String txt, Date date, String area, int like, int hits, String nickname,
+		String img) {
 	super();
 	this.no = no;
 	this.id = id;
@@ -27,6 +30,8 @@ public Group(int no, String id, String title, String txt, Date date, String area
 	this.area = area;
 	this.like = like;
 	this.hits = hits;
+	this.nickname = nickname;
+	this.img = img;
 }
 
 public int getNo() {
@@ -92,6 +97,24 @@ public int getHits() {
 public void setHits(int hits) {
 	this.hits = hits;
 }
+
+public String getNickname() {
+	return nickname;
+}
+
+public void setNickname(String nickname) {
+	this.nickname = nickname;
+}
+
+public String getImg() {
+	return img;
+}
+
+public void setImg(String img) {
+	this.img = img;
+}
+
+
 
 
 	

@@ -6,6 +6,7 @@
 	text-align: center;
 	border: 2px solid gray;
 	border-radius: 10px;
+	margin: 50px auto;
 }
 
 .group_update_pwTitle{
@@ -33,6 +34,9 @@
 	width: 800px;
 	height: 500px;
 	text-align: center;
+	margin: 50px auto;
+	border: 2px solid gray;
+	border-radius: 10px;
 }
 
 .group_update_title > select{

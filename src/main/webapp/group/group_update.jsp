@@ -8,7 +8,7 @@
 </head>
 <body>
 <form name="groupUpdateForm" action="GroupUpdateController" method="post" onsubmit=" return groupUpdate_isEmpty()">
-<table id="group_updateTble" border="1">
+<table id="group_updateTble">
 	<tr>
 		<td class="group_update_title">
 			<select name="area">

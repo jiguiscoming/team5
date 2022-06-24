@@ -28,7 +28,7 @@ public class GroupDeleteController extends HttpServlet {
 		}
 		if(!request.getParameter("search").equals("")) {
 			// 검색 : 파라미터로 검색 값 넘겨서 게시글 골라받기 +  페이징
-			GroupDAO.getGroupResearch(request);
+			GroupDAO.getGroupSearch(request);
 //			System.out.println("검색");
 		} 
 		// 페이지 이동버튼 만들기 (a태그)
