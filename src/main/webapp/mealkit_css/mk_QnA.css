@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+.mk_QnA_tbl {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.mk_QnA_tbl1 {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.mk_QnA_tbl2 {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+tr {
+	height: 50px;
+}
+
+.mk_QnA_td1 {
+	width : 120px;
+	text-align: center;
+}

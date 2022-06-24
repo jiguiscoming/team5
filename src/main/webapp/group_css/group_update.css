@@ -1,0 +1,62 @@
+@charset "UTF-8";
+
+#group_update_pwTbl{
+	width: 200px;
+	height: 200px;
+	text-align: center;
+	border: 2px solid gray;
+	border-radius: 10px;
+	margin: 50px auto;
+}
+
+.group_update_pwTitle{
+	display: inline-block;
+	border-bottom: 2px solid black;
+	padding-bottom: 10px;
+	font-size: 14pt;
+	font-weight: 600;
+}
+
+.group_update_pw > input{
+	width: 150px;
+	height: 20px;
+	text-align: center;
+}
+
+.group_update_pwBtn > button{
+	width: 60px;
+	height: 30px;
+	border: 2px solid black;
+	background-color: transparent;
+}
+
+#group_updateTble{
+	width: 800px;
+	height: 500px;
+	text-align: center;
+	margin: 50px auto;
+	border: 2px solid gray;
+	border-radius: 10px;
+}
+
+.group_update_title > select{
+	width: 50px;
+	height: 30px;
+}
+
+.group_update_title > input{
+	width: 500px;
+	height: 30px;
+}
+
+.group_update_txt > textarea{
+	width: 80%;
+	height: 80%;
+}
+
+.group_update_btn > button{
+	width: 60px;
+	height: 30px;
+	border: 2px solid black;
+	background-color: transparent;
+}

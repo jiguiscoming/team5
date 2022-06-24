@@ -1,0 +1,131 @@
+@charset "UTF-8";
+
+body{
+	margin: 0;
+}
+
+#indexTbl{
+	width: 90%;
+	height: 200px;
+	margin: 0 auto;
+}
+
+.index_titleTd{
+	height: 20px;
+	text-align: center;
+}
+
+.index_title > a {
+	display: inline-block;
+	font-family: 'Sunflower', sans-serif;
+	text-decoration: none;
+	color:black;
+	margin-bottom: 10px;
+	font-weight: 500;
+	font-size: 20pt;
+	margin: 10px;
+}
+
+.index_title > a > img{
+	width: 50px;
+	margin-bottom: -12px;
+	margin-left: -10px;
+}
+
+.index_searchTd{
+	height: 130px;
+}
+
+.index_search{
+	display: inline-block;
+	border : 1px solid red;
+	display: block;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.index_search > input{
+.index_search>input{
+	vertical-align: middle;
+	width: 280px;
+	height: 50px;
+	border-radius: 30px;
+	margin: 0 auto;
+	padding-left: 30px;
+	padding-right: 80px;
+	margin: 0 auto;
+}
+
+.index_search > button{
+	width: 60px;
+	height: 40px;
+	border-radius: 50px;
+	border: none;
+	background-color: black;
+	color: white;
+	font-size: 11pt;
+	font-weight: 400;
+	cursor: pointer;
+	margin-left: -70px;
+}
+
+
+#index_contentTbl{
+	width: 90%;
+	margin: 10px auto 0px auto;
+}
+
+.index_login_box{
+	width: 100%;
+	height: 40px;
+	position: relative;
+}
+
+.index_login_box > div{
+	position: absolute;
+	right: 50px;
+}
+
+.index_menu{
+	width: 130px;
+	text-align: center;
+}
+
+.index_menu_box > a {
+	text-decoration: none;
+	color: black;
+}
+
+.index_menu_box{
+	padding-bottom: 3px;
+}
+
+#homeTbl{
+	width: 100%;
+}
+
+#footerTbl{
+	width: 100%;
+	margin: 50px 0 0 0;
+	background-color: #ebebeb;
+	border-left: none;
+	border-right: none;
+	border-bottom: none;
+	border-top: 2px solid black;
+	padding: 100px;
+}
+
+.footer_title{
+	font-family: 'Sunflower', sans-serif;
+	color:black;
+	margin-bottom: 10px;
+	font-weight: 500;
+	font-size: 20pt;
+	margin: 10px;
+}
+
+.footer_title > img{
+	width: 50px;
+	margin-bottom: -12px;
+	margin-left: -10px;
+}

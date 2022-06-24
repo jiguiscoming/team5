@@ -1,0 +1,116 @@
+@charset "UTF-8";
+
+.group_detail_title_box{
+	position: relative;
+	width:100%;
+	border-bottom: 2px solid gray;
+	padding-left: 5px;
+	padding-bottom: 10px;
+	margin: 0 auto;
+}
+
+.group_detail_date{
+	color: gray;
+	font-size: 8pt;
+	display: inline-block;
+}
+
+.group_detail_title{
+	height: 30px;
+}
+
+.group_detail_btn{
+	display: inline-block;
+	position: absolute;
+	right: 0px;
+	padding: 10px;
+	bottom: 0px;
+}
+
+.group_detail_btn > button{
+	width: 60px;
+	height: 30px;
+	background-color: transparent;
+	color: black;
+	font-size: 10pt;
+}
+
+#group_detailTbl{
+	width: 100%;
+	height: 500px;
+	margin: 0 auto;
+}
+
+.group_detail_hits{
+	width: 70px;
+	font-size: 10pt;
+	color: black;
+}
+
+.group_detailTd{
+	width: 800px;
+	font-size: 10pt;
+	color: black;
+}
+
+.group_detail_content{
+	width: 800px;
+	height: 500px;
+	border: 2px solid gray;
+}
+
+.group_comment{
+	display: inline-block;
+	border-bottom: 2px solid black;
+	width: 80px;
+	height: 50px;
+	margin-bottom: 10px;
+	margin-left: 10px;
+	padding-left: 10px;
+}
+
+#group_commentTbl{
+	width: 600px;
+	height: 100px;
+	margin-left: 10px;
+}
+
+.group_commentTd > textarea{
+	width: 500px;
+	height: 80px;
+}
+
+.group_commentTd > button{
+	background-color: transparent;
+	width: 60px;
+	height: 30px;
+	color: black;
+	font-size: 10pt;
+}
+
+#group_comment_listTbl{
+	width: 800px;
+	padding: 10px;
+	margin-left: 10px;
+	margin-bottom: 10px;
+}
+
+.group_comment_date{
+	color: gray;
+	font-size: 8pt;
+	vertical-align: bottom;
+}
+
+.group_comment_id{
+	color: #727272;
+	font-size: 11pt;
+}
+
+.group_comment_txt{
+	height: 100px;
+	font-weight: 500;
+	font-size: 10pt;
+	padding: 5px;
+	vertical-align: text-top;
+	border-bottom: 1px solid gray;
+}

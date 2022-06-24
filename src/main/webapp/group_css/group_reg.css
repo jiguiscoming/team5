@@ -1,0 +1,50 @@
+@charset "UTF-8";
+
+#group_regTbl{
+	width: 800px;
+	height: 500px;
+	text-align: center;
+	margin: 0 auto;
+	border: 2px solid gray;
+	border-radius: 10px;
+}
+
+
+.group_reg_info{
+	color:black;
+	font-weight: 600;
+	border-bottom: 2px solid gray;
+	display: inline-block;
+	padding-bottom: 10px;
+}
+
+.group_reg_title{
+	height: 50px;
+}
+
+.group_reg_title > select{
+	width: 50px;
+	height: 30px;
+}
+
+.group_reg_title > input{
+	width: 500px;
+	height: 30px;
+}
+
+.group_reg_txt{
+	height: 300px;
+}
+
+.group_reg_txt > textarea{
+	width: 80%;
+	height: 80%;
+	padding: 10px;
+}
+
+.group_reg_btn > button{
+	width: 60px;
+	height: 30px;
+	border: 2px solid black;
+	background-color: transparent;
+}
