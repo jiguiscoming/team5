@@ -7,6 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-apage
+	
+	<table>
+		<tr>
+			<td> <button>로그인</button> </td>
+			<td> <button>회원가입</button> </td>
+		</tr>
+	</table>
+	
 </body>
 </html>
