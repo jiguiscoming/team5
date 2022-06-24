@@ -87,7 +87,7 @@ public static void createAccount(HttpServletRequest request) {
 	try {
 		request.setCharacterEncoding("utf-8");
 		String sql = "insert into oh_account values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-		con = DBManager.connect();
+		con = DBManager_account.connect();
 		pstmt = con.prepareStatement(sql);
 		
 		String join_name=request.getParameter("join_name");
@@ -143,7 +143,7 @@ public static void createAccount(HttpServletRequest request) {
 		request.setAttribute("r", "서버 오류..");
 	
 	}finally {
-		DBManager.close(con, pstmt, null);
+		DBManager_account.close(con, pstmt, null);
 	}
 	
 		
@@ -213,7 +213,7 @@ public static void login(HttpServletRequest request) {
 	
 	try {
 		String sql = "select * from oh_account where account_id= ?";
-		con = DBManager.connect();
+		con = DBManager_account.connect();
 		pstmt = con.prepareStatement(sql);
 		
 		pstmt.setString(1, userId);
@@ -244,7 +244,7 @@ public static void login(HttpServletRequest request) {
 	} catch (SQLException e) {
 		e.printStackTrace();
 	} finally {
-		DBManager.close(con, pstmt, rs);
+		DBManager_account.close(con, pstmt, rs);
 	}
 	
 	
@@ -289,7 +289,7 @@ public int idCheck(String id) {
 	try {
 	    String sql = "select account_id from oh_account where account_id = ?";
 	    
-		con = DBManager.connect();
+		con = DBManager_account.connect();
 		pstmt = con.prepareStatement(sql);
 	    pstmt.setString(1,  id);
 	    rs = pstmt.executeQuery();
@@ -300,7 +300,7 @@ public int idCheck(String id) {
 	    e.printStackTrace();
 
 	} finally {
-		DBManager.close(con, pstmt, rs);
+		DBManager_account.close(con, pstmt, rs);
 	}
 	return value;
    }
