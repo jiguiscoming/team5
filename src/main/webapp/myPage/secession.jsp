@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+	
+	
+	
 	<table>
 
 		<tr>
@@ -19,8 +22,8 @@
 			<td>00:00:00</td>
 		</tr>
 		<tr>
-			<td><button onclick="">예</button></td>
-			<td><button>좀 더 생각해 볼까?</button></td>
+			<td><button onclick="location.href='account_secessionC" method="post">예</button></td>
+			<td><button  onclick="location.href='account_secessionC" method="get">좀 더 생각해 볼까?</button></td>
 		</tr>
 
 

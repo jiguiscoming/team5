@@ -226,9 +226,24 @@ public static void login(HttpServletRequest request) {
 				
 				accountB a = new accountB();
 				
-				a.setaccount_id(rs.getString("account_id"));
-				a.setaccount_pw(rs.getString("account_pw"));
-				a.setaccount_name(rs.getString("account_name"));
+				a.setAccount_id(rs.getString("account_id"));
+				a.setAccount_pw(rs.getString("account_pw"));
+				a.setAccount_name(rs.getString("account_name"));
+				a.setAccount_nick(rs.getString("account_nick"));
+				a.setAccount_gender(rs.getString("account_gender"));
+				a.setAccount_birth(rs.getString("account_birth"));
+				a.setAccount_addr(rs.getString("account_addr"));
+				a.setAccount_age(rs.getString("account_age"));
+				a.setAccount_phone(rs.getString("account_phone"));
+				a.setAccount_pwquestion(rs.getString("account_pwquestion"));
+				a.setAccount_pwquestiona(rs.getString("account_pwquestiona"));
+				a.setAccount_email(rs.getString("account_email"));
+				a.setAccount_img(rs.getString("account_img"));
+				a.setAccount_agree1(rs.getString("account_agree1"));
+				a.setAccount_agree2(rs.getString("account_agree2"));
+				a.setAccount_agree3(rs.getString("account_agree3"));
+				a.setAccount_agree4(rs.getString("account_agree4"));
+				a.setAccount_date(rs.getString("account_date"));
 				
 				HttpSession hs = request.getSession();
 				hs.setAttribute("accountInfo", a);
@@ -284,6 +299,7 @@ public int idCheck(String id) {
 	Connection con = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
+
 	int value = 0;
 	
 	try {
@@ -304,6 +320,84 @@ public int idCheck(String id) {
 	}
 	return value;
    }
+
+public static void secession(HttpServletRequest request) {
+	// TODO Auto-generated method stub
+	
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+	
+		
+
+		HttpSession hs = request.getSession();
+		accountB acc = (accountB) hs.getAttribute("accountInfo");
+		
+		
+		
+		
+		
+		
+		
+		
+		try {
+		    String sql = "DELETE FROM oh_account WHERE ID = ? ";
+		    
+			con = DBManager_account.connect();
+			pstmt = con.prepareStatement(sql);
+		    pstmt.setString(1, rs.getString("account_id"));
+		    rs = pstmt.executeQuery();
+		    
+		 
+		    
+		}catch (Exception e) {
+		    e.printStackTrace();
+
+		} finally {
+			DBManager_account.close(con, pstmt, rs);
+		}
+			
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
+
+public static void loginCheck_S(HttpServletRequest request) {
+	// TODO Auto-generated method stub
+	
+	HttpSession hs = request.getSession();
+	accountB acc = (accountB) hs.getAttribute("accountInfo");
+	
+	if (acc == null) {
+		request.setAttribute("loginPage", "account/loginBtn.jsp");
+		} else {
+			request.setAttribute("loginPage", "account/loginOK.jsp");
+			
+		}
+
+	
+	if (acc == null) {
+		request.setAttribute("r", "안녕히 가세요!");
+		} else {
+			request.setAttribute("r", "감사합니다!");
+			
+		}
+		
+	
+	
+	
+	
+	
+}
 
 
 
