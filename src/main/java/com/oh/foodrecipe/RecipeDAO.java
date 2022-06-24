@@ -92,10 +92,6 @@ public class RecipeDAO {
 				r = new recipe();
 				r.setRecipe_basic_no(rs.getInt("RECIPE_BASIC_NO"));
 				r.setRecipe_sumry(rs.getString("RECIPE_SUMRY"));
-				r.setRecipe_inrdnt_nm("RECIPE_IRDNT_NM");
-				r.setRecipe_inrdnt_cpcty("RECIPE_IRDNT_CPCTY");
-				r.setRecipe_cooking_dc("RECIPE_COOKING_DC");
-				r.setRecipe_stre_step_image_url("RECIPE_STRE_STEP_IMAGE_URL");
 				
 				request.setAttribute("recipe", r);
 			}
