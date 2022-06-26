@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&family=Sunflower:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/index.css">
+<link rel="stylesheet" href="css/home.css">
 <link rel="stylesheet" href="group_css/group.css">
 <link rel="stylesheet" href="group_css/group_reg.css">
 <link rel="stylesheet" href="group_css/group_update.css">
@@ -37,14 +38,6 @@
 		<td class="index_titleTd" colspan="5">
 			<div class="index_title">
 				<a href="HC">야너두 레시피<img src="img/you.png"></a>
-			</div>
-		</td>
-	</tr>
-	<tr>
-		<td colspan="5" class="index_searchTd">
-			<div class="index_search">
-				<input placeholder="검색어를 입력하세요">
-				<button>검색</button>
 			</div>
 		</td>
 	</tr>

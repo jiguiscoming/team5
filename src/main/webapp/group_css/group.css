@@ -1,7 +1,8 @@
 @charset "UTF-8";
 
-#group_listTbl, #group_writeTbl, #group_regionTbl{
+#group_listTbl, #group_writeTbl{
 	width: 100%;
+	margin-bottom: 20px;
 }
 
 .group_title{
@@ -23,6 +24,7 @@
 	padding-top: 10px;
 	padding-left: 10px;
 	border-bottom: 1px solid gray;
+	margin-bottom: 20px;
 }
 
 .group_regionTd{
@@ -53,6 +55,10 @@
 	font-size: 8pt;
 }
 
+.group_write{
+	text-align: right;
+}
+
 .group_write > button{
 	width: 60px;
 	height: 30px;
@@ -63,15 +69,20 @@
 	font-size: 10pt;
 }
 
+.group_listTd{
+	width: 25%;
+}
+
+
 .group_list_date{
-	width: 95%;
+	width: 85%;
 	text-align: right;
 	font-size: 5pt;
 	color: gray;
 	margin-bottom: 5px;
 }
 
-.group_list_box{
+.group_list_img_box{
 	border: 2px solid gray;
 	border-radius: 10px;
 	width: 200px;
@@ -81,10 +92,10 @@
 	overflow: hidden;
 }
 
-.group_list_box > img{
+.group_list_img_box > img{
 	width: 100%;
 	height: 100%;
-	object-fit: cover;
+ 	object-fit: cover;
 }
 
 .group_list_region{
@@ -100,7 +111,7 @@
 
 .group_list_count{
 	font-size: 10pt;
-	width: 95%;
+	width: 85%;
 	text-align: right;
 }
 
@@ -112,21 +123,21 @@
 }
 
 .group_list_title > a{
+	display:inline-block;
 	text-overflow: ellipsis;
 	overflow: hidden;
 	white-space: nowrap;
 	text-decoration: none;	
-	width: 100%;
+	width: 70%;
 	height: 100%;
 	color: black;
-	font-size: 15pt;
+	font-size: 13pt;
 	font-weight: 800;
-	display: inline-block;
 }
 
 .group_list_title > span{
 	color: #707070;
-	font-size: 11pt;
+	font-size: 10pt;
 }
 
 
