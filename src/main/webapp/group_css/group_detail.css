@@ -53,10 +53,16 @@
 	color: black;
 }
 
+.group_detail_content > img{
+	width: 100%;
+}
+
 .group_detail_content{
 	width: 800px;
 	height: 500px;
+	padding: 10px;
 	border: 2px solid gray;
+	vertical-align: text-top;
 }
 
 .group_comment{

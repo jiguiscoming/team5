@@ -42,7 +42,11 @@
 		</td>
 	</tr>
 	<tr>
-		<td class="group_detail_content" colspan="3">${group.txt }</td>
+		<td class="group_detail_content" colspan="3">
+			<img src="group_imgFolder/${group.img}">
+			<hr>
+			${group.txt }
+		</td>
 	</tr>
 </table>
 

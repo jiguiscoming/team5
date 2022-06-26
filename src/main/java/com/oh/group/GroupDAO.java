@@ -104,23 +104,31 @@ public class GroupDAO {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String sql = "update group_purchase set group_title=?, group_txt=?, group_area=? where group_no=?";
+		String sql = "update group_purchase set group_title=?, group_txt=?, group_area=?, group_img=? where group_no=?";
 		
 		try {
-			request.setCharacterEncoding("utf-8");
+			String saveDirectory = request.getServletContext().getRealPath("group_imgFolder");
+			MultipartRequest mr = new MultipartRequest(request, saveDirectory, 31457280,"utf-8",new DefaultFileRenamePolicy());
+			
 			con = Group_DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			
-			
-			String area = request.getParameter("area");
-			String title = request.getParameter("title");
-			String txt = request.getParameter("txt");
-			int no =Integer.parseInt(request.getParameter("no"));
+			String area = mr.getParameter("area");
+			String title = mr.getParameter("title");
+			String txt = mr.getParameter("txt");
+			int no =Integer.parseInt(mr.getParameter("no"));
+			String newFile = mr.getFilesystemName("newFile");
+			String oldFile = mr.getParameter("oldFile");
 
 			pstmt.setString(1, title);
 			pstmt.setString(2, txt);
 			pstmt.setString(3, area);
-			pstmt.setInt(4, no);
+			if(newFile != null) {
+				pstmt.setString(4, newFile);
+			}else {
+				pstmt.setString(4, oldFile);
+			}
+			pstmt.setInt(5, no);
 			
 			if(pstmt.executeUpdate()==1) {
 				request.setAttribute("result", "수정성공");
@@ -445,7 +453,7 @@ public class GroupDAO {
 		}
 	}
 
-	public static void groupPaging(HttpServletRequest request) {
+	public static void groupPaging(HttpServletRequest request,int pageNum) {
 		//연결 준비
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -458,13 +466,11 @@ public class GroupDAO {
 		// 한페이지에 보여줄 게시글 수 : 5
 		int pageSize = 4;
 		// 현제 페이지
-		String pageNum = request.getParameter("pageNum");
 		
 		
 		// 현재페이지(int로 파싱), 시작게시글번호, 끝게시글번호 선언 및 초기화
-		int currentPage = Integer.parseInt(pageNum);
-		int startRow = (currentPage-1)*pageSize+1;
-		int endRow = currentPage*pageSize;
+		int startRow = (pageNum-1)*pageSize+1;
+		int endRow = pageNum*pageSize;
 		
 		// 여러 객체를 넣을 arraylist 만들어줌
 		ArrayList<Group> groups = new ArrayList<Group>();
@@ -512,7 +518,7 @@ public class GroupDAO {
 		
 	}
 
-	public static void groupPageMove(HttpServletRequest request, String sql) {
+	public static void groupPageMove(HttpServletRequest request, String sql,int pageNum) {
 		// 연결 준비
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -520,13 +526,7 @@ public class GroupDAO {
 		
 		// 한 페이지에 보여줄 게시글 수 : 5
 		int pageSize = 4;
-		
-		// 현재 접속중인 페이지
-		String pageNum = request.getParameter("pageNum");
-		
-		// 현재페이지(pageNum) int로 다시 담음
-		int currentPage = Integer.parseInt(pageNum);
-		
+
 		try {
 			// 연결
 			con = Group_DBManager.connect();
@@ -549,7 +549,7 @@ public class GroupDAO {
 					int pageBlock = 5;
 					
 					// 시작 페이지와 끝페이지 구함
-					int startPage =(int) ((currentPage-1)/pageBlock)*pageBlock+1;
+					int startPage =(int) ((pageNum-1)/pageBlock)*pageBlock+1;
 					int endPage = startPage + pageBlock-1;
 					
 					// 계산된 끝페이지> 전체 페이지수 => 계산된 끝페이지에 전체페이지를 넣음
