@@ -8,7 +8,6 @@
 <link rel="stylesheet" href="../group_css/group_message.css">
 </head>
 <body>
-<form action="GroupMessageController" onsubmit="groupMessageClose()">
 <table id="group_messageTbl">
 	<tr>
 		<td><div class="group_message_box">쪽지 보내기</div></td>
@@ -23,10 +22,14 @@
 		<td class="group_message_txt"><textarea name="message_txt"></textarea></td>
 	</tr>
 	<tr>
-		<td class="group_message_btn"><button name="sending_id" value="id">보내기</button></td>
+		<td class="group_message_btn"><button name="sending_id" value="id" onclick="groupMessageSend()">보내기</button></td>
 	</tr>
 </table>
-</form>
-
+<script type="text/javascript">
+function groupMessageSend(){
+	opener.document.location.href="../GroupMessageController?no=" + ${param.no}
+	window.close();
+}
+</script>
 </body>
 </html>
