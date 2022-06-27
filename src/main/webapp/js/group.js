@@ -78,16 +78,12 @@ function groupComment(){
 
 let group_message;
 
-function groupMessage(){
-	group_message = window.open("group/group_message.jsp", "message", "width=640 , height=400" );
+function groupMessage(no){
+	group_message = window.open("group/group_message.jsp?no=" + no, "message", "width=640 , height=400" );
 }
 
 /*회원아니면 쪽지 못 보냄*/
 function groupMessageOK(){
 	alert('회원만 이용가능한 서비스 입니다');
 	
-}
-
-function groupMessageClose(){
-	group_message.close();
 }

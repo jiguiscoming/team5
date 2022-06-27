@@ -20,7 +20,7 @@
 	</div>
 	<div class="group_detail_btn">
 	<!-- (쪽지)회원만 이용가능 / (수정)작성자만 이용가능 -->
-		<a href="javascript:groupMessage()" onclick="groupMessageOK()">쪽지</a>
+		<a href="javascript:groupMessage(${group.no})" onclick="groupMessageOK()">쪽지</a>
 		<button onclick="location.href='GroupUpdateController?no=${group.no}'">수정</button>
 	</div>
 </div>

@@ -59,10 +59,14 @@
 	<tr>
 		<td><span class="footer_title">야너두 레시피<img src="img/you.png"></span></td>
 		<td>
-			<span>고객센터</span>
-			<span>1111-0000</span>
-			<span>MON-FRI 10:00 ~ 17:00</span>
-			<span>SAT/SUN/HOLIDAY OFF</span>
+			<span class="footer_call">고객센터</span>
+			<br>
+			<span class="footer_phone">1111-0000</span>
+			<br>
+			<br>
+			<span class="footer_work">MON-FRI 10:00 ~ 17:00</span>
+			<br>
+			<span class="footer_dayoff">SAT/SUN/HOLIDAY OFF</span>
 		</td>
 	</tr>
 	<tr>
@@ -73,18 +77,22 @@
 		</td>
 	</tr>
 	<tr>
-		<td>
-			<span>상호 :주식회사 야너두레시피</span>
-			<span>대표 :오 팀</span>
+		<td class="footer_info">
+			<span>상호 : 주식회사 야너두레시피</span>
+			<span>대표 : 오 팀</span>
 			<span>사업자등록번호 :000-00-00000</span>
 			<span>통신판매업신고번호 :제5기-야-0802호</span>
+			<br>
 			<span>대표번호 :1111-0000</span>
 			<span>팩스번호 :02-111-0000</span>
+			<br>
 			<span>OEM,입점 문의 :sales@yanodu.recipe</span>
 			<span>광고 마케팅 문의 :mkt@yanodu.recipe</span>
+			<br>
 			<span>주소 :서울 종로구 종로12길 802</span>
-			<span>개인정보관리자 :mz</span>
+			<span>개인정보관리자 :oh</span>
 			<span>호스팅제공 : 소루데스쿠(주)</span>
+			<br>
 			<span>copyright (c) yanodu.recipe all rights reserved.</span>
 		</td>
 	</tr>
