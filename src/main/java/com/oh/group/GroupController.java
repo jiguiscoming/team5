@@ -20,18 +20,15 @@ public class GroupController extends HttpServlet {
 		if (request.getParameter("region").equals("전국") || request.getParameter("region").equals("")) {
 			// 페이징한 게시글 정보 받기
 			GroupDAO.groupPaging(request,pageNum);
-			System.out.println("전국");
 		}else {
 			if(request.getParameter("search").equals("")) {
 			// 지역 : 파라미터로 지역 값 넘겨서 게시글 골라 받기 (select where) + 페이징 적용
 			GroupDAO.getRegionGroups(request);
-			System.out.println("지역");
 			}
 		}
 		if(!request.getParameter("search").equals("")) {
 			// 검색 : 파라미터로 검색 값 넘겨서 게시글 골라받기 +  페이징
 			GroupDAO.getGroupSearch(request);
-			System.out.println("검색");
 		} 
 		// 페이지 이동버튼 만들기 (a태그)
 		GroupDAO.groupPageMove(request,(String)request.getAttribute("sql"),pageNum);

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>공구 게시글 수정</title>
 </head>
 <body>
 <form name="groupUpdateForm" action="GroupUpdateController" method="post" enctype="multipart/form-data" onsubmit=" return groupUpdate_isEmpty()">

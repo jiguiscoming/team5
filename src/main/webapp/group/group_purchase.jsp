@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>공구</title>
 </head>
 <body>
 <div class="group_title"><h2>공구</h2></div>
@@ -68,7 +68,7 @@
 			</div>
 			</div>
 			<div class="group_list_count">
-				조회수 ${group.hits } ♥ ${group.like }
+				조회수 ${group.hits }
 			</div>
 			<div class="group_list_title">
 				<a href="GroupDetailController?no=${group.no}">${group.title}</a>

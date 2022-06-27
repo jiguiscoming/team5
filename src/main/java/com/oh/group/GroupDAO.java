@@ -304,7 +304,6 @@ public class GroupDAO {
 				comments.add(comment);				
 			}
 			
-			request.setAttribute("comment", comment);
 			request.setAttribute("comments", comments);
 			
 		} catch (Exception e) {
@@ -382,9 +381,9 @@ public class GroupDAO {
 		
 		// 검색 조건 안에 rownum 조건 붙여서 게시글 번호 제한
 		String region = request.getParameter("region");
-		String sql = "select * from (select rownum as num, a.* from (select * from group_purchase where group_title like ? order by group_date desc)a) where num between ? and ?";
-		if(!region.equals("전국")) {
-			sql = "select * from (select rownum as num, a.* from (select * from (select * from group_purchase where group_purchase.group_area=?) where group_title like ? order by group_date desc)a) where num between ? and ?";
+		String sql = "select * from (select rownum as num, a.* from (select * from (select * from group_purchase where group_purchase.group_area=?) where group_title like ? order by group_date desc)a) where num between ? and ?";
+		if(region.equals("전국") || region.equals("")) {
+			sql = "select * from (select rownum as num, a.* from (select * from group_purchase where group_title like ? order by group_date desc)a) where num between ? and ?";
 		}
 		try {
 
@@ -395,7 +394,7 @@ public class GroupDAO {
 			// 검색한 값
 			String search = request.getParameter("search"); 
 			
-			// 한페이지에 보여줄 게시글 수 : 5
+			// 한페이지에 보여줄 게시글 수 : 4
 			int pageSize = 4;
 			
 			// 현제 페이지
@@ -406,8 +405,9 @@ public class GroupDAO {
 			int startRow = (currentPage-1)*pageSize+1;
 			int endRow = currentPage*pageSize;
 			
+			
 			// 첫번째 ? : 검색한 값  두번째 ? : 첫 게시글 번호  세번째 ? : 마지막 게시글 번호
-			if(region.equals("전국")) {
+			if(region.equals("전국") || region.equals("")) {
 				pstmt.setString(1, "%" + search + "%");
 				pstmt.setInt(2, startRow);
 				pstmt.setInt(3, endRow);
@@ -441,7 +441,7 @@ public class GroupDAO {
 			
 			// arraylist를 attribute에 담기
 			request.setAttribute("groups", groups);
-			if(region.equals("전국")) {
+			if(region.equals("전국") || region.equals("")) {
 			request.setAttribute("sql", "select count(*) from group_purchase where group_title like '%" + search + "%'");
 			} else {
 				request.setAttribute("sql", "select count(*) from(select * from group_purchase where group_area='" + region + "') where group_title like '%" + search + "%'");
@@ -635,6 +635,30 @@ public class GroupDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("서버 오류");
+		} finally {
+			Group_DBManager.close(con, pstmt, rs);
+		}
+	}
+
+	public static void getCommentsTotal(HttpServletRequest request) {
+
+	 	Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select count(*) from group_comment where group_comment_listno = ?";
+		int no = Integer.parseInt(request.getParameter("no"));
+		
+		try {
+			con = Group_DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				request.setAttribute("total_comments", rs.getInt("count(*)"));
+			}
+			
+		} catch (Exception e) {
+	
 		} finally {
 			Group_DBManager.close(con, pstmt, rs);
 		}
