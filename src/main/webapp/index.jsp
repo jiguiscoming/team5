@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>야너두 레시피</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&family=Sunflower:wght@500&display=swap" rel="stylesheet">
@@ -14,8 +14,8 @@
 <link rel="stylesheet" href="group_css/group_reg.css">
 <link rel="stylesheet" href="group_css/group_update.css">
 <link rel="stylesheet" href="group_css/group_detail.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript" src="js/group.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>
 <!-- jy js파일 -->
  <script type="text/javascript" src="agree.js"> </script>
  <script type="text/javascript" src="ACCheck.js"> </script>

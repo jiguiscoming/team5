@@ -164,17 +164,19 @@
 	height: 25px;
 	color: white;
 	text-align: center;
-	background-color: black;
+	background-color: rgb(229,193,197);
 	border-radius: 50%;
 }
 
 .group_pagingMove > a{
 	font-size: 10pt;
-	color: black;
+	color: white;
 	text-decoration: none;
 	padding: 5px 10px 5px 10px;
-	border: 2px solid black;
+	border: 2px solid rgb(229,193,197);
+	background-color: rgb(229,193,197);
 	border-radius: 10px;	
+	margin: 0 5px;
 }
 
 

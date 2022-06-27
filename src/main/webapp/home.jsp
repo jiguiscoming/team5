@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>야너두 레시피</title>
 </head>
 <body>
 <table id="homeTbl" border="1">
@@ -21,6 +21,7 @@
 				<span class="home_img_txt2">혼자 사기에는 부담인가요?</span>
 				<span class="home_img_txt3">혼자 사기에는 양이 너무 많나요?</span>
 				<span class="home_img_txt4">우리동네 공구 메이트를 만들어 봐요</span>
+				<button onclick="location.href='GroupController?region=전국&pageNum=1&search='">공구 메이트 만나러 가기</button>
 			</div>
 		</td>
 	</tr>
