@@ -60,7 +60,7 @@ function groupDel(no){
 	
 	let ok = confirm('진짜 삭제하시겠습니까?');
 	if(ok){
-		location.href='GroupDeleteController?no=' + no + '&region=전국&pageNum=1&research=';
+		location.href='GroupDeleteController?no=' + no + '&region=전국&pageNum=1&search=';
 	}
 	
 }
@@ -76,22 +76,14 @@ function groupComment(){
 	}
 }
 
-$(function(){
-	$('#like').click(function(){
-		
-		let no = urlParams.get('no');
-		alert(no);
-		
-		$.ajax({
-			url : 'GroupDetailController',
-			type : 'post',
-			data : {no : no},
-			success : function(){
-				$('')
-			}
-			
-			
-		});
-	});
-		
-});
+let group_message;
+
+function groupMessage(no){
+	group_message = window.open("group/group_message.jsp?no=" + no, "message", "width=640 , height=400" );
+}
+
+/*회원아니면 쪽지 못 보냄*/
+function groupMessageOK(){
+	alert('회원만 이용가능한 서비스 입니다');
+	
+}

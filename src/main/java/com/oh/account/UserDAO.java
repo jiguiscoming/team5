@@ -87,7 +87,7 @@ public static void createAccount(HttpServletRequest request) {
 	try {
 		request.setCharacterEncoding("utf-8");
 		String sql = "insert into oh_account values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-		con = DBManager.connect();
+		con = DBManager_account.connect();
 		pstmt = con.prepareStatement(sql);
 		
 		String join_name=request.getParameter("join_name");
@@ -143,7 +143,7 @@ public static void createAccount(HttpServletRequest request) {
 		request.setAttribute("r", "서버 오류..");
 	
 	}finally {
-		DBManager.close(con, pstmt, null);
+		DBManager_account.close(con, pstmt, null);
 	}
 	
 		
@@ -213,7 +213,7 @@ public static void login(HttpServletRequest request) {
 	
 	try {
 		String sql = "select * from oh_account where account_id= ?";
-		con = DBManager.connect();
+		con = DBManager_account.connect();
 		pstmt = con.prepareStatement(sql);
 		
 		pstmt.setString(1, userId);
@@ -226,13 +226,28 @@ public static void login(HttpServletRequest request) {
 				
 				accountB a = new accountB();
 				
-				a.setaccount_id(rs.getString("account_id"));
-				a.setaccount_pw(rs.getString("account_pw"));
-				a.setaccount_name(rs.getString("account_name"));
+				a.setAccount_id(rs.getString("account_id"));
+				a.setAccount_pw(rs.getString("account_pw"));
+				a.setAccount_name(rs.getString("account_name"));
+				a.setAccount_nick(rs.getString("account_nick"));
+				a.setAccount_gender(rs.getString("account_gender"));
+				a.setAccount_birth(rs.getString("account_birth"));
+				a.setAccount_addr(rs.getString("account_addr"));
+				a.setAccount_age(rs.getString("account_age"));
+				a.setAccount_phone(rs.getString("account_phone"));
+				a.setAccount_pwquestion(rs.getString("account_pwquestion"));
+				a.setAccount_pwquestiona(rs.getString("account_pwquestiona"));
+				a.setAccount_email(rs.getString("account_email"));
+				a.setAccount_img(rs.getString("account_img"));
+				a.setAccount_agree1(rs.getString("account_agree1"));
+				a.setAccount_agree2(rs.getString("account_agree2"));
+				a.setAccount_agree3(rs.getString("account_agree3"));
+				a.setAccount_agree4(rs.getString("account_agree4"));
+				a.setAccount_date(rs.getString("account_date"));
 				
 				HttpSession hs = request.getSession();
 				hs.setAttribute("accountInfo", a);
-				hs.setMaxInactiveInterval(600);
+				hs.setMaxInactiveInterval(6000);
 				
 			}else {
 				request.setAttribute("r", "패스워드를 확인해 주세요!");
@@ -244,7 +259,7 @@ public static void login(HttpServletRequest request) {
 	} catch (SQLException e) {
 		e.printStackTrace();
 	} finally {
-		DBManager.close(con, pstmt, rs);
+		DBManager_account.close(con, pstmt, rs);
 	}
 	
 	
@@ -284,12 +299,13 @@ public int idCheck(String id) {
 	Connection con = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
+
 	int value = 0;
 	
 	try {
 	    String sql = "select account_id from oh_account where account_id = ?";
 	    
-		con = DBManager.connect();
+		con = DBManager_account.connect();
 		pstmt = con.prepareStatement(sql);
 	    pstmt.setString(1,  id);
 	    rs = pstmt.executeQuery();
@@ -300,11 +316,201 @@ public int idCheck(String id) {
 	    e.printStackTrace();
 
 	} finally {
-		DBManager.close(con, pstmt, rs);
+		DBManager_account.close(con, pstmt, rs);
 	}
 	return value;
    }
 
+public static void secession(HttpServletRequest request) {
+	// TODO Auto-generated method stub
+	
 
+		Connection con = null;
+		PreparedStatement pstmt = null;
+	
+		
 
+		HttpSession hs = request.getSession();
+		accountB acc = (accountB) hs.getAttribute("accountInfo");
+	
+		
+		
+		
+		try {
+		    String sql = "DELETE oh_account WHERE account_id = ? ";
+		    
+			con = DBManager_account.connect();
+			pstmt = con.prepareStatement(sql);
+
+		    pstmt.setString(1,acc.getAccount_id());
+		    
+				    
+		    System.out.println(acc.getAccount_id());
+		    
+		    int row = pstmt.executeUpdate();
+			/* acc.getAccount_id() */
+			/*
+			 * if(row == 1) { System.out.println("삭제되었습니다"); }else {
+			 * System.out.println("삭제 실패.."); }
+			 */
+
+	
+				request.setAttribute("r", "안녕히!");
+				request.setAttribute("loginPage", "account/loginBtn.jsp");
+			
+		    
+		    
+		    
+		    
+		    
+		}catch (Exception e) {
+		    e.printStackTrace();
+
+		} finally {
+			DBManager_account.close(con, pstmt,null);
+		}
+			
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
+
+
+// 탈퇴했을 때 login 체크 기능과 탈퇴 결과 페이지로 가는 기능을 합쳐 놓은 것
+
+public static void loginCheck_S(HttpServletRequest request) {
+	// TODO Auto-generated method stub
+	
+	HttpSession hs = request.getSession();
+	accountB acc = (accountB) hs.getAttribute("accountInfo");
+	
+
+	if (acc == null) {
+		request.setAttribute("r", "안녕히!");
+		request.setAttribute("loginPage", "account/loginBtn.jsp");
+	} else {
+		request.setAttribute("r", "감사합니다!");
+		request.setAttribute("loginPage", "account/loginOK.jsp");
+	}
+	
+	
+	
+	
+	
+}
+
+public static void findID(HttpServletRequest request) {
+	// TODO Auto-generated method stub
+	
+
+	String W_email= request.getParameter("W_email");
+	String W_name = request.getParameter("W_name");
+	
+	
+	
+	
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	
+	try {
+		String sql = "select * from oh_account where account_name= ?";
+		con = DBManager_account.connect();
+		pstmt = con.prepareStatement(sql);
+		
+		pstmt.setString(1, W_name);
+		rs = pstmt.executeQuery();
+		
+		
+		if (rs.next()) {
+			if (W_email.equals(rs.getString("account_email"))) {
+				
+				
+				String account_id = rs.getString("account_id");
+				
+				request.setAttribute("r", "당신의 아이디는 " + account_id + "입니다!");
+				
+				
+			}else {
+				request.setAttribute("r", "계정을 찾을 수 없습니다..");
+			}
+		} 
+	
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally {
+		DBManager_account.close(con, pstmt, rs);
+	}
+	
+	
+}
+	
+	
+
+
+public static void findPW(HttpServletRequest request) {
+	// TODO Auto-generated method stub
+	
+
+	String W_email= request.getParameter("W_email");
+	String W_name = request.getParameter("W_name");
+	
+	
+	
+	
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	
+	try {
+		String sql = "select * from oh_account where W_name= ?";
+		con = DBManager_account.connect();
+		pstmt = con.prepareStatement(sql);
+		
+		pstmt.setString(1, W_name);
+		rs = pstmt.executeQuery();
+		
+		
+		if (rs.next()) {
+			if (W_email.equals(rs.getString("account_email"))) {
+				
+				
+				String sql0000 = "select * from oh_account where W_name= ?";
+				con = DBManager_account.connect();
+				pstmt = con.prepareStatement(sql);
+				
+				pstmt.setString(1, W_name);
+				rs = pstmt.executeQuery();
+				
+			}else {
+				request.setAttribute("r", "계정을 찾을 수 없습니다..");
+			}
+		} 
+	
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally {
+		DBManager_account.close(con, pstmt, rs);
+	}
+	
+	
+}
+	
+	
+
+
+
+
+	
+}
+
+
+

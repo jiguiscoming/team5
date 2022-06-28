@@ -4,14 +4,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>공구 메이트 찾기</title>
 </head>
 <body>
-<form name="groupRegForm" action="GroupRegController" method="post" onsubmit="return groupReg_isEmpty()">
-<table id="group_regTbl" border="1">
+<form name="groupRegForm" action="GroupRegController" method="post" enctype="multipart/form-data" onsubmit="return groupReg_isEmpty()">
+<table id="group_regTbl">
 	<tr>
 		<td>
-			<div class="group_reg_info">내 동네에서 공구 구하기</div>
+			<div class="group_reg_info">내 동네에서 공구메이트 구하기</div>
 		</td>
 	</tr>
 	<tr>
@@ -42,10 +42,11 @@
 		<td class="group_reg_txt"><textarea name="txt"></textarea></td>
 	</tr>
 	<tr>
+		<td align="left" style="padding-left: 80px;"><input type="file" name="file"></td>
+	</tr>
+	<tr>
 		<td class="group_reg_btn">
 			<button type="button" onclick="history.back()">취소</button>
-			<input type="hidden" name="region" value="전국">
-			<input type="hidden" name="search">
 			<button name="pageNum" value="1">등록</button>
 		</td>
 	</tr>

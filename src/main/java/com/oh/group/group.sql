@@ -1,5 +1,12 @@
--- Å×ÀÌºí ¹ö¸®±â 
+-- ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 drop table group_purchase cascade constraint purge;
+
+-- ï¿½Ã·ï¿½ ï¿½ß°ï¿½(ï¿½Ð³ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
+alter table group_purchase add group_nickname varchar2(20 char) default 'nickname' not null;
+alter table group_purchase add group_img varchar2(30 char) default 'img' not null;
+
+-- ï¿½Ã·ï¿½ ï¿½Ó¼ï¿½ ï¿½ï¿½ï¿½ï¿½
+alter table group_purchase modify group_img varchar2(100 char);
 
 create table group_purchase (
 	
@@ -10,52 +17,54 @@ create table group_purchase (
 	group_date date not null,
 	group_area varchar2(10 char) not null,
 	group_like number(3) not null,
-	group_hits number(3) not null
-
+	group_hits number(3) not null,
+	group_nickname varchar2(20 char) not null,
+	group_img varchar2(100 char) not null
+	
 );
 
--- ÀüÃ¼ Çà ¼ö ±¸ÇÏ±â 
+-- ï¿½ï¿½Ã¼ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½ 
 select count(*) from group_purchase;
 
--- ÄÃ·³ ¹ö¸®±â 
+-- ï¿½Ã·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 ALTER TABLE group_purchase DROP COLUMN group_page;
 
--- ½ÃÄö½º ¸¸µé±â 
+-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ 
 create sequence group_purchase_seq start with 1 increment by 1;
 
--- ´Ù º¸±â 
+-- ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
 select * from group_purchase;
 
--- µ¥ÀÌÅÍ ³Ö±â 
+-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±ï¿½ 
 insert into group_purchase values(group_purchase_seq.nextval, 1,'id', 'title', 'txt', sysdate, 'area', 20, 10);
 
--- µ¥ÀÌÅÍ ¼öÁ¤ÇÏ±â 
+-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ 
 update group_purchase
 set group_txt = ''
 where group_no = 20;
 
--- µ¥ÀÌÅÍ Áö¿ì±â 
+-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ 
 delete group_purchase
 where group_no = 2;
 
---ÀÏ¹Ý Á¶°Ç´Þ¸° select¹®
+--ï¿½Ï¹ï¿½ ï¿½ï¿½ï¿½Ç´Þ¸ï¿½ selectï¿½ï¿½
 select * from group_purchase where group_no=3;
 
--- Å×ÀÌºí ÀüÃ¼ rwonum º¸±â 
+-- ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½Ã¼ rwonum ï¿½ï¿½ï¿½ï¿½ 
 select rownum,group_purchase.* from group_purchase;
 
--- ÀüÃ¼Å×ÀÌºí¿¡¼­ rownumÀ» ÀÌ¿ëÇÑ Á¶°ÇÀý »ç¿ë -
+-- ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ rownumï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ -
 select * from (select rownum as num, a.* from (select * from group_purchase order by group_date desc)a) where num between 6 and 10;
 
--- ÇØ´ç Áö¿ª Å×ÀÌºí¿¡¼­ rownumÀ» ÀÌ¿ëÇÑ Á¶°ÇÀý »ç¿ë
-select * from (select rownum as num, a.* from (select * from group_purchase where group_purchase.group_area='¼­¿ï' order by group_date desc)a) where num between 1 and 5;
+-- ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ rownumï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+select * from (select rownum as num, a.* from (select * from group_purchase where group_purchase.group_area='ï¿½ï¿½ï¿½ï¿½' order by group_date desc)a) where num between 1 and 5;
 
--- ¹®ÀÚ¿­ Æ÷ÇÔ Å×ÀÌºí¿¡¼­ rownum ÀÌ¿ëÇÑ Á¶°Ç¹® »ç¿ë
-select * from (select rownum as num, a.* from (select * from group_purchase where group_title like '%¤·¤·%' order by group_date desc)a) where num between 1 and 5;
+-- ï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ rownum ï¿½Ì¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ç¹ï¿½ ï¿½ï¿½ï¿½
+select * from (select rownum as num, a.* from (select * from group_purchase where group_title like '%ï¿½ï¿½ï¿½ï¿½%' order by group_date desc)a) where num between 1 and 5;
 
--- ¹®ÀÚ¿­ Æ÷ÇÔ & ÇØ´ç Áö¿ª Å×ÀÌºí¿¡¼­ rownum ÀÌ¿ë
-select * from (select rownum as num, a.* from (select * from (select * from group_purchase where group_purchase.group_area='¼­¿ï') where group_title like '%¤·%' order by group_date desc)a) where num between 1 and 5;
+-- ï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½ï¿½ï¿½ï¿½ & ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ rownum ï¿½Ì¿ï¿½
+select * from (select rownum as num, a.* from (select * from (select * from group_purchase where group_purchase.group_area='ï¿½ï¿½ï¿½ï¿½') where group_title like '%ï¿½ï¿½%' order by group_date desc)a) where num between 1 and 5;
 
-select count(*) from group_purchase where group_area='¼­¿ï';
+select count(*) from group_purchase where group_area='ï¿½ï¿½ï¿½ï¿½';
 
-select count(*) from(select * from group_purchase where group_area='¼­¿ï') where group_title like '%À½%';
+select count(*) from(select * from group_purchase where group_area='ï¿½ï¿½ï¿½ï¿½') where group_title like '%ï¿½ï¿½%';

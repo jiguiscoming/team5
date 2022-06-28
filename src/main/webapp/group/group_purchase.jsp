@@ -6,14 +6,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>공구</title>
 </head>
 <body>
 <div class="group_title"><h2>공구</h2></div>
 
 <!-- 지역 -->
-<div  id="group_region_box">
-<table >
+<div id="group_region_box">
+<table>
 	<tr>
 		<td class="group_regionTd"><a href="GroupController?region=전국&pageNum=1&search=">전국</a></td>
 		<td class="group_regionTd"><a href="GroupController?region=서울&pageNum=1&search=">서울</a></td>
@@ -55,39 +55,32 @@
 <!-- 게시글 목록 -->
 
 <table id="group_listTbl">
-	<!-- 항목 -->
-<!-- 	<tr>
-		<td>번호</td>
-		<td>지역</td>
-		<td>제목</td>
-		<td>작성자</td>
-		<td>작성일</td>
-		<td>조회수</td>
-		<td>찜</td>
-	</tr> -->
 
-	<!-- 페이지에 해당하는 게시글 뽑아주기 -->
 	<tr>
-	<c:forEach var="group" items="${groups }">
-		<td>
-		<div class="group_list_box">
-		<div class="group_list_title">
-		<a href="GroupDetailController?no=${group.no }">${group.title}</a>
-		<span>작성일 ${group.date }</span>
-		</div>
-		
-		작성자 ${group.id }
-		
-		<div class="group_list_count">
-		조회수 ${group.hits }
-		♥ ${group.like }
-		</div>
-		<div class="group_list_region">
-		${group.area }
-		</div>
-		</div>
+		<!-- 페이지에 해당하는 게시글 뽑아주기 -->
+		<c:forEach var="group" items="${groups }">
+		<td class="group_listTd">
+			<div class="group_list_date">작성일 ${group.date }</div>
+			<div class="group_list_img_box">
+				<img src="group_imgFolder/${group.img}">
+			<div class="group_list_region">
+				${group.area }
+			</div>
+			</div>
+			<div class="group_list_count">
+				조회수 ${group.hits }
+			</div>
+			<div class="group_list_title">
+				<a href="GroupDetailController?no=${group.no}">${group.title}</a>
+				<br><span>작성자 ${group.nickname }</span>
+			</div>
 		</td>
-	</c:forEach>
+		</c:forEach>
+	 	<c:if test="${(total % 4) > 0}">
+	 	<c:forEach begin="1" end="${4 - (total % 4)}">
+		<td class="group_listTd"></td>
+		</c:forEach> 
+		</c:if> 
 	</tr>
 </table>
 
@@ -103,8 +96,8 @@
 		<!-- 열린 페이지에 해당하는 버튼은 a태그 빼줌 -->
 		<c:forEach var="page" items="${page}">
 			<c:choose>
-				<c:when test="${page == param.pageNum }">
-				<td class="group_pagingNow">${page }</td>
+				<c:when test="${page == pageNum }">
+				<td class="group_pagingNow">${page}</td>
 				</c:when>
 				<c:otherwise>
 				<td class="group_pagingTd"><a href="GroupController?region=${param.region}&pageNum=${page}&search=${param.search }">${page}</a></td>

@@ -6,49 +6,42 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>공구 상세페이지</title>
 </head>
 <body>
 <!-- 글제목 -->
-<form action="GroupUpdateController?no=${group.no}" onsubmit="return groupUpdate_idOK()">
+<!-- 나중에 작성지 확인 기능 불러오기 -->
 <div class="group_detail_title_box">
 	<div class="group_detail_title">
 		<h3>[${group.area }] ${group.title }</h3>
 	</div>
 	<div class="group_detail_date">
-		<fmt:formatDate value="${group.date }" type="both"/> 
+		<fmt:formatDate value="${group.date }" type="both"/> <span class="group_detail_hits"> | 조회수 ${group.hits }</span>
 	</div>
 	<div class="group_detail_btn">
-		<button>수정</button>
+	<!-- (쪽지)회원만 이용가능 / (수정)작성자만 이용가능 -->
+		<a href="javascript:groupMessage(${group.no})" onclick="groupMessageOK()">쪽지</a>
+		<button onclick="location.href='GroupUpdateController?no=${group.no}'">수정</button>
 	</div>
 </div>
-</form>
 
 
 <!-- 글내용 -->
 <table id="group_detailTbl">
 	<tr>
 		<td>작성자 ${group.id }</td>
-		<td class="group_detail_hits">조회수 ${group.hits }</td>
-		<td class="group_detailTd">
-	<%-- 	<c:choose> --%>
-			<%-- <c:when test="${empty groupLike.id}"> --%>
-			<span id="like">♡</span>
-			<%-- </c:when> --%>
-<%-- 			<c:otherwise>
-			<span id="like">♥</span>
-			</c:otherwise>
-		</c:choose> --%>
-			<span id="like_count">${group.like }</span>
-		</td>
 	</tr>
 	<tr>
-		<td class="group_detail_content" colspan="3">${group.txt }</td>
+		<td class="group_detail_content">
+			<img src="group_imgFolder/${group.img}">
+			<hr>
+			${group.txt }
+		</td>
 	</tr>
 </table>
 
 <!-- 댓글쓰기 -->
-<div class="group_comment"><h3>댓글</h3></div>
+<div class="group_comment"><h3>댓글 ${total_comments}</h3></div>
 
 <form action="GroupCommentController" onsubmit="return groupComment()" name="groupCmtForm">
 <table id="group_commentTbl">

@@ -13,9 +13,9 @@ public class GroupDetailController extends HttpServlet {
 
 		// 조회수 up
 		GroupDAO.hitsUp(request);
-		
 		// 댓글 들고옴
 		GroupDAO.getComments(request);
+		GroupDAO.getCommentsTotal(request);
 		// 게시글 하나 정보 들고옴
 		GroupDAO.getGroup(request);
 		request.setAttribute("loginPage", "account/loginBtn.jsp");

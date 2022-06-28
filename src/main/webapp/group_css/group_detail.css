@@ -2,10 +2,11 @@
 
 .group_detail_title_box{
 	position: relative;
-	width:800px;
+	width:100%;
 	border-bottom: 2px solid gray;
 	padding-left: 5px;
 	padding-bottom: 10px;
+	margin: 0 auto;
 }
 
 .group_detail_date{
@@ -26,17 +27,28 @@
 	bottom: 0px;
 }
 
+.group_detail_btn > a{
+	text-decoration: none;
+	color: black;
+	font-size: 10pt;
+	border: 2px solid black;
+	padding: 4px 12px 4px 12px;
+	margin-right: 10px;	
+}
+
 .group_detail_btn > button{
 	width: 60px;
 	height: 30px;
 	background-color: transparent;
 	color: black;
 	font-size: 10pt;
+	cursor: pointer;
 }
 
-.group_detailTbl{
-	width: 800px;
+#group_detailTbl{
+	width: 100%;
 	height: 500px;
+	margin: 0 auto;
 }
 
 .group_detail_hits{
@@ -51,10 +63,16 @@
 	color: black;
 }
 
+.group_detail_content > img{
+	width: 100%;
+}
+
 .group_detail_content{
 	width: 800px;
 	height: 500px;
+	padding: 10px;
 	border: 2px solid gray;
+	vertical-align: text-top;
 }
 
 .group_comment{

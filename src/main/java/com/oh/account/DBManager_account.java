@@ -9,7 +9,7 @@ import java.sql.SQLException;
 // DB관련 작업을 할 때 매번 연결코드를 쓴 이후 작업 해옴
 
 // 그거 AOP 하자
-public class DBManager {
+public class DBManager_account {
 
 	// db작업시엔 어쨋든 연결 해야됨
 	public static Connection connect() throws SQLException {

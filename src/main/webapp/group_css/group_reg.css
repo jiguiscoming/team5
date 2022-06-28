@@ -4,6 +4,9 @@
 	width: 800px;
 	height: 500px;
 	text-align: center;
+	margin: 0 auto;
+	border: 2px solid gray;
+	border-radius: 10px;
 }
 
 
@@ -36,6 +39,7 @@
 .group_reg_txt > textarea{
 	width: 80%;
 	height: 80%;
+	padding: 10px;
 }
 
 .group_reg_btn > button{
