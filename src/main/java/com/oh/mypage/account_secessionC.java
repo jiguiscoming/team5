@@ -16,11 +16,12 @@ public class account_secessionC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		
+	//탈퇴하는 페이지로 가기
+		
+		UserDAO.loginCheck(request);
 	
-		UserDAO.loginCheck_S(request);
 	
-	
-		request.setAttribute("contentPage", "secession_result.jsp");
+		request.setAttribute("contentPage", "myPage/secession.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 		
 		
@@ -33,19 +34,7 @@ public class account_secessionC extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		UserDAO.loginCheck(request);
-	
-		UserDAO.secession(request);
 		
-		UserDAO.loginCheck_S(request);
-		
-		
-		
-		request.setAttribute("contentPage", "myPage/secession.jsp");
-		request.getRequestDispatcher("index.jsp").forward(request, response);
-	
-	
-	
 	
 	}
 

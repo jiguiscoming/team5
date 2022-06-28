@@ -4,11 +4,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>공구 게시글 수정</title>
 </head>
 <body>
-<form name="groupUpdateForm" action="GroupUpdateController" method="post" onsubmit=" return groupUpdate_isEmpty()">
+<form name="groupUpdateForm" action="GroupUpdateController" method="post" enctype="multipart/form-data" onsubmit=" return groupUpdate_isEmpty()">
 <table id="group_updateTble">
+	<tr>
+		<td>게시글 수정하기</td>
+	</tr>
 	<tr>
 		<td class="group_update_title">
 			<select name="area">
@@ -33,14 +36,18 @@
 			<input value="${group.title}" name="title">
 		</td>
 	</tr>
+	<tr>	
+		<td class="group_update_img"><img src="group_imgFolder/${group.img }"></td>
+	</tr>
 	<tr>
 		<td class="group_update_txt"><textarea name="txt">${group.txt }</textarea></td>
 	</tr>
 	<tr>
+		<td class="group_update_file"><input type="file" name="newFile"></td>
+	</tr>
+	<tr>
 		<td class="group_update_btn">
-			<input type="hidden" name="region" value="전국">
-			<input type="hidden" name="search">
-			<input type="hidden" name="pageNum" value="1">
+			<input type="hidden" name="oldFile" value="${group.img }">
 			<button name="no" value="${group.no }">수정</button>
 			<button onclick="groupDel(${group.no})">삭제</button>
 		</td>

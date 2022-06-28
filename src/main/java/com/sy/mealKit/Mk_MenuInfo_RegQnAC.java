@@ -12,14 +12,11 @@ import com.sy.function.MealkitDAO;
 @WebServlet("/Mk_MenuInfo_RegQnAC")
 public class Mk_MenuInfo_RegQnAC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		
+			
 			MealkitDAO.RegQnAMealkit(request);
-		
-		
-	
 	
 	}
 

@@ -16,6 +16,7 @@ public class GroupCommentController extends HttpServlet {
 		GroupDAO.commentReg(request);
 		//댓글 불러오기
 		GroupDAO.getComments(request);
+		GroupDAO.getCommentsTotal(request);
 		// 디테일 정보 들고 오기(게시글 하나)
 		GroupDAO.getGroup(request);
 		request.setAttribute("loginPage", "account/loginBtn.jsp");
