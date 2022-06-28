@@ -2,7 +2,7 @@ package com.oh.foodrecipe;
 
 public class recipe {
 	private int recipe_basic_no;
-	private String recipe_id;
+	private String recipe_basic_id;
 	private String recipe_nm_ko;
 	private String recipe_sumry;
 	private String recipe_nation_code;
@@ -18,7 +18,7 @@ public class recipe {
 	private String recipe_img_url;
 	private String recipe_det_url;
 	
-	aaa
+	
 	
 	public recipe() {
 		// TODO Auto-generated constructor stub
@@ -26,13 +26,13 @@ public class recipe {
 
 
 
-	public recipe(int recipe_basic_no, String recipe_id, String recipe_nm_ko, String recipe_sumry,
+	public recipe(int recipe_basic_no, String recipe_basic_id, String recipe_nm_ko, String recipe_sumry,
 			String recipe_nation_code, String recipe_nation_nm, String recipe_ty_code, String recipe_ty_nm,
 			String recipe_cooking_time, String recipe_calorie, String recipe_qnt, String recipe_level_nm,
 			String recipe_irdnt_code, String recipe_pc_nm, String recipe_img_url, String recipe_det_url) {
 		super();
 		this.recipe_basic_no = recipe_basic_no;
-		this.recipe_id = recipe_id;
+		this.recipe_basic_id = recipe_basic_id;
 		this.recipe_nm_ko = recipe_nm_ko;
 		this.recipe_sumry = recipe_sumry;
 		this.recipe_nation_code = recipe_nation_code;
@@ -63,14 +63,14 @@ public class recipe {
 
 
 
-	public String getRecipe_id() {
-		return recipe_id;
+	public String getRecipe_basic_id() {
+		return recipe_basic_id;
 	}
 
 
 
-	public void setRecipe_id(String recipe_id) {
-		this.recipe_id = recipe_id;
+	public void setRecipe_basic_id(String recipe_basic_id) {
+		this.recipe_basic_id = recipe_basic_id;
 	}
 
 
@@ -242,7 +242,7 @@ public class recipe {
 	}
 
 
-	
+
 	
 	
 }

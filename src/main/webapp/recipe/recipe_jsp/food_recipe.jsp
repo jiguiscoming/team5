@@ -64,7 +64,7 @@
 				<h2>
 					총 <b>${recipesData}</b> 레시피가 있습니다
 				</h2>
-			<div class="sort_area">
+			<div class="sort_area" style="text-align: right;">
 				<select class="sort-selector" name="sort">
 					<option value="rct">최신순 정렬</option>
 					<option value="rlv">정확도순 정렬</option>
@@ -72,15 +72,16 @@
 			</div>
 		</div>
 		
+	
 		<ul class="list_recipes" style="list-style: none;">
 			<c:forEach items="${recipes }" var="r">
 				<li  class="list recipe" style="border: 1px solid; width: 250px; height: 300px; margin: 10px; float: left;">
 					<div>
 						<div>
-							<a href="RecipeCookingProcessC?recipeMaterial=${r.recipe_basic_no }"><img src="${r.recipe_img_url }" style="width: 250px; height: 200px;"></a>
+							<a href="RecipeCookingProcessC?recipeSummary=${r.recipe_basic_no }"><img src="${r.recipe_img_url }" style="width: 250px; height: 200px;"></a>
 						</div>					
 						<div style="font-size: 10pt;">
-							<a href="RecipeCookingProcessC?recipeMaterial=${r.recipe_basic_no }"><c:out value="${r.recipe_sumry }"></c:out></a>
+							<a href="RecipeCookingProcessC?recipeSummary=${r.recipe_basic_no}"><c:out value="${r.recipe_sumry }"></c:out></a>
 						</div>
 						<div>
 							<div>${r.recipe_cooking_time }</div>
@@ -88,19 +89,26 @@
 						</div>
 					</div>					
 				</li>
-			</c:forEach>			
+			</c:forEach>	
+				<li>
+					<div style="display: inline-block;">
+	
+						<c:forEach var="i" begin="1" end="${pageCount }">
+							<a href="RecipePageC?p=${i }">[${i }]</a>
+						</c:forEach>
+	
+					</div>	
+				</li>
 				</ul>		
-		<ul>
-			<li>
-				<c:forEach var="i" begin="1" end="${pageCount }">
-	
-					<a href="RecipePageC?p=${i }">[${i }]</a>
-	
-				</c:forEach>
-			</li>
-		</ul>
-	
-
+		
+			
+			
+			
+			
+			
+		
+			
+			
 			
 	</div>
 	</div>

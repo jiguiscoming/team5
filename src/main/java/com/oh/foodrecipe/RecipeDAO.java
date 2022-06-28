@@ -38,7 +38,7 @@ public class RecipeDAO {
 				// bean
 				r = new recipe();
 				r.setRecipe_basic_no(rs.getInt("RECIPE_BASIC_NO"));
-				r.setRecipe_id(rs.getString("RECIPE_BASIC_ID"));
+				r.setRecipe_basic_id(rs.getString("RECIPE_BASIC_ID"));
 				r.setRecipe_nm_ko(rs.getString("RECIPE_NM_KO"));
 				r.setRecipe_sumry(rs.getString("RECIPE_SUMRY"));
 				r.setRecipe_nation_code(rs.getString("RECIPE_NATION_CODE"));
@@ -76,11 +76,11 @@ public class RecipeDAO {
 		
 		try {
 			
-			String sql = "select * from RecipeInformation where RECIPE_BASIC_NO=?";
+			String sql = "select * from RecipeBasicCourse where RECIPE_BASIC_NO=?";
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
-			int recipeMaterial = Integer.parseInt(request.getParameter("recipeMaterial"));
-			pstmt.setInt(1, recipeMaterial);
+			int recipeSummary = Integer.parseInt(request.getParameter("recipeSummary"));
+			pstmt.setInt(1, recipeSummary);
 			
 			
 			rs = pstmt.executeQuery();
@@ -91,7 +91,13 @@ public class RecipeDAO {
 				// bean
 				r = new recipe();
 				r.setRecipe_basic_no(rs.getInt("RECIPE_BASIC_NO"));
+				r.setRecipe_basic_id(rs.getString("RECIPE_BASIC_ID"));
+				r.setRecipe_img_url(rs.getString("RECIPE_IMG_URL"));
 				r.setRecipe_sumry(rs.getString("RECIPE_SUMRY"));
+				r.setRecipe_qnt(rs.getString("RECIPE_QNT"));
+				r.setRecipe_cooking_time(rs.getString("RECIPE_COOKING_TIME"));
+				r.setRecipe_level_nm(rs.getString("RECIPE_LEVEL_NM"));
+				
 				
 				request.setAttribute("recipe", r);
 			}
@@ -108,6 +114,51 @@ public class RecipeDAO {
 	}
 
 
+	public static void getingredients(HttpServletRequest request) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			
+			String sql = "select RECIPE_IRDNT_NM, RECIPE_IRDNT_CPCTY\r\n"
+					+ "from RecipeBasicCourse, RecipeIngredients\r\n"
+					+ "where RECIPE_BASIC_NO(+) = RECIPE_IN_ID\r\n"
+					+ "and RECIPE_BASIC_NO=?";
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			int recipeSummary = Integer.parseInt(request.getParameter("recipeSummary"));
+			pstmt.setInt(1, recipeSummary);
+			
+			ArrayList<recipeingredient> ingredients = new ArrayList<recipeingredient>();
+			
+			rs = pstmt.executeQuery();
+			recipeingredient ingredient = null;
+			
+			
+			if(rs.next()) {
+				// bean
+				ingredient = new recipeingredient();
+				
+				ingredient.setRecipe_irdnt_nm(rs.getString("RECIPE_IRDNT_NM"));  
+				ingredient.setRecipe_irdnt_cpcty(rs.getString("RECIPE_IRDNT_CPCTY"));
+				
+				
+				
+				ingredients.add(ingredient);
+			
+			}
+			request.setAttribute("recipeingredients", ingredients);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(con, pstmt, rs);
+		}
+		
+		
+		
+	}
 	
 	
 	
@@ -134,6 +185,8 @@ public class RecipeDAO {
 		
 	
 	}
+
+
 
 
 
