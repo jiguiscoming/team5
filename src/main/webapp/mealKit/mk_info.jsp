@@ -22,6 +22,15 @@
 	}
 
 </script>	
+<script type="text/javascript">
+	function review_QnA_A(no) {
+		alert(no);
+			
+		window.open('mealKit/mk_QnA_A.jsp?no=' + no , "QnA_Answer" , "width = 800 , height=1200" )
+			 
+	}
+
+</script>	
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 	integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
@@ -138,7 +147,7 @@
 
 
 
-	<table class="mk_Info_tbl2">
+	<table class="mk_Info_tbl2" border="1" >
 		<tr>
 			<td class="on"><a href="#detail" id="detail">상품상세정보</a></td>
 			<td><a href="#package">배송안내</a></td>
@@ -214,30 +223,22 @@
 		</a>
 		<div id="hide" style="display: none">
 
-			<!-- <main role="main" class="container"> -->
 			<form name="form" method="POST" action="Mk_MenuInfo_RegReviewC"
 				enctype="multipart/form-data">
 				<input name="mealkit_review_mk_no" type="hidden"
 					value="${Mealkit.mealkit_no }">
-				<!-- 	<div class="pt-1"></div>
-				<input type="text" name="mealkit_review_title"
-					placeholder="제목을 입력하세요"
-					style="border-radius: 5px; width: 100%; padding: 5px;">
-				
-				<div class="pt-1">
-					<textarea id="summernote" name="mealkit_review_txt"></textarea>
-					contents 
-				</div> -->
+			
 				<table class="form-group"
-					style="border-style: solid; margin-left: auto">
+					style="border-style: solid; margin-left: 50%;" border="1">
 					<tr>
-						<td colspan="2"><input placeholder="제목을 입력하세요"
+						<td>제목</td>
+						<td ><input placeholder="제목을 입력하세요"
 							name="mealkit_review_title" style="width: 80%"></td>
 					</tr>
 					<tr style="border-style: solid;">
-						<td style="width: 10%">평점</td>
-						<td>
-							<div class="starpoint_wrap">
+						<td>평점</td>
+						<td >
+							<div class="starpoint_wrap" style="margin-left: 10%">
 								<div class="starpoint_box">
 									<label for="starpoint_1" class="label_star" title="0.5"><span
 										class="blind">0.5점</span></label> <label for="starpoint_2"
@@ -277,6 +278,7 @@
 
 
 					<tr>
+						<td>내용</td>
 						<td colspan="2"><textarea onclick="this.value=''"
 								name="mealkit_review_txt" style="width: 500px; height: 500px;">내용을 입력하세요 </textarea></td>
 					</tr>
@@ -289,45 +291,36 @@
 					</tr>
 
 				</table>
-				<script>
-					$('#summernote').summernote({
-						placeholder : '내용을 입력해주세요',
-						tabsize : 2,
-						height : 300
-					});
-				</script>
 				<div class="pt-1 text-right" style="margin-left: auto">
 					<button class="btn btn btn-success" type="submit"
 						style="width: 10%; padding: 5px;">상품후기등록</button>
 				</div>
 			</form>
 		</div>
-		<!-- 	</main>		 -->
+	
 
 	</div>
 
 
-	<table class="mk_Info_review" border="1">
+	<table class="mk_Info_review" border="1" >
 		
 		<c:forEach var="r" items="${MealkitReviewlist }">
 			<!-- <table id="faq-title" border="1"> -->
-			<tr class="faq-content">
-				<td class='star-rating' style="height: 21px;"><span
-					style="width:${r.mealkit_review_star }%"> </span></td>
+			<tr class="faq-content" >
+				<td class='star-rating' style="height: 21px;" > <span  style="width:${r.mealkit_review_star }%;"> </span></td>
 				<td><button class="question" id="que-${r.mealkit_review_no }">${r.mealkit_review_title }</button></td>
-				<td>${r.mealkit_review_date }</td>
+				<td style="text-align: center; font-size: 12px; width: 150;" >${r.mealkit_review_date }</td>
 			</tr>
-			<tr class="mk_Info_review_bottom">
-
-				<td class="answer" id="ans-${r.mealkit_review_no }">
-					${r.mealkit_review_txt }</td>
-
-
+			<tr >
+				<td colspan="3" class="answer" id="ans-${r.mealkit_review_no }">  ${r.mealkit_review_txt }  </td>
 			</tr>
+			<tr></tr>
 		</c:forEach>
-	</table>
-
-
+	</table> 
+	
+	
+	
+	
 
 
 
@@ -346,34 +339,60 @@
 		<tr>
 			<td><a href="../board/list.php?bdId=goodsqa"
 				class="btn_qna_more">상품문의 전체보기</a></td>
-			<td ><a 
-				href="javascript:review_QnA()" 
-				 class="btn_qna_write" >상품문의 글쓰기</a></td>
+			<td >
+			
+			<a href="javascript:review_QnA()" 
+			class="btn_qna_write" > <input type="hidden" id="mk_no" value="${Mealkit.mealkit_no }" > 상품문의 글쓰기</a></td>
 				
 		</tr>
 
 	</table>
 		
+		
+		
+		
+		
+				
+		<c:forEach var="q" items="${MealkitQnAlist }">
+		
 		<table border="1" class="mk_Info_QnA">
 		
-		<c:forEach var="q" items="${MealkitQnAlist }">
-			<!-- <table id="faq-title" border="1"> -->
 			<tr class="faq-content" >
 				<td style="width: 60px; text-align: center;"> ${q.mealkit_QnA_no } </td>
 				<td><button class="Qna" id="q-${q.mealkit_QnA_no }">${q.mealkit_QnA_title }</button></td>
-				<td>${q.mealkit_QnA_id }</td>
+				<td  >${q.mealkit_QnA_id }</td>
 				<td>${q.mealkit_QnA_date }</td>
-			</tr>
-			<tr class="mk_Info_QnA_bottom">
+				<td>${q.mealkit_QnA_Answer_Confirm }</td>
 				
-				<td class="qnA" id="a-${q.mealkit_QnA_no }"> ${q.mealkit_QnA_txt }</td>
-
-
 			</tr>
-		</c:forEach>
-
-		</table>
+	   </table>
+	    <table class="qnA" id="a-${q.mealkit_QnA_no }" border="1" style="margin-left: auto; margin-right: auto;" >
+	    	<tr>
+	    	<td>${q.mealkit_QnA_img }</td>
+	    	</tr>
+	    	<tr>  <!--  class="mk_Info_QnA_bottom"-->
+				<td style="width:1200px" > <img src="mealkit_img/icon_qna_q.png"> ${q.mealkit_QnA_title }</td>
+			</tr>
+			<tr>  <!--  class="mk_Info_QnA_bottom"-->
+				<td style="width:1200px" >  ${q.mealkit_QnA_txt }</td>
+			</tr>
+			<tr>
+			<td> <img alt="" src="mealkit_img/icon_qna_a.png"> ${q.mealkit_QnA_Answer_title }</td>
+			</tr>
+			<tr>
+			<td>${q.mealkit_QnA_Answer_txt }</td>
+			</tr>
+			
+				<tr >
+					<td > <button onclick="review_QnA_A(${q.mealkit_QnA_no })">${q.mealkit_QnA_no }답글 달기 </button>  </td>
+				</tr>
+					
+			 </table>
 		
+				</c:forEach>
+		
+	
+	
 	
 	
 
@@ -387,11 +406,11 @@ const items = document.querySelectorAll('.question');
 function openCloseAnswer() {
 	const answerId = this.id.replace('que', 'ans');
 
-	if (document.getElementById(answerId).style.display === 'block') {
+	if (document.getElementById(answerId).style.display === 'table-cell') {
 		document.getElementById(answerId).style.display = 'none';
 		document.getElementById(this.id + '-toggle').textContent = '+';
 	} else {
-		document.getElementById(answerId).style.display = 'block';
+		document.getElementById(answerId).style.display = 'table-cell';
 		document.getElementById(this.id + '-toggle').textContent = '-';
 	}
 }
@@ -405,12 +424,12 @@ const its = document.querySelectorAll('.Qna');
 function openCloseAnswer() {
 	const qnAId = this.id.replace('q', 'a');
 
-	if (document.getElementById(qnAId).style.display === 'block') {
+	if (document.getElementById(qnAId).style.display === 'table-cell') {
 		document.getElementById(qnAId).style.display = 'none';
-		document.getElementById(this.id + '-toggle').textContent = '+';
+
 	} else {
-		document.getElementById(qnAId).style.display = 'block';
-		document.getElementById(this.id + '-toggle').textContent = '-';
+		document.getElementById(qnAId).style.display = 'table-cell';
+		
 	}
 }
 its.forEach(item => item.addEventListener('click', openCloseAnswer));

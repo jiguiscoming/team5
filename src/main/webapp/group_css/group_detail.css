@@ -27,12 +27,22 @@
 	bottom: 0px;
 }
 
+.group_detail_btn > a{
+	text-decoration: none;
+	color: black;
+	font-size: 10pt;
+	border: 2px solid black;
+	padding: 4px 12px 4px 12px;
+	margin-right: 10px;	
+}
+
 .group_detail_btn > button{
 	width: 60px;
 	height: 30px;
 	background-color: transparent;
 	color: black;
 	font-size: 10pt;
+	cursor: pointer;
 }
 
 #group_detailTbl{
@@ -53,10 +63,16 @@
 	color: black;
 }
 
+.group_detail_content > img{
+	width: 100%;
+}
+
 .group_detail_content{
 	width: 800px;
 	height: 500px;
+	padding: 10px;
 	border: 2px solid gray;
+	vertical-align: text-top;
 }
 
 .group_comment{

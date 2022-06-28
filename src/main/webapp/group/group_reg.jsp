@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>공구 메이트 찾기</title>
 </head>
 <body>
 <form name="groupRegForm" action="GroupRegController" method="post" enctype="multipart/form-data" onsubmit="return groupReg_isEmpty()">

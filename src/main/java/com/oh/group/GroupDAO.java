@@ -104,23 +104,31 @@ public class GroupDAO {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String sql = "update group_purchase set group_title=?, group_txt=?, group_area=? where group_no=?";
+		String sql = "update group_purchase set group_title=?, group_txt=?, group_area=?, group_img=? where group_no=?";
 		
 		try {
-			request.setCharacterEncoding("utf-8");
+			String saveDirectory = request.getServletContext().getRealPath("group_imgFolder");
+			MultipartRequest mr = new MultipartRequest(request, saveDirectory, 31457280,"utf-8",new DefaultFileRenamePolicy());
+			
 			con = Group_DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			
-			
-			String area = request.getParameter("area");
-			String title = request.getParameter("title");
-			String txt = request.getParameter("txt");
-			int no =Integer.parseInt(request.getParameter("no"));
+			String area = mr.getParameter("area");
+			String title = mr.getParameter("title");
+			String txt = mr.getParameter("txt");
+			int no =Integer.parseInt(mr.getParameter("no"));
+			String newFile = mr.getFilesystemName("newFile");
+			String oldFile = mr.getParameter("oldFile");
 
 			pstmt.setString(1, title);
 			pstmt.setString(2, txt);
 			pstmt.setString(3, area);
-			pstmt.setInt(4, no);
+			if(newFile != null) {
+				pstmt.setString(4, newFile);
+			}else {
+				pstmt.setString(4, oldFile);
+			}
+			pstmt.setInt(5, no);
 			
 			if(pstmt.executeUpdate()==1) {
 				request.setAttribute("result", "수정성공");
@@ -296,7 +304,6 @@ public class GroupDAO {
 				comments.add(comment);				
 			}
 			
-			request.setAttribute("comment", comment);
 			request.setAttribute("comments", comments);
 			
 		} catch (Exception e) {
@@ -374,9 +381,9 @@ public class GroupDAO {
 		
 		// 검색 조건 안에 rownum 조건 붙여서 게시글 번호 제한
 		String region = request.getParameter("region");
-		String sql = "select * from (select rownum as num, a.* from (select * from group_purchase where group_title like ? order by group_date desc)a) where num between ? and ?";
-		if(!region.equals("전국")) {
-			sql = "select * from (select rownum as num, a.* from (select * from (select * from group_purchase where group_purchase.group_area=?) where group_title like ? order by group_date desc)a) where num between ? and ?";
+		String sql = "select * from (select rownum as num, a.* from (select * from (select * from group_purchase where group_purchase.group_area=?) where group_title like ? order by group_date desc)a) where num between ? and ?";
+		if(region.equals("전국") || region.equals("")) {
+			sql = "select * from (select rownum as num, a.* from (select * from group_purchase where group_title like ? order by group_date desc)a) where num between ? and ?";
 		}
 		try {
 
@@ -387,7 +394,7 @@ public class GroupDAO {
 			// 검색한 값
 			String search = request.getParameter("search"); 
 			
-			// 한페이지에 보여줄 게시글 수 : 5
+			// 한페이지에 보여줄 게시글 수 : 4
 			int pageSize = 4;
 			
 			// 현제 페이지
@@ -398,8 +405,9 @@ public class GroupDAO {
 			int startRow = (currentPage-1)*pageSize+1;
 			int endRow = currentPage*pageSize;
 			
+			
 			// 첫번째 ? : 검색한 값  두번째 ? : 첫 게시글 번호  세번째 ? : 마지막 게시글 번호
-			if(region.equals("전국")) {
+			if(region.equals("전국") || region.equals("")) {
 				pstmt.setString(1, "%" + search + "%");
 				pstmt.setInt(2, startRow);
 				pstmt.setInt(3, endRow);
@@ -433,7 +441,7 @@ public class GroupDAO {
 			
 			// arraylist를 attribute에 담기
 			request.setAttribute("groups", groups);
-			if(region.equals("전국")) {
+			if(region.equals("전국") || region.equals("")) {
 			request.setAttribute("sql", "select count(*) from group_purchase where group_title like '%" + search + "%'");
 			} else {
 				request.setAttribute("sql", "select count(*) from(select * from group_purchase where group_area='" + region + "') where group_title like '%" + search + "%'");
@@ -445,7 +453,7 @@ public class GroupDAO {
 		}
 	}
 
-	public static void groupPaging(HttpServletRequest request) {
+	public static void groupPaging(HttpServletRequest request,int pageNum) {
 		//연결 준비
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -458,13 +466,11 @@ public class GroupDAO {
 		// 한페이지에 보여줄 게시글 수 : 5
 		int pageSize = 4;
 		// 현제 페이지
-		String pageNum = request.getParameter("pageNum");
 		
 		
 		// 현재페이지(int로 파싱), 시작게시글번호, 끝게시글번호 선언 및 초기화
-		int currentPage = Integer.parseInt(pageNum);
-		int startRow = (currentPage-1)*pageSize+1;
-		int endRow = currentPage*pageSize;
+		int startRow = (pageNum-1)*pageSize+1;
+		int endRow = pageNum*pageSize;
 		
 		// 여러 객체를 넣을 arraylist 만들어줌
 		ArrayList<Group> groups = new ArrayList<Group>();
@@ -512,7 +518,7 @@ public class GroupDAO {
 		
 	}
 
-	public static void groupPageMove(HttpServletRequest request, String sql) {
+	public static void groupPageMove(HttpServletRequest request, String sql,int pageNum) {
 		// 연결 준비
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -520,13 +526,7 @@ public class GroupDAO {
 		
 		// 한 페이지에 보여줄 게시글 수 : 5
 		int pageSize = 4;
-		
-		// 현재 접속중인 페이지
-		String pageNum = request.getParameter("pageNum");
-		
-		// 현재페이지(pageNum) int로 다시 담음
-		int currentPage = Integer.parseInt(pageNum);
-		
+
 		try {
 			// 연결
 			con = Group_DBManager.connect();
@@ -549,7 +549,7 @@ public class GroupDAO {
 					int pageBlock = 5;
 					
 					// 시작 페이지와 끝페이지 구함
-					int startPage =(int) ((currentPage-1)/pageBlock)*pageBlock+1;
+					int startPage =(int) ((pageNum-1)/pageBlock)*pageBlock+1;
 					int endPage = startPage + pageBlock-1;
 					
 					// 계산된 끝페이지> 전체 페이지수 => 계산된 끝페이지에 전체페이지를 넣음
@@ -635,6 +635,30 @@ public class GroupDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("서버 오류");
+		} finally {
+			Group_DBManager.close(con, pstmt, rs);
+		}
+	}
+
+	public static void getCommentsTotal(HttpServletRequest request) {
+
+	 	Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select count(*) from group_comment where group_comment_listno = ?";
+		int no = Integer.parseInt(request.getParameter("no"));
+		
+		try {
+			con = Group_DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				request.setAttribute("total_comments", rs.getInt("count(*)"));
+			}
+			
+		} catch (Exception e) {
+	
 		} finally {
 			Group_DBManager.close(con, pstmt, rs);
 		}

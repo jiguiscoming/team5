@@ -5,6 +5,9 @@ drop table group_purchase cascade constraint purge;
 alter table group_purchase add group_nickname varchar2(20 char) default 'nickname' not null;
 alter table group_purchase add group_img varchar2(30 char) default 'img' not null;
 
+-- 컬럼 속성 변경
+alter table group_purchase modify group_img varchar2(100 char);
+
 create table group_purchase (
 	
 	group_no number(3) primary key,
@@ -16,7 +19,7 @@ create table group_purchase (
 	group_like number(3) not null,
 	group_hits number(3) not null,
 	group_nickname varchar2(20 char) not null,
-	group_img varchar2(30 char) not null
+	group_img varchar2(100 char) not null
 	
 );
 

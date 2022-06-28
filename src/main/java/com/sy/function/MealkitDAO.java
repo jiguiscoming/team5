@@ -258,7 +258,7 @@ public class MealkitDAO {
 		PreparedStatement pstmt = null;
 
 		try {
-			String sql = "insert into mealkit_QnA_test values (mealkit_QnA_test_seq.nextval ,?,?,?,?,?,?,sysdate )";
+			String sql = "insert into mealkit_QnA_test values (mealkit_QnA_test_seq.nextval ,?,?,?,?,?,?,?,?,0, sysdate )";
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			
@@ -275,7 +275,8 @@ public class MealkitDAO {
 			String mealkit_QnA_title = mr.getParameter("mealkit_QnA_title");
 			String mealkit_QnA_img = mr.getFilesystemName("mealkit_QnA_img");
 			String mealkit_QnA_txt = mr.getParameter("mealkit_QnA_txt");
-
+			String mealkit_Answer_QnA_title = null;
+			String mealkit_Answer_QnA_txt = null;
 			// System.out.println(mealkit_review_id);
 			System.out.println(mealkit_QnA_mk_no);
 			System.out.println(mealkit_QnA_id);
@@ -284,13 +285,15 @@ public class MealkitDAO {
 			System.out.println(mealkit_QnA_img);
 			System.out.println(mealkit_QnA_txt);
 
-			// pstmt.setString(1, mealkit_review_id);
+	
 			pstmt.setInt(1, mealkit_QnA_mk_no);
 			pstmt.setString(2, mealkit_QnA_id);
 			pstmt.setInt(3, mealkit_QnA_pw);
 			pstmt.setString(4, mealkit_QnA_title);
 			pstmt.setString(5, mealkit_QnA_img);
 			pstmt.setString(6, mealkit_QnA_txt);
+			pstmt.setString(7, mealkit_Answer_QnA_title);
+			pstmt.setString(8, mealkit_Answer_QnA_txt);
 
 			if (pstmt.executeUpdate() == 1) {
 				request.setAttribute("r", "등록성공");
@@ -331,7 +334,16 @@ public class MealkitDAO {
 				m.setMealkit_QnA_title(rs.getString("mealkit_QnA_title"));
 				m.setMealkit_QnA_txt(rs.getString("mealkit_QnA_txt"));
 				m.setMealkit_QnA_date(rs.getDate("mealkit_QnA_date"));
-
+				m.setMealkit_QnA_img(rs.getString("mealkit_QnA_img"));
+				m.setMealkit_QnA_Answer_title(rs.getString("mealkit_QnA_Answer_title"));
+				m.setMealkit_QnA_Answer_txt(rs.getString("mealkit_QnA_Answer_txt"));
+				
+				if(rs.getInt("mealkit_QnA_Answer_Confirm")==0) {
+				m.setMealkit_QnA_Answer_Confirm("답변대기중");
+				} else {
+					
+					m.setMealkit_QnA_Answer_Confirm("답변완료");
+				}
 			
 				MealkitQnAlist.add(m);
 
@@ -347,6 +359,335 @@ public class MealkitDAO {
 		
 	}
 
+	public static void regAnswerQnAMealkit(HttpServletRequest request) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			String sql = "insert into mealkit_Answer_test values (mealkit_Answer_test_seq.nextval ,?,?,?,sysdate )";
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			
+
+			String saveDirectory = request.getServletContext().getRealPath("img");
+			System.out.println(saveDirectory);
+
+			MultipartRequest mr = new MultipartRequest(request, saveDirectory, 31467280, "utf-8",
+					new DefaultFileRenamePolicy());
+
+			int mealkit_Answer_QnA_no = Integer.parseInt(mr.getParameter("mealkit_Answer_QnA_no"));
+			String mealkit_Answer_title = mr.getParameter("mealkit_Answer_title");
+			String mealkit_Answer_txt = mr.getParameter("mealkit_Answer_txt");
+
+			// System.out.println(mealkit_review_id);
+			System.out.println(mealkit_Answer_QnA_no);
+			System.out.println(mealkit_Answer_title);
+			System.out.println(mealkit_Answer_txt);
+
+	
+			pstmt.setInt(1, mealkit_Answer_QnA_no);
+			pstmt.setString(2, mealkit_Answer_title);
+			pstmt.setString(3, mealkit_Answer_txt);
+
+
+			if (pstmt.executeUpdate() == 1) {
+				request.setAttribute("r", "등록성공");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("r", "서버오류");
+		} finally {
+			DBManager.close(con, pstmt, null);
+		}
+		
+		
+	}
+
+	public static void viewAnswerQnAMealkit(HttpServletRequest request) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Connection con = null;
+
+		try {
+			ArrayList<MealkitAnswer> MealkitAnswerlist = new ArrayList<MealkitAnswer>();
+
+			MealkitAnswer m = null;
+
+			String sql = "select * from mealkit_Answer_test where mealkit_Answer_QnA_no=?";
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, Integer.parseInt(request.getParameter("no")));
+			rs = pstmt.executeQuery();
+	
+			
+			while (rs.next()) {
+				
+				m = new MealkitAnswer();
+				m.setMealkit_Answer_title(rs.getString("mealkit_Answer_title"));
+				m.setMealkit_Answer_txt(rs.getString("mealkit_Answer_txt"));
+		
+					
+			
+				MealkitAnswerlist.add(m);
+
+			}
+
+			request.setAttribute("MealkitAnswerlist", MealkitAnswerlist);
+
+		} catch (Exception e) {
+
+		} finally {
+			DBManager.close(con, pstmt, rs);
+		}
+		
+		
+	}
+	
+		
+	public static void UpAnswerQnAMealkit(HttpServletRequest request) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+
+		try {
+	//		String sql = "Update  mealkit_QnA_test\r\n" + "set mealkit_QnA_Answer_title=?,\r\n" + "set mealkit_QnA_Answer_txt=?,\r\n" + " where mealkit_QnA_no=?";
+			String sql = "Update  mealkit_QnA_test\r\n"
+					+ "set mealkit_QnA_Answer_title = ?\r\n"
+					+ ", mealkit_QnA_Answer_txt = ?\r\n"
+					+ ", mealkit_QnA_Answer_Confirm =1\r\n"
+					+ "where mealkit_QnA_no= ?\r\n";
+			request.setCharacterEncoding("utf-8");
+			con = DBManager.connect();
+			
+			pstmt = con.prepareStatement(sql);
+			
+
+			String title = request.getParameter("mealkit_QnA_Answer_title");
+			String txt = request.getParameter("mealkit_QnA_Answer_txt");
+			String no = request.getParameter("mealkit_Answer_QnA_no");	
+			
+			System.out.println(title);
+			System.out.println(txt);
+			System.out.println(no);
+		
+		
+			pstmt.setString(1, title);
+			pstmt.setString(2, txt);
+			pstmt.setString(3, no);
+
+
+			System.out.println(title);
+			System.out.println(txt);
+			System.out.println(no);
+		
+			
+			
+			
+			if (pstmt.executeUpdate() == 1) {
+				System.out.println("수정 성공");
+			}
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		} finally {
+
+			DBManager.close(con, pstmt, null);
+
+		}
+
+	}
+
+	public static void viewKorMealkit(HttpServletRequest request) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Connection con = null;
+
+		try {
+			ArrayList<Mealkit> mealkitlist = new ArrayList<Mealkit>();
+
+			Mealkit m = null;
+
+			String sql = "select * from mealkit_test where mealkit_type='kor'";
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				m = new Mealkit();
+				m.setMealkit_no(rs.getInt("mealkit_no"));
+				m.setMealkit_name(rs.getString("mealkit_name"));
+				m.setMealkit_price(rs.getInt("mealkit_price"));
+				m.setMealkit_img(rs.getString("mealkit_img"));
+				m.setMealkit_txt(rs.getString("mealkit_txt"));
+				m.setMealkit_date(rs.getDate("mealkit_date"));
+
+				mealkitlist.add(m);
+
+			}
+			request.setAttribute("korlist", mealkitlist);
+
+		} catch (Exception e) {
+
+		} finally {
+			DBManager.close(con, pstmt, rs);
+		}
+		
+	}
+
+	public static void viewAmeMealkit(HttpServletRequest request) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Connection con = null;
+
+		try {
+			ArrayList<Mealkit> mealkitlist = new ArrayList<Mealkit>();
+
+			Mealkit m = null;
+
+			String sql = "select * from mealkit_test where mealkit_type='ame'";
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				m = new Mealkit();
+				m.setMealkit_no(rs.getInt("mealkit_no"));
+				m.setMealkit_name(rs.getString("mealkit_name"));
+				m.setMealkit_price(rs.getInt("mealkit_price"));
+				m.setMealkit_img(rs.getString("mealkit_img"));
+				m.setMealkit_txt(rs.getString("mealkit_txt"));
+				m.setMealkit_date(rs.getDate("mealkit_date"));
+
+				mealkitlist.add(m);
+
+			}
+			request.setAttribute("amelist", mealkitlist);
+
+		} catch (Exception e) {
+
+		} finally {
+			DBManager.close(con, pstmt, rs);
+		}
+		
+	}
+
+	public static void viewJpnMealkit(HttpServletRequest request) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Connection con = null;
+
+		try {
+			ArrayList<Mealkit> mealkitlist = new ArrayList<Mealkit>();
+
+			Mealkit m = null;
+
+			String sql = "select * from mealkit_test where mealkit_type='jpn'";
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				m = new Mealkit();
+				m.setMealkit_no(rs.getInt("mealkit_no"));
+				m.setMealkit_name(rs.getString("mealkit_name"));
+				m.setMealkit_price(rs.getInt("mealkit_price"));
+				m.setMealkit_img(rs.getString("mealkit_img"));
+				m.setMealkit_txt(rs.getString("mealkit_txt"));
+				m.setMealkit_date(rs.getDate("mealkit_date"));
+
+				mealkitlist.add(m);
+
+			}
+			request.setAttribute("jpnlist", mealkitlist);
+
+		} catch (Exception e) {
+
+		} finally {
+			DBManager.close(con, pstmt, rs);
+		}
+		
+	}
+
+	public static void viewChnMealkit(HttpServletRequest request) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Connection con = null;
+
+		try {
+			ArrayList<Mealkit> mealkitlist = new ArrayList<Mealkit>();
+
+			Mealkit m = null;
+
+			String sql = "select * from mealkit_test where mealkit_type='chn'";
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				m = new Mealkit();
+				m.setMealkit_no(rs.getInt("mealkit_no"));
+				m.setMealkit_name(rs.getString("mealkit_name"));
+				m.setMealkit_price(rs.getInt("mealkit_price"));
+				m.setMealkit_img(rs.getString("mealkit_img"));
+				m.setMealkit_txt(rs.getString("mealkit_txt"));
+				m.setMealkit_date(rs.getDate("mealkit_date"));
+
+				mealkitlist.add(m);
+
+			}
+			request.setAttribute("chnlist", mealkitlist);
+
+		} catch (Exception e) {
+
+		} finally {
+			DBManager.close(con, pstmt, rs);
+		}
+		
+	}
+
+	public static void viewSalMealkit(HttpServletRequest request) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Connection con = null;
+
+		try {
+			ArrayList<Mealkit> mealkitlist = new ArrayList<Mealkit>();
+
+			Mealkit m = null;
+
+			String sql = "select * from mealkit_test where mealkit_type='sal'";
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				m = new Mealkit();
+				m.setMealkit_no(rs.getInt("mealkit_no"));
+				m.setMealkit_name(rs.getString("mealkit_name"));
+				m.setMealkit_price(rs.getInt("mealkit_price"));
+				m.setMealkit_img(rs.getString("mealkit_img"));
+				m.setMealkit_txt(rs.getString("mealkit_txt"));
+				m.setMealkit_date(rs.getDate("mealkit_date"));
+
+				mealkitlist.add(m);
+
+			}
+			request.setAttribute("sallist", mealkitlist);
+
+		} catch (Exception e) {
+
+		} finally {
+			DBManager.close(con, pstmt, rs);
+		}
+	}
+
+	
 	
 
 	

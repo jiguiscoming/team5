@@ -9,30 +9,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.sy.function.MealkitDAO;
 
-@WebServlet("/Mk_MenuC")
-public class Mk_MenuC extends HttpServlet {
+@WebServlet("/Mk_MenuInfo_AnswerC")
+public class Mk_MenuInfo_AnswerC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			
-		
-		 MealkitDAO.viewmealkit(request); 
-		 MealkitDAO.viewKorMealkit(request);
-		 MealkitDAO.viewAmeMealkit(request);
-		 MealkitDAO.viewJpnMealkit(request);
-		 MealkitDAO.viewChnMealkit(request);
-		 MealkitDAO.viewSalMealkit(request);
-		 request.setAttribute("mealkitPage", "mk_Menulist.jsp");
-		 request.getRequestDispatcher("mealKit/mk_M.jsp").forward(request, response);
-		 
-		 
-		 
-		
+	
+		MealkitDAO.UpAnswerQnAMealkit(request);
+	
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		
-		
-	
 	}
 
 }

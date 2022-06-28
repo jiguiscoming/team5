@@ -34,22 +34,22 @@
 	<table border="1" style="margin-left: auto; margin-right: auto;">
 		<tr>
 			<td>
-			<span> <input type="radio" name="Mk_Mn_type" checked="checked">	<label>전체</label> </span>
+			<span><label> <input type="radio" name="Mk_Mn_type" checked="checked">	전체</label> </span>
 			</td>
 			<td>
-			<span> <input type="radio" name="Mk_Mn_type" checked="checked">	<label>한식</label> </span>
+			<span> <label> <input type="radio" name="Mk_Mn_type" checked="checked">	한식</label> </span>
 			</td>
 			<td>
-			<span> <input type="radio" name="Mk_Mn_type" checked="checked">	<label>양식</label> </span>
+			<span><label> <input type="radio" name="Mk_Mn_type" checked="checked">	양식</label> </span>
 			</td>
 			<td>
-			<span> <input type="radio" name="Mk_Mn_type" checked="checked">	<label>일식</label> </span>
+			<span> <label><input type="radio" name="Mk_Mn_type" checked="checked">	일식</label> </span>
 			</td>
 			<td>
-			<span> <input type="radio" name="Mk_Mn_type" checked="checked">	<label>중식</label> </span>
+			<span> <label><input type="radio" name="Mk_Mn_type" checked="checked">	중식</label> </span>
 			</td>
 			<td>
-			<span> <input type="radio" name="Mk_Mn_type" checked="checked">	<label>샐러드</label> </span>
+			<span> <label><input type="radio" name="Mk_Mn_type" checked="checked">	샐러드</label> </span>
 			</td>
 			
 		</tr>

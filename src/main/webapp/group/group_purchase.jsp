@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>공구</title>
 </head>
 <body>
 <div class="group_title"><h2>공구</h2></div>
@@ -59,16 +59,16 @@
 	<tr>
 		<!-- 페이지에 해당하는 게시글 뽑아주기 -->
 		<c:forEach var="group" items="${groups }">
-		<td>
+		<td class="group_listTd">
 			<div class="group_list_date">작성일 ${group.date }</div>
-			<div class="group_list_box">
+			<div class="group_list_img_box">
 				<img src="group_imgFolder/${group.img}">
 			<div class="group_list_region">
 				${group.area }
 			</div>
 			</div>
 			<div class="group_list_count">
-				조회수 ${group.hits } ♥ ${group.like }
+				조회수 ${group.hits }
 			</div>
 			<div class="group_list_title">
 				<a href="GroupDetailController?no=${group.no}">${group.title}</a>
@@ -76,6 +76,11 @@
 			</div>
 		</td>
 		</c:forEach>
+	 	<c:if test="${(total % 4) > 0}">
+	 	<c:forEach begin="1" end="${4 - (total % 4)}">
+		<td class="group_listTd"></td>
+		</c:forEach> 
+		</c:if> 
 	</tr>
 </table>
 
@@ -91,8 +96,8 @@
 		<!-- 열린 페이지에 해당하는 버튼은 a태그 빼줌 -->
 		<c:forEach var="page" items="${page}">
 			<c:choose>
-				<c:when test="${page == param.pageNum }">
-				<td class="group_pagingNow">${page }</td>
+				<c:when test="${page == pageNum }">
+				<td class="group_pagingNow">${page}</td>
 				</c:when>
 				<c:otherwise>
 				<td class="group_pagingTd"><a href="GroupController?region=${param.region}&pageNum=${page}&search=${param.search }">${page}</a></td>
