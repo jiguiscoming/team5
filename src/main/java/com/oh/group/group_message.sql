@@ -1,4 +1,4 @@
--- ���̺� ������ 
+-- 테이블 버리기
 drop table group_message cascade constraint purge;
 
 create table group_message(
@@ -14,5 +14,5 @@ create sequence group_message_seq start with 1 increment by 1;
 
 select * from group_message;
 
--- ������ �ֱ� 
+-- 정보 넣기
 insert into group_message values(group_message_seq.nextval, 'post writer','sender', 'title', 'txt', sysdate);

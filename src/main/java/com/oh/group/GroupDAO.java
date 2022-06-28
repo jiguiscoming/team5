@@ -35,8 +35,8 @@ public class GroupDAO {
 			String file = mr.getFilesystemName("file");
 			
 			
-//			id´Â ¼¼¼ÇÀ¸·Î ¹Ş±â
-//			´Ğ³×ÀÓµµ ¼¼¼ÇÀ¸·Î ¹Ş±â
+//			idì„¸ì…˜ë°›ê¸°
+//			ë‹‰ë„¤ì„ ì„¸ì…˜ë°›ê¸°
 			pstmt.setString(1, "id");
 			pstmt.setString(2, title);
 			pstmt.setString(3, txt);
@@ -47,12 +47,12 @@ public class GroupDAO {
 			pstmt.setString(8, file);
 			
 			if(pstmt.executeUpdate() == 1) {
-				request.setAttribute("result", "µî·Ï¼º°ø");
+				System.out.println("ì„±ê³µ");
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("result", "¼­¹ö¿À·ù");
+			System.out.println("ì„œë²„ì˜¤ë¥˜");
 		}finally {
 			Group_DBManager.close(con, pstmt, null);
 		}
@@ -131,12 +131,12 @@ public class GroupDAO {
 			pstmt.setInt(5, no);
 			
 			if(pstmt.executeUpdate()==1) {
-				request.setAttribute("result", "¼öÁ¤¼º°ø");
+				System.out.println("ì„±ê³µ");
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("result", "¼­¹ö¿À·ù");
+			System.out.println("ì„œë²„ ì˜¤ë¥˜");
 		} finally {
 			Group_DBManager.close(con, pstmt, null);
 		}
@@ -197,12 +197,12 @@ public class GroupDAO {
 			pstmt.setInt(1, no);
 			
 			if(pstmt.executeUpdate() == 1) {
-				request.setAttribute("result", "»èÁ¦ ¼º°ø");
+				System.out.println("ì„±ê³µ");
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("result", "¼­¹ö¿À·ù");
+			System.out.println("ì„œë²„ì˜¤ë¥˜");
 		} finally {
 			Group_DBManager.close(con, pstmt, null);
 		}
@@ -214,7 +214,7 @@ public class GroupDAO {
 		ResultSet rs = null;
 		
 		try {
-//			ÇØ´ç °Ô½Ã±Û db ¸ÕÀú ÀĞÀ½
+//			í•´ë‹¹ ê²Œì‹œê¸€ ì½ê¸°
 			String sql1 = "select * from group_purchase where group_no=?";
 			con = Group_DBManager.connect();
 			pstmt = con.prepareStatement(sql1);
@@ -225,18 +225,20 @@ public class GroupDAO {
 			if(rs.next()) {
 				int hits = rs.getInt("group_hits");
 				hits ++;
-
+				
+				// ì¡°íšŒìˆ˜ upí•´ì£¼ê¸°
 				String sql2 = "update group_purchase set group_hits=? where group_no=?";
 				pstmt = con.prepareStatement(sql2);
 				pstmt.setInt(1, hits);
 				pstmt.setInt(2, no);
 				
 				if(pstmt.executeUpdate() == 1) {
-					request.setAttribute("result", "Á¶È¸¼ö up");
+					System.out.println("ì¡°íšŒìˆ˜ up");
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			System.out.println("ì„œë²„ì˜¤ë¥˜");
 		} finally {
 			Group_DBManager.close(con, pstmt, rs);
 		}
@@ -258,18 +260,17 @@ public class GroupDAO {
 			System.out.println(listno);
 			System.out.println(comment);
 			
-//			id´Â ¼¼¼ÇÀ¸·Î ¹Ş±â
+//			idì„¸ì…˜ë°›ê¸°
 			pstmt.setString(1, listno);
 			pstmt.setString(2, "id");
 			pstmt.setString(3, comment);
 			
 			if(pstmt.executeUpdate() == 1) {
-				request.setAttribute("result", "µî·Ï¼º°ø");
+				System.out.println("ì„±ê³µ");
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("result", "¼­¹ö¿À·ù");
 		}finally {
 			Group_DBManager.close(con, pstmt, null);
 		}
@@ -314,30 +315,28 @@ public class GroupDAO {
 	}
 
 	public static void getRegionGroups(HttpServletRequest request) {
-		// ¿¬°áÁØºñ
+		// ì—°ê²°
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		// Áö¿ª Á¶°Ç¾È¿¡ ÆäÀÌÂ¡µÈ °Ô½Ã±Û ¹Ş±â À§ÇÑ Äõ¸®¹®
+		// í•´ë‹¹ì§€ì—­ rownumì–»ê¸° ë° ì •ë ¬
 		String sql = "select * from (select rownum as num, a.* from (select * from group_purchase where group_purchase.group_area=? order by group_date desc)a) where num between ? and ?";
 		
 		try {
-			//ÇÑ±Û±úÁü
-			request.setCharacterEncoding("utf-8");
 			con = Group_DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			
-			// ÇÑÆäÀÌÁö¿¡ º¸¿©ÁÙ °Ô½Ã±Û ¼ö : 5
+			// ë³´ì´ëŠ” ê²Œì‹œê¸€ : 4
 			int pageSize = 4;
-			// ÇöÁ¦ ÆäÀÌÁö
+			// í˜„ì¬í˜ì´ì§€
 			String pageNum = request.getParameter("pageNum");
 			
-			// ÇöÀçÆäÀÌÁö(int·Î ÆÄ½Ì), ½ÃÀÛ°Ô½Ã±Û¹øÈ£, ³¡°Ô½Ã±Û¹øÈ£ ¼±¾ğ ¹× ÃÊ±âÈ­
+			// í˜„ì¬í˜ì´ì§€(int) ì‹œì‘ê²Œì‹œê¸€ë²ˆí˜¸ ëê²Œì‹œê¸€ë²ˆí˜¸
 			int currentPage = Integer.parseInt(pageNum);
 			int startRow = (currentPage-1)*pageSize+1;
 			int endRow = currentPage*pageSize;
 			
-			// Ã¹¹øÂ° ? : Áö¿ª ÆÄ¶ó¹ÌÅÍ  µÎ¹øÂ°? : ½ÃÀÛ°Ô½Ã±Û ¹øÈ£ ¼¼¹øÂ° ? : ¸¶Áö¸· °Ô½Ã±Û ¹øÈ£
+			// í•´ë‹¹ ì§€ì—­ ê²Œì‹œê¸€ì—ì„œ 4ê°œì”© ëŠì–´ì„œ ê°€ì ¸ì˜´
 			String region = request.getParameter("region"); 
 			pstmt.setString(1, region);
 			pstmt.setInt(2, startRow);
@@ -364,6 +363,7 @@ public class GroupDAO {
 			}
 			
 			request.setAttribute("groups", groups);
+			// ì „ì²´ê²Œì‹œê¸€ êµ¬í•˜ê¸°ìœ„í•œ sqlë¬¸ attributeì— ë„£ìŒ
 			request.setAttribute("sql", "select count(*) from group_purchase where group_area='" + region + "'");
 			
 		} catch (Exception e) {
@@ -374,44 +374,45 @@ public class GroupDAO {
 	}
 
 	public static void getGroupSearch(HttpServletRequest request) {
-		// ¿¬°áÁØºñ
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		// °Ë»ö Á¶°Ç ¾È¿¡ rownum Á¶°Ç ºÙ¿©¼­ °Ô½Ã±Û ¹øÈ£ Á¦ÇÑ
+		// ì§€ì—­ì´ ìˆëŠ”ì§€ í™•ì¸
 		String region = request.getParameter("region");
+		//ì§€ì—­ì´ ìˆìœ¼ë©´
 		String sql = "select * from (select rownum as num, a.* from (select * from (select * from group_purchase where group_purchase.group_area=?) where group_title like ? order by group_date desc)a) where num between ? and ?";
-		if(region.equals("Àü±¹") || region.equals("")) {
+		//ì§€ì—­ì´ ì—†ìœ¼ë©´ = ì „êµ­
+		if(region.equals("ì „êµ­") || region.equals("")) {
 			sql = "select * from (select rownum as num, a.* from (select * from group_purchase where group_title like ? order by group_date desc)a) where num between ? and ?";
 		}
 		try {
-
-			request.setCharacterEncoding("utf-8");
 			con = Group_DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			
-			// °Ë»öÇÑ °ª
+			// ê²€ìƒ‰ ë°›ìŒ
 			String search = request.getParameter("search"); 
 			
-			// ÇÑÆäÀÌÁö¿¡ º¸¿©ÁÙ °Ô½Ã±Û ¼ö : 4
+			// ê²Œì‹œê¸€ ìˆ˜ : 4
 			int pageSize = 4;
 			
-			// ÇöÁ¦ ÆäÀÌÁö
+			// í˜„ì¬ í˜ì´ì§€
 			String pageNum = request.getParameter("pageNum");
 			
-			// ÇöÀçÆäÀÌÁö(int·Î ÆÄ½Ì), ½ÃÀÛ°Ô½Ã±Û¹øÈ£, ³¡°Ô½Ã±Û¹øÈ£ ¼±¾ğ ¹× ÃÊ±âÈ­
+			// í˜„ì¬í˜ì´ì§€(int) ì²«ê²Œì‹œê¸€ë²ˆí˜¸ ëê²Œì‹œê¸€ë²ˆí˜¸
 			int currentPage = Integer.parseInt(pageNum);
 			int startRow = (currentPage-1)*pageSize+1;
 			int endRow = currentPage*pageSize;
 			
 			
-			// Ã¹¹øÂ° ? : °Ë»öÇÑ °ª  µÎ¹øÂ° ? : Ã¹ °Ô½Ã±Û ¹øÈ£  ¼¼¹øÂ° ? : ¸¶Áö¸· °Ô½Ã±Û ¹øÈ£
-			if(region.equals("Àü±¹") || region.equals("")) {
+			// ì „êµ­ì¼ë•Œ
+			if(region.equals("ì „êµ­") || region.equals("")) {
 				pstmt.setString(1, "%" + search + "%");
 				pstmt.setInt(2, startRow);
 				pstmt.setInt(3, endRow);
-			} else {
+			} 
+				//ì§€ì—­ì´ ìˆì„ë•Œ
+				else {
 				pstmt.setString(1, region);
 				pstmt.setString(2, "%" + search + "%");
 				pstmt.setInt(3, startRow);
@@ -422,7 +423,7 @@ public class GroupDAO {
 			ArrayList<Group> groups = new ArrayList<Group>();
 			Group group = null;
 			
-			// °Ë»ö°á°ú ÀÖÀ¸¸é °´Ã¼¿¡ ´ã¾Æ arraylist¿¡ ´ã±â
+			// í•´ë‹¹ ê²Œì‹œê¸€ì„ groupsì— ë‹´ìŒ
 			while(rs.next()) {
 				int group_no = rs.getInt("group_no");
 				String group_id = rs.getString("group_id");
@@ -439,11 +440,13 @@ public class GroupDAO {
 				groups.add(group);				
 			}
 			
-			// arraylist¸¦ attribute¿¡ ´ã±â
+			// arraylistë¥¼ attributeì— ë‹´ìŒ
 			request.setAttribute("groups", groups);
-			if(region.equals("Àü±¹") || region.equals("")) {
+			// ì „êµ­ì´ë¼ë©´ ì „ì²´ê²Œì‹œê¸€ ìˆ˜ êµ¬í•˜ëŠ” sql
+			if(region.equals("ì „êµ­") || region.equals("")) {
 			request.setAttribute("sql", "select count(*) from group_purchase where group_title like '%" + search + "%'");
-			} else {
+			} 	// ì§€ì—­+ê²€ìƒ‰ì´ ìˆë‹¤ë©´ í•´ë‹¹ ì§€ì—­ ê²Œì‹œê¸€ ìˆ˜ êµ¬í•˜ëŠ” sql
+				else {
 				request.setAttribute("sql", "select count(*) from(select * from group_purchase where group_area='" + region + "') where group_title like '%" + search + "%'");
 			}
 		} catch (Exception e) {
@@ -454,38 +457,30 @@ public class GroupDAO {
 	}
 
 	public static void groupPaging(HttpServletRequest request,int pageNum) {
-		//¿¬°á ÁØºñ
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		// rownum(°Ô½Ã±Û ¹øÈ£) º¸¿©ÁÜ (°Ô½Ã±Û¹øÈ£ ?~?) **Äõ¸®¹® Á¶½É
-		// rownumÀº ÄÃ·³ ¾È ¸¸µé¾îµµ µÊ. ÇØ´ç Å×ÀÌºí¿¡ ¹Ù·Î rownum selectÇÒ ¼ö ÀÖÀ½
+		// rownum ë¬¸ë²• ì¡°ì‹¬
 		String sql = "select * from (select rownum as num, a.* from (select * from group_purchase order by group_date desc)a) where num between ? and ?";
 		
-		// ÇÑÆäÀÌÁö¿¡ º¸¿©ÁÙ °Ô½Ã±Û ¼ö : 5
+		//í•œ í˜ì´ì§€ì— ë³´ì—¬ì¤„ ê²Œì‹œê¸€ ìˆ˜ : 4
 		int pageSize = 4;
-		// ÇöÁ¦ ÆäÀÌÁö
 		
-		
-		// ÇöÀçÆäÀÌÁö(int·Î ÆÄ½Ì), ½ÃÀÛ°Ô½Ã±Û¹øÈ£, ³¡°Ô½Ã±Û¹øÈ£ ¼±¾ğ ¹× ÃÊ±âÈ­
+		// ì²«ê²Œì‹œê¸€ë²ˆí˜¸ ëê²Œì‹œê¸€ë²ˆí˜¸ (í˜„ì¬í˜ì´ì§€ëŠ” 1)
 		int startRow = (pageNum-1)*pageSize+1;
 		int endRow = pageNum*pageSize;
 		
-		// ¿©·¯ °´Ã¼¸¦ ³ÖÀ» arraylist ¸¸µé¾îÁÜ
 		ArrayList<Group> groups = new ArrayList<Group>();
-		// °¢ÀÚ bean ÁØºñ
 		Group group = null;
 		
 		try {
 			con = Group_DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			
-			//Ã¹¹øÂ° ? = ½ÃÀÛ °Ô½Ã±Û ¹øÈ£ , µÎ¹øÂ° ? = ³¡ °Ô½Ã±Û ¹øÈ£
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
 			
-			// ÀĞÀ¸¸é °´Ã¼¿¡ ³Ö¾îÁÖ±â 
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				
@@ -504,7 +499,7 @@ public class GroupDAO {
 				groups.add(group);				
 				
 			}
-			// arraylist¸¦ attribute¿¡ ³Ö¾îÁÜ
+			// attributeì— ì „ì²´ ê²Œì‹œê¸€ ë‹´ìŒ
 			request.setAttribute("groups", groups);
 			request.setAttribute("sql", "select count(*) from group_purchase");
 			
@@ -519,53 +514,44 @@ public class GroupDAO {
 	}
 
 	public static void groupPageMove(HttpServletRequest request, String sql,int pageNum) {
-		// ¿¬°á ÁØºñ
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		// ÇÑ ÆäÀÌÁö¿¡ º¸¿©ÁÙ °Ô½Ã±Û ¼ö : 5
+		// ë³´ì—¬ì¤„ ê²Œì‹œê¸€ ìˆ˜ : 4
 		int pageSize = 4;
 
 		try {
-			// ¿¬°á
 			con = Group_DBManager.connect();
-			// sql ¹® Àß °¡Á®¿Ô´ÂÁö È®ÀÎ
-//			System.out.println(sql);
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				// ÃÑ °Ô½Ã±Û °³¼ö ¹ŞÀ½
+				// ì „ì²´ ê²Œì‹œê¸€ ìˆ˜(attributeì— ë‹´ìŒ)
 				int count = rs.getInt("count(*)");
-				
-				// ÃÑ °Ô½Ã±Û °³¼ö attribute(count)¿¡ ³ÖÀ½
 				request.setAttribute("total", count);
 				
-					// ÃÑ ÆäÀÌÁöÀÇ °³¼ö
+					// ì „ì²´ í˜ì´ì§€ ìˆ˜
 					int pageCount = count/pageSize + (count%pageSize==0?0:1);
 					
-					// º¸¿©ÁÙ ÆäÀÌÁö °³¼ö : 5°³
+					// í•œë²ˆì— ë³´ì—¬ì¤„ í˜ì´ì§€ ê°œìˆ˜ : 5
 					int pageBlock = 5;
 					
-					// ½ÃÀÛ ÆäÀÌÁö¿Í ³¡ÆäÀÌÁö ±¸ÇÔ
+					// í•œë²ˆì— ë³´ì—¬ì¤„ ì²«í˜ì´ì§€ ë²ˆí˜¸ ëí˜ì´ì§€ ë²ˆí˜¸
 					int startPage =(int) ((pageNum-1)/pageBlock)*pageBlock+1;
 					int endPage = startPage + pageBlock-1;
 					
-					// °è»êµÈ ³¡ÆäÀÌÁö> ÀüÃ¼ ÆäÀÌÁö¼ö => °è»êµÈ ³¡ÆäÀÌÁö¿¡ ÀüÃ¼ÆäÀÌÁö¸¦ ³ÖÀ½
+					// ê³„ì‚°ëœ ëí˜ì´ì§€ê°€ ì‹¤ì œ í˜ì´ì§€ë³´ë‹¤ ë§ìœ¼ë©´ ëí˜ì´ì§€ = ì‹¤ì œ ì „ì²´ í˜ì´ì§€ ìˆ˜
 					if (endPage > pageCount) {
 						endPage = pageCount;
 					}
 					
-					// °ª Àß ³ª¿À´ÂÁö syso Âï¾îº¸´Â°Å ÃßÃµ
-					
-					// el¹®¿¡ ÇÊ¿äÇÑ (Ã¹ÆäÀÌÁö) (³¡ÆäÀÌÁö) (ÀüÃ¼ÆäÀÌÁö¼ö) attribute¿¡ ³ÖÀ½
+					// viewì—ì„œ í•„ìš”í•œ ìˆ«ì
 					request.setAttribute("startPage", startPage);
 					request.setAttribute("endPage", endPage);
 					request.setAttribute("pageCount", pageCount);
 					
-					// ÆäÀÌÁö ¹øÈ£ Ãâ·Â
-					// º¸¿©ÁÙ ÆäÀÌÁöÀÇ page¹è¿­À» »ı¼º => ¹è¿­ attribute¿¡ ÀúÀå
+					// í˜ì´ì§€ ë²ˆí˜¸ page ë°°ì—´ì— ë„£ìŒ
 					int j = 0;
 					int[] page = new int[endPage-startPage+1];
 					
@@ -587,6 +573,7 @@ public class GroupDAO {
 		
 	}
 
+	// ì¢‹ì•„ìš” êµ¬í˜„ ëª»í•¨
 	public static void likeUp(HttpServletRequest request) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -598,7 +585,7 @@ public class GroupDAO {
 			con = Group_DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			
-			// °Ô½Ã±Û ³Ñ¹ö
+			// ê²Œì‹œê¸€ ë²ˆí˜¸
 			int no = Integer.parseInt(request.getParameter("no"));
 			System.out.println(no);
 			pstmt.setInt(1, no);
@@ -608,11 +595,9 @@ public class GroupDAO {
 				sql = "update group_purchase set group_like =? where group_no =?";
 				pstmt = con.prepareStatement(sql);
 				
-				// ÁÁ¾Æ¿ä ¼ö up
 				pstmt.setInt(1, rs.getInt("group_like")+1);
 				pstmt.setInt(2, no);
 				
-				// ¾÷µ¥ÀÌÆ® µÇ¸é °´Ã¼ ´ã±â
 				String id = rs.getString("group_id");
 				String title = rs.getString("group_title");
 				String txt = rs.getString("group_txt");
@@ -627,19 +612,20 @@ public class GroupDAO {
 				if(pstmt.executeUpdate()==1) {
 					group = new Group(no, id, title, txt, date, area, like, hits,group_nick,group_img);
 					request.setAttribute("group", group);
-					System.out.println("µî·Ï¼º°ø");
+					System.out.println("ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½");
 				}
 			}
 			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("¼­¹ö ¿À·ù");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		} finally {
 			Group_DBManager.close(con, pstmt, rs);
 		}
 	}
 
+	// ëŒ“ê¸€ ê°œìˆ˜
 	public static void getCommentsTotal(HttpServletRequest request) {
 
 	 	Connection con = null;
@@ -662,6 +648,46 @@ public class GroupDAO {
 		} finally {
 			Group_DBManager.close(con, pstmt, rs);
 		}
+	}
+
+	public static void sendMessage(HttpServletRequest request) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "insert into group_message values(group_message_seq.nextval, ?, ?, ?, ?, sysdate)";
+		
+		try {
+			con = Group_DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+
+			String writer = request.getParameter("writer_id");
+			String title = request.getParameter("message_title");
+			String txt = request.getParameter("message_txt");
+			String sender = request.getParameter("send_id");
+			
+			System.out.println(writer);
+			System.out.println(title);
+			System.out.println(txt);
+			System.out.println(sender);
+			
+			
+//			idì„¸ì…˜ë°›ê¸°
+//			ë‹‰ë„¤ì„ ì„¸ì…˜ë°›ê¸°
+			pstmt.setString(1, writer);
+			pstmt.setString(2, title);
+			pstmt.setString(3, txt);
+			pstmt.setString(4, sender);
+			
+			if(pstmt.executeUpdate() == 1) {
+				System.out.println("ë©”ì„¸ì§€ ì„±ê³µ");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("ì„œë²„ì˜¤ë¥˜");
+		}finally {
+			Group_DBManager.close(con, pstmt, null);
+		}
+		
 	}
 
 }

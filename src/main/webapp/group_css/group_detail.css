@@ -122,11 +122,24 @@
 	font-size: 11pt;
 }
 
-.group_comment_txt{
+.group_comment_txt_box{
 	height: 100px;
 	font-weight: 500;
 	font-size: 10pt;
 	padding: 5px;
 	vertical-align: text-top;
 	border-bottom: 1px solid gray;
+}
+
+.group_comment_txt_btn{
+	text-align: right;
+	vertical-align: bottom;
+}
+
+.group_comment_txt_btn > a{
+	text-decoration: none;
+	color: black;
+	border-bottom: 2px solid black;
+	padding-bottom: 5px;
+	margin: 5px;
 }

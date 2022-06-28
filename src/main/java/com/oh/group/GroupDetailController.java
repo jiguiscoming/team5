@@ -11,13 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 public class GroupDetailController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		// Á¶È¸¼ö up
+		//ì¡°íšŒìˆ˜ up
 		GroupDAO.hitsUp(request);
-		// ´ñ±Û µé°í¿È
+		// ëŒ“ê¸€ ë‹¤ ê°€ì ¸ì˜¤ê¸°
 		GroupDAO.getComments(request);
 		GroupDAO.getCommentsTotal(request);
-		// °Ô½Ã±Û ÇÏ³ª Á¤º¸ µé°í¿È
+		// ê²Œì‹œê¸€ í•˜ë‚˜ ê°€ì ¸ì˜¤ê¸°
 		GroupDAO.getGroup(request);
+//		UserDAO.loginCheck(request);
 		request.setAttribute("loginPage", "account/loginBtn.jsp");
 		request.setAttribute("contentPage", "group/group_detail.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
@@ -26,14 +27,12 @@ public class GroupDetailController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		// °Ô½Ã±Û ÁÁ¾Æ¿ä up
-		GroupDAO.likeUp(request);
-		// ÇØ´ç ¾ÆÀÌµð ÁÁ¾Æ¿ä up
-		// Á¶È¸¼ö up
+		// ì¡°íšŒìˆ˜ up
 		GroupDAO.hitsUp(request);
-		// ´ñ±Û µé°í¿È
+		// ëŒ“ê¸€
 		GroupDAO.getComments(request);
-		// °Ô½Ã±Û ÇÏ³ª Á¤º¸ µé°í¿È
+		GroupDAO.getCommentsTotal(request);
+		//ê²Œì‹œê¸€ í•˜ë‚˜ ê°€ì ¸ì˜¤ê¸°
 		GroupDAO.getGroup(request);
 		request.setAttribute("loginPage", "account/loginBtn.jsp");
 		request.setAttribute("contentPage", "group/group_detail.jsp");

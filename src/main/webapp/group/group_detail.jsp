@@ -64,7 +64,15 @@
 		<td class="group_comment_date"><fmt:formatDate value="${comment.date}" type="both" dateStyle="long" timeStyle="short"/> </td>
 	</tr>
 	<tr>
-		<td colspan="2"><div class="group_comment_txt">${comment.txt}</div></td>
+		<td colspan="2">
+			<div class="group_comment_txt_box">
+				<div class="group_comment_txt">${comment.txt}</div>
+				<div class="group_comment_txt_btn">
+					<a href="#">수정</a>
+					<a href="#">삭제</a>
+				</div>
+			</div>
+		</td>
 	</tr>
 </c:forEach>
 </table>
