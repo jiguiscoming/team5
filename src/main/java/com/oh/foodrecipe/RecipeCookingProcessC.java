@@ -12,7 +12,7 @@ public class RecipeCookingProcessC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		RecipeDAO.getRecipe(request);
-		
+		RecipeDAO.getingredients(request);
 		
 		request.setAttribute("loginPage", "account/loginBtn_recipe.jsp");
 		request.setAttribute("contentPage", "recipe/recipe_jsp/recipe_cooking_process.jsp");
