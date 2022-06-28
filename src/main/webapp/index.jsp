@@ -17,10 +17,10 @@
 <script type="text/javascript" src="js/group.js"></script>
 <script type="text/javascript" src="js/jquery.js"></script>
 <!-- jy js파일 -->
- <script type="text/javascript" src="agree.js"> </script>
+<!--  <script type="text/javascript" src="agree.js"> </script>
  <script type="text/javascript" src="ACCheck.js"> </script>
  <script type="text/javascript" src="validCheck.js"> </script>
-<script type="text/javascript" src = "jQuery.js"></script>
+<script type="text/javascript" src = "jQuery.js"></script> -->
 <!-- jy js파일 -->
 
 
