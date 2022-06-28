@@ -1,4 +1,4 @@
-package com.oh.mypage;
+package com.oh.account;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,35 +7,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.oh.account.UserDAO;
-
-
-@WebServlet("/account_secessionC")
-public class account_secessionC extends HttpServlet {
-
+@WebServlet("/find_pwCR")
+public class find_pwCR extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		
-	//탈퇴하는 페이지로 가기
-		
-		UserDAO.loginCheck(request);
-	
-	
-		request.setAttribute("contentPage", "myPage/secession.jsp");
+		request.setAttribute("loginPage", "account/loginBtn.jsp");
+		request.setAttribute("contentPage", "account/find_pwR.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 		
-		
-	
-	
-	
-	
 	}
 
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		
 	
+		
+		
 	}
 
 }

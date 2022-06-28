@@ -14,7 +14,7 @@
 </tr>
 
 
-<form>
+<form action="find_idCR">
 
 <tr>
 <td>등록된 이메일을 입력해 주세요</td>
@@ -24,21 +24,19 @@
 </tr>
 
 <tr>
-<td> <input type="email" id="W_email"> </td>
+<td> <input type="email" name="W_email"> </td>
 </tr>
 <tr>
 <td> 등록된 이름을 입력해 주세요 </td>
 </tr>
 <tr>
-<td> <input id="W_name"> </td>
+<td> <input name="W_name"> </td>
 </tr>
-
-
-
 
 <tr>
 <td> <button> 확인 </button> </td>
 </tr>
+
 </form>
 
 

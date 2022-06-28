@@ -7,9 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 ${r }
 
-이런 건 어떠세요?
-밀키트 추천.. 뭐.. 추천해주기
+<button onclick="location.href='find_pwC'"> 비밀번호 찾기로</button>
+
 </body>
 </html>

@@ -15,11 +15,13 @@
 <link rel="stylesheet" href="group_css/group_detail.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript" src="js/group.js"></script>
+<script type="text/javascript" src = "account/jQuery.js"></script>
+
 <!-- jy js파일 -->
- <script type="text/javascript" src="agree.js"> </script>
+<!--  <script type="text/javascript" src="agree.js"> </script>
  <script type="text/javascript" src="ACCheck.js"> </script>
  <script type="text/javascript" src="validCheck.js"> </script>
-<script type="text/javascript" src = "jQuery.js"></script>
+<script type="text/javascript" src = "jQuery.js"></script> -->
 <!-- jy js파일 -->
 
 
