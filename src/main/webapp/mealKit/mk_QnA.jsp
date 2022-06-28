@@ -18,7 +18,7 @@
         function setParentText(){
 
             document.getElementById("mealkit_QnA_mk_no").value =  opener.document.getElementById("mk_no").value 
-            
+          
 
         }
 
@@ -48,7 +48,7 @@
             </td>
 			</tr>
 			<tr>
-			<td><img class="mk_QnA_img" src="img/${Mealkit.mealkit_img }"> </td>
+			<td></td>
 			<td>${Mealkit.mealkit_name }</td>
 			</tr>
 			</table>
@@ -88,7 +88,7 @@
 			<table class="mk_QnA_tbl2">
 			<tr>
 			<td> <button onclick="window.close()">취소</button> </td>
-			<td> <button id="mealkit_QnA_mk_no" name="mealkit_QnA_mk_no">등록</button> </td>
+			<td> <button id="mealkit_QnA_mk_no" name="mealkit_QnA_mk_no" value="mealkit_QnA_mk_no">등록</button> </td>
 			</tr>
 			
 			</table>
