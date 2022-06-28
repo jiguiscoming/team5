@@ -658,7 +658,7 @@ public class GroupDAO {
 		int no = Integer.parseInt(request.getParameter("no"));
 		
 		try {
-			con = Group_DBManager.connect();
+			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, no);
 			rs = pstmt.executeQuery();
@@ -669,7 +669,7 @@ public class GroupDAO {
 		} catch (Exception e) {
 	
 		} finally {
-			Group_DBManager.close(con, pstmt, rs);
+			DBManager.close(con, pstmt, rs);
 		}
 	}
 
