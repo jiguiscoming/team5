@@ -24,209 +24,218 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-	<div class="menu">
-
+			<div class="menu">
+		
 
 		<ul class="menu__tabs">
-			<li><a class="active" href="#item-1"><i class="fa fa-star"></i>
-					전체</a></li>
-			<li><a href="#item-2"><i class="fa fa-link"></i> #양식</a></li>
-			<li><a href="#item-3"><i class="fa fa-photo"></i> #한식</a></li>
-			<li><a href="#item-4"><i class="fa fa-jpn"></i> #일식</a></li>
-			<li><a href="#item-5"><i class="fa fa-chn"></i> #중식</a></li>
-			<li><a href="#item-6"><i class="fa fa-salad"></i> #샐러드</a></li>
+			<li><a class="active" href="#item-1"><i class="fa fa-star"></i> 전체</a></li>
+			<li><a href="#item-2"><i class="fa fa-link"></i> 한식</a></li>
+			<li><a href="#item-3"><i class="fa fa-photo"></i> 양식</a></li>
+			<li><a href="#item-4"><i class="fa fa-user"></i> 일식</a></li>
+			<li><a href="#item-5"><i class="fa fa-user"></i> 중식</a></li>
+			<li><a href="#item-6"><i class="fa fa-user"></i> 샐러드</a></li>
 		</ul>
 		<section class="menu__wrapper">
 			<article id="item-1" class="menu__item item-active">
 				<h3>전체</h3>
-				<p>
-				<table class="mk_Menulistbl1" border="1">
+				<table border="1"
+		class="mk_Menulistbl1" border="1">
+		<tr>
+			<td ><c:forEach var="m" items="${mealkits }">
+					<table border="1" class="mk_MLtbl_1"
+						onclick="location.href='Mk_MenuInfoC?no=${m.mealkit_no}'"
+						>
+						<tr>
+							<td class="mk_Ml_td1"><img
+							 class="mk_Ml_img"	src="img/${m.mealkit_img }"></td>
+						</tr>
+						<tr>
+							<td class="mk_Ml_td_name">${m.mealkit_name }</td>
+						</tr>
+						<tr>
+							<td>${m.mealkit_no }</td>
+						</tr>
+						<tr>
+							<td class="mk_Ml_td_price">${m.mealkit_price }원</td>
+						</tr>
+					</table>
 
-					<c:forEach items="${mealkits }" var="m">
-						<table border="1" class="mk_MLtbl_1"
-							onclick="location.href='Mk_MenuInfoC?no=${m.mealkit_no}'">
-							<tr>
-								<td class="mk_Ml_td1"><img class="mk_Ml_img"
-									src="img/${m.mealkit_img }"></td>
-							</tr>
-							<tr>
-								<td>${m.mealkit_name }</td>
-							</tr>
-							<tr>
-								<td>${m.mealkit_no }</td>
-							</tr>
-							<tr>
-								<td>${m.mealkit_price }</td>
-							</tr>
-
-						</table>
-					</c:forEach>
-
-				</table>
-				</p>
-
+				</c:forEach></td>
+		</tr>
+	</table>
 			</article>
-
+			
 			<article id="item-2" class="menu__item">
-				<h3>양식</h3>
-				<p>
-				<table class="mk_Menulistbl1" border="1">
+				<h3>한식</h3>
+				<table border="1"
+		class="mk_Menulistbl1" border="1">
+		<tr>
+			<td ><c:forEach var="m" items="${korlist }">
+					<table border="1" class="mk_MLtbl_1"
+						onclick="location.href='Mk_MenuInfoC?no=${m.mealkit_no}'"
+						>
+						<tr>
+							<td class="mk_Ml_td1"><img
+							 class="mk_Ml_img"	src="img/${m.mealkit_img }"></td>
+						</tr>
+						<tr>
+							<td class="mk_Ml_td_name">${m.mealkit_name }</td>
+						</tr>
+						<tr>
+							<td>${m.mealkit_no }</td>
+						</tr>
+						<tr>
+							<td class="mk_Ml_td_price">${m.mealkit_price }원</td>
+						</tr>
+					</table>
 
-					<c:forEach items="${amelist }" var="m">
-						<table border="1" class="mk_MLtbl_1"
-							onclick="location.href='Mk_MenuInfoC?no=${m.mealkit_no}'">
-							<tr>
-								<td class="mk_Ml_td1"><img class="mk_Ml_img"
-									src="img/${m.mealkit_img }"></td>
-							</tr>
-							<tr>
-								<td>${m.mealkit_name }</td>
-							</tr>
-							<tr>
-								<td>${m.mealkit_no }</td>
-							</tr>
-							<tr>
-								<td>${m.mealkit_price }</td>
-							</tr>
-
-						</table>
-					</c:forEach>
-
-				</table>
-				</p>
-
+				</c:forEach></td>
+		</tr>
+	</table>
 			</article>
 
 			<article id="item-3" class="menu__item">
-				<h3>한식</h3>
-				<p>
-				<table class="mk_Menulistbl1" border="1">
+				<h3>양식</h3>
+	<table border="1"
+		class="mk_Menulistbl1" border="1">
+		<tr>
+			<td ><c:forEach var="m" items="${amelist }">
+					<table border="1" class="mk_MLtbl_1"
+						onclick="location.href='Mk_MenuInfoC?no=${m.mealkit_no}'"
+						>
+						<tr>
+							<td class="mk_Ml_td1"><img
+							 class="mk_Ml_img"	src="img/${m.mealkit_img }"></td>
+						</tr>
+						<tr>
+							<td class="mk_Ml_td_name">${m.mealkit_name }</td>
+						</tr>
+						<tr>
+							<td>${m.mealkit_no }</td>
+						</tr>
+						<tr>
+							<td class="mk_Ml_td_price">${m.mealkit_price }원</td>
+						</tr>
+					</table>
 
-					<c:forEach items="${korlist }" var="m">
-						<table border="1" class="mk_MLtbl_1"
-							onclick="location.href='Mk_MenuInfoC?no=${m.mealkit_no}'">
-							<tr>
-								<td class="mk_Ml_td1"><img class="mk_Ml_img"
-									src="img/${m.mealkit_img }"></td>
-							</tr>
-							<tr>
-								<td>${m.mealkit_name }</td>
-							</tr>
-							<tr>
-								<td>${m.mealkit_no }</td>
-							</tr>
-							<tr>
-								<td>${m.mealkit_price }</td>
-							</tr>
-
-						</table>
-					</c:forEach>
-
-				</table>
-				</p>
-
-			</article>
-
+				</c:forEach></td>
+		</tr>
+	</table>			</article>
+	
 			<article id="item-4" class="menu__item">
 				<h3>일식</h3>
-				<p>
-				<table class="mk_Menulistbl1" border="1">
+	<table border="1"
+		class="mk_Menulistbl1" border="1">
+		<tr>
+			<td ><c:forEach var="m" items="${jpnlist }">
+					<table border="1" class="mk_MLtbl_1"
+						onclick="location.href='Mk_MenuInfoC?no=${m.mealkit_no}'"
+						>
+						<tr>
+							<td class="mk_Ml_td1"><img
+							 class="mk_Ml_img"	src="img/${m.mealkit_img }"></td>
+						</tr>
+						<tr>
+							<td class="mk_Ml_td_name">${m.mealkit_name }</td>
+						</tr>
+						<tr>
+							<td>${m.mealkit_no }</td>
+						</tr>
+						<tr>
+							<td class="mk_Ml_td_price">${m.mealkit_price }원</td>
+						</tr>
+					</table>
 
-					<c:forEach items="${jpnlist }" var="m">
-						<table border="1" class="mk_MLtbl_1"
-							onclick="location.href='Mk_MenuInfoC?no=${m.mealkit_no}'">
-							<tr>
-								<td class="mk_Ml_td1"><img class="mk_Ml_img"
-									src="img/${m.mealkit_img }"></td>
-							</tr>
-							<tr>
-								<td>${m.mealkit_name }</td>
-							</tr>
-							<tr>
-								<td>${m.mealkit_no }</td>
-							</tr>
-							<tr>
-								<td>${m.mealkit_price }</td>
-							</tr>
-
-						</table>
-					</c:forEach>
-
-				</table>
-				</p>
-
-			</article>
-			<article id="item-5" class="menu__item">
+				</c:forEach></td>
+		</tr>
+	</table>			</article>
+	<article id="item-5" class="menu__item">
 				<h3>중식</h3>
-				<p>
-				<table class="mk_Menulistbl1" border="1">
+	<table border="1"
+		class="mk_Menulistbl1" border="1">
+		<tr>
+			<td ><c:forEach var="m" items="${chnlist }">
+					<table border="1" class="mk_MLtbl_1"
+						onclick="location.href='Mk_MenuInfoC?no=${m.mealkit_no}'"
+						>
+						<tr>
+							<td class="mk_Ml_td1"><img
+							 class="mk_Ml_img"	src="img/${m.mealkit_img }"></td>
+						</tr>
+						<tr>
+							<td class="mk_Ml_td_name">${m.mealkit_name }</td>
+						</tr>
+						<tr>
+							<td>${m.mealkit_no }</td>
+						</tr>
+						<tr>
+							<td class="mk_Ml_td_price">${m.mealkit_price }원</td>
+						</tr>
+					</table>
 
-					<c:forEach items="${chnlist }" var="m">
-						<table border="1" class="mk_MLtbl_1"
-							onclick="location.href='Mk_MenuInfoC?no=${m.mealkit_no}'">
-							<tr>
-								<td class="mk_Ml_td1"><img class="mk_Ml_img"
-									src="img/${m.mealkit_img }"></td>
-							</tr>
-							<tr>
-								<td>${m.mealkit_name }</td>
-							</tr>
-							<tr>
-								<td>${m.mealkit_no }</td>
-							</tr>
-							<tr>
-								<td>${m.mealkit_price }</td>
-							</tr>
-
-						</table>
-					</c:forEach>
-
-				</table>
-				</p>
-
-			</article>
-			<article id="item-6" class="menu__item">
+				</c:forEach></td>
+		</tr>
+	</table>			</article>
+	<article id="item-6" class="menu__item">
 				<h3>샐러드</h3>
-				<p>
-				<table class="mk_Menulistbl1" border="1">
+	<table border="1"
+		class="mk_Menulistbl1" border="1">
+		<tr>
+			<td ><c:forEach var="m" items="${sallist }">
+					<table border="1" class="mk_MLtbl_1"
+						onclick="location.href='Mk_MenuInfoC?no=${m.mealkit_no}'"
+						>
+						<tr>
+							<td class="mk_Ml_td1"><img
+							 class="mk_Ml_img"	src="img/${m.mealkit_img }"></td>
+						</tr>
+						<tr>
+							<td class="mk_Ml_td_name">${m.mealkit_name }</td>
+						</tr>
+						<tr>
+							<td>${m.mealkit_no }</td>
+						</tr>
+						<tr>
+							<td class="mk_Ml_td_price">${m.mealkit_price }원</td>
+						</tr>
+					</table>
 
-					<c:forEach items="${sallist }" var="m">
-						<table border="1" class="mk_MLtbl_1"
-							onclick="location.href='Mk_MenuInfoC?no=${m.mealkit_no}'">
-							<tr>
-								<td class="mk_Ml_td1"><img class="mk_Ml_img"
-									src="img/${m.mealkit_img }"></td>
-							</tr>
-							<tr>
-								<td>${m.mealkit_name }</td>
-							</tr>
-							<tr>
-								<td>${m.mealkit_no }</td>
-							</tr>
-							<tr>
-								<td>${m.mealkit_price }</td>
-							</tr>
-
-						</table>
-					</c:forEach>
-
-				</table>
-				</p>
-
-			</article>
-
+				</c:forEach></td>
+		</tr>
+	</table>			</article>
 		</section>
 		<div class="menu--shadow"></div>
 	</div>
+			
+			
+	
+	<%-- <table border="1"
+		class="mk_Menulistbl1" border="1">
+		<tr>
+			<td ><c:forEach var="m" items="${mealkits }">
+					<table border="1" class="mk_MLtbl_1"
+						onclick="location.href='Mk_MenuInfoC?no=${m.mealkit_no}'"
+						>
+						<tr>
+							<td class="mk_Ml_td1"><img
+							 class="mk_Ml_img"	src="img/${m.mealkit_img }"></td>
+						</tr>
+						<tr>
+							<td>${m.mealkit_name }</td>
+						</tr>
+						<tr>
+							<td>${m.mealkit_no }</td>
+						</tr>
+						<tr>
+							<td>${m.mealkit_price }</td>
+						</tr>
+					</table>
 
-
-
-
-
-
-
-
+				</c:forEach></td>
+		</tr>
+	</table>
+ --%>
+	
 
 </body>
 </html>
