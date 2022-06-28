@@ -5,11 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 
 import javax.servlet.http.HttpServletRequest;
 
 import com.oh.group.Group_DBManager;
+import com.oh.main.DBManager;
 
 public class GroupDAO {
 
@@ -21,7 +21,7 @@ public class GroupDAO {
 		try {
 			
 			request.setCharacterEncoding("utf-8");
-			con = Group_DBManager.connect();
+			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			String title = request.getParameter("title");
 			String txt = request.getParameter("txt");
@@ -43,7 +43,7 @@ public class GroupDAO {
 			e.printStackTrace();
 			request.setAttribute("result", "서버오류");
 		}finally {
-			Group_DBManager.close(con, pstmt, null);
+			DBManager.close(con, pstmt, null);
 		}
 	}
 
@@ -57,7 +57,7 @@ public class GroupDAO {
 		try {
 
 			request.setCharacterEncoding("utf-8");
-			con = Group_DBManager.connect();
+			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
@@ -83,7 +83,7 @@ public class GroupDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			Group_DBManager.close(con, pstmt, rs);
+			DBManager.close(con, pstmt, rs);
 		}
 	}
 
@@ -95,7 +95,7 @@ public class GroupDAO {
 		
 		try {
 			request.setCharacterEncoding("utf-8");
-			con = Group_DBManager.connect();
+			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			
 			
@@ -117,7 +117,7 @@ public class GroupDAO {
 			e.printStackTrace();
 			request.setAttribute("result", "서버오류");
 		} finally {
-			Group_DBManager.close(con, pstmt, null);
+			DBManager.close(con, pstmt, null);
 		}
 		
 	}
@@ -131,7 +131,7 @@ public class GroupDAO {
 		
 		try {
 			request.setCharacterEncoding("utf-8");
-			con = Group_DBManager.connect();
+			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			
 			int no =Integer.parseInt(request.getParameter("no"));
@@ -158,7 +158,7 @@ public class GroupDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			Group_DBManager.close(con, pstmt, rs);
+			DBManager.close(con, pstmt, rs);
 		}
 	}
 
@@ -169,7 +169,7 @@ public class GroupDAO {
 		int no = Integer.parseInt(request.getParameter("no"));
 		
 		try {
-			con = Group_DBManager.connect();
+			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, no);
 			
@@ -181,7 +181,7 @@ public class GroupDAO {
 			e.printStackTrace();
 			request.setAttribute("result", "서버오류");
 		} finally {
-			Group_DBManager.close(con, pstmt, null);
+			DBManager.close(con, pstmt, null);
 		}
 	}
 
@@ -193,7 +193,7 @@ public class GroupDAO {
 		try {
 //			해당 게시글 db 먼저 읽음
 			String sql1 = "select * from group_purchase where group_no=?";
-			con = Group_DBManager.connect();
+			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql1);
 			int no =Integer.parseInt(request.getParameter("no"));
 			pstmt.setInt(1, no);
@@ -215,7 +215,7 @@ public class GroupDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			Group_DBManager.close(con, pstmt, rs);
+			DBManager.close(con, pstmt, rs);
 		}
 	}
 
@@ -227,7 +227,7 @@ public class GroupDAO {
 		try {
 			
 			request.setCharacterEncoding("utf-8");
-			con = Group_DBManager.connect();
+			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			String listno = request.getParameter("no");
 			String comment = request.getParameter("comment");
@@ -248,7 +248,7 @@ public class GroupDAO {
 			e.printStackTrace();
 			request.setAttribute("result", "서버오류");
 		}finally {
-			Group_DBManager.close(con, pstmt, null);
+			DBManager.close(con, pstmt, null);
 		}
 	}
 
@@ -261,7 +261,7 @@ public class GroupDAO {
 		try {
 
 			request.setCharacterEncoding("utf-8");
-			con = Group_DBManager.connect();
+			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			int listno =Integer.parseInt(request.getParameter("no"));
 			pstmt.setInt(1, listno);
@@ -287,7 +287,7 @@ public class GroupDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			Group_DBManager.close(con, pstmt, rs);
+			DBManager.close(con, pstmt, rs);
 		}
 	}
 
@@ -302,7 +302,7 @@ public class GroupDAO {
 		try {
 			//한글깨짐
 			request.setCharacterEncoding("utf-8");
-			con = Group_DBManager.connect();
+			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			
 			// 한페이지에 보여줄 게시글 수 : 5
@@ -350,7 +350,7 @@ public class GroupDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			Group_DBManager.close(con, pstmt, rs);
+			DBManager.close(con, pstmt, rs);
 		}
 	}
 
@@ -369,7 +369,7 @@ public class GroupDAO {
 		try {
 
 			request.setCharacterEncoding("utf-8");
-			con = Group_DBManager.connect();
+			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			
 			// 검색한 값
@@ -432,7 +432,7 @@ public class GroupDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			Group_DBManager.close(con, pstmt, rs);
+			DBManager.close(con, pstmt, rs);
 		}
 	}
 
@@ -467,7 +467,7 @@ public class GroupDAO {
 		Group group = null;
 		
 		try {
-			con = Group_DBManager.connect();
+			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			
 			//첫번째 ? = 시작 게시글 번호 , 두번째 ? = 끝 게시글 번호
@@ -499,7 +499,7 @@ public class GroupDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			Group_DBManager.close(con, pstmt, rs);
+			DBManager.close(con, pstmt, rs);
 		}
 		
 		
@@ -526,7 +526,7 @@ public class GroupDAO {
 		
 		try {
 			// 연결
-			con = Group_DBManager.connect();
+			con = DBManager.connect();
 			// sql 문 잘 가져왔는지 확인
 //			System.out.println(sql);
 			pstmt = con.prepareStatement(sql);
@@ -579,7 +579,7 @@ public class GroupDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			Group_DBManager.close(con, pstmt, rs);
+			DBManager.close(con, pstmt, rs);
 		}
 		
 	}
@@ -592,7 +592,7 @@ public class GroupDAO {
 		
 		try {
 			
-			con = Group_DBManager.connect();
+			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			
 			// 게시글 넘버
@@ -630,7 +630,7 @@ public class GroupDAO {
 			e.printStackTrace();
 			System.out.println("서버 오류");
 		} finally {
-			Group_DBManager.close(con, pstmt, rs);
+			DBManager.close(con, pstmt, rs);
 		}
 	}
 

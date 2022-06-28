@@ -4,15 +4,17 @@
 
 <!DOCTYPE html>
 <html>
-<head>	
+<head>
 <script type="text/javascript" src="mealkit_js/mealkit.js"></script>
 <script type="text/javascript" src="mealkit_js/mk_slide.js"></script>
 <script type="text/javascript" src="mealkit_js/mk_info.js"></script>
-
 <script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
 <link rel="stylesheet" type="text/css" href="mealkit_css/mk_slide.css">
-<link rel="stylesheet" type="text/css" href="mealkit_css/mk_M.css"> 
-<link rel="stylesheet" type="text/css" href="mealkit_css/mk_info.css"> 
+<link rel="stylesheet" type="text/css" href="mealkit_css/mk_M.css">
+<link rel="stylesheet" type="text/css" href="mealkit_css/mk_info.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 
 
 
@@ -25,50 +27,25 @@
 
 	<table>
 		<tr>
-			<td> <button onclick="location.href='Mk_MenuC'">밀키트</button>  </td>
+			<td>
+				<button onclick="location.href='Mk_MenuC'">밀키트</button>
+			</td>
 		</tr>
 	</table>
 
-		<h1>--------------------------------------------------------------------------------------------</h1>
+	<h1>--------------------------------------------------------------------------------------------</h1>
 
-	<table border="1" style="margin-left: auto; margin-right: auto;">
-		<tr>
-			<td>
-			<span><label> <input type="radio" name="Mk_Mn_type" checked="checked">	전체</label> </span>
-			</td>
-			<td>
-			<span> <label> <input type="radio" name="Mk_Mn_type" checked="checked">	한식</label> </span>
-			</td>
-			<td>
-			<span><label> <input type="radio" name="Mk_Mn_type" checked="checked">	양식</label> </span>
-			</td>
-			<td>
-			<span> <label><input type="radio" name="Mk_Mn_type" checked="checked">	일식</label> </span>
-			</td>
-			<td>
-			<span> <label><input type="radio" name="Mk_Mn_type" checked="checked">	중식</label> </span>
-			</td>
-			<td>
-			<span> <label><input type="radio" name="Mk_Mn_type" checked="checked">	샐러드</label> </span>
-			</td>
-			
-		</tr>
 
-	</table>
-	
-	
-	<h1>-----------------------------------------------------------------------------------------------</h1>
-	
-	
+
 	<table>
-		<tr >
-		
-		<td> <jsp:include page="${mealkitPage}"></jsp:include> </td>
+		<tr>
+
+			<td><jsp:include page="${mealkitPage}"></jsp:include></td>
 		</tr>
-	
+
 	</table>
 
-	
+
 	<h1>-------------------------------------------------</h1>
 
 	<form action="Mk_MenuInsertC" method="get">
@@ -80,11 +57,11 @@
 			</tr>
 		</table>
 	</form>
-	
-	
-	
 
-	
+
+
+
+
 
 
 
