@@ -34,7 +34,7 @@
 			<a href="#">
 				<div class="home_mealkit_img"><img src="${mealkit.mealkit_img }"></div>
 				<div class="home_mealkit_title">${mealkit.mealkit_name}</div>
-				<div>${mealkit_price }</div>
+				<div>${mealkit.mealkit_price }</div>
 			</a>	
 			</div>
 			</c:forEach>

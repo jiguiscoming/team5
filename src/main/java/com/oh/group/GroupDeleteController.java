@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.oh.account.UserDAO;
+
 @WebServlet("/GroupDeleteController")
 public class GroupDeleteController extends HttpServlet {
 	
@@ -19,8 +21,7 @@ public class GroupDeleteController extends HttpServlet {
 		request.setAttribute("pageNum", 1);
 		//페이지 버튼
 		GroupDAO.groupPageMove(request,(String)request.getAttribute("sql"),1);
-//		UserDAO.loginCheck(request);
-		request.setAttribute("loginPage", "account/loginBtn.jsp");
+		UserDAO.loginCheck(request);
 		request.setAttribute("contentPage", "group/group_purchase.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	

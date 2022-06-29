@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.oh.account.UserDAO;
+
 @WebServlet("/GroupMessageController")
 public class GroupMessageController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -16,8 +18,7 @@ public class GroupMessageController extends HttpServlet {
 		GroupDAO.getComments(request);
 		GroupDAO.getCommentsTotal(request);
 		GroupDAO.getGroup(request);
-//		UserDAO.loginCheck(request);
-		request.setAttribute("loginPage", "account/loginBtn.jsp");
+		UserDAO.loginCheck(request);
 		request.setAttribute("contentPage", "group/group_detail.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 

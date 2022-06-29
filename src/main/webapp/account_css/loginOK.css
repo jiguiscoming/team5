@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+#loginOKTbl{
+	width: 100%;
+	text-align: center;
+}
+
+.loginOK_hello{
+	font-size: 10pt;
+}
+
+.loginOK_mypage > button{
+	width: 90px;
+	height: 30px;
+	background-color: rgb(229,193,197);
+	border-radius: 5px;
+	color: black;
+	font-size: 10pt;
+	border: none;
+	cursor: pointer;
+}
+
+.loginOK_logout > button{
+	width: 80px;
+	height: 30px;
+	background-color: rgb(229,193,197);
+	border-radius: 5px;
+	color: black;
+	font-size: 10pt;
+	border: none;
+	cursor: pointer;	
+}

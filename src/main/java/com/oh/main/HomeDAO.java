@@ -105,14 +105,12 @@ public class HomeDAO {
 		//원래는 지역 가지고 와야함
 		try {
 			con = DBManager.connect();
-			System.out.println("연결성공");
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
 			ArrayList<Group> groups = new ArrayList<Group>();
 			Group group = null;
 			while(rs.next()) {
-				System.out.println("데이터 있음");
 				int no = rs.getInt("group_no");
 				String id = rs.getString("group_id");
 				String title = rs.getString("group_title");
@@ -129,7 +127,6 @@ public class HomeDAO {
 			}
 			
 			request.setAttribute("groups", groups);
-			System.out.println("정보 담음");
 					
 		} catch (Exception e) {
 			e.printStackTrace();

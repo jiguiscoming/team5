@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+#loginTbl{
+	padding: 3px;
+	width: 100%;
+	height: 100%;
+}
+
+.login_id > input{
+	width: 120px;
+	height: 15px;
+	border-radius: 5px;
+}
+
+.login_pw > input{
+	width: 120px;
+	height: 15px;
+	border-radius: 5px;
+	margin-bottom: 5px;
+}
+
+.login_btn > button{
+	width: 60px;
+	height: 30px;
+	background-color: rgb(229,193,197);
+	border-radius: 5px;
+	color: black;
+	border: none;
+	cursor: pointer;
+}
+
+.join_btn > input{
+	width: 70px;
+	height: 30px;
+	text-align:center;
+	border: 2px solid rgb(229,193,197);
+	border-radius: 5px;
+	background-color: transparent;
+	font-size: 9pt;
+	cursor: pointer;
+}
+
+.find_btn > input{
+	width: 70px;
+	height: 30px;
+	border: 2px solid rgb(229,193,197);
+	border-radius: 5px;
+	text-align:center;
+	background-color: transparent;
+	font-size: 8pt;
+	cursor: pointer;
+}
