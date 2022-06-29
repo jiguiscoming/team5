@@ -1,4 +1,4 @@
--- Å×ÀÌºí ¹ö¸®±â 
+-- ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 drop table group_message cascade constraint purge;
 
 create table group_message(
@@ -14,5 +14,5 @@ create sequence group_message_seq start with 1 increment by 1;
 
 select * from group_message;
 
--- µ¥ÀÌÅÍ ³Ö±â 
+-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±ï¿½ 
 insert into group_message values(group_message_seq.nextval, 'post writer','sender', 'title', 'txt', sysdate);
