@@ -14,7 +14,7 @@ public class HC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		// 밀키트 new
-//		HomeDAO.getMealkits(request);
+		HomeDAO.getMealkits(request);
 		
 		// 레시피 랜덤 5개
 //		HomeDAO.getRecipes(request);

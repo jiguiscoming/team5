@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.oh.main.DBManager;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -78,7 +79,7 @@ public class UserDAO {
 		try {
 			request.setCharacterEncoding("utf-8");
 			String sql = "insert into oh_account values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-			con = DBManager_account.connect();
+			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 
 			String join_name = request.getParameter("join_name");
@@ -129,7 +130,7 @@ public class UserDAO {
 			request.setAttribute("r", "서버 오류..");
 
 		} finally {
-			DBManager_account.close(con, pstmt, null);
+			DBManager.close(con, pstmt, null);
 		}
 
 	}
@@ -180,7 +181,7 @@ public class UserDAO {
 
 		try {
 			String sql = "select * from oh_account where account_id= ?";
-			con = DBManager_account.connect();
+			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 
 			pstmt.setString(1, userId);
@@ -238,7 +239,7 @@ public class UserDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			DBManager_account.close(con, pstmt, rs);
+			DBManager.close(con, pstmt, rs);
 		}
 
 	}
@@ -281,7 +282,7 @@ public class UserDAO {
 		try {
 			String sql = "select account_id from oh_account where account_id = ?";
 
-			con = DBManager_account.connect();
+			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
@@ -293,7 +294,7 @@ public class UserDAO {
 			e.printStackTrace();
 
 		} finally {
-			DBManager_account.close(con, pstmt, rs);
+			DBManager.close(con, pstmt, rs);
 		}
 		return value;
 	}
@@ -310,7 +311,7 @@ public class UserDAO {
 		try {
 			String sql = "DELETE oh_account WHERE account_id = ? ";
 
-			con = DBManager_account.connect();
+			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 
 			pstmt.setString(1, acc.getAccount_id());
@@ -331,7 +332,7 @@ public class UserDAO {
 			e.printStackTrace();
 
 		} finally {
-			DBManager_account.close(con, pstmt, null);
+			DBManager.close(con, pstmt, null);
 		}
 
 	}
@@ -366,7 +367,7 @@ public class UserDAO {
 
 		try {
 			String sql = "select * from oh_account where account_name= ?";
-			con = DBManager_account.connect();
+			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 
 			pstmt.setString(1, W_name);
@@ -387,7 +388,7 @@ public class UserDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			DBManager_account.close(con, pstmt, rs);
+			DBManager.close(con, pstmt, rs);
 		}
 
 	}
@@ -405,7 +406,7 @@ public class UserDAO {
 
 		try {
 			String sql = "select * from oh_account where account_id= ?";
-			con = DBManager_account.connect();
+			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 
 			pstmt.setString(1, W_id);
@@ -420,7 +421,7 @@ public class UserDAO {
 					if (W_pwquestiona.equals(rs.getString("account_pwquestiona"))) {
 
 						String sql0000 = "UPDATE oh_account SET account_pw = '0000' WHERE account_id = ?";
-						con = DBManager_account.connect();
+						con = DBManager.connect();
 						pstmt = con.prepareStatement(sql);
 
 						pstmt.setString(1, W_id);
@@ -441,7 +442,7 @@ public class UserDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			DBManager_account.close(con, pstmt, rs);
+			DBManager.close(con, pstmt, rs);
 		}
 
 	}

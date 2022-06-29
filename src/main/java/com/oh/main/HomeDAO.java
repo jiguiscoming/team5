@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.oh.foodrecipe.recipe;
 import com.oh.group.Group;
-import com.oh.group.Group_DBManager;
 import com.sy.function.Mealkit;
 
 public class HomeDAO {
@@ -20,10 +19,10 @@ public class HomeDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select * from (select rownum as num, a.* from (select * from mealkit_test order by group_date desc)a) where num between 1 and 5";		
+		String sql = "select * from (select rownum as num, a.* from (select * from mealkit_test order by MEALKIT_DATE desc)a) where num between 1 and 5";		
 		
 		try {
-			con = Group_DBManager.connect();
+			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
@@ -47,7 +46,7 @@ public class HomeDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			Group_DBManager.close(con, pstmt, rs);
+			DBManager.close(con, pstmt, rs);
 		}
 
 	}
@@ -59,7 +58,7 @@ public class HomeDAO {
 		String sql = "select * from (select * from RecipeBasicCourse order by DBMS_RANDOM.RANDOM) where rownum < 6";		
 		
 		try {
-			con = Group_DBManager.connect();
+			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
@@ -92,7 +91,7 @@ public class HomeDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			Group_DBManager.close(con, pstmt, rs);
+			DBManager.close(con, pstmt, rs);
 		}
 		
 	}
@@ -105,13 +104,15 @@ public class HomeDAO {
 		
 		//원래는 지역 가지고 와야함
 		try {
-			con = Group_DBManager.connect();
+			con = DBManager.connect();
+			System.out.println("연결성공");
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
 			ArrayList<Group> groups = new ArrayList<Group>();
 			Group group = null;
 			while(rs.next()) {
+				System.out.println("데이터 있음");
 				int no = rs.getInt("group_no");
 				String id = rs.getString("group_id");
 				String title = rs.getString("group_title");
@@ -128,11 +129,12 @@ public class HomeDAO {
 			}
 			
 			request.setAttribute("groups", groups);
+			System.out.println("정보 담음");
 					
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			Group_DBManager.close(con, pstmt, rs);
+			DBManager.close(con, pstmt, rs);
 		}
 		
 	}

@@ -28,12 +28,16 @@
 	</tr>
 	<tr>
 		<td class="homeTd">
-			<!-- foreach 돌림 -->
 			<h2>새로 들어온 밀키트</h2>
-			<div class="home_mealkit"></div>
-			<div class="home_mealkit"></div>
-			<div class="home_mealkit"></div>
-			<div class="home_mealkit"></div>
+			<c:forEach var="mealkit" items="${mealkits}">
+			<div class="home_mealkit">
+			<a href="#">
+				<div class="home_mealkit_img"><img src="${mealkit.mealkit_img }"></div>
+				<div class="home_mealkit_title">${mealkit.mealkit_name}</div>
+				<div>${mealkit_price }</div>
+			</a>	
+			</div>
+			</c:forEach>
 		</td>
 	</tr>
 	<tr>

@@ -40,13 +40,10 @@ public class GroupDAO {
 			String file = mr.getFilesystemName("file");
 			
 			
-<<<<<<< HEAD
+
 //			id세션받기
 //			닉네임 세션받기
-=======
-//			id는 세션으로 받기
-//			닉네임도 세션으로 받기
->>>>>>> 2fb390504a75e1cd90c2e1936684980fd745ca08
+
 			pstmt.setString(1, "id");
 			pstmt.setString(2, title);
 			pstmt.setString(3, txt);
@@ -57,20 +54,15 @@ public class GroupDAO {
 			pstmt.setString(8, file);
 			
 			if(pstmt.executeUpdate() == 1) {
-<<<<<<< HEAD
+
 				System.out.println("성공");
-=======
-				request.setAttribute("result", "등록성공");
->>>>>>> 2fb390504a75e1cd90c2e1936684980fd745ca08
+
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-<<<<<<< HEAD
+
 			System.out.println("서버오류");
-=======
-			request.setAttribute("result", "서버오류");
->>>>>>> 2fb390504a75e1cd90c2e1936684980fd745ca08
 		}finally {
 			DBManager.close(con, pstmt, null);
 		}
@@ -87,6 +79,7 @@ public class GroupDAO {
 
 			request.setCharacterEncoding("utf-8");
 			con = DBManager.connect();
+			System.out.println("연결성공");
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
@@ -94,6 +87,7 @@ public class GroupDAO {
 			Group group = null;
 
 			while(rs.next()) {
+				System.out.println("데이터 있음");
 				int group_no = rs.getInt("group_no");
 				String group_id = rs.getString("group_id");
 				String group_title = rs.getString("group_title");
@@ -110,6 +104,7 @@ public class GroupDAO {
 			}
 			
 			request.setAttribute("groups", groups);
+			System.out.println("데이터 담음");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -153,20 +148,12 @@ public class GroupDAO {
 			pstmt.setInt(5, no);
 			
 			if(pstmt.executeUpdate()==1) {
-<<<<<<< HEAD
 				System.out.println("성공");
-=======
-				request.setAttribute("result", "수정성공");
->>>>>>> 2fb390504a75e1cd90c2e1936684980fd745ca08
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-<<<<<<< HEAD
 			System.out.println("서버 오류");
-=======
-			request.setAttribute("result", "서버오류");
->>>>>>> 2fb390504a75e1cd90c2e1936684980fd745ca08
 		} finally {
 			DBManager.close(con, pstmt, null);
 		}
@@ -227,20 +214,12 @@ public class GroupDAO {
 			pstmt.setInt(1, no);
 			
 			if(pstmt.executeUpdate() == 1) {
-<<<<<<< HEAD
 				System.out.println("성공");
-=======
-				request.setAttribute("result", "삭제 성공");
->>>>>>> 2fb390504a75e1cd90c2e1936684980fd745ca08
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-<<<<<<< HEAD
 			System.out.println("서버오류");
-=======
-			request.setAttribute("result", "서버오류");
->>>>>>> 2fb390504a75e1cd90c2e1936684980fd745ca08
 		} finally {
 			DBManager.close(con, pstmt, null);
 		}
@@ -252,11 +231,8 @@ public class GroupDAO {
 		ResultSet rs = null;
 		
 		try {
-<<<<<<< HEAD
 //			해당 게시글 읽기
-=======
 //			해당 게시글 db 먼저 읽음
->>>>>>> 2fb390504a75e1cd90c2e1936684980fd745ca08
 			String sql1 = "select * from group_purchase where group_no=?";
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql1);
@@ -275,11 +251,7 @@ public class GroupDAO {
 				pstmt.setInt(2, no);
 				
 				if(pstmt.executeUpdate() == 1) {
-<<<<<<< HEAD
 					System.out.println("조회수 up");
-=======
-					request.setAttribute("result", "조회수 up");
->>>>>>> 2fb390504a75e1cd90c2e1936684980fd745ca08
 				}
 			}
 		} catch (Exception e) {
@@ -306,29 +278,20 @@ public class GroupDAO {
 			System.out.println(listno);
 			System.out.println(comment);
 			
-<<<<<<< HEAD
 //			id세션받기
-=======
 //			id는 세션으로 받기
->>>>>>> 2fb390504a75e1cd90c2e1936684980fd745ca08
 			pstmt.setString(1, listno);
 			pstmt.setString(2, "id");
 			pstmt.setString(3, comment);
 			
 			if(pstmt.executeUpdate() == 1) {
-<<<<<<< HEAD
 				System.out.println("성공");
-=======
 				request.setAttribute("result", "등록성공");
->>>>>>> 2fb390504a75e1cd90c2e1936684980fd745ca08
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-<<<<<<< HEAD
-=======
 			request.setAttribute("result", "서버오류");
->>>>>>> 2fb390504a75e1cd90c2e1936684980fd745ca08
 		}finally {
 			DBManager.close(con, pstmt, null);
 		}
@@ -373,25 +336,7 @@ public class GroupDAO {
 	}
 
 	public static void getRegionGroups(HttpServletRequest request) {
-<<<<<<< HEAD
-		// 연결
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		// 해당지역 rownum얻기 및 정렬
-		String sql = "select * from (select rownum as num, a.* from (select * from group_purchase where group_purchase.group_area=? order by group_date desc)a) where num between ? and ?";
-		
-		try {
-			con = Group_DBManager.connect();
-			pstmt = con.prepareStatement(sql);
-			
-			// 보이는 게시글 : 4
-			int pageSize = 4;
-			// 현재페이지
-			String pageNum = request.getParameter("pageNum");
-			
-			// 현재페이지(int) 시작게시글번호 끝게시글번호
-=======
+	
 		// 연결준비
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -405,22 +350,18 @@ public class GroupDAO {
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			
-			// 한페이지에 보여줄 게시글 수 : 5
+			// 한페이지에 보여줄 게시글 수 : 4
 			int pageSize = 4;
 			// 현제 페이지
 			String pageNum = request.getParameter("pageNum");
 			
 			// 현재페이지(int로 파싱), 시작게시글번호, 끝게시글번호 선언 및 초기화
->>>>>>> 2fb390504a75e1cd90c2e1936684980fd745ca08
 			int currentPage = Integer.parseInt(pageNum);
 			int startRow = (currentPage-1)*pageSize+1;
 			int endRow = currentPage*pageSize;
 			
-<<<<<<< HEAD
 			// 해당 지역 게시글에서 4개씩 끊어서 가져옴
-=======
 			// 첫번째 ? : 지역 파라미터  두번째? : 시작게시글 번호 세번째 ? : 마지막 게시글 번호
->>>>>>> 2fb390504a75e1cd90c2e1936684980fd745ca08
 			String region = request.getParameter("region"); 
 			pstmt.setString(1, region);
 			pstmt.setInt(2, startRow);
@@ -458,46 +399,22 @@ public class GroupDAO {
 	}
 
 	public static void getGroupSearch(HttpServletRequest request) {
-<<<<<<< HEAD
-=======
 		// 연결준비
->>>>>>> 2fb390504a75e1cd90c2e1936684980fd745ca08
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-<<<<<<< HEAD
 		// 지역이 있는지 확인
-=======
 		// 검색 조건 안에 rownum 조건 붙여서 게시글 번호 제한
->>>>>>> 2fb390504a75e1cd90c2e1936684980fd745ca08
 		String region = request.getParameter("region");
 		//지역이 있으면
 		String sql = "select * from (select rownum as num, a.* from (select * from (select * from group_purchase where group_purchase.group_area=?) where group_title like ? order by group_date desc)a) where num between ? and ?";
-<<<<<<< HEAD
 		//지역이 없으면 = 전국
-=======
->>>>>>> 2fb390504a75e1cd90c2e1936684980fd745ca08
 		if(region.equals("전국") || region.equals("")) {
 			sql = "select * from (select rownum as num, a.* from (select * from group_purchase where group_title like ? order by group_date desc)a) where num between ? and ?";
 		}
 		try {
-<<<<<<< HEAD
-			con = Group_DBManager.connect();
-			pstmt = con.prepareStatement(sql);
 			
-			// 검색 받음
-			String search = request.getParameter("search"); 
-			
-			// 게시글 수 : 4
-			int pageSize = 4;
-			
-			// 현재 페이지
-			String pageNum = request.getParameter("pageNum");
-			
-			// 현재페이지(int) 첫게시글번호 끝게시글번호
-=======
-
 			request.setCharacterEncoding("utf-8");
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
@@ -512,17 +429,13 @@ public class GroupDAO {
 			String pageNum = request.getParameter("pageNum");
 			
 			// 현재페이지(int로 파싱), 시작게시글번호, 끝게시글번호 선언 및 초기화
->>>>>>> 2fb390504a75e1cd90c2e1936684980fd745ca08
 			int currentPage = Integer.parseInt(pageNum);
 			int startRow = (currentPage-1)*pageSize+1;
 			int endRow = currentPage*pageSize;
 			
 			
-<<<<<<< HEAD
 			// 전국일때
-=======
 			// 첫번째 ? : 검색한 값  두번째 ? : 첫 게시글 번호  세번째 ? : 마지막 게시글 번호
->>>>>>> 2fb390504a75e1cd90c2e1936684980fd745ca08
 			if(region.equals("전국") || region.equals("")) {
 				pstmt.setString(1, "%" + search + "%");
 				pstmt.setInt(2, startRow);
@@ -540,11 +453,8 @@ public class GroupDAO {
 			ArrayList<Group> groups = new ArrayList<Group>();
 			Group group = null;
 			
-<<<<<<< HEAD
 			// 해당 게시글을 groups에 담음
-=======
 			// 검색결과 있으면 객체에 담아 arraylist에 담기
->>>>>>> 2fb390504a75e1cd90c2e1936684980fd745ca08
 			while(rs.next()) {
 				int group_no = rs.getInt("group_no");
 				String group_id = rs.getString("group_id");
@@ -561,14 +471,9 @@ public class GroupDAO {
 				groups.add(group);				
 			}
 			
-<<<<<<< HEAD
 			// arraylist를 attribute에 담음
 			request.setAttribute("groups", groups);
 			// 전국이라면 전체게시글 수 구하는 sql
-=======
-			// arraylist를 attribute에 담기
-			request.setAttribute("groups", groups);
->>>>>>> 2fb390504a75e1cd90c2e1936684980fd745ca08
 			if(region.equals("전국") || region.equals("")) {
 			request.setAttribute("sql", "select count(*) from group_purchase where group_title like '%" + search + "%'");
 			} 	// 지역+검색이 있다면 해당 지역 게시글 수 구하는 sql
@@ -583,32 +488,14 @@ public class GroupDAO {
 	}
 
 	public static void groupPaging(HttpServletRequest request,int pageNum) {
-<<<<<<< HEAD
-=======
 		//연결 준비
->>>>>>> 2fb390504a75e1cd90c2e1936684980fd745ca08
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-<<<<<<< HEAD
-		// rownum 문법 조심
 		String sql = "select * from (select rownum as num, a.* from (select * from group_purchase order by group_date desc)a) where num between ? and ?";
 		
-		//한 페이지에 보여줄 게시글 수 : 4
-		int pageSize = 4;
-		
-		// 첫게시글번호 끝게시글번호 (현재페이지는 1)
-		int startRow = (pageNum-1)*pageSize+1;
-		int endRow = pageNum*pageSize;
-		
-		ArrayList<Group> groups = new ArrayList<Group>();
-=======
-		// rownum(게시글 번호) 보여줌 (게시글번호 ?~?) **쿼리문 조심
-		// rownum은 컬럼 안 만들어도 됨. 해당 테이블에 바로 rownum select할 수 있음
-		String sql = "select * from (select rownum as num, a.* from (select * from group_purchase order by group_date desc)a) where num between ? and ?";
-		
-		// 한페이지에 보여줄 게시글 수 : 5
+		// 한페이지에 보여줄 게시글 수 : 4
 		int pageSize = 4;
 		// 현제 페이지
 		
@@ -620,24 +507,20 @@ public class GroupDAO {
 		// 여러 객체를 넣을 arraylist 만들어줌
 		ArrayList<Group> groups = new ArrayList<Group>();
 		// 각자 bean 준비
->>>>>>> 2fb390504a75e1cd90c2e1936684980fd745ca08
 		Group group = null;
 		
 		try {
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			
-<<<<<<< HEAD
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
 			
-=======
 			//첫번째 ? = 시작 게시글 번호 , 두번째 ? = 끝 게시글 번호
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
 			
 			// 읽으면 객체에 넣어주기 
->>>>>>> 2fb390504a75e1cd90c2e1936684980fd745ca08
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				
@@ -656,11 +539,7 @@ public class GroupDAO {
 				groups.add(group);				
 				
 			}
-<<<<<<< HEAD
 			// attribute에 전체 게시글 담음
-=======
-			// arraylist를 attribute에 넣어줌
->>>>>>> 2fb390504a75e1cd90c2e1936684980fd745ca08
 			request.setAttribute("groups", groups);
 			request.setAttribute("sql", "select count(*) from group_purchase");
 			
@@ -675,22 +554,12 @@ public class GroupDAO {
 	}
 
 	public static void groupPageMove(HttpServletRequest request, String sql,int pageNum) {
-<<<<<<< HEAD
-=======
 		// 연결 준비
->>>>>>> 2fb390504a75e1cd90c2e1936684980fd745ca08
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-<<<<<<< HEAD
 		// 보여줄 게시글 수 : 4
-		int pageSize = 4;
-
-		try {
-			con = Group_DBManager.connect();
-=======
-		// 한 페이지에 보여줄 게시글 수 : 5
 		int pageSize = 4;
 
 		try {
@@ -698,32 +567,12 @@ public class GroupDAO {
 			con = DBManager.connect();
 			// sql 문 잘 가져왔는지 확인
 //			System.out.println(sql);
->>>>>>> 2fb390504a75e1cd90c2e1936684980fd745ca08
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-<<<<<<< HEAD
 				// 전체 게시글 수(attribute에 담음)
 				int count = rs.getInt("count(*)");
-				request.setAttribute("total", count);
-				
-					// 전체 페이지 수
-					int pageCount = count/pageSize + (count%pageSize==0?0:1);
-					
-					// 한번에 보여줄 페이지 개수 : 5
-					int pageBlock = 5;
-					
-					// 한번에 보여줄 첫페이지 번호 끝페이지 번호
-					int startPage =(int) ((pageNum-1)/pageBlock)*pageBlock+1;
-					int endPage = startPage + pageBlock-1;
-					
-					// 계산된 끝페이지가 실제 페이지보다 많으면 끝페이지 = 실제 전체 페이지 수
-=======
-				// 총 게시글 개수 받음
-				int count = rs.getInt("count(*)");
-				
-				// 총 게시글 개수 attribute(count)에 넣음
 				request.setAttribute("total", count);
 				
 					// 총 페이지의 개수
@@ -737,28 +586,21 @@ public class GroupDAO {
 					int endPage = startPage + pageBlock-1;
 					
 					// 계산된 끝페이지> 전체 페이지수 => 계산된 끝페이지에 전체페이지를 넣음
->>>>>>> 2fb390504a75e1cd90c2e1936684980fd745ca08
 					if (endPage > pageCount) {
 						endPage = pageCount;
 					}
 					
-<<<<<<< HEAD
 					// view에서 필요한 숫자
-=======
 					// 값 잘 나오는지 syso 찍어보는거 추천
 					
 					// el문에 필요한 (첫페이지) (끝페이지) (전체페이지수) attribute에 넣음
->>>>>>> 2fb390504a75e1cd90c2e1936684980fd745ca08
 					request.setAttribute("startPage", startPage);
 					request.setAttribute("endPage", endPage);
 					request.setAttribute("pageCount", pageCount);
 					
-<<<<<<< HEAD
 					// 페이지 번호 page 배열에 넣음
-=======
 					// 페이지 번호 출력
 					// 보여줄 페이지의 page배열을 생성 => 배열 attribute에 저장
->>>>>>> 2fb390504a75e1cd90c2e1936684980fd745ca08
 					int j = 0;
 					int[] page = new int[endPage-startPage+1];
 					
@@ -792,11 +634,8 @@ public class GroupDAO {
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			
-<<<<<<< HEAD
 			// 게시글 번호
-=======
 			// 게시글 넘버
->>>>>>> 2fb390504a75e1cd90c2e1936684980fd745ca08
 			int no = Integer.parseInt(request.getParameter("no"));
 			System.out.println(no);
 			pstmt.setInt(1, no);
@@ -806,17 +645,14 @@ public class GroupDAO {
 				sql = "update group_purchase set group_like =? where group_no =?";
 				pstmt = con.prepareStatement(sql);
 				
-<<<<<<< HEAD
 				pstmt.setInt(1, rs.getInt("group_like")+1);
 				pstmt.setInt(2, no);
 				
-=======
 				// 좋아요 수 up
 				pstmt.setInt(1, rs.getInt("group_like")+1);
 				pstmt.setInt(2, no);
 				
 				// 업데이트 되면 객체 담기
->>>>>>> 2fb390504a75e1cd90c2e1936684980fd745ca08
 				String id = rs.getString("group_id");
 				String title = rs.getString("group_title");
 				String txt = rs.getString("group_txt");
@@ -831,22 +667,14 @@ public class GroupDAO {
 				if(pstmt.executeUpdate()==1) {
 					group = new Group(no, id, title, txt, date, area, like, hits,group_nick,group_img);
 					request.setAttribute("group", group);
-<<<<<<< HEAD
-					System.out.println("��ϼ���");
-=======
 					System.out.println("등록성공");
->>>>>>> 2fb390504a75e1cd90c2e1936684980fd745ca08
 				}
 			}
 			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-<<<<<<< HEAD
-			System.out.println("���� ����");
-=======
 			System.out.println("서버 오류");
->>>>>>> 2fb390504a75e1cd90c2e1936684980fd745ca08
 		} finally {
 			DBManager.close(con, pstmt, rs);
 		}
@@ -862,7 +690,7 @@ public class GroupDAO {
 		int no = Integer.parseInt(request.getParameter("no"));
 		
 		try {
-			con = Group_DBManager.connect();
+			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, no);
 			rs = pstmt.executeQuery();
@@ -873,7 +701,7 @@ public class GroupDAO {
 		} catch (Exception e) {
 	
 		} finally {
-			Group_DBManager.close(con, pstmt, rs);
+			DBManager.close(con, pstmt, rs);
 		}
 	}
 
@@ -883,7 +711,7 @@ public class GroupDAO {
 		String sql = "insert into group_message values(group_message_seq.nextval, ?, ?, ?, ?, sysdate)";
 		
 		try {
-			con = Group_DBManager.connect();
+			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 
 			String writer = request.getParameter("writer_id");
@@ -912,7 +740,7 @@ public class GroupDAO {
 			e.printStackTrace();
 			System.out.println("서버오류");
 		}finally {
-			Group_DBManager.close(con, pstmt, null);
+			DBManager.close(con, pstmt, null);
 		}
 		
 	}

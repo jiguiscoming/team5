@@ -113,6 +113,25 @@
 	display: inline-block;
 }
 
+.home_mealkit > a{
+	text-decoration: none;
+	color: black;	
+}
+
+.home_mealkit_img{
+	width: 100%;
+	height: 80%;
+}
+
+.home_mealkit_img > img{
+	width: 100%;
+	height: 100%;
+	object-fit:cover;
+}
+
+.home_mealkit_title{
+	
+}
 
 .home_group{
 	width: 230px;
