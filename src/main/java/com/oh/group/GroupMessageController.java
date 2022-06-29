@@ -10,12 +10,13 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/GroupMessageController")
 public class GroupMessageController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// °ªµé°í °¡¼­ account¿¡ ³Ö±â
-		
-		// È¨ÆäÀÌÁö Ã¢ ¶ç¿ì±â		
+		// dbì— ë©”ì„¸ì§€ ë‚´ìš© ë„£ê¸°
+		GroupDAO.sendMessage(request);
+		// ëŒ“ê¸€ ë° ê²Œì‹œê¸€ ê°€ì ¸ì˜¤ê¸°		
 		GroupDAO.getComments(request);
 		GroupDAO.getCommentsTotal(request);
 		GroupDAO.getGroup(request);
+//		UserDAO.loginCheck(request);
 		request.setAttribute("loginPage", "account/loginBtn.jsp");
 		request.setAttribute("contentPage", "group/group_detail.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);

@@ -13,11 +13,11 @@
 		<tr>
 			<td clospan="2"><img alt="" src="img/<!-- 이미지의  attribute 명 -->"></td>
 
-			<td><a href="account_mypostC"> 내 게시글 / 댓글</a></td>
+			<td><a href="account_mypostC"> 내 게시글 / 댓글!</a></td>
 		</tr>
 		<tr>
 			<td></td>
-			<td> <a href="account_informationC">내 정보 - 비밀번호 수정</a>
+			<td> <a href="account_informationC">내 정보 </a>
 			</td>
 		</tr>
 		<tr>

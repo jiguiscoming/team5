@@ -36,7 +36,7 @@ public class loginC extends HttpServlet {
 	
 		// if 문 처리 해줘야함!
 	
-		request.setAttribute("loginPage", "account/loginOK.jsp");
+		
 		request.setAttribute("contentPage", "account/loginResult.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	

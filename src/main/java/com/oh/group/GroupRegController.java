@@ -13,7 +13,8 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 @WebServlet("/GroupRegController")
 public class GroupRegController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
+//		UserDAO.loginCheck(request);
 		request.setAttribute("loginPage", "account/loginBtn.jsp");
 		request.setAttribute("contentPage", "group/group_reg.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
@@ -21,13 +22,14 @@ public class GroupRegController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//		µÓ∑œ«œ±‚
+		//Îì±Î°ù
 		GroupDAO.groupReg(request);
 		GroupDAO.groupPaging(request,1);
 		request.setAttribute("pageNum", 1);
 		
-		// ∆‰¿Ã¡ˆ ¿Ãµøπˆ∆∞ ∏∏µÈ±‚ (a≈¬±◊)
+		// ÌéòÏù¥ÏßÄ Î≤ÑÌäº
 		GroupDAO.groupPageMove(request,(String)request.getAttribute("sql"),1);
+//		UserDAO.loginCheck(request);
 		request.setAttribute("loginPage", "account/loginBtn.jsp");
 		request.setAttribute("contentPage", "group/group_purchase.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);

@@ -11,7 +11,7 @@
 
 <!-- 이용 약관 동의 -->
 
-<form action="joinus.jsp">
+<form action="joinusC">
 
 <h1> 야나두 레시피 </h1>
 <h5> 이용 약관</h5>
