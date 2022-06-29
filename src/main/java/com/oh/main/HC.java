@@ -17,13 +17,15 @@ public class HC extends HttpServlet {
 		/* 첨에 있던 loginBtn은 빼주시고요 */
 		
 		// 밀키트 new
-		HomeDAO.getMealkits(request);
+		HomeDAO.getMealkits(request); 
 		
 		// 레시피 랜덤 5개
 //		HomeDAO.getRecipes(request);
 		// 공구 지역에 맞게 최신 5개
+
 		HomeDAO.getGroups(request);
 		UserDAO.loginCheck(request);
+
 		request.setAttribute("contentPage", "home.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	

@@ -579,19 +579,22 @@ public class UserDAO {
 		
 		try {
 			String sql = "select * from oh_account where account_id= ?";
-			con = DBManager_account.connect();
+			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 
 			String W_id = acc.getAccount_id();
+			System.out.println(W_id);
 			String W_pw = request.getParameter("W_pw");
+			System.out.println(W_pw);
 			
 			pstmt.setString(1, W_id);
 			
-
+			rs = pstmt.executeQuery();
 			
-
-
+			if(rs.next()) {
+				System.out.println("아이디 읽음");
 				if (W_pw.equals(rs.getString("account_pw"))) {
+					System.out.println("비번 맞음");
 					/*
 					 * request.setAttribute("r", "비밀번호가 틀렸습니다!");
 					 */
@@ -600,16 +603,18 @@ public class UserDAO {
 					
 					
 			} else {
+				System.out.println("틀림");
 				request.setAttribute("r", "비밀번호가 틀렸습니다!");
 				request.setAttribute("contentPage", "myPage/account_updatePW.jsp");
 			}
 			
+			}
 		}
 
 		 catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			DBManager_account.close(con, pstmt, rs);
+			DBManager.close(con, pstmt, rs);
 		}
 
 	
