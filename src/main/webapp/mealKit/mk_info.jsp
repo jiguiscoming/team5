@@ -129,7 +129,7 @@
 			</tr>
 			<tr>
 				 <tr>
-            <td colspan="2" style="text-align: center;"><button class="mk_Info_td3_button">찜하기</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <td colspan="2" style="text-align: center;"><button class="mk_Info_td3_button1">찜하기</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <button class="mk_Info_td3_button">구매하기</button> </td>
         </tr>
 			</tr>
@@ -229,10 +229,12 @@
 
 
 
-	<table style="margin-left: 70%">
+	<table class="mk_Info_write" >
 		<tr>
-			<td>
-				<a href=#none id="show" class="btn_review_write"
+			<td class="mk_Info_wirte_td1">상품후기</td>
+			<td style="text-align: right;">
+				
+				<a href=#none id="show" class="mk_info_write_btn"
 					onclick="if(hide.style.display=='none')
 					{hide.style.display='';show.innerText='▲취소'}
 					else {hide.style.display='none';show.innerText='상품후기글쓰기'}">상품후기 글쓰기
@@ -327,17 +329,17 @@
 	</table>
 
 
-	<table class="mk_Info_review" border="1">
+	<table class="mk_Info_review" >
 
 		<c:forEach var="r" items="${MealkitReviewlist }">
 			<!-- <table id="faq-title" border="1"> -->
 			<tr class="faq-content">
-				<td class='star-rating' style="height: 21px;"><span
+				<td class='star-rating' style="height: 19px;"><span
 					style="width:${r.mealkit_review_star }%;"> </span></td>
 				<td><button class="question" id="que-${r.mealkit_review_no }">${r.mealkit_review_title }</button></td>
 				<td style="text-align: center; font-size: 12px; width: 150;">${r.mealkit_review_date }</td>
 			</tr>
-			<tr>
+			<tr class="mk_Info_review_ans" >
 				<td colspan="3" class="answer" id="ans-${r.mealkit_review_no }">
 					${r.mealkit_review_txt }</td>
 			</tr>
@@ -362,11 +364,11 @@
 		</tr>
 	</table>
 
-	<table style="margin-left: 70%"  >
+	<table class="mk_Info_write" >
 		
 		<tr>
-			<td></td>
-			<td style="text"><a href="javascript:review_QnA()" class="btn_qna_write">
+			<td class="mk_Info_wirte_td1">상품QnA</td>
+			<td style="text-align: right;">  <a href="javascript:review_QnA()" class="mk_info_write_btn">
 					<input type="hidden" id="mk_no" value="${Mealkit.mealkit_no }">
 					상품문의 글쓰기
 			</a></td>
@@ -382,10 +384,10 @@
 
 	<c:forEach var="q" items="${MealkitQnAlist }">
 
-		<table border="1" class="mk_Info_QnA">
+		<table class="mk_Info_QnA">
 
 			<tr class="faq-content">
-				<td style="width: 60px; text-align: center;">
+				<td style="width: 60px; text-align: center; font-size: 12px">
 					${q.mealkit_QnA_no }</td>
 				<td><button class="Qna" id="q-${q.mealkit_QnA_no }">${q.mealkit_QnA_title }</button></td>
 				<td class="QnA_td" style="width:10%">${q.mealkit_QnA_id }</td>
@@ -395,7 +397,7 @@
 			</tr>
 		</table>
 		
-		<table class="qnA" id="a-${q.mealkit_QnA_no }" border="1">
+		<table class="qnA" id="a-${q.mealkit_QnA_no }">
 			<tr>
 				<td>${q.mealkit_QnA_img }</td>
 			</tr>
@@ -415,7 +417,7 @@
 			</tr>
 
 			<tr>
-				<td>
+				<td style="text-align: right;">
 					<button onclick="review_QnA_A(${q.mealkit_QnA_no })">${q.mealkit_QnA_no }답글
 						달기</button>
 				</td>
