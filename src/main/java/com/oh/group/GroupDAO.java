@@ -7,7 +7,10 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
+import com.oh.account.accountB;
 import com.oh.account.UserDAO;
 import com.oh.main.DBManager;
 
@@ -61,18 +64,23 @@ public class GroupDAO {
 			String area = mr.getParameter("area");
 			String file = mr.getFilesystemName("file");
 			
-			
-
 //			id세션받기
 //			닉네임 세션받기
+			HttpSession session = request.getSession();
+			accountB user = (accountB)session.getAttribute("accountInfo");
+			String userId = user.getAccount_id();
+			String userNick = user.getAccount_nick();
+			
+			
 
-			pstmt.setString(1, "id");
+
+			pstmt.setString(1, userId);
 			pstmt.setString(2, title);
 			pstmt.setString(3, txt);
 			pstmt.setString(4, area);
 			pstmt.setInt(5, 0);
 			pstmt.setInt(6, 0);
-			pstmt.setString(7, "nick");
+			pstmt.setString(7, userNick);
 			pstmt.setString(8, file);
 			
 			if(pstmt.executeUpdate() == 1) {
@@ -288,10 +296,13 @@ public class GroupDAO {
 			System.out.println(listno);
 			System.out.println(comment);
 			
-//			id세션받기
-//			id는 세션으로 받기
+//			nick세션받기
+			HttpSession session = request.getSession();
+			accountB user = (accountB)session.getAttribute("accountInfo");
+			String userNick = user.getAccount_nick();
+			
 			pstmt.setString(1, listno);
-			pstmt.setString(2, "id");
+			pstmt.setString(2, userNick);
 			pstmt.setString(3, comment);
 			
 			if(pstmt.executeUpdate() == 1) {
@@ -709,23 +720,20 @@ public class GroupDAO {
 		try {
 			pstmt = con.prepareStatement(sql);
 
+//			id세션받기
+			HttpSession session = request.getSession();
+			accountB user = (accountB)session.getAttribute("accountInfo");
+			String userId = user.getAccount_id();
+			
 			String writer = request.getParameter("writer_id");
 			String title = request.getParameter("message_title");
 			String txt = request.getParameter("message_txt");
-			String sender = request.getParameter("send_id");
-			
-			System.out.println(writer);
-			System.out.println(title);
-			System.out.println(txt);
-			System.out.println(sender);
 			
 			
-//			id세션받기
-//			닉네임 세션받기
 			pstmt.setString(1, writer);
 			pstmt.setString(2, title);
 			pstmt.setString(3, txt);
-			pstmt.setString(4, sender);
+			pstmt.setString(4, userId);
 			
 			if(pstmt.executeUpdate() == 1) {
 				System.out.println("메세지 성공");

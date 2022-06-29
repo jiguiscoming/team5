@@ -1,5 +1,5 @@
 /*수정페이지 넘어가기 전 유효성체크*/
-function group_pwOK(){
+function group_pwOK(userpw){
 	let pw = document.groupForm.pw;
 	let pwCheck = document.groupForm.pwCheck;
 	/*비번이 같지 않으면 true = > 경고*/
@@ -66,13 +66,20 @@ function groupDel(no){
 }
 
 /*댓글 유효성체크*/
-function groupComment(){
+function groupComment(id){
+	/*회원아니면*/
+	if(!id){
+		alert('회원만 이용가능한 서비스 입니다')
+		return false;
+	}else{
 	let comment = document.groupCmtForm.comment;
+		
 	/*빈칸 있으면 true => 경고*/
 	if(!comment.value){
 		alert('댓글을 입력해주세요');
 		comment.focus();
 		return false;
+	}
 	}
 }
 
@@ -86,4 +93,21 @@ function groupMessage(no){
 function groupMessageOK(){
 	alert('회원만 이용가능한 서비스 입니다');
 	
+}
+
+	
+function checkMember(userid){
+	if(!userid){
+		alert('회원만 이용가능한 서비스 입니다');
+	}else{
+		location.href='GroupRegController';
+	}
+}
+
+function updateMember(postid,userid, no){
+	if(postid != userid){
+		alert('해당 게시글 수정 권한이 없습니다');
+	}else{
+	location.href='GroupUpdateController?no=' + no;
+	}
 }

@@ -47,7 +47,7 @@
 			<input type="hidden" name="region" value="${param.region}">
 			<button name="pageNum" value=1>검색</button>
 		</td>
-		<td class="group_write"><button type="button" onclick="location.href='GroupRegController'">글쓰기</button></td>
+		<td class="group_write"><button type="button" onclick="checkMember('${sessionScope.accountInfo.account_id }')" >글쓰기</button></td>
 	</tr>
 </table>
 </form>

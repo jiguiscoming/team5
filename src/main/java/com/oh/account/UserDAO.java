@@ -498,51 +498,37 @@ public class UserDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		
-		
 		try {
 			String sql = "select * from oh_account where account_id= ?";
 			pstmt = con.prepareStatement(sql);
 
-		String path = request.getSession().getServletContext().getRealPath("account/img");
-		System.out.println(path);
-		MultipartRequest mr = new MultipartRequest(request, path, 20 * 1024 * 1024, "utf-8",
-				new DefaultFileRenamePolicy());
+			String W_pw = request.getParameter("W_pw");
+			String W_pw2 = request.getParameter("W_pw2");
+			String W_id = acc.getAccount_id();
+		
+			pstmt.setString(1, W_id);
+		
+			rs = pstmt.executeQuery();
+		
+			if(rs.next()) {
+				if (W_pw.equals(rs.getString("account_pw"))) {
+					System.out.println("비번 맞음");
+				request.setAttribute("contentPage", "myPage/account_updatePW.jsp");
+				} else {
+					request.setAttribute("r", "비밀번호가 틀렸습니다!");
+					request.setAttribute("contentPage", "myPage/account_updatePWR.jsp");
+				}
 
-
-		String W_pw = mr.getParameter("W_pw");
-
-
+			}
+		}
 		 catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			
 			DBManager.getDbm().close(null, pstmt, null);
 		}
-
-		System.out.println(acc.getAccount_pw());
-
-
-		if (W_pw.equals(acc.getAccount_pw())) {
-			/*
-			 * request.setAttribute("r", "비밀번호가 틀렸습니다!");
-			 */
-			request.setAttribute("contentPage", "myPage/account_updatePW.jsp");
-
-
-	public void updatePW(HttpServletRequest request) {
-
-		} else {
-
-
-			request.setAttribute("r", "비밀번호가 틀렸습니다!");
-			request.setAttribute("contentPage", "myPage/account_updatePWconfirmPW.jsp");
-
-		}
-
 	}
 
-	public static void updatePW(HttpServletRequest request) throws IOException {
+	public void updatePW(HttpServletRequest request) throws IOException {
 
 		HttpSession hs = request.getSession();
 		accountB acc = (accountB) hs.getAttribute("accountInfo");
@@ -550,51 +536,39 @@ public class UserDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String path = request.getSession().getServletContext().getRealPath("account/img");
-		System.out.println(path);
-		MultipartRequest mr = new MultipartRequest(request, path, 20 * 1024 * 1024, "utf-8",
-				new DefaultFileRenamePolicy());
-
-		String W_pw = mr.getParameter("W_pw");
-		String W_pw2 = mr.getParameter("W_pw2");
-
-		System.out.println(W_pw);
-		System.out.println(W_pw2);
+		String W_pw = request.getParameter("W_pw");
+		String W_pw2 = request.getParameter("W_pw2");
+		String W_id = acc.getAccount_id();
 
 		try {
-
 			String sql = "select * from oh_account where account_id= ?";
 			pstmt = con.prepareStatement(sql);
-
+			pstmt.setString(1, W_id);
+		
+			rs = pstmt.executeQuery();
 
 			String A_id = acc.getAccount_id();
 			System.out.println(A_id);
 			System.out.println(W_pw);
+			if(rs.next()) {
+				if (W_pw.equals(W_pw2)) {
+					sql = "update oh_account set account_pw = ? where account_id = ?";
 
-			if (W_pw.equals(W_pw2)) {
-				String sql = "update oh_account set account_pw = ? where account_id = ?";
-
-				con = DBManager_account.connect();
-				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, W_pw);
-				pstmt.setString(2, A_id);
-
-				rs = pstmt.executeQuery();
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, W_pw);
+					pstmt.setString(2, A_id);
 
 				if (pstmt.executeUpdate() == 1) {
 
 					request.setAttribute("r", "비밀번호 변경 성공!");
 					request.setAttribute("contentPage", "myPage/account_updatePWR.jsp");
+
 				} else {
 					request.setAttribute("r", "비밀번호가 일치하지 않습니다!");
 					request.setAttribute("contentPage", "myPage/account_updatePWR.jsp");
+					}
+
 				}
-
-			}
-
-			else {
-				request.setAttribute("r", "비밀번호가 일치하지 않습니다!");
-				request.setAttribute("contentPage", "myPage/account_updatePWR.jsp");
 			}
 		}
 
