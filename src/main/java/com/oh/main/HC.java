@@ -20,7 +20,7 @@ public class HC extends HttpServlet {
 		HomeDAO.getMkdao().getMealkits(request); 
 		
 		// 레시피 랜덤 5개
-//		HomeDAO.getMkdao().getRecipes(request);
+		HomeDAO.getMkdao().getRecipes(request);
 		// 공구 지역에 맞게 최신 5개
 
 		HomeDAO.getMkdao().getGroups(request);
