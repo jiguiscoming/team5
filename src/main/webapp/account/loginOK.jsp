@@ -9,10 +9,19 @@
 <body>
 
 
-
- (${sessionScope.accountInfo.account_name })님 안녕하세요!~
-<button onclick="location.href='mypageHomeC'">마이 페이지</button>	
-<button onclick="location.href='loginC'">로그아웃</button>	
+<table id="loginOKTbl">
+	<tr>
+		<td class="loginOK_hello">
+			 (${sessionScope.accountInfo.account_name })님 안녕하세요!~
+		</td>
+		<td class="loginOK_mypage">
+			<button onclick="location.href='mypageHomeC'">마이 페이지</button>	
+		</td>
+		<td class="loginOK_logout">
+			<button onclick="location.href='loginC'">로그아웃</button>	
+		</td>
+	</tr>
+</table>
 
 </body>
 </html>

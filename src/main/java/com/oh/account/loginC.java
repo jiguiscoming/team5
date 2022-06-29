@@ -16,7 +16,7 @@ public class loginC extends HttpServlet {
 		UserDAO.logout(request);
 		UserDAO.loginCheck(request);
 		
-		// ·Î±×¾Æ¿ô¿¡ »ç¿ë
+		// ï¿½Î±×¾Æ¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 		
 		request.setAttribute("loginPage", "account/loginBtn.jsp");
 		request.setAttribute("contentPage", "account/loginResult.jsp");
@@ -32,9 +32,8 @@ public class loginC extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		UserDAO.login(request);
-		
 	
-		// if ¹® Ã³¸® ÇØÁà¾ßÇÔ!
+		// if ï¿½ï¿½ Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½!
 	
 		
 		request.setAttribute("contentPage", "account/loginResult.jsp");
