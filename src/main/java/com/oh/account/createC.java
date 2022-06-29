@@ -18,7 +18,10 @@ public class createC extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		 UserDAO.createAccount(request); 
+		
+		
+			UserDAO.createAccount(request);
+		
 			
 			request.setAttribute("loginPage", "account/loginBtn.jsp");
 			request.setAttribute("contentPage", "account/create.jsp");

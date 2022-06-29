@@ -78,13 +78,13 @@ function call(){
 		return false;
 	}
 	
-	if(isEmpty(join_addr)){
+	/*if(isEmpty(join_addr)){
 		alert('주소를 입력해 주세요!');
 		join_addr.focus();
 		
 		return false;
 	}
-	
+	*/
 	
 	
 	
