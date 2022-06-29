@@ -31,9 +31,9 @@
 			<h2>새로 들어온 밀키트</h2>
 			<c:forEach var="mealkit" items="${mealkits}">
 			<div class="home_mealkit">
-			<a href="#">
+			<a href="location.href='Mk_MenuInfoC?no=${m.mealkit_no}'">
 				<div class="home_mealkit_img"><img src="${mealkit.mealkit_img }"></div>
-				<div class="home_mealkit_title">${mealkit.mealkit_name}</div>
+				<div>${mealkit.mealkit_name}</div>
 				<div>${mealkit.mealkit_price }</div>
 			</a>	
 			</div>
@@ -43,10 +43,14 @@
 	<tr>
 		<td class="homeTd">
 			<h2>오늘의 레시피</h2>
-			<div class="home_recipe"></div>
-			<div class="home_recipe"></div>
-			<div class="home_recipe"></div>
-			<div class="home_recipe"></div>
+			<c:forEach var="recipe" items="${recipes}">
+				<div class="home_recipe">
+				<a href="#">
+				<div class="home_recipe_img"><img src="${recipe.recipe_img_url }"></div>
+				<div>${recipe.recipe_nm_ko}</div>
+				</div>
+			</a>	
+			</c:forEach>
 		</td>
 	</tr>
 	<tr>
