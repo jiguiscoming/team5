@@ -7,7 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%= request.getAttribute("r")%>
+<table  id="login_result">
+	<tr>
+		<td class="login_result_txt">
+			<%= request.getAttribute("r")%>
+		</td>
+	</tr>
+</table>
 
 </body>
 </html>

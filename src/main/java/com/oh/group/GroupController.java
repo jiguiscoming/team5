@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.oh.account.UserDAO;
+
 @WebServlet("/GroupController")
 public class GroupController extends HttpServlet {
 	
@@ -32,8 +34,7 @@ public class GroupController extends HttpServlet {
 		} 
 		// 밑에 페이지 이동버튼
 		GroupDAO.groupPageMove(request,(String)request.getAttribute("sql"),pageNum);
-//		UserDAO.loginCheck(request);
-		request.setAttribute("loginPage", "account/loginBtn.jsp");
+		UserDAO.loginCheck(request);
 		request.setAttribute("contentPage", "group/group_purchase.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 		

@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.oh.account.UserDAO;
+
 @WebServlet("/GroupCommentController")
 public class GroupCommentController extends HttpServlet {
 
@@ -19,8 +21,7 @@ public class GroupCommentController extends HttpServlet {
 		GroupDAO.getCommentsTotal(request);
 		// 게시글 얻기
 		GroupDAO.getGroup(request);
-//		UserDAO.loginCheck(request);
-		request.setAttribute("loginPage", "account/loginBtn.jsp");
+		UserDAO.loginCheck(request);
 		request.setAttribute("contentPage", "group/group_detail.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 		

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.oh.account.UserDAO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -14,8 +15,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 public class GroupRegController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-//		UserDAO.loginCheck(request);
-		request.setAttribute("loginPage", "account/loginBtn.jsp");
+		UserDAO.loginCheck(request);
 		request.setAttribute("contentPage", "group/group_reg.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	
@@ -29,8 +29,7 @@ public class GroupRegController extends HttpServlet {
 		
 		// 페이지 버튼
 		GroupDAO.groupPageMove(request,(String)request.getAttribute("sql"),1);
-//		UserDAO.loginCheck(request);
-		request.setAttribute("loginPage", "account/loginBtn.jsp");
+		UserDAO.loginCheck(request);
 		request.setAttribute("contentPage", "group/group_purchase.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 		
