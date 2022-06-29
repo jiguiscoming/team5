@@ -21,7 +21,7 @@
 	<div class="group_detail_btn">
 	<!-- (쪽지)회원만 이용가능 / (수정)작성자만 이용가능 -->
 		<a href="javascript:groupMessage(${group.no})" onclick="groupMessageOK()">쪽지</a>
-		<button onclick="location.href='GroupUpdateController?no=${group.no}'">수정</button>
+		<button onclick="updateMember('${group.id}','${sessionScope.accountInfo.account_id}', '${group.no}')">수정</button>
 	</div>
 </div>
 
@@ -43,11 +43,16 @@
 <!-- 댓글쓰기 -->
 <div class="group_comment"><h3>댓글 ${total_comments}</h3></div>
 
-<form action="GroupCommentController" onsubmit="return groupComment()" name="groupCmtForm">
+<form action="GroupCommentController" onsubmit="return groupComment('${sessionScope.accountInfo.account_id}')" name="groupCmtForm">
 <table id="group_commentTbl">
 	<tr>	
 		<!-- 닉네임 세션 받기 -->
-		<td>id</td>
+		<td class="group_comment_member">
+			<c:if test="${not empty sessionScope.accountInfo.account_nick}">
+			<img src="account/img/${sessionScope.accountInfo.account_img}">
+			</c:if>
+			${sessionScope.accountInfo.account_nick}
+		</td>
 	</tr>
 	<tr>
 		<td class="group_commentTd"><textarea name="comment"></textarea></td>

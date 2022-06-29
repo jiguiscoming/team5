@@ -14,12 +14,12 @@
 		<td><div class="group_update_pwTitle">비밀번호 확인</div></td>
 	</tr>
 	<tr>
-		<td class="group_update_pw"><input name="pwCheck" placeholder="비밀번호를 입력하세요"></td>
+		<td class="group_update_pw"><input type="password" name="pwCheck" placeholder="비밀번호를 입력하세요"></td>
 	</tr>
 	<tr>
 		<td class="group_update_pwBtn">
 			<input type="hidden" name="no" value="${param.no }">
-			<button name="pw" value="1234">입력</button>
+			<button name="pw" value="${sessionScope.accountInfo.account_pw}">입력</button>
 		</td>
 	</tr>
 </table>

@@ -32,7 +32,7 @@ public class GroupUpdateController extends HttpServlet {
 		} 
 			// 등록 후
 			else {
-				// 등록하기
+				// 수정하기
 				GroupDAO.groupUpdate(request);
 				GroupDAO.groupPaging(request, 1);
 				// 페이지 이동버튼
