@@ -32,7 +32,7 @@ public class account_updatePWRC extends HttpServlet {
 		UserDAO.updatePW(request);
 		
 
-		request.setAttribute("contentPage", "myPage/account_updatePW.jsp");
+		request.setAttribute("contentPage", "myPage/account_updatePWR.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	
 	

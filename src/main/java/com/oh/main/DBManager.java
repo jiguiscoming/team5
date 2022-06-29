@@ -26,8 +26,8 @@ public class DBManager {
 		
 		return DriverManager.getConnection(url, "SYP", "YJ802soldesk");
 		
-//		정연
-		//return DriverManager.getConnection(url, "DB_JY", "LMJSoldesk802");
+		//정연
+		// return DriverManager.getConnection(url, "DB_JY", "LMJSoldesk802");
 		 
 	
 	
