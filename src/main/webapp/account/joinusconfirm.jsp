@@ -43,7 +43,7 @@
 
 <tr>
 <td>생년월일</td>
-<td>${join_name }<td>
+<td>${join_birth }<td>
 <td></td>
 </tr>
 
@@ -84,7 +84,7 @@
 
 
 <tr>
-<td>프로필 사진 등록!!</td>
+<td>프로필 사진 등록!</td>
 <td><img src="account/img/${join_profile}"><td>
 <td></td>
 </tr>
@@ -92,11 +92,11 @@
 
 
 <tr><td>
-<input type="hidden" name="agree1" value="${agree1 }"> 
-<input type="hidden" name="agree2" value="${agree2 }"> 
-<input type="hidden" name="agree3" value="${agree3 }"> 
-<input type="hidden" name="agree4" value="${agree4 }"> 
-<input  name="Ajoin_name" value="${join_name }"> 
+<input type="hidden" name="join_agree1" value="${join_agree1 }"> 
+<input type="hidden" name="join_agree2" value="${join_agree2 }"> 
+<input type="hidden" name="join_agree3" value="${join_agree3 }"> 
+<input type="hidden" name="join_agree4" value="${join_agree4 }"> 
+<input type="hidden" name="join_name" value="${join_name }"> 
 <input type="hidden" name="join_nick" value="${join_nick }"> 
 <input type="hidden" name="join_id" value="${join_id }"> 
 <input type="hidden" name="join_age" value="${join_age }"> 
@@ -109,6 +109,7 @@
 <input type="hidden" name="join_email" value="${join_email }"> 
 <input type="hidden" name="join_addr" value="${join_addr }"> 
 <input type="hidden" name="join_profile" value="${join_profile}"> 
+<input type="hidden" name="join_phone" value="${join_phone}"> 
 </td></tr>
 
 <tr>

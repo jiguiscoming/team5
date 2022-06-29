@@ -16,6 +16,20 @@
 <link rel="stylesheet" href="group_css/group_detail.css">
 <script type="text/javascript" src="js/group.js"></script>
 <script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/agree.js"> </script>
+
+	
+</script>
+<script type="text/javascript" src="js/ACCheck.js">
+	
+</script>
+<script type="text/javascript" src="js/validCheck.js">
+	
+</script>
+
+
+
+
 <!-- jy js파일 -->
 <!--  <script type="text/javascript" src="agree.js"> </script>
  <script type="text/javascript" src="ACCheck.js"> </script>

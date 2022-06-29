@@ -32,6 +32,15 @@ public class account_informationC extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 	
+		UserDAO.loginCheck(request);
+		UserDAO.informationUpdate(request);
+		
+		request.setAttribute("contentPage", "myPage/account_information.jsp");
+		request.getRequestDispatcher("index.jsp").forward(request, response);
+	
+	
+		
+		
 	
 	
 	}

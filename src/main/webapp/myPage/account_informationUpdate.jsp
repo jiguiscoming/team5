@@ -8,13 +8,12 @@
 </head>
 <body>
 
-내 정보 !!
+
+정보 수정~
+
+<form action="account_informationC"></form>
 
 <table>
-
-<tr>
-<td colspan="2">회원가입!!@!</td>
-</tr>
 
 
 <tr>
@@ -54,14 +53,14 @@
 
 <tr>
 <td>이메일</td>
-<td>${sessionScope.accountInfo.account_email }<td>
+<td>${sessionScope.accountInfo.account_name }<td>
 <td></td>
 </tr>
 
 
 <tr>
 <td>휴대폰</td>
-<td>${sessionScope.accountInfo.account_phone }<td>
+<td>${sessionScope.accountInfo.account_email }<td>
 <td></td>
 </tr>
 
@@ -95,6 +94,9 @@
 
 
 </table>
+
+
+
 
 
 

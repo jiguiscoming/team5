@@ -21,8 +21,8 @@ public class HC extends HttpServlet {
 		// 공구 지역에 맞게 최신 5개
 		HomeDAO.getGroups(request);
 		// 로그인 체크 -> 나중에 loginBtn 지우기
-//		UserDAO.loginCheck(request);
-		request.setAttribute("loginPage", "account/loginBtn.jsp");
+	UserDAO.loginCheck(request);
+	//	request.setAttribute("loginPage", "account/loginBtn.jsp");
 		request.setAttribute("contentPage", "home.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	

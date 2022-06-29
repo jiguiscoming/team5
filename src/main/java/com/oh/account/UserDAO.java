@@ -25,6 +25,11 @@ public class UserDAO {
 		String join_profile = mr.getFilesystemName("join_profile");
 		System.out.println(join_profile);
 		request.setAttribute("join_profile", join_profile);
+		
+
+		System.out.println(join_profile);
+
+		
 
 		String join_name = mr.getParameter("join_name");
 		String join_nick = mr.getParameter("join_nick");
@@ -39,13 +44,14 @@ public class UserDAO {
 		String join_email = mr.getParameter("join_email");
 		String join_phone = mr.getParameter("join_phone");
 		String join_addr = mr.getParameter("join_addr");
-		String join_agree1 = mr.getParameter("agree1");
-		String join_agree2 = mr.getParameter("agree2");
-		String join_agree3 = mr.getParameter("agree3");
-		String join_agree4 = mr.getParameter("agree4");
+		String join_agree1 = mr.getParameter("join_agree1");
+		String join_agree2 = mr.getParameter("join_agree2");
+		String join_agree3 = mr.getParameter("join_agree3");
+		String join_agree4 = mr.getParameter("join_agree4");
 
 		request.setAttribute("join_name", join_name);
 		request.setAttribute("join_id", join_id);
+		request.setAttribute("join_nick", join_nick);
 		request.setAttribute("join_age", join_age);
 		request.setAttribute("join_gender", join_gender);
 		request.setAttribute("join_birth", join_birth);
@@ -70,58 +76,82 @@ public class UserDAO {
 
 	}
 
-	public static void createAccount(HttpServletRequest request) {
+	public static void createAccount(HttpServletRequest request) throws IOException {
 		// TODO Auto-generated method stub
 
 		Connection con = null;
-		PreparedStatement pstmt = null;
+		PreparedStatement pstmt = null;	
 
+		String path = request.getSession().getServletContext().getRealPath("account/img");
+		System.out.println(path);
+		MultipartRequest mr = new MultipartRequest(request, path, 20 * 1024 * 1024, "utf-8",
+				new DefaultFileRenamePolicy());
+
+		String join_profile = mr.getParameter("join_profile");
+		System.out.println(join_profile);
+		//request.setAttribute("join_profile", join_profile);
+		
+		
 		try {
+		
 			request.setCharacterEncoding("utf-8");
-			String sql = "insert into oh_account values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			String sql = "insert into oh_account values(?,?,?,?,?,?,'오',?,?,?,?,?,?,?,?,?,?,sysdate)";
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 
-			String join_name = request.getParameter("join_name");
-			String join_nick = request.getParameter("join_nick");
-			String join_id = request.getParameter("join_id");
-			String join_pw = request.getParameter("join_pw");
-			String join_gender = request.getParameter("join_gender");
-			String join_birth = request.getParameter("join_birth");
-			String join_addr = request.getParameter("join_addr");
-			String join_age = request.getParameter("join_age");
-			String join_pwquestion = request.getParameter("join_pwquestion");
-			String join_pwquestiona = request.getParameter("join_pwquestiona");
-			String join_email = request.getParameter("join_email");
-			String join_profile = request.getParameter("join_profile");
-			String join_phone = request.getParameter("join_phone");
-			String agree1 = request.getParameter("agree1");
-			String agree2 = request.getParameter("agree2");
-			String agree3 = request.getParameter("agree3");
-			String agree4 = request.getParameter("agree4");
-
+			String join_name = mr.getParameter("join_name");
+			String join_nick = mr.getParameter("join_nick");
+			String join_id = mr.getParameter("join_id");
+			String join_pw = mr.getParameter("join_pw");
+			String join_gender = mr.getParameter("join_gender");
+			String join_birth = mr.getParameter("join_birth");
+		//	String join_addr = request.getParameter("join_addr");
+			String join_age = mr.getParameter("join_age");
+			String join_pwquestion = mr.getParameter("join_pwquestion");
+			String join_pwquestiona = mr.getParameter("join_pwquestiona");
+			String join_email = mr.getParameter("join_email");
+		//	String join_profile = mr.getParameter("join_profile");
+			String join_phone = mr.getParameter("join_phone");
+			String join_agree1 = mr.getParameter("join_agree1");
+			String join_agree2 = mr.getParameter("join_agree2");
+			String join_agree3 = mr.getParameter("join_agree3");
+			String join_agree4 = mr.getParameter("join_agree4");
+			
 			pstmt.setString(1, join_name);
 			pstmt.setString(2, join_nick);
 			pstmt.setString(3, join_id);
 			pstmt.setString(4, join_pw);
 			pstmt.setString(5, join_gender);
 			pstmt.setString(6, join_birth);
-			pstmt.setString(7, join_addr);
-			pstmt.setString(8, join_age);
-			pstmt.setString(9, join_phone);
-			pstmt.setString(10, join_pwquestion);
-			pstmt.setString(11, join_pwquestiona);
-			pstmt.setString(12, join_email);
-			pstmt.setString(13, join_profile);
-			pstmt.setString(14, agree1);
-			pstmt.setString(15, agree2);
-			pstmt.setString(16, agree3);
-			pstmt.setString(1, agree4);
+			
+//			pstmt.setString(7, join_addr);
+//			pstmt.setString(8, join_age);
+//			pstmt.setString(9, join_phone);
+//			pstmt.setString(10, join_pwquestion);
+//			pstmt.setString(11, join_pwquestiona);
+//			pstmt.setString(12, join_email);
+//			pstmt.setString(13, join_profile);
+//			pstmt.setString(14, agree1);
+//			pstmt.setString(15, agree2);
+//			pstmt.setString(16, agree3);
+//			pstmt.setString(17, agree4);
+
+			pstmt.setString(7, join_age);
+			pstmt.setString(8, join_phone);
+			pstmt.setString(9, join_pwquestion);
+			pstmt.setString(10, join_pwquestiona);
+			pstmt.setString(11, join_email);
+			pstmt.setString(12, join_profile);
+			pstmt.setString(13, join_agree1);
+			pstmt.setString(14, join_agree2);
+			pstmt.setString(15, join_agree3);
+			pstmt.setString(16, join_agree4);
 
 			if (pstmt.executeUpdate() == 1) {
 				request.setAttribute("r", join_nick + "님, 환영합니다!");
 				
 
+				
 
 			}
 
@@ -393,6 +423,8 @@ public class UserDAO {
 
 	}
 
+	
+	// 비밀번호 0000으로 변경
 	public static void findPW(HttpServletRequest request) {
 		// TODO Auto-generated method stub
 
@@ -413,20 +445,23 @@ public class UserDAO {
 			rs = pstmt.executeQuery();
 			
 			System.out.println(W_id);
-
+			
+			
 			if (rs.next()) {
-
-				if (W_pwquestion.equals(rs.getString("account_pwquestion"))) {
 
 					if (W_pwquestiona.equals(rs.getString("account_pwquestiona"))) {
 
 						String sql0000 = "UPDATE oh_account SET account_pw = '0000' WHERE account_id = ?";
-						con = DBManager.connect();
-						pstmt = con.prepareStatement(sql);
+						
+						pstmt = con.prepareStatement(sql0000);
 
 						pstmt.setString(1, W_id);
 						rs = pstmt.executeQuery();
+						System.out.println(rs.getString("account_pw"));
+						
 						request.setAttribute("r", "비밀번호가 0000으로 변경되었습니다!");
+						
+						System.out.println(rs.getString("account_pw"));
 
 					} else {
 						request.setAttribute("r", "계정을 찾을 수 없습니다..");
@@ -435,9 +470,8 @@ public class UserDAO {
 				} else {
 					request.setAttribute("r", "계정을 찾을 수 없습니다..");
 				}
-			} else {
-				request.setAttribute("r", "계정을 찾을 수 없습니다..");
-			}
+			
+			
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -461,6 +495,8 @@ public class UserDAO {
 		
 		
 	}
+
+
 
 	public static void confirmPW(HttpServletRequest request) {
 		// TODO Auto-generated method stub
@@ -494,7 +530,7 @@ public class UserDAO {
 					/*
 					 * request.setAttribute("r", "비밀번호가 틀렸습니다!");
 					 */
-					request.setAttribute("contentPage", "myPage/account_updatePW.jsp");
+					request.setAttribute("contentPage", "myPage/account_updatePWconfirmPW.jsp");
 					
 					
 					
@@ -594,6 +630,16 @@ public class UserDAO {
 		
 		
 		
+		
+		
+		
+	}
+
+	public static void informationUpdate(HttpServletRequest request) {
+		
+		HttpSession hs = request.getSession();
+		accountB acc = (accountB) hs.getAttribute("accountInfo");
+
 		
 		
 		
