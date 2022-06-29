@@ -1,4 +1,4 @@
-package com.oh.main;
+ package com.oh.main;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -14,14 +14,14 @@ public class HC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		// 밀키트 new
-		HomeDAO.getMealkits(request); 
+		HomeDAO.getMkdao().getMealkits(request); 
 		
 		// 레시피 랜덤 5개
-		HomeDAO.getRecipes(request);
+		HomeDAO.getMkdao().getRecipes(request);
 		// 공구 지역에 맞게 최신 5개
 
-		HomeDAO.getGroups(request);
-		UserDAO.loginCheck(request);
+		HomeDAO.getMkdao().getGroups(request);
+		UserDAO.getMkdao().loginCheck(request);
 
 		request.setAttribute("contentPage", "home.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);

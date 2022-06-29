@@ -15,13 +15,13 @@ public class GroupCommentController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		//댓글 등록
-		GroupDAO.commentReg(request);
+		GroupDAO.getMkdao().commentReg(request);
 		//댓글들 얻기
-		GroupDAO.getComments(request);
-		GroupDAO.getCommentsTotal(request);
+		GroupDAO.getMkdao().getComments(request);
+		GroupDAO.getMkdao().getCommentsTotal(request);
 		// 게시글 얻기
-		GroupDAO.getGroup(request);
-		UserDAO.loginCheck(request);
+		GroupDAO.getMkdao().getGroup(request);
+		UserDAO.getMkdao().loginCheck(request);
 		request.setAttribute("contentPage", "group/group_detail.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 		

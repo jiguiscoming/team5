@@ -20,7 +20,7 @@ public class createC extends HttpServlet {
 
 		
 		
-			UserDAO.createAccount(request);
+			UserDAO.getMkdao().createAccount(request);
 		
 			
 			request.setAttribute("loginPage", "account/loginBtn.jsp");

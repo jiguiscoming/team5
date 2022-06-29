@@ -14,14 +14,14 @@ public class Mk_MenuC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
 		
-		 MealkitDAO.viewmealkit(request); 
-		 MealkitDAO.viewKorMealkit(request);
-		 MealkitDAO.viewAmeMealkit(request);
-		 MealkitDAO.viewJpnMealkit(request);
-		 MealkitDAO.viewChnMealkit(request);
-		 MealkitDAO.viewSalMealkit(request);
+		 MealkitDAO.getMkdao().viewmealkit(request); 
+		 MealkitDAO.getMkdao().viewKorMealkit(request);
+		 MealkitDAO.getMkdao().viewAmeMealkit(request);
+		 MealkitDAO.getMkdao().viewJpnMealkit(request);
+		 MealkitDAO.getMkdao().viewChnMealkit(request);
+		 MealkitDAO.getMkdao().viewSalMealkit(request);
+		 request.setAttribute("contentPage", "mealKit/mk_M.jsp");
 		 request.setAttribute("mealkitPage", "mk_Menulist.jsp");
-		 request.setAttribute("contentPage", "mk_M.jsp");
 		 request.getRequestDispatcher("index.jsp").forward(request, response);
 		 
 		 

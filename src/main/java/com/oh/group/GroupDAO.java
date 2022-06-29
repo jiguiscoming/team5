@@ -8,8 +8,7 @@ import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
-
-
+import com.oh.account.UserDAO;
 import com.oh.main.DBManager;
 
 import com.oreilly.servlet.MultipartRequest;
@@ -17,9 +16,33 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 
 public class GroupDAO {
+	//--------------------------------코드추가부분//
+			private Connection con;
 
-	public static void groupReg(HttpServletRequest request) {
-		Connection con = null;
+			private static final GroupDAO GRDAO = new GroupDAO(DBManager.getDbm().connect());
+
+			private GroupDAO() {
+				// TODO Auto-generated constructor stub
+			}
+
+			private GroupDAO(Connection con) {
+				super();
+				this.con = con;
+			}
+
+			public static GroupDAO getMkdao() {
+				return GRDAO;
+			}
+
+			//--------------------------------코드추가부분//
+			//CONNECTION con = null; <다 지우기
+			// 메서드 STATIC 다 지우기
+			// FINALLY 밑 블락에 DBManager.getDbm().close(null, pstmt, null); 로 바꿔주기
+			// DBManager. 뒤에 DBManager.getDbm().로 바꿔주기
+			
+	
+
+	public void groupReg(HttpServletRequest request) {
 		PreparedStatement pstmt = null;
 		String sql = "insert into group_purchase values(group_purchase_seq.nextval, ?, ?, ?, sysdate, ?, ?, ?, ?, ?)";
 		
@@ -31,7 +54,6 @@ public class GroupDAO {
 			
 
 			request.setCharacterEncoding("utf-8");
-			con = DBManager.connect();
 
 			pstmt = con.prepareStatement(sql);
 			String title = mr.getParameter("title");
@@ -64,13 +86,12 @@ public class GroupDAO {
 
 			System.out.println("서버오류");
 		}finally {
-			DBManager.close(con, pstmt, null);
+			DBManager.getDbm().close(null, pstmt, null);
 		}
 	}
 
-	public static void getGroups(HttpServletRequest request) {
+	public void getGroups(HttpServletRequest request) {
 
-		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "select rownum, a.* from (select * from group_purchase order by group_date asc)a order by a.group_date desc";
@@ -78,7 +99,6 @@ public class GroupDAO {
 		try {
 
 			request.setCharacterEncoding("utf-8");
-			con = DBManager.connect();
 			System.out.println("연결성공");
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -109,20 +129,18 @@ public class GroupDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			DBManager.close(con, pstmt, rs);
+			DBManager.getDbm().close(null, pstmt, null);
 		}
 	}
 
-	public static void groupUpdate(HttpServletRequest request) {
+	public void groupUpdate(HttpServletRequest request) {
 
-		Connection con = null;
 		PreparedStatement pstmt = null;
 		String sql = "update group_purchase set group_title=?, group_txt=?, group_area=?, group_img=? where group_no=?";
 		
 		try {
 
 			request.setCharacterEncoding("utf-8");
-			con = DBManager.connect();
 
 			String saveDirectory = request.getServletContext().getRealPath("group_imgFolder");
 			MultipartRequest mr = new MultipartRequest(request, saveDirectory, 31457280,"utf-8",new DefaultFileRenamePolicy());
@@ -155,21 +173,19 @@ public class GroupDAO {
 			e.printStackTrace();
 			System.out.println("서버 오류");
 		} finally {
-			DBManager.close(con, pstmt, null);
+			DBManager.getDbm().close(null, pstmt, null);
 		}
 		
 	}
 
-	public static void getGroup(HttpServletRequest request) {
+	public void getGroup(HttpServletRequest request) {
 		
-		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "select * from group_purchase where group_no=?";
 		
 		try {
 			request.setCharacterEncoding("utf-8");
-			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			
 			int no =Integer.parseInt(request.getParameter("no"));
@@ -198,18 +214,16 @@ public class GroupDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			DBManager.close(con, pstmt, rs);
+			DBManager.getDbm().close(null, pstmt, null);
 		}
 	}
 
-	public static void groupDelete(HttpServletRequest request) {
-		Connection con = null;
+	public void groupDelete(HttpServletRequest request) {
 		PreparedStatement pstmt = null;
 		String sql = "delete group_purchase where group_no = ?";
 		int no = Integer.parseInt(request.getParameter("no"));
 		
 		try {
-			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, no);
 			
@@ -221,12 +235,11 @@ public class GroupDAO {
 			e.printStackTrace();
 			System.out.println("서버오류");
 		} finally {
-			DBManager.close(con, pstmt, null);
+			DBManager.getDbm().close(null, pstmt, null);
 		}
 	}
 
-	public static void hitsUp(HttpServletRequest request) {
-		Connection con = null;
+	public void hitsUp(HttpServletRequest request) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
@@ -234,7 +247,6 @@ public class GroupDAO {
 //			해당 게시글 읽기
 //			해당 게시글 db 먼저 읽음
 			String sql1 = "select * from group_purchase where group_no=?";
-			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql1);
 			int no =Integer.parseInt(request.getParameter("no"));
 			pstmt.setInt(1, no);
@@ -258,19 +270,17 @@ public class GroupDAO {
 			e.printStackTrace();
 			System.out.println("서버오류");
 		} finally {
-			DBManager.close(con, pstmt, rs);
+			DBManager.getDbm().close(null, pstmt, null);
 		}
 	}
 
-	public static void commentReg(HttpServletRequest request) {
-		Connection con = null;
+	public void commentReg(HttpServletRequest request) {
 		PreparedStatement pstmt = null;
 		String sql = "insert into group_comment values(group_comment_seq.nextval, ?, ?, ?, sysdate)";
 		
 		try {
 			
 			request.setCharacterEncoding("utf-8");
-			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			String listno = request.getParameter("no");
 			String comment = request.getParameter("comment");
@@ -293,12 +303,11 @@ public class GroupDAO {
 			e.printStackTrace();
 			request.setAttribute("result", "서버오류");
 		}finally {
-			DBManager.close(con, pstmt, null);
+			DBManager.getDbm().close(null, pstmt, null);
 		}
 	}
 
-	public static void getComments(HttpServletRequest request) {
-		Connection con = null;
+	public void getComments(HttpServletRequest request) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "select * from group_comment where group_comment_listno=? order by group_comment_date desc";
@@ -306,7 +315,6 @@ public class GroupDAO {
 		try {
 
 			request.setCharacterEncoding("utf-8");
-			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			int listno =Integer.parseInt(request.getParameter("no"));
 			pstmt.setInt(1, listno);
@@ -331,14 +339,13 @@ public class GroupDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			DBManager.close(con, pstmt, rs);
+			DBManager.getDbm().close(null, pstmt, null);
 		}
 	}
 
-	public static void getRegionGroups(HttpServletRequest request) {
+	public void getRegionGroups(HttpServletRequest request) {
 	
 		// 연결준비
-		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		// 지역 조건안에 페이징된 게시글 받기 위한 쿼리문
@@ -347,7 +354,6 @@ public class GroupDAO {
 		try {
 			//한글깨짐
 			request.setCharacterEncoding("utf-8");
-			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			
 			// 한페이지에 보여줄 게시글 수 : 4
@@ -394,13 +400,12 @@ public class GroupDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			DBManager.close(con, pstmt, rs);
+			DBManager.getDbm().close(null, pstmt, null);
 		}
 	}
 
-	public static void getGroupSearch(HttpServletRequest request) {
+	public void getGroupSearch(HttpServletRequest request) {
 		// 연결준비
-		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
@@ -416,7 +421,6 @@ public class GroupDAO {
 		try {
 			
 			request.setCharacterEncoding("utf-8");
-			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			
 			// 검색한 값
@@ -483,13 +487,12 @@ public class GroupDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			DBManager.close(con, pstmt, rs);
+			DBManager.getDbm().close(null, pstmt, null);
 		}
 	}
 
-	public static void groupPaging(HttpServletRequest request,int pageNum) {
+	public void groupPaging(HttpServletRequest request,int pageNum) {
 		//연결 준비
-		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
@@ -510,7 +513,6 @@ public class GroupDAO {
 		Group group = null;
 		
 		try {
-			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setInt(1, startRow);
@@ -547,15 +549,14 @@ public class GroupDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			DBManager.close(con, pstmt, rs);
+			DBManager.getDbm().close(null, pstmt, null);
 		}
 		
 		
 	}
 
-	public static void groupPageMove(HttpServletRequest request, String sql,int pageNum) {
+	public void groupPageMove(HttpServletRequest request, String sql,int pageNum) {
 		// 연결 준비
-		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
@@ -564,7 +565,6 @@ public class GroupDAO {
 
 		try {
 			// 연결
-			con = DBManager.connect();
 			// sql 문 잘 가져왔는지 확인
 //			System.out.println(sql);
 			pstmt = con.prepareStatement(sql);
@@ -617,21 +617,19 @@ public class GroupDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			DBManager.close(con, pstmt, rs);
+			DBManager.getDbm().close(null, pstmt, null);
 		}
 		
 	}
 
 	// 좋아요 구현 못함
-	public static void likeUp(HttpServletRequest request) {
-		Connection con = null;
+	public void likeUp(HttpServletRequest request) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "select * from group_purchase where group_no = ?";
 		
 		try {
 			
-			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			
 			// 게시글 번호
@@ -676,21 +674,19 @@ public class GroupDAO {
 			e.printStackTrace();
 			System.out.println("서버 오류");
 		} finally {
-			DBManager.close(con, pstmt, rs);
+			DBManager.getDbm().close(null, pstmt, null);
 		}
 	}
 
 	// 댓글 개수
-	public static void getCommentsTotal(HttpServletRequest request) {
+	public void getCommentsTotal(HttpServletRequest request) {
 
-	 	Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "select count(*) from group_comment where group_comment_listno = ?";
 		int no = Integer.parseInt(request.getParameter("no"));
 		
 		try {
-			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, no);
 			rs = pstmt.executeQuery();
@@ -701,7 +697,7 @@ public class GroupDAO {
 		} catch (Exception e) {
 	
 		} finally {
-			DBManager.close(con, pstmt, rs);
+			DBManager.getDbm().close(null, pstmt, null);
 		}
 	}
 
@@ -711,7 +707,6 @@ public class GroupDAO {
 		String sql = "insert into group_message values(group_message_seq.nextval, ?, ?, ?, ?, sysdate)";
 		
 		try {
-			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 
 			String writer = request.getParameter("writer_id");
@@ -740,7 +735,7 @@ public class GroupDAO {
 			e.printStackTrace();
 			System.out.println("서버오류");
 		}finally {
-			DBManager.close(con, pstmt, null);
+			DBManager.getDbm().close(null, pstmt, null);
 		}
 		
 	}

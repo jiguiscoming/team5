@@ -13,7 +13,7 @@ import com.sy.function.MealkitDAO;
 public class Mk_MenuInfo_AnswerC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		MealkitDAO.UpAnswerQnAMealkit(request);
+		MealkitDAO.getMkdao().UpAnswerQnAMealkit(request);
 	
 	}
 

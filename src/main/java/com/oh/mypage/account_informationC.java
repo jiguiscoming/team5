@@ -15,7 +15,7 @@ public class account_informationC extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		UserDAO.loginCheck(request);
+		UserDAO.getMkdao().loginCheck(request);
 		UserDAO.information(request);
 		
 		request.setAttribute("contentPage", "myPage/account_information.jsp");
@@ -32,7 +32,7 @@ public class account_informationC extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 	
-		UserDAO.loginCheck(request);
+		UserDAO.getMkdao().loginCheck(request);
 		UserDAO.informationUpdate(request);
 		
 		request.setAttribute("contentPage", "myPage/account_information.jsp");

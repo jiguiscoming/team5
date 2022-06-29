@@ -16,7 +16,7 @@ public class account_updatePWconfirmC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		
-		UserDAO.loginCheck(request);
+		UserDAO.getMkdao().loginCheck(request);
 		
 		
 		
@@ -36,8 +36,8 @@ public class account_updatePWconfirmC extends HttpServlet {
 	
 		
 		
-		UserDAO.loginCheck(request);
-		UserDAO.confirmPW(request);
+		UserDAO.getMkdao().loginCheck(request);
+		UserDAO.getMkdao().confirmPW(request);
 		
 		
 		request.setAttribute("contentPage", "myPage/account_updatePW.jsp");

@@ -15,7 +15,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 public class GroupRegController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		UserDAO.loginCheck(request);
+		UserDAO.getMkdao().loginCheck(request);
 		request.setAttribute("contentPage", "group/group_reg.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	
@@ -23,13 +23,13 @@ public class GroupRegController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//등록
-		GroupDAO.groupReg(request);
-		GroupDAO.groupPaging(request,1);
+		GroupDAO.getMkdao().groupReg(request);
+		GroupDAO.getMkdao().groupPaging(request,1);
 		request.setAttribute("pageNum", 1);
 		
 		// 페이지 버튼
-		GroupDAO.groupPageMove(request,(String)request.getAttribute("sql"),1);
-		UserDAO.loginCheck(request);
+		GroupDAO.getMkdao().groupPageMove(request,(String)request.getAttribute("sql"),1);
+		UserDAO.getMkdao().loginCheck(request);
 		request.setAttribute("contentPage", "group/group_purchase.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 		

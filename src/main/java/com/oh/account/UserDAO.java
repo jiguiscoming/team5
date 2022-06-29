@@ -13,9 +13,35 @@ import javax.servlet.http.HttpSession;
 import com.oh.main.DBManager;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.sy.function.MealkitDAO;
 
 public class UserDAO {
+	//--------------------------------코드추가부분//
+		private Connection con;
 
+		private static final UserDAO USDAO = new UserDAO(DBManager.getDbm().connect());
+
+		private UserDAO() {
+			// TODO Auto-generated constructor stub
+		}
+
+		private UserDAO(Connection con) {
+			super();
+			this.con = con;
+		}
+
+		public static UserDAO getMkdao() {
+			return USDAO;
+		}
+
+		//--------------------------------코드추가부분//
+		//CONNECTION con = null; <다 지우기
+		// 메서드 STATIC 다 지우기
+		// FINALLY 밑 블락에 DBManager.getDbm().close(null, pstmt, null); 로 바꿔주기
+		// DBManager. 뒤에 DBManager.getDbm().로 바꿔주기
+		
+		
+		
 	public static void fileUpload(HttpServletRequest request) throws IOException {
 		String path = request.getSession().getServletContext().getRealPath("account/img");
 		System.out.println(path);
@@ -73,11 +99,12 @@ public class UserDAO {
 
 	}
 
-	public static void createAccount(HttpServletRequest request) throws IOException {
+	public void createAccount(HttpServletRequest request) throws IOException {
 		// TODO Auto-generated method stub
 
-		Connection con = null;
-		PreparedStatement pstmt = null;
+
+		PreparedStatement pstmt = null;	
+
 
 		String path = request.getSession().getServletContext().getRealPath("account/img");
 		System.out.println(path);
@@ -92,7 +119,6 @@ public class UserDAO {
 
 			request.setCharacterEncoding("utf-8");
 			String sql = "insert into oh_account values(?,?,?,?,?,?,'오',?,?,?,?,?,?,?,?,?,?,sysdate)";
-			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 
 			String join_name = mr.getParameter("join_name");
@@ -153,7 +179,7 @@ public class UserDAO {
 			request.setAttribute("r", "서버 오류..");
 
 		} finally {
-			DBManager.close(con, pstmt, null);
+			DBManager.getDbm().close(null, pstmt, null);
 		}
 
 	}
@@ -193,18 +219,16 @@ public class UserDAO {
 
 	}
 
-	public static void login(HttpServletRequest request) {
+	public void login(HttpServletRequest request) {
 
 		String userId = request.getParameter("id");
 		String userPw = request.getParameter("pw");
 
-		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
 		try {
 			String sql = "select * from oh_account where account_id= ?";
-			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 
 			pstmt.setString(1, userId);
@@ -253,7 +277,7 @@ public class UserDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			DBManager.close(con, pstmt, rs);
+			DBManager.getDbm().close(null, pstmt, null);
 		}
 
 	}
@@ -270,7 +294,7 @@ public class UserDAO {
 
 // 세션 유지를 위해 모든 컨트롤러에 넣어 주세요.!
 
-	public static void loginCheck(HttpServletRequest request) {
+	public void loginCheck(HttpServletRequest request) {
 		// TODO Auto-generated method stub
 
 		HttpSession hs = request.getSession();
@@ -287,7 +311,6 @@ public class UserDAO {
 
 	// id 중복체크
 	public int idCheck(String id) {
-		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
@@ -296,7 +319,6 @@ public class UserDAO {
 		try {
 			String sql = "select account_id from oh_account where account_id = ?";
 
-			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
@@ -308,15 +330,14 @@ public class UserDAO {
 			e.printStackTrace();
 
 		} finally {
-			DBManager.close(con, pstmt, rs);
+			DBManager.getDbm().close(null, pstmt, null);
 		}
 		return value;
 	}
 
-	public static void secession(HttpServletRequest request) {
+	public  void secession(HttpServletRequest request) {
 		// TODO Auto-generated method stub
 
-		Connection con = null;
 		PreparedStatement pstmt = null;
 
 		HttpSession hs = request.getSession();
@@ -325,7 +346,6 @@ public class UserDAO {
 		try {
 			String sql = "DELETE oh_account WHERE account_id = ? ";
 
-			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 
 			pstmt.setString(1, acc.getAccount_id());
@@ -346,7 +366,7 @@ public class UserDAO {
 			e.printStackTrace();
 
 		} finally {
-			DBManager.close(con, pstmt, null);
+			DBManager.getDbm().close(null, pstmt, null);
 		}
 
 	}
@@ -369,19 +389,17 @@ public class UserDAO {
 
 	}
 
-	public static void findID(HttpServletRequest request) {
+	public void findID(HttpServletRequest request) {
 		// TODO Auto-generated method stub
 
 		String W_email = request.getParameter("W_email");
 		String W_name = request.getParameter("W_name");
 
-		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
 		try {
 			String sql = "select * from oh_account where account_name= ?";
-			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 
 			pstmt.setString(1, W_name);
@@ -402,16 +420,15 @@ public class UserDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			DBManager.close(con, pstmt, rs);
+			DBManager.getDbm().close(null, pstmt, null);
 		}
 
 	}
 
 	// 비밀번호 0000으로 변경
-	public static void findPW(HttpServletRequest request) {
+	public void findPW(HttpServletRequest request) {
 		// TODO Auto-generated method stub
 
-		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
@@ -421,7 +438,6 @@ public class UserDAO {
 
 		try {
 			String sql = "select * from oh_account where account_id= ?";
-			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 
 			pstmt.setString(1, W_id);
@@ -456,7 +472,7 @@ public class UserDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			DBManager.close(con, pstmt, rs);
+			DBManager.getDbm().close(null, pstmt, null);
 		}
 
 	}
@@ -469,20 +485,43 @@ public class UserDAO {
 
 	}
 
-	public static void confirmPW(HttpServletRequest request) throws IOException {
+
+
+
+	public void confirmPW(HttpServletRequest request) {
+
 		// TODO Auto-generated method stub
 
 		HttpSession hs = request.getSession();
 		accountB acc = (accountB) hs.getAttribute("accountInfo");
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		
+		
+		try {
+			String sql = "select * from oh_account where account_id= ?";
+			pstmt = con.prepareStatement(sql);
 
 		String path = request.getSession().getServletContext().getRealPath("account/img");
 		System.out.println(path);
 		MultipartRequest mr = new MultipartRequest(request, path, 20 * 1024 * 1024, "utf-8",
 				new DefaultFileRenamePolicy());
 
+
 		String W_pw = mr.getParameter("W_pw");
 
+
+		 catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			
+			DBManager.getDbm().close(null, pstmt, null);
+		}
+
 		System.out.println(acc.getAccount_pw());
+
 
 		if (W_pw.equals(acc.getAccount_pw())) {
 			/*
@@ -490,7 +529,11 @@ public class UserDAO {
 			 */
 			request.setAttribute("contentPage", "myPage/account_updatePW.jsp");
 
+
+	public void updatePW(HttpServletRequest request) {
+
 		} else {
+
 
 			request.setAttribute("r", "비밀번호가 틀렸습니다!");
 			request.setAttribute("contentPage", "myPage/account_updatePWconfirmPW.jsp");
@@ -504,7 +547,6 @@ public class UserDAO {
 		HttpSession hs = request.getSession();
 		accountB acc = (accountB) hs.getAttribute("accountInfo");
 
-		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
@@ -520,6 +562,10 @@ public class UserDAO {
 		System.out.println(W_pw2);
 
 		try {
+
+			String sql = "select * from oh_account where account_id= ?";
+			pstmt = con.prepareStatement(sql);
+
 
 			String A_id = acc.getAccount_id();
 			System.out.println(A_id);
@@ -557,7 +603,7 @@ public class UserDAO {
 		SQLException e) {
 			e.printStackTrace();
 		} finally {
-			DBManager_account.close(con, pstmt, rs);
+			DBManager.getDbm().close(null, pstmt, null);
 		}
 
 	}
