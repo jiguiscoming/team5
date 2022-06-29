@@ -1,4 +1,4 @@
-package com.oh.account;
+package com.oh.mypage;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,26 +7,38 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/createC")
-public class createC extends HttpServlet {
+import com.oh.account.UserDAO;
+
+
+@WebServlet("/account_updatePWC")
+public class account_updatePWC extends HttpServlet {
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 
-		
+
+	
+	
+	
+	
 	
 	
 	}
 
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+		
+		
+		UserDAO.loginCheck(request);
+		UserDAO.updatePW(request);
+		
 
-		 UserDAO.createAccount(request); 
-			
-			request.setAttribute("loginPage", "account/loginBtn.jsp");
-			request.setAttribute("contentPage", "account/create.jsp");
-			request.getRequestDispatcher("index.jsp").forward(request, response);
-		
-		
-		
-		
+		request.setAttribute("contentPage", "myPage/account_updatePW.jsp");
+		request.getRequestDispatcher("index.jsp").forward(request, response);
+	
+	
+	
+	
+	 
 	
 	}
 

@@ -8,7 +8,8 @@
 </head>
 <body>
 
-<form action="">
+<form method="post" name="account"
+		onsubmit="return call()" enctype="multipart/form-data" >
 
 <table>
 
@@ -83,39 +84,40 @@
 
 
 <tr>
-<td>프로필 사진 등록</td>
+<td>프로필 사진 등록!!</td>
 <td><img src="account/img/${join_profile}"><td>
 <td></td>
 </tr>
 
-<tr>
-<td></td>
-<td><button>수정하기</button><button onclick="createC">가입하기</button></td>
-</tr>
 
 
 <tr><td>
-<input type="hidden" name="agree1" value="${param.agree1 }"> 
-<input type="hidden" name="agree2" value="${param.agree2 }"> 
-<input type="hidden" name="agree3" value="${param.agree3 }"> 
-<input type="hidden" name="agree4" value="${param.agree4 }"> 
-<input type="hidden" name="join_name" value="${param.join_name }"> 
-<input type="hidden" name="join_nick" value="${param.join_nick }"> 
-<input type="hidden" name="join_id" value="${param.join_id }"> 
-<input type="hidden" name="join_age" value="${param.join_age }"> 
-<input type="hidden" name="join_gender" value="${param.join_gender }"> 
-<input type="hidden" name="join_birth" value="${param.join_birth }"> 
-<input type="hidden" name="join_pw" value="${param.join_pw }"> 
-<input type="hidden" name="join_pw2" value="${param.join_pw2 }"> 
-<input type="hidden" name="join_pwquestion" value="${param.join_pwquestion }"> 
-<input type="hidden" name="join_pwquestiona" value="${param.join_pwquestiona }"> 
-<input type="hidden" name="join_email" value="${param.join_email }"> 
-<input type="hidden" name="join_addr" value="${param.join_addr }"> 
+<input type="hidden" name="agree1" value="${agree1 }"> 
+<input type="hidden" name="agree2" value="${agree2 }"> 
+<input type="hidden" name="agree3" value="${agree3 }"> 
+<input type="hidden" name="agree4" value="${agree4 }"> 
+<input  name="Ajoin_name" value="${join_name }"> 
+<input type="hidden" name="join_nick" value="${join_nick }"> 
+<input type="hidden" name="join_id" value="${join_id }"> 
+<input type="hidden" name="join_age" value="${join_age }"> 
+<input type="hidden" name="join_gender" value="${join_gender }"> 
+<input type="hidden" name="join_birth" value="${join_birth }"> 
+<input type="hidden" name="join_pw" value="${join_pw }"> 
+<input type="hidden" name="join_pw2" value="${join_pw2 }"> 
+<input type="hidden" name="join_pwquestion" value="${join_pwquestion }"> 
+<input type="hidden" name="join_pwquestiona" value="${join_pwquestiona }"> 
+<input type="hidden" name="join_email" value="${join_email }"> 
+<input type="hidden" name="join_addr" value="${join_addr }"> 
 <input type="hidden" name="join_profile" value="${join_profile}"> 
 </td></tr>
 
+<tr>
+<td></td>
+<td><button onclick="form.action='joinusConfirmC'">수정하기!!!</button>
+<button onclick="form.action='createC'">가입하기!</button></td>
+</tr>
 
-
+<!-- onclick="form.action='createC'"  -->
 
 
 <tr>
