@@ -28,9 +28,9 @@ public class account_updatePWC extends HttpServlet {
 	
 		
 		
-		UserDAO.loginCheck(request);
-		UserDAO.updatePW(request);
-		
+
+		UserDAO.getMkdao().loginCheck(request);
+		UserDAO.getMkdao().updatePW(request);
 
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	

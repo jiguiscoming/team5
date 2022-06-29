@@ -16,11 +16,10 @@ public class account_updatePWconfirmC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		
-		UserDAO.loginCheck(request);
+		UserDAO.getMkdao().loginCheck(request);
 		
 		
 		
-		request.setAttribute("contentPage", "myPage/account_updatePWconfirm.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 		
 		
@@ -37,11 +36,11 @@ public class account_updatePWconfirmC extends HttpServlet {
 	
 		
 		
-		UserDAO.loginCheck(request);
-		UserDAO.confirmPW(request);
+		UserDAO.getMkdao().loginCheck(request);
+		UserDAO.getMkdao().confirmPW(request);
 		
 		
-		request.setAttribute("contentPage", "myPage/account_updatePWconfirm.jsp");
+		request.setAttribute("contentPage", "myPage/account_updatePW.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 		
 		

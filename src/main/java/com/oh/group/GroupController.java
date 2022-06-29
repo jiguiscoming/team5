@@ -21,20 +21,20 @@ public class GroupController extends HttpServlet {
 		// 전국
 		if (request.getParameter("region").equals("전국") || request.getParameter("region").equals("")) {
 			// 전국 페이징 게시글
-			GroupDAO.groupPaging(request,pageNum);
+			GroupDAO.getMkdao().groupPaging(request,pageNum);
 		}else {
 			if(request.getParameter("search").equals("")) {
 			// 지역
-			GroupDAO.getRegionGroups(request);
+			GroupDAO.getMkdao().getRegionGroups(request);
 			}
 		}
 		if(!request.getParameter("search").equals("")) {
 			// 검색
-			GroupDAO.getGroupSearch(request);
+			GroupDAO.getMkdao().getGroupSearch(request);
 		} 
 		// 밑에 페이지 이동버튼
-		GroupDAO.groupPageMove(request,(String)request.getAttribute("sql"),pageNum);
-		UserDAO.loginCheck(request);
+		GroupDAO.getMkdao().groupPageMove(request,(String)request.getAttribute("sql"),pageNum);
+		UserDAO.getMkdao().loginCheck(request);
 		request.setAttribute("contentPage", "group/group_purchase.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 		
