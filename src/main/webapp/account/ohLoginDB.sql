@@ -20,7 +20,7 @@ account_agree4 varchar(1) not null,
 account_date varchar2 (22 char)
 );
 
-insert into oh_account values('ÀÌ¸§', 'nick', 'n','1004', '¿©', '20001212', '', '20', '01000000000', '°¡Àå ÁÁ¾ÆÇÏ´Â µ¿¹°Àº?','´ä!', 'ddd@naver.com', 'images.jpg','O','O','O','O',sysdate);
+insert into oh_account values('ì´ë¦„', 'nick', 'n','1004', 'ì—¬', '20001212', '', '20', '01000000000', 'ê¸°ì–µì— ë‚¨ëŠ” ì¶”ì–µì˜ ì¥ì†ŒëŠ”?','ë‹µ!', 'ddd@naver.com', 'images.jpg','O','O','O','O',sysdate);
 
 
 
