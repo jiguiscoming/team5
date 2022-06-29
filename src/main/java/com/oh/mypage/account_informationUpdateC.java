@@ -18,7 +18,9 @@ public class account_informationUpdateC extends HttpServlet {
 		UserDAO.loginCheck(request);
 		UserDAO.information(request);
 		
-		request.setAttribute("contentPage", "myPage/account_information.jsp");
+		
+		
+		request.setAttribute("contentPage", "myPage/account_informationUpdate.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	
 	
@@ -31,6 +33,17 @@ public class account_informationUpdateC extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
+	
+		// 세션 불러옴
+		UserDAO.information(request);
+		
+		// 세션 데이터 수정
+		UserDAO.informationUpdate(request);
+		
+		
+		
+		request.setAttribute("contentPage", "myPage/account_information.jsp");
+		request.getRequestDispatcher("index.jsp").forward(request, response);
 	
 	
 	
