@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.oh.account.UserDAO;
 import com.sy.function.MealkitDAO;
 
 @WebServlet("/Mk_MenuInfoC")
@@ -19,6 +20,7 @@ public class Mk_MenuInfoC extends HttpServlet {
 		MealkitDAO.viewReviewMealkit(request);
 		MealkitDAO.viewQnAMealkit(request);
 		MealkitDAO.viewAnswerQnAMealkit(request);
+		UserDAO.loginCheck(request);
 		request.setAttribute("mealkitPage", "mk_info.jsp");
 		request.getRequestDispatcher("mealKit/mk_M.jsp").forward(request, response);
 	
