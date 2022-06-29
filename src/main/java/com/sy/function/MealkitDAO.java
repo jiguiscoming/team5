@@ -13,15 +13,36 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.sy.function.Mealkit;
 
 public class MealkitDAO {
+//--------------------------------ì½”ë“œì¶”ê°€ë¶€ë¶„//
+	private Connection con;
 
-	public static void regmealkit(HttpServletRequest request) {
+	private static final MealkitDAO MKDAO = new MealkitDAO(DBManager.getDbm().connect());
 
-		Connection con = null;
+	private MealkitDAO() {
+		// TODO Auto-generated constructor stub
+	}
+
+	private MealkitDAO(Connection con) {
+		super();
+		this.con = con;
+	}
+
+	public static MealkitDAO getMkdao() {
+		return MKDAO;
+	}
+
+	//--------------------------------ì½”ë“œì¶”ê°€ë¶€ë¶„//
+	//CONNECTION con = null; <ë‹¤ ì§€ìš°ê¸°
+	// ë©”ì„œë“œ STATIC ë‹¤ ì§€ìš°ê¸°
+	// FINALLY ë°‘ ë¸”ë½ì— DBManager.getDbm().close(null, pstmt, null); ë¡œ ë°”ê¿”ì£¼ê¸°
+	// DBManager. ë’¤ì— DBManager.getDbm().ë¡œ ë°”ê¿”ì£¼ê¸°
+	
+	public void regmealkit(HttpServletRequest request) {
+
 		PreparedStatement pstmt = null;
 
 		try {
 			String sql = "insert into mealkit_test values (mealkit_test_seq.nextval , ?,?,?,?,?,sysdate )";
-			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 
 			String saveDirectory = request.getServletContext().getRealPath("img");
@@ -49,23 +70,22 @@ public class MealkitDAO {
 			pstmt.setString(5, mealkit_txt);
 
 			if (pstmt.executeUpdate() == 1) {
-				request.setAttribute("r", "µî·Ï¼º°ø");
+				request.setAttribute("r", "ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½");
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("r", "¼­¹ö¿À·ù");
+			request.setAttribute("r", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		} finally {
-			DBManager.close(con, pstmt, null);
+			DBManager.getDbm().close(null, pstmt, null);
 		}
 
 	}
 
-	public static void viewmealkit(HttpServletRequest request) {
+	public void viewmealkit(HttpServletRequest request) {
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		Connection con = null;
 
 		try {
 			ArrayList<Mealkit> mealkitlist = new ArrayList<Mealkit>();
@@ -73,7 +93,6 @@ public class MealkitDAO {
 			Mealkit m = null;
 
 			String sql = "select * from mealkit_test";
-			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 
@@ -94,20 +113,18 @@ public class MealkitDAO {
 		} catch (Exception e) {
 
 		} finally {
-			DBManager.close(con, pstmt, rs);
+			DBManager.getDbm().close(null, pstmt, null);
 		}
 
 	}
 
-	public static void getMealkit(HttpServletRequest request) {
-		Connection con = null;
+	public void getMealkit(HttpServletRequest request) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
 		try {
 
 			String sql = "select * from mealkit_test where mealkit_no=?";
-			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, Integer.parseInt(request.getParameter("no")));
 
@@ -132,22 +149,18 @@ public class MealkitDAO {
 			e.printStackTrace();
 		} finally {
 
-			DBManager.close(con, pstmt, rs);
+			DBManager.getDbm().close(null, pstmt, null);
 
 		}
 
 	}
 
-	public static void regReviewMealkit(HttpServletRequest request) {
-
-		Connection con = null;
+	public void regReviewMealkit(HttpServletRequest request) {
 		PreparedStatement pstmt = null;
 
 		try {
 			String sql = "insert into mealkit_review_test values (mealkit_review_test_seq.nextval ,?,?,?,?,?,sysdate )";
-			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
-			
 
 			String saveDirectory = request.getServletContext().getRealPath("img");
 			System.out.println(saveDirectory);
@@ -177,22 +190,21 @@ public class MealkitDAO {
 			pstmt.setInt(5, mealkit_review_star);
 
 			if (pstmt.executeUpdate() == 1) {
-				request.setAttribute("r", "µî·Ï¼º°ø");
+				request.setAttribute("r", "ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½");
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("r", "¼­¹ö¿À·ù");
+			request.setAttribute("r", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		} finally {
-			DBManager.close(con, pstmt, null);
+			DBManager.getDbm().close(null, pstmt, null);
 		}
 
 	}
 
-	public static void viewReviewMealkit(HttpServletRequest request) {
+	public void viewReviewMealkit(HttpServletRequest request) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		Connection con = null;
 
 		try {
 			ArrayList<MealkitReview> MealkitReviewlist = new ArrayList<MealkitReview>();
@@ -200,14 +212,12 @@ public class MealkitDAO {
 			MealkitReview m = null;
 
 			String sql = "select * from mealkit_review_test where mealkit_review_mk_no=?";
-			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, Integer.parseInt(request.getParameter("no")));
 			rs = pstmt.executeQuery();
-	
-			
+
 			while (rs.next()) {
-				
+
 				m = new MealkitReview();
 				m.setMealkit_review_no(rs.getInt("mealkit_review_no"));
 				m.setMealkit_review_title(rs.getString("mealkit_review_title"));
@@ -246,22 +256,17 @@ public class MealkitDAO {
 		} catch (Exception e) {
 
 		} finally {
-			DBManager.close(con, pstmt, rs);
+			DBManager.getDbm().close(null, pstmt, null);
 		}
 
 	}
 
-	public static void RegQnAMealkit(HttpServletRequest request) {
-		
-		
-		Connection con = null;
+	public void RegQnAMealkit(HttpServletRequest request) {
 		PreparedStatement pstmt = null;
 
 		try {
 			String sql = "insert into mealkit_QnA_test values (mealkit_QnA_test_seq.nextval ,?,?,?,?,?,?,?,?,0, sysdate )";
-			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
-			
 
 			String saveDirectory = request.getServletContext().getRealPath("img");
 			System.out.println(saveDirectory);
@@ -285,7 +290,6 @@ public class MealkitDAO {
 			System.out.println(mealkit_QnA_img);
 			System.out.println(mealkit_QnA_txt);
 
-	
 			pstmt.setInt(1, mealkit_QnA_mk_no);
 			pstmt.setString(2, mealkit_QnA_id);
 			pstmt.setInt(3, mealkit_QnA_pw);
@@ -296,23 +300,21 @@ public class MealkitDAO {
 			pstmt.setString(8, mealkit_Answer_QnA_txt);
 
 			if (pstmt.executeUpdate() == 1) {
-				request.setAttribute("r", "µî·Ï¼º°ø");
+				request.setAttribute("r", "ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½");
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("r", "¼­¹ö¿À·ù");
+			request.setAttribute("r", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		} finally {
-			DBManager.close(con, pstmt, null);
+			DBManager.getDbm().close(null, pstmt, null);
 		}
-		
-		
+
 	}
 
-	public static void viewQnAMealkit(HttpServletRequest request) {
+	public void viewQnAMealkit(HttpServletRequest request) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		Connection con = null;
 
 		try {
 			ArrayList<MealkitQnA> MealkitQnAlist = new ArrayList<MealkitQnA>();
@@ -320,14 +322,12 @@ public class MealkitDAO {
 			MealkitQnA m = null;
 
 			String sql = "select * from mealkit_QnA_test where mealkit_QnA_mk_no=?";
-			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, Integer.parseInt(request.getParameter("no")));
 			rs = pstmt.executeQuery();
-	
-			
+
 			while (rs.next()) {
-				
+
 				m = new MealkitQnA();
 				m.setMealkit_QnA_no(rs.getInt("mealkit_QnA_no"));
 				m.setMealkit_QnA_id(rs.getString("mealkit_QnA_id"));
@@ -337,14 +337,14 @@ public class MealkitDAO {
 				m.setMealkit_QnA_img(rs.getString("mealkit_QnA_img"));
 				m.setMealkit_QnA_Answer_title(rs.getString("mealkit_QnA_Answer_title"));
 				m.setMealkit_QnA_Answer_txt(rs.getString("mealkit_QnA_Answer_txt"));
-				
-				if(rs.getInt("mealkit_QnA_Answer_Confirm")==0) {
-				m.setMealkit_QnA_Answer_Confirm("´äº¯´ë±âÁß");
+
+				if (rs.getInt("mealkit_QnA_Answer_Confirm") == 0) {
+					m.setMealkit_QnA_Answer_Confirm("ï¿½äº¯ï¿½ï¿½ï¿½ï¿½ï¿½");
 				} else {
-					
-					m.setMealkit_QnA_Answer_Confirm("´äº¯¿Ï·á");
+
+					m.setMealkit_QnA_Answer_Confirm("ï¿½äº¯ï¿½Ï·ï¿½");
 				}
-			
+
 				MealkitQnAlist.add(m);
 
 			}
@@ -354,21 +354,18 @@ public class MealkitDAO {
 		} catch (Exception e) {
 
 		} finally {
-			DBManager.close(con, pstmt, rs);
+			DBManager.getDbm().close(null, pstmt, null);
 		}
-		
+
 	}
 
-	public static void regAnswerQnAMealkit(HttpServletRequest request) {
-		
-		Connection con = null;
+	public void regAnswerQnAMealkit(HttpServletRequest request) {
+
 		PreparedStatement pstmt = null;
 
 		try {
 			String sql = "insert into mealkit_Answer_test values (mealkit_Answer_test_seq.nextval ,?,?,?,sysdate )";
-			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
-			
 
 			String saveDirectory = request.getServletContext().getRealPath("img");
 			System.out.println(saveDirectory);
@@ -385,31 +382,27 @@ public class MealkitDAO {
 			System.out.println(mealkit_Answer_title);
 			System.out.println(mealkit_Answer_txt);
 
-	
 			pstmt.setInt(1, mealkit_Answer_QnA_no);
 			pstmt.setString(2, mealkit_Answer_title);
 			pstmt.setString(3, mealkit_Answer_txt);
 
-
 			if (pstmt.executeUpdate() == 1) {
-				request.setAttribute("r", "µî·Ï¼º°ø");
+				request.setAttribute("r", "ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½");
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("r", "¼­¹ö¿À·ù");
+			request.setAttribute("r", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		} finally {
-			DBManager.close(con, pstmt, null);
+			DBManager.getDbm().close(null, pstmt, null);
 		}
-		
-		
+
 	}
 
-	public static void viewAnswerQnAMealkit(HttpServletRequest request) {
-		
+	public void viewAnswerQnAMealkit(HttpServletRequest request) {
+
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		Connection con = null;
 
 		try {
 			ArrayList<MealkitAnswer> MealkitAnswerlist = new ArrayList<MealkitAnswer>();
@@ -417,20 +410,16 @@ public class MealkitDAO {
 			MealkitAnswer m = null;
 
 			String sql = "select * from mealkit_Answer_test where mealkit_Answer_QnA_no=?";
-			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, Integer.parseInt(request.getParameter("no")));
 			rs = pstmt.executeQuery();
-	
-			
+
 			while (rs.next()) {
-				
+
 				m = new MealkitAnswer();
 				m.setMealkit_Answer_title(rs.getString("mealkit_Answer_title"));
 				m.setMealkit_Answer_txt(rs.getString("mealkit_Answer_txt"));
-		
-					
-			
+
 				MealkitAnswerlist.add(m);
 
 			}
@@ -440,55 +429,44 @@ public class MealkitDAO {
 		} catch (Exception e) {
 
 		} finally {
-			DBManager.close(con, pstmt, rs);
+			DBManager.getDbm().close(null, pstmt, null);
 		}
-		
-		
+
 	}
-	
-		
-	public static void UpAnswerQnAMealkit(HttpServletRequest request) {
-		
-		Connection con = null;
+
+	public void UpAnswerQnAMealkit(HttpServletRequest request) {
+
 		PreparedStatement pstmt = null;
-		
 
 		try {
-	//		String sql = "Update  mealkit_QnA_test\r\n" + "set mealkit_QnA_Answer_title=?,\r\n" + "set mealkit_QnA_Answer_txt=?,\r\n" + " where mealkit_QnA_no=?";
-			String sql = "Update  mealkit_QnA_test\r\n"
-					+ "set mealkit_QnA_Answer_title = ?\r\n"
-					+ ", mealkit_QnA_Answer_txt = ?\r\n"
-					+ ", mealkit_QnA_Answer_Confirm =1\r\n"
+			// String sql = "Update mealkit_QnA_test\r\n" + "set
+			// mealkit_QnA_Answer_title=?,\r\n" + "set mealkit_QnA_Answer_txt=?,\r\n" + "
+			// where mealkit_QnA_no=?";
+			String sql = "Update  mealkit_QnA_test\r\n" + "set mealkit_QnA_Answer_title = ?\r\n"
+					+ ", mealkit_QnA_Answer_txt = ?\r\n" + ", mealkit_QnA_Answer_Confirm =1\r\n"
 					+ "where mealkit_QnA_no= ?\r\n";
 			request.setCharacterEncoding("utf-8");
-			con = DBManager.connect();
-			
+
 			pstmt = con.prepareStatement(sql);
-			
 
 			String title = request.getParameter("mealkit_QnA_Answer_title");
 			String txt = request.getParameter("mealkit_QnA_Answer_txt");
-			String no = request.getParameter("mealkit_Answer_QnA_no");	
-			
+			String no = request.getParameter("mealkit_Answer_QnA_no");
+
 			System.out.println(title);
 			System.out.println(txt);
 			System.out.println(no);
-		
-		
+
 			pstmt.setString(1, title);
 			pstmt.setString(2, txt);
 			pstmt.setString(3, no);
 
-
 			System.out.println(title);
 			System.out.println(txt);
 			System.out.println(no);
-		
-			
-			
-			
+
 			if (pstmt.executeUpdate() == 1) {
-				System.out.println("¼öÁ¤ ¼º°ø");
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			}
 
 		} catch (Exception e) {
@@ -496,17 +474,14 @@ public class MealkitDAO {
 			e.printStackTrace();
 
 		} finally {
-
-			DBManager.close(con, pstmt, null);
-
+			DBManager.getDbm().close(null, pstmt, null);
 		}
 
 	}
 
-	public static void viewKorMealkit(HttpServletRequest request) {
+	public void viewKorMealkit(HttpServletRequest request) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		Connection con = null;
 
 		try {
 			ArrayList<Mealkit> mealkitlist = new ArrayList<Mealkit>();
@@ -514,7 +489,6 @@ public class MealkitDAO {
 			Mealkit m = null;
 
 			String sql = "select * from mealkit_test where mealkit_type='kor'";
-			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 
@@ -535,15 +509,14 @@ public class MealkitDAO {
 		} catch (Exception e) {
 
 		} finally {
-			DBManager.close(con, pstmt, rs);
+			DBManager.getDbm().close(null, pstmt, null);
 		}
-		
+
 	}
 
-	public static void viewAmeMealkit(HttpServletRequest request) {
+	public void viewAmeMealkit(HttpServletRequest request) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		Connection con = null;
 
 		try {
 			ArrayList<Mealkit> mealkitlist = new ArrayList<Mealkit>();
@@ -551,7 +524,6 @@ public class MealkitDAO {
 			Mealkit m = null;
 
 			String sql = "select * from mealkit_test where mealkit_type='ame'";
-			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 
@@ -572,15 +544,14 @@ public class MealkitDAO {
 		} catch (Exception e) {
 
 		} finally {
-			DBManager.close(con, pstmt, rs);
+			DBManager.getDbm().close(null, pstmt, null);
 		}
-		
+
 	}
 
-	public static void viewJpnMealkit(HttpServletRequest request) {
+	public void viewJpnMealkit(HttpServletRequest request) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		Connection con = null;
 
 		try {
 			ArrayList<Mealkit> mealkitlist = new ArrayList<Mealkit>();
@@ -588,7 +559,6 @@ public class MealkitDAO {
 			Mealkit m = null;
 
 			String sql = "select * from mealkit_test where mealkit_type='jpn'";
-			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 
@@ -609,15 +579,14 @@ public class MealkitDAO {
 		} catch (Exception e) {
 
 		} finally {
-			DBManager.close(con, pstmt, rs);
+			DBManager.getDbm().close(null, pstmt, null);
 		}
-		
+
 	}
 
-	public static void viewChnMealkit(HttpServletRequest request) {
+	public void viewChnMealkit(HttpServletRequest request) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		Connection con = null;
 
 		try {
 			ArrayList<Mealkit> mealkitlist = new ArrayList<Mealkit>();
@@ -625,7 +594,6 @@ public class MealkitDAO {
 			Mealkit m = null;
 
 			String sql = "select * from mealkit_test where mealkit_type='chn'";
-			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 
@@ -646,15 +614,14 @@ public class MealkitDAO {
 		} catch (Exception e) {
 
 		} finally {
-			DBManager.close(con, pstmt, rs);
+			DBManager.getDbm().close(null, pstmt, null);
 		}
-		
+
 	}
 
-	public static void viewSalMealkit(HttpServletRequest request) {
+	public void viewSalMealkit(HttpServletRequest request) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		Connection con = null;
 
 		try {
 			ArrayList<Mealkit> mealkitlist = new ArrayList<Mealkit>();
@@ -662,7 +629,6 @@ public class MealkitDAO {
 			Mealkit m = null;
 
 			String sql = "select * from mealkit_test where mealkit_type='sal'";
-			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 
@@ -683,12 +649,8 @@ public class MealkitDAO {
 		} catch (Exception e) {
 
 		} finally {
-			DBManager.close(con, pstmt, rs);
+			DBManager.getDbm().close(null, pstmt, null);
 		}
 	}
 
-	
-	
-
-	
 }

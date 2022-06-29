@@ -8,21 +8,44 @@ import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.oh.account.UserDAO;
 import com.oh.foodrecipe.recipe;
 import com.oh.group.Group;
 import com.sy.function.Mealkit;
 
 public class HomeDAO {
+	//--------------------------------코드추가부분//
+			private Connection con;
 
-	public static void getMealkits(HttpServletRequest request) {
+			private static final HomeDAO HMDAO = new HomeDAO(DBManager.getDbm().connect());
 
-		Connection con = null;
+			private HomeDAO() {
+				// TODO Auto-generated constructor stub
+			}
+
+			private HomeDAO(Connection con) {
+				super();
+				this.con = con;
+			}
+
+			public static HomeDAO getMkdao() {
+				return HMDAO;
+			}
+
+			//--------------------------------코드추가부분//
+			//CONNECTION con = null; <다 지우기
+			// 메서드 STATIC 다 지우기
+			// FINALLY 밑 블락에 DBManager.getDbm().close(null, pstmt, null); 로 바꿔주기
+			// DBManager. 뒤에 DBManager.getDbm().로 바꿔주기
+	
+	
+	public void getMealkits(HttpServletRequest request) {
+
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "select * from (select rownum as num, a.* from (select * from mealkit_test order by MEALKIT_DATE desc)a) where num between 1 and 5";		
 		
 		try {
-			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
@@ -46,19 +69,17 @@ public class HomeDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			DBManager.close(con, pstmt, rs);
+			DBManager.getDbm().close(null, pstmt, null);
 		}
 
 	}
 
-	public static void getRecipes(HttpServletRequest request) {
-		Connection con = null;
+	public void getRecipes(HttpServletRequest request) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "select * from (select * from RecipeBasicCourse order by DBMS_RANDOM.RANDOM) where rownum < 6";		
 		
 		try {
-			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
@@ -91,20 +112,18 @@ public class HomeDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			DBManager.close(con, pstmt, rs);
+			DBManager.getDbm().close(null, pstmt, null);
 		}
 		
 	}
 
-	public static void getGroups(HttpServletRequest request) {
-		Connection con = null;
+	public void getGroups(HttpServletRequest request) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "select * from (select rownum as num, a.* from (select * from group_purchase where group_purchase.group_area='서울' order by group_date desc)a) where num between 1 and 5";		
 		
 		//원래는 지역 가지고 와야함
 		try {
-			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
@@ -131,7 +150,7 @@ public class HomeDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			DBManager.close(con, pstmt, rs);
+			DBManager.getDbm().close(null, pstmt, null);
 		}
 		
 	}

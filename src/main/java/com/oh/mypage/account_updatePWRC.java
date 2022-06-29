@@ -28,8 +28,8 @@ public class account_updatePWRC extends HttpServlet {
 	
 		
 		
-		UserDAO.loginCheck(request);
-		UserDAO.updatePW(request);
+		UserDAO.getMkdao().loginCheck(request);
+		UserDAO.getMkdao().updatePW(request);
 		
 
 		request.setAttribute("contentPage", "myPage/account_updatePW.jsp");

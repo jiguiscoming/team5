@@ -15,7 +15,7 @@ public class account_mypostC extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		UserDAO.loginCheck(request);
+		UserDAO.getMkdao().loginCheck(request);
 
 		request.setAttribute("contentPage", "myPage/account_mypost.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);

@@ -16,9 +16,9 @@ public class account_secessionC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		
-	//Å»ÅðÇÏ´Â ÆäÀÌÁö·Î °¡±â
+	//Å»ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		
-		UserDAO.loginCheck(request);
+		UserDAO.getMkdao().loginCheck(request);
 	
 	
 		request.setAttribute("contentPage", "myPage/secession.jsp");

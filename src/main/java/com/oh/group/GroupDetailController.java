@@ -14,13 +14,13 @@ public class GroupDetailController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		//조회수 up
-		GroupDAO.hitsUp(request);
+		GroupDAO.getMkdao().hitsUp(request);
 		// 댓글 다 가져오기
-		GroupDAO.getComments(request);
-		GroupDAO.getCommentsTotal(request);
+		GroupDAO.getMkdao().getComments(request);
+		GroupDAO.getMkdao().getCommentsTotal(request);
 		// 게시글 하나 가져오기
-		GroupDAO.getGroup(request);
-		UserDAO.loginCheck(request);
+		GroupDAO.getMkdao().getGroup(request);
+		UserDAO.getMkdao().loginCheck(request);
 		request.setAttribute("contentPage", "group/group_detail.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	
@@ -29,12 +29,12 @@ public class GroupDetailController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		// 조회수 up
-		GroupDAO.hitsUp(request);
+		GroupDAO.getMkdao().hitsUp(request);
 		// 댓글
-		GroupDAO.getComments(request);
-		GroupDAO.getCommentsTotal(request);
+		GroupDAO.getMkdao().getComments(request);
+		GroupDAO.getMkdao().getCommentsTotal(request);
 		//게시글 하나 가져오기
-		GroupDAO.getGroup(request);
+		GroupDAO.getMkdao().getGroup(request);
 		request.setAttribute("loginPage", "account/loginBtn.jsp");
 		request.setAttribute("contentPage", "group/group_detail.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);

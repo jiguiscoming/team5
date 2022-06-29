@@ -15,10 +15,10 @@ public class GroupMessageController extends HttpServlet {
 		// db에 메세지 내용 넣기
 		GroupDAO.sendMessage(request);
 		// 댓글 및 게시글 가져오기		
-		GroupDAO.getComments(request);
-		GroupDAO.getCommentsTotal(request);
-		GroupDAO.getGroup(request);
-		UserDAO.loginCheck(request);
+		GroupDAO.getMkdao().getComments(request);
+		GroupDAO.getMkdao().getCommentsTotal(request);
+		GroupDAO.getMkdao().getGroup(request);
+		UserDAO.getMkdao().loginCheck(request);
 		request.setAttribute("contentPage", "group/group_detail.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 

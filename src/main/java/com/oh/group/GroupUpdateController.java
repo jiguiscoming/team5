@@ -17,7 +17,7 @@ public class GroupUpdateController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 비번 확인
 		request.setAttribute("contentPage", "group/group_pwOK.jsp");
-		UserDAO.loginCheck(request);
+		UserDAO.getMkdao().loginCheck(request);
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
@@ -26,21 +26,21 @@ public class GroupUpdateController extends HttpServlet {
 		// 비번 체크 후
 		if(request.getParameter("pwCheck") != null) {
 			// 게시글 내용 가져오기
-			GroupDAO.getGroup(request);
+			GroupDAO.getMkdao().getGroup(request);
 			// 게시글 수정 페이지 이동
 			request.setAttribute("contentPage", "group/group_update.jsp");
 		} 
 			// 등록 후
 			else {
 				// 등록하기
-				GroupDAO.groupUpdate(request);
-				GroupDAO.groupPaging(request, 1);
+				GroupDAO.getMkdao().groupUpdate(request);
+				GroupDAO.getMkdao().groupPaging(request, 1);
 				// 페이지 이동버튼
-				GroupDAO.groupPageMove(request,(String)request.getAttribute("sql"),1);
+				GroupDAO.getMkdao().groupPageMove(request,(String)request.getAttribute("sql"),1);
 				request.setAttribute("pageNum", 1);
 				request.setAttribute("contentPage", "group/group_purchase.jsp");
 			}
-		UserDAO.loginCheck(request);
+		UserDAO.getMkdao().loginCheck(request);
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	
 	}

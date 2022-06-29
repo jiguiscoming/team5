@@ -28,8 +28,8 @@ public class Mk_MenuInsertC extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		MealkitDAO.viewmealkit(request);
-		MealkitDAO.regmealkit(request);
+		MealkitDAO.getMkdao().viewmealkit(request);
+		MealkitDAO.getMkdao().regmealkit(request);
 		request.getRequestDispatcher("mealKit/mk_M.jsp").forward(request, response);
 		
 		

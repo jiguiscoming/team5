@@ -12,7 +12,7 @@ public class find_pwCR extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		
-		UserDAO.findPW(request);
+		UserDAO.getMkdao().findPW(request);
 		
 		
 		request.setAttribute("loginPage", "account/loginBtn.jsp");
