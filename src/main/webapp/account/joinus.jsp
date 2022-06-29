@@ -4,16 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script type="text/javascript" src="agree.js">
-	
-</script>
-<script type="text/javascript" src="ACCheck.js">
-	
-</script>
-<script type="text/javascript" src="validCheck.js">
-	
-</script>
-<script type="text/javascript" src="jQuery.js"></script>
+
 
 <script type="text/javascript">
 	$(function() {
@@ -91,10 +82,22 @@ $(function() {
 
 		<table>
 
+
+
+
 			<tr>
 				<td colspan="2">회원가입</td>
 			</tr>
 
+	
+			<tr>
+				<td><input type="hidden" name="join_agree1" value="${param.agree1 }">
+				</td><td>
+					<input type="hidden" name="join_agree2" value="${param.agree2 }"></td><td>
+					<input type="hidden"  name="join_agree3" value="${param.agree3 }"></td><td>
+					<input  type="hidden" name="join_agree4" value="${param.agree4 }">
+				</td>
+			</tr>
 
 			<tr>
 				<td>이름!~</td>
@@ -111,7 +114,7 @@ $(function() {
 			<tr>
 				<td>나이</td>
 				<td><input name="join_age" type="number"
-					placeholder="나이를 입력하세요""></td>
+					placeholder="나이를 입력하세요!!""></td>
 			</tr>
 
 
@@ -211,13 +214,6 @@ $(function() {
 				<td></td>
 			</tr>
 
-			<tr>
-				<td><input  name="agree1" value="${agree1 }">
-					<input type="hidden" name="agree2" value="${param.agree2 }">
-					<input type="hidden" name="agree3" value="${param.agree3 }">
-					<input type="hidden" name="agree4" value="${param.agree4 }">
-				</td>
-			</tr>
 
 
 
