@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +10,7 @@
 <body>
 <table id="homeTbl" border="1">
 	<tr>
-		<td>
+		<td >
 			<div class="home_img1">
 				<img src="img/omurice.jpg">
 				<span class="home_img_txt1">오늘 저녁 뭐 먹을지 고민이신가요?</span>
@@ -26,30 +27,40 @@
 		</td>
 	</tr>
 	<tr>
-		<td>
-			<h2>밀키트 best5</h2>
-			<div class="home_mealkit_best"></div>
-			<div class="home_mealkit_best"></div>
-			<div class="home_mealkit_best"></div>
-			<div class="home_mealkit_best"></div>
+		<td class="homeTd">
+			<h2>새로 들어온 밀키트</h2>
+			<c:forEach var="mealkit" items="${mealkits}">
+			<div class="home_mealkit">
+			<a href="#">
+				<div class="home_mealkit_img"><img src="${mealkit.mealkit_img }"></div>
+				<div class="home_mealkit_title">${mealkit.mealkit_name}</div>
+				<div>${mealkit_price }</div>
+			</a>	
+			</div>
+			</c:forEach>
 		</td>
 	</tr>
 	<tr>
-		<td>
-			<h2>추천 레시피</h2>
-			<div class="home_recommend"></div>
-			<div class="home_recommend"></div>
-			<div class="home_recommend"></div>
-			<div class="home_recommend"></div>
-		</td>
-	</tr>
-	<tr>
-		<td>
+		<td class="homeTd">
 			<h2>오늘의 레시피</h2>
 			<div class="home_recipe"></div>
 			<div class="home_recipe"></div>
 			<div class="home_recipe"></div>
 			<div class="home_recipe"></div>
+		</td>
+	</tr>
+	<tr>
+		<td class="homeTd">
+			<h2>우리 동네 공구메이트</h2>
+			<c:forEach var="group" items="${groups }">
+			<div class="home_group">
+			<a href="GroupDetailController?no=${group.no}">
+				<div class="home_group_img"><img src="group_imgFolder/${group.img }"></div>
+				<div class="home_group_title">[${group.area }]${group.title}</div>
+				<div>${group.nickname }</div>
+			</a>	
+			</div>
+			</c:forEach>
 		</td>
 	</tr>
 </table>

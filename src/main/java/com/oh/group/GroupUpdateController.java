@@ -14,31 +14,33 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 public class GroupUpdateController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// ºñ¹ø È®ÀÎ ÆäÀÌÁö ÀÌµ¿
+		// ë¹„ë²ˆ í™•ì¸
 		request.setAttribute("contentPage", "group/group_pwOK.jsp");
+//		UserDAO.loginCheck(request);
 		request.setAttribute("loginPage", "account/loginBtn.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// ÆĞ½º¿öµå Ã¼Å© ÈÄ ¼öÁ¤ ÆäÀÌÁö °¡±â
+		// ë¹„ë²ˆ ì²´í¬ í›„
 		if(request.getParameter("pwCheck") != null) {
-			// °Ô½Ã±Û Á¤º¸ °¡Á®¿À±â
+			// ê²Œì‹œê¸€ ë‚´ìš© ê°€ì ¸ì˜¤ê¸°
 			GroupDAO.getGroup(request);
-			// ¼öÁ¤ ÆäÀÌÁö °¡±â
+			// ê²Œì‹œê¸€ ìˆ˜ì • í˜ì´ì§€ ì´ë™
 			request.setAttribute("contentPage", "group/group_update.jsp");
 		} 
-			// ¼öÁ¤ÆäÀÌÁö¿¡¼­ ¼öÁ¤¹öÆ° ´©¸¥ ÈÄ ÀÛµ¿
+			// ë“±ë¡ í›„
 			else {
-				// ¼öÁ¤ÇÏ±â
+				// ë“±ë¡í•˜ê¸°
 				GroupDAO.groupUpdate(request);
 				GroupDAO.groupPaging(request, 1);
-				// ÆäÀÌÁö ÀÌµ¿¹öÆ° ¸¸µé±â (aÅÂ±×)
+				// í˜ì´ì§€ ì´ë™ë²„íŠ¼
 				GroupDAO.groupPageMove(request,(String)request.getAttribute("sql"),1);
 				request.setAttribute("pageNum", 1);
 				request.setAttribute("contentPage", "group/group_purchase.jsp");
 			}
+//		UserDAO.loginCheck(request);
 		request.setAttribute("loginPage", "account/loginBtn.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	

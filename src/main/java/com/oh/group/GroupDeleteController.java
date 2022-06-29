@@ -12,13 +12,14 @@ public class GroupDeleteController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		//»èÁ¦ÇÏ±â
+		//ê²Œì‹œê¸€ ì‚­ì œ
 		GroupDAO.groupDelete(request);
-		// °ø±¸ ¸Ş´º || Àü±¹ : °Ô½Ã±Û ´Ù ¹Ş±â
+		// í˜ì´ì§•
 		GroupDAO.groupPaging(request,1);
-		// ÆäÀÌÁö ÀÌµ¿¹öÆ° ¸¸µé±â (aÅÂ±×)
 		request.setAttribute("pageNum", 1);
+		//í˜ì´ì§€ ë²„íŠ¼
 		GroupDAO.groupPageMove(request,(String)request.getAttribute("sql"),1);
+//		UserDAO.loginCheck(request);
 		request.setAttribute("loginPage", "account/loginBtn.jsp");
 		request.setAttribute("contentPage", "group/group_purchase.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);

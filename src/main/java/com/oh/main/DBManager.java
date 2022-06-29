@@ -6,18 +6,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-// DB°ü·Ã ÀÛ¾÷À» ¸Å¹ø ¿¬°áÄÚµå¸¦ ¾´ ÀÌÈÄ Á÷¾÷Ã¬¿ë 
-// ±×°Å AOP ÇÏÀÚ
+//DBê´€ë ¨ ì‘ì—…ì„ ë§¤ë²ˆ ì—°ê²°ì½”ë“œë¥¼ ì“´ ì´í›„ ì§ì—…ì±™ìš© 
+//ê·¸ê±° AOP í•˜ì
 public class DBManager {
 
-	// db ÀÛ¾÷½Ã¿£ ¾îÂ·µç ¿¬°á ÇØ¾ßµÊ
+	// db ì‘ì—…ì‹œì—” ì–´ì¨Œë“  ì—°ê²° í•´ì•¼ë¨
 
 	public static Connection connect() throws SQLException {
-		// »ó¿µ
-		String url = "jdbc:oracle:thin:@db202204301707_medium?TNS_ADMIN=C:/Users/soldesk/Downloads/Wallet_DB202204301707";
+		// ìƒì˜
+//		String url = "jdbc:oracle:thin:@db202204301707_medium?TNS_ADMIN=C:/Users/soldesk/Downloads/Wallet_DB202204301707";
 		
-		// Áö±¸
-//		String url = "jdbc:oracle:thin:@db202204301707_medium?TNS_ADMIN=C:/JS/Wallet_DB202204301707";
+		// ì§€êµ¬
+		String url = "jdbc:oracle:thin:@db202204301707_medium?TNS_ADMIN=C:/JS/Wallet_DB202204301707";
 
 
 		return DriverManager.getConnection(url, "SYP", "YJ802soldesk");
@@ -28,7 +28,7 @@ public class DBManager {
 		
 	}
 
-	// ´İÀ»°Ô ¸¹Àºµ¥ ÇÑ¹ø¿¡ ´İ±â
+	// ë‹«ì„ê²Œ ë§ì€ë° í•œë²ˆì— ë‹«ê¸°
 
 	public static void close(Connection con, PreparedStatement pstmt, ResultSet rs) {
 		try {

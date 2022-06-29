@@ -12,26 +12,27 @@ public class GroupController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		// ÇöÀç ÆäÀÌÁö
+		// í˜„ì¬ í˜ì´ì§€ ê°€ì ¸ì˜¤ê¸°
 		int pageNum = Integer.parseInt(request.getParameter("pageNum"));
 		request.setAttribute("pageNum", pageNum);
 		
-		// °ø±¸ ¸Ş´º || Àü±¹ : °Ô½Ã±Û ´Ù ¹Ş±â
-		if (request.getParameter("region").equals("Àü±¹") || request.getParameter("region").equals("")) {
-			// ÆäÀÌÂ¡ÇÑ °Ô½Ã±Û Á¤º¸ ¹Ş±â
+		// ì „êµ­
+		if (request.getParameter("region").equals("ì „êµ­") || request.getParameter("region").equals("")) {
+			// ì „êµ­ í˜ì´ì§• ê²Œì‹œê¸€
 			GroupDAO.groupPaging(request,pageNum);
 		}else {
 			if(request.getParameter("search").equals("")) {
-			// Áö¿ª : ÆÄ¶ó¹ÌÅÍ·Î Áö¿ª °ª ³Ñ°Ü¼­ °Ô½Ã±Û °ñ¶ó ¹Ş±â (select where) + ÆäÀÌÂ¡ Àû¿ë
+			// ì§€ì—­
 			GroupDAO.getRegionGroups(request);
 			}
 		}
 		if(!request.getParameter("search").equals("")) {
-			// °Ë»ö : ÆÄ¶ó¹ÌÅÍ·Î °Ë»ö °ª ³Ñ°Ü¼­ °Ô½Ã±Û °ñ¶ó¹Ş±â +  ÆäÀÌÂ¡
+			// ê²€ìƒ‰
 			GroupDAO.getGroupSearch(request);
 		} 
-		// ÆäÀÌÁö ÀÌµ¿¹öÆ° ¸¸µé±â (aÅÂ±×)
+		// ë°‘ì— í˜ì´ì§€ ì´ë™ë²„íŠ¼
 		GroupDAO.groupPageMove(request,(String)request.getAttribute("sql"),pageNum);
+//		UserDAO.loginCheck(request);
 		request.setAttribute("loginPage", "account/loginBtn.jsp");
 		request.setAttribute("contentPage", "group/group_purchase.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);

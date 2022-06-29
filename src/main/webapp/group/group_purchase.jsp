@@ -62,10 +62,12 @@
 		<td class="group_listTd">
 			<div class="group_list_date">작성일 ${group.date }</div>
 			<div class="group_list_img_box">
+			<a href="GroupDetailController?no=${group.no}">
 				<img src="group_imgFolder/${group.img}">
 			<div class="group_list_region">
 				${group.area }
 			</div>
+			</a>
 			</div>
 			<div class="group_list_count">
 				조회수 ${group.hits }

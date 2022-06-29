@@ -12,13 +12,14 @@ public class GroupCommentController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		//´ñ±ÛÀÌ db¿¡ ÀúÀå
+		//ëŒ“ê¸€ ë“±ë¡
 		GroupDAO.commentReg(request);
-		//´ñ±Û ºÒ·¯¿À±â
+		//ëŒ“ê¸€ë“¤ ì–»ê¸°
 		GroupDAO.getComments(request);
 		GroupDAO.getCommentsTotal(request);
-		// µğÅ×ÀÏ Á¤º¸ µé°í ¿À±â(°Ô½Ã±Û ÇÏ³ª)
+		// ê²Œì‹œê¸€ ì–»ê¸°
 		GroupDAO.getGroup(request);
+//		UserDAO.loginCheck(request);
 		request.setAttribute("loginPage", "account/loginBtn.jsp");
 		request.setAttribute("contentPage", "group/group_detail.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
