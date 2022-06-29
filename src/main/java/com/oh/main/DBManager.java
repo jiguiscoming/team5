@@ -21,14 +21,15 @@ public class DBManager {
 
 	public Connection connect() {
 		// 상영
-		String url = "jdbc:oracle:thin:@db202204301707_medium?TNS_ADMIN=C:/Users/soldesk/Downloads/Wallet_DB202204301707";
+		//String url = "jdbc:oracle:thin:@db202204301707_medium?TNS_ADMIN=C:/Users/soldesk/Downloads/Wallet_DB202204301707";
 		
 		// 지구
-//		String url = "jdbc:oracle:thin:@db202204301707_medium?TNS_ADMIN=C:/JS/Wallet_DB202204301707";
+	String url = "jdbc:oracle:thin:@db202204301707_medium?TNS_ADMIN=C:/JS/Wallet_DB202204301707";
 
 		// 정연 
 		//String url = "jdbc:oracle:thin:@db202204301707_medium?TNS_ADMIN=C:/yoon/Wallet_DB202204301707"; //�������
 		
+
 		try {
 			return DriverManager.getConnection(url, "SYP", "YJ802soldesk");
 		} catch (SQLException e) {
@@ -40,24 +41,11 @@ public class DBManager {
 		return null;
 		}
 
-	// ������ ������ �ѹ��� �ݱ�
-
-	public void close(Connection con, PreparedStatement pstmt, ResultSet rs) {
-		try {
-			
-			if (rs != null) {	
-				rs.close();
-			}
-			
-			pstmt.close();
-			
-			if(con!=null) {
-				con.close();
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
+		//정연
+		// return DriverManager.getConnection(url, "DB_JY", "LMJSoldesk802");
+		 
+	
+	
+		
 	}
 
-}
