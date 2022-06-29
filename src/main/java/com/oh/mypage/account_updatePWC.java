@@ -29,10 +29,10 @@ public class account_updatePWC extends HttpServlet {
 		
 		
 		UserDAO.loginCheck(request);
-		UserDAO.updatePW(request);
+		UserDAO.confirmPW(request);
 		
 
-		request.setAttribute("contentPage", "myPage/account_updatePW.jsp");
+
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	
 	
