@@ -11,14 +11,16 @@ import com.oh.account.UserDAO;
 import com.oh.group.GroupDAO;
 
 
-@WebServlet("/account_messageC")
-public class account_messageC extends HttpServlet {
+@WebServlet("/account_messageDetailC")
+public class account_messageDetailC extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		UserDAO.getMkdao().loginCheck(request);
-		GroupDAO.getMkdao().getMessages(request);
-		request.setAttribute("contentPage", "myPage/account_message.jsp");
+		GroupDAO.getMkdao().getMessage(request);
+		GroupDAO.getMkdao().getNick(request);
+		
+		request.setAttribute("contentPage", "myPage/account_message_detail.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	
 	
