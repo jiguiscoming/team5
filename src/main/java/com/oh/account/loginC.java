@@ -14,7 +14,7 @@ public class loginC extends HttpServlet {
 
 		
 		UserDAO.logout(request);
-		UserDAO.loginCheck(request);
+		UserDAO.getMkdao().loginCheck(request);
 		
 		// �α׾ƿ��� ���
 		
@@ -31,7 +31,7 @@ public class loginC extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		UserDAO.login(request);
+		UserDAO.getMkdao().login(request);
 	
 		// if �� ó�� �������!
 	

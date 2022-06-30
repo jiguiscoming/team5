@@ -16,7 +16,7 @@ public class Mk_MenuInfo_RegQnAC extends HttpServlet {
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
-			MealkitDAO.RegQnAMealkit(request);
+		MealkitDAO.getMkdao().RegQnAMealkit(request);
 	
 	}
 

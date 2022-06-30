@@ -9,12 +9,7 @@
 <body>
 
 
-<form action="account_updatePWRC" method="post" name="pwform"
-		onsubmit="return call()" enctype="multipart/form-data">
-
-
-
-
+<form action="account_updatePWRC" method="post" name="pwform" onsubmit="return call()">
 <table>
 
 <tr>
@@ -46,6 +41,7 @@
 
 
 </table>
+</form>
 
 
 

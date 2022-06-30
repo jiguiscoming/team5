@@ -13,6 +13,7 @@ public class RecipeCookingProcessC extends HttpServlet {
 	
 		RecipeDAO.getRecipe(request);
 		RecipeDAO.getingredients(request);
+		RecipeDAO.getrecipeprocessinformation(request);
 		
 		request.setAttribute("loginPage", "account/loginBtn_recipe.jsp");
 		request.setAttribute("contentPage", "recipe/recipe_jsp/recipe_cooking_process.jsp");

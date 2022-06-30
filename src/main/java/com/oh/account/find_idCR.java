@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 public class find_idCR extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		UserDAO.findID(request);
+		UserDAO.getMkdao().findID(request);
 		
 		
 		request.setAttribute("loginPage", "account/loginBtn.jsp");

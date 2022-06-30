@@ -25,8 +25,8 @@ public class Mk_MenuInfo_RegReviewC extends HttpServlet {
 		 * request.getRequestDispatcher("mealKit/mk_M.jsp").forward(request, response);
 		 */
 		
-		MealkitDAO.regReviewMealkit(request);
-		MealkitDAO.viewReviewMealkit(request);	
+		MealkitDAO.getMkdao().regReviewMealkit(request);
+		MealkitDAO.getMkdao().viewReviewMealkit(request);	
 		request.getRequestDispatcher("mealKit/mk_test.jsp").forward(request, response);
 	}
 

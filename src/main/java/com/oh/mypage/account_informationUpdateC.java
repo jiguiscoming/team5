@@ -15,7 +15,7 @@ public class account_informationUpdateC extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		UserDAO.loginCheck(request);
+		UserDAO.getMkdao().loginCheck(request);
 		UserDAO.information(request);
 		
 		

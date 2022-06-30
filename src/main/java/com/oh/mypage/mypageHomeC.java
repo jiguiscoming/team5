@@ -13,7 +13,7 @@ import com.oh.account.UserDAO;
 public class mypageHomeC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		UserDAO.loginCheck(request);
+		UserDAO.getMkdao().loginCheck(request);
 		
 		
 		request.setAttribute("contentPage", "myPage/myPageHome.jsp");

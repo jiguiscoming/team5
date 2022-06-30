@@ -62,7 +62,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td class="index_menu"><div class="index_menu_box"><a href="#">레시피 공유</a></div></td>
+		<td class="index_menu"><div class="index_menu_box"><a href="FoodRecipeC">레시피 공유</a></div></td>
 		<td class="index_menu"><div class="index_menu_box"><a href="GroupController?region=전국&pageNum=1&search=">공구</a></div></td>
 		<td class="index_menu"><div class="index_menu_box"><a href="Mk_MenuC">밀키트 몰</a></div></td>
 		<td class="index_menu"><div class="index_menu_box"><a href="#">오늘 뭐 먹지?</a></div></td>

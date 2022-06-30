@@ -52,7 +52,7 @@ drop sequence RecipeIngredients_seq;
 
 select RECIPE_IRDNT_NM, RECIPE_IRDNT_CPCTY
 from RecipeBasicCourse, RecipeIngredients
-where RECIPE_BASIC_NO(+) = RECIPE_IN_ID
+where RECIPE_BASIC_ID = RECIPE_IN_ID
 and RECIPE_BASIC_NO=1
 
 
@@ -83,8 +83,7 @@ drop sequence Recipeprocessinformation_seq;
  */
 select RECIPE_COOKING_DC, RECIPE_STRE_STEP_IMAGE_URL
 from RecipeBasicCourse, Recipeprocessinformation
-where RECIPE_BASIC_NO=1 and (RECIPE_BASIC_ID(+) = RECIPE_PRO_ID);
-
-
+where RECIPE_BASIC_NO = RECIPE_PRO_ID
+and RECIPE_BASIC_NO=1;
 
 

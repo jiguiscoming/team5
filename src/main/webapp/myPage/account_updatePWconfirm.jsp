@@ -8,8 +8,7 @@
 </head>
 <body>
 
-<form action="account_updatePWconfirmC" method="post" name="pwform"
-		onsubmit="return call()" enctype="multipart/form-data">
+<form action="account_updatePWconfirmC" method="post" >
 
 
 
