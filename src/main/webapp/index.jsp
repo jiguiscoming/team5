@@ -17,6 +17,9 @@
 <link rel="stylesheet" href="group_css/group_reg.css">
 <link rel="stylesheet" href="group_css/group_update.css">
 <link rel="stylesheet" href="group_css/group_detail.css">
+<link rel="stylesheet" href="mypage_css/mypage_home.css">
+<link rel="stylesheet" href="mypage_css/account_information.css">
+<link rel="stylesheet" href="mypage_css/account_updatePWR.css">
 <script type="text/javascript" src="js/group.js"></script>
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/agree.js"> </script>

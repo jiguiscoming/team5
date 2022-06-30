@@ -495,7 +495,6 @@ public class UserDAO {
 			request.setAttribute("r", "비밀번호가 틀렸습니다!");
 			request.setAttribute("contentPage", "myPage/account_updatePWR.jsp");
 
-
 		}
 
 	}
@@ -563,9 +562,7 @@ public class UserDAO {
 
 	}
 
-	public static void informationUpdate(HttpServletRequest request)  {
-
-		
+	public static void informationUpdate(HttpServletRequest request) {
 
 		HttpSession hs = request.getSession();
 		accountB acc = (accountB) hs.getAttribute("accountInfo");
@@ -576,134 +573,58 @@ public class UserDAO {
 
 		String U_name = request.getParameter("U_name");
 		String U_nick = request.getParameter("U_nick");
-		String U_age = request.getParameter("U_age");
-		String U_gender = request.getParameter("U_gender");
-		String U_birth = request.getParameter("U_birth");
+		// String U_gender = request.getParameter("U_gender");
 		String U_email = request.getParameter("U_email");
 		String U_phone = request.getParameter("U_phone");
-	
-		System.out.println(U_name);
-		System.out.println(U_nick);
 
 		try {
 
 			String A_id = acc.getAccount_id();
 			String A_name = acc.getAccount_name();
 			String A_nick = acc.getAccount_nick();
-			String A_age = acc.getAccount_age();
-			String A_gender = acc.getAccount_gender();
-			String A_birth = acc.getAccount_birth();
+			// String A_gender = acc.getAccount_gender();
 			String A_email = acc.getAccount_email();
 			String A_phone = acc.getAccount_phone();
-		
-			
-			
-			
-			if(rs.next()) {
-				
-			if (A_name != U_name) {
-				String sql = "update oh_account set account_name = ? where account_id = ?";
+
+			System.out.println(U_name);
+			System.out.println(U_nick);
+			// System.out.println(U_gender);
+			System.out.println(U_email);
+			System.out.println(U_phone);
+			System.out.println(U_nick);
+			System.out.println(A_id);
+
+			if (rs.next()) {
 
 				con = DBManager.connect();
-				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, U_name);
-				pstmt.setString(2, A_id);
 
-				rs = pstmt.executeQuery();
-					}
-				
-			if (A_nick != U_nick) {
-				String sql = "update oh_account set account_nick = ? where account_id = ?";
-				
-				con = DBManager.connect();
-				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, U_nick);
-				pstmt.setString(2, A_id);
-				
-				rs = pstmt.executeQuery();
-			}
-			
-			
-			
-		
-			
-			
-			
-			
-			if (A_age != U_age) {
-				String sql = "update oh_account set account_age = ? where account_id = ?";
-				
-				con = DBManager.connect();
-				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, U_age);
-				pstmt.setString(2, A_id);
-				
-				rs = pstmt.executeQuery();
-			}
-			
-		
-			
-			
-			if (A_gender != U_gender) {
-				String sql = "update oh_account set account_gender = ? where account_id = ?";
-				
-				con = DBManager.connect();
-				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, U_gender);
-				pstmt.setString(2, A_id);
-				
-				rs = pstmt.executeQuery();
-			}
-			
-			if (A_birth != U_birth) {
-				String sql = "update oh_account set account_birth = ? where account_id = ?";
-				
-				con = DBManager.connect();
-				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, U_birth);
-				pstmt.setString(2, A_id);
-				
-				rs = pstmt.executeQuery();
-			}
-		
-			
-			
-			if (A_email != U_email) {
-				String sql = "update oh_account set account_email = ? where account_id = ?";
-				
-				con = DBManager.connect();
-				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, U_email);
-				pstmt.setString(2, A_id);
-				
-				rs = pstmt.executeQuery();
-			}
-			
-			if (A_phone != U_phone) {
-				String sql = "update oh_account set account_phone = ? where account_id = ?";
-				
-				con = DBManager.connect();
-				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, U_phone);
-				pstmt.setString(2, A_id);
-				
-				rs = pstmt.executeQuery();
-			}
-		
-				
-				
-				
-				if (pstmt.executeUpdate() == 1) {
+				if (A_name != U_name || A_nick != U_nick ||  A_email != U_email|| A_phone != U_phone) {
+					String sql = "update oh_account set account_name = ?, account_nick = ?, account_email = ?, account_phone = ? where account_id = ?";
 
-					request.setAttribute("r", "업데이트 완료!");
-				} else {
-					request.setAttribute("r", "업데이트 실패..");
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, U_name);
+					pstmt.setString(2, U_nick);
+					pstmt.setString(3, U_email);
+					pstmt.setString(4, U_phone);
+					pstmt.setString(5, A_id);
+					
+					rs = pstmt.executeQuery();
+					
+					request.setAttribute("r", "업데이트 성공!");
+
+					
+
+				}
+
+			
 				
+			 else {
+					request.setAttribute("r", "업데이트 실패.. 관리자에게 문의해 주세요");
+
+				}
 
 			}
 
-			}
-			
 		}
 
 		catch (
@@ -714,18 +635,85 @@ public class UserDAO {
 			DBManager.close(con, pstmt, rs);
 		}
 
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		/*
+		 * if(rs.next()) {
+		 * 
+		 * con = DBManager.connect();
+		 * 
+		 * if (A_name != U_name) { String sql =
+		 * "update oh_account set account_name = ? where account_id = ?";
+		 * 
+		 * 
+		 * pstmt = con.prepareStatement(sql); pstmt.setString(1, U_name);
+		 * pstmt.setString(2, A_id); rs = pstmt.executeQuery();
+		 * 
+		 * 
+		 * }
+		 * 
+		 * if (A_nick != U_nick) { String sql =
+		 * "update oh_account set account_nick = ? where account_id = ?";
+		 * 
+		 * pstmt = con.prepareStatement(sql); pstmt.setString(1, U_nick);
+		 * pstmt.setString(2, A_id); rs = pstmt.executeQuery();
+		 * 
+		 * 
+		 * }
+		 * 
+		 * 
+		 * 
+		 * if (A_age != U_age) { String sql =
+		 * "update oh_account set account_age = ? where account_id = ?";
+		 * 
+		 * pstmt = con.prepareStatement(sql); pstmt.setString(1, U_age);
+		 * pstmt.setString(2, A_id); rs = pstmt.executeQuery();
+		 * 
+		 * 
+		 * }
+		 * 
+		 * 
+		 * 
+		 * 
+		 * if (A_gender != U_gender) { String sql =
+		 * "update oh_account set account_gender = ? where account_id = ?";
+		 * 
+		 * con = DBManager.connect(); pstmt = con.prepareStatement(sql);
+		 * pstmt.setString(1, U_gender); pstmt.setString(2, A_id);
+		 * 
+		 * }
+		 * 
+		 * 
+		 * if (A_birth != U_birth) { String sql =
+		 * "update oh_account set account_birth = ? where account_id = ?";
+		 * 
+		 * pstmt = con.prepareStatement(sql); pstmt.setString(1, U_birth);
+		 * pstmt.setString(2, A_id); rs = pstmt.executeQuery();
+		 * 
+		 * }
+		 * 
+		 * 
+		 * 
+		 * if (A_email != U_email) { String sql =
+		 * "update oh_account set account_email = ? where account_id = ?";
+		 * 
+		 * pstmt = con.prepareStatement(sql); pstmt.setString(1, U_email);
+		 * pstmt.setString(2, A_id); rs = pstmt.executeQuery();
+		 * 
+		 * 
+		 * }
+		 * 
+		 * if (A_phone != U_phone) { String sql =
+		 * "update oh_account set account_phone = ? where account_id = ?";
+		 * 
+		 * pstmt = con.prepareStatement(sql); pstmt.setString(1, U_phone);
+		 * pstmt.setString(2, A_id); rs = pstmt.executeQuery();
+		 * 
+		 * 
+		 * }
+		 * 
+		 */
 
+		// 혹시 몰라서..
+		
 	}
 
 }

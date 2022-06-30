@@ -11,14 +11,13 @@
 
 정보 수정~
 
-<form action="account_informationC" method="post" name="account"
-		onsubmit="return call()" enctype="multipart/form-data">
+<form action="account_informationUpdateC" method="post">
 
 <table>
 
 
 <tr>
-<td> ${sessionScope.accountInfo.account_name }</td>
+<td> 이름</td>
 <td> <input  name="U_name"  value="${sessionScope.accountInfo.account_name }"></td>
 </tr>
 <tr>
@@ -27,24 +26,7 @@
 </tr>
 
 
-<tr>
-<td>나이</td>
-<td><input  name="U_age"  value="${sessionScope.accountInfo.account_age }"></td>
-</tr>
 
-
-<tr>
-<td>성별</td>
-<td><input  name="U_gender"  value="${sessionScope.accountInfo.account_gender }"></td>
-<td></td>
-</tr>
-
-
-<tr>
-<td>생년월일</td>
-<td><input  name="U_birth"  value="${sessionScope.accountInfo.account_birth }"></td>
-<td></td>
-</tr>
 
 
 
@@ -56,7 +38,7 @@
 
 
 <tr>
-<td>휴대폰</td>
+<td>휴대폰!</td>
 <td><input  name="U_phone"  value="${sessionScope.accountInfo.account_phone }"></td>
 <td></td>
 </tr>
@@ -68,7 +50,7 @@
 
 <tr>
 <td></td>
-<td><button  onclick="location.href='account_informationUpdateC'">수정하기!!!!</button>
+<td><button  onclick="location.href='account_informationUpdateC'">수정하기!!1!!</button>
 
 </tr>
 

@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//src/main/java/com/oh/account=UTF-8
 encoding//src/main/java/com/oh/account/UserDAO.java=UTF-8
 encoding//src/main/java/com/oh/group/group.sql=UTF-8
 encoding/<project>=UTF-8
