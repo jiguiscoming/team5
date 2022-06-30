@@ -22,8 +22,14 @@ public class Mk_MenuC extends HttpServlet {
 		 MealkitDAO.getMkdao().viewChnMealkit(request);
 		 MealkitDAO.getMkdao().viewSalMealkit(request);
 		 UserDAO.getMkdao().loginCheck(request);
-		 request.setAttribute("mealkitPage", "./mk_Menulist.jsp");
+
+		 
+		 request.setAttribute("mealkitPage","./mk_Menulist.jsp" );
+		 // ./ 현재폴더 경로  ../ 밖으로 나가는거
+		 
 		 request.setAttribute("contentPage", "mealKit/mk_M.jsp");
+		 
+
 		 request.getRequestDispatcher("index.jsp").forward(request, response);
 		 
 		 
