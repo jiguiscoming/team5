@@ -25,7 +25,9 @@ public class DBManager {
 		
 		// 지구
 //		String url = "jdbc:oracle:thin:@db202204301707_medium?TNS_ADMIN=C:/JS/Wallet_DB202204301707";
-
+		
+		// 선엽
+		String url = "jdbc:oracle:thin:@db202204301707_medium?TNS_ADMIN=C:/ksy/Wallet_DB202204301707";
 
 		// 정연 
 		String url = "jdbc:oracle:thin:@db202204301707_medium?TNS_ADMIN=C:/yoon/Wallet_DB202204301707"; //�������

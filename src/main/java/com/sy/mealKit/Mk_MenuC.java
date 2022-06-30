@@ -22,8 +22,8 @@ public class Mk_MenuC extends HttpServlet {
 		 MealkitDAO.getMkdao().viewChnMealkit(request);
 		 MealkitDAO.getMkdao().viewSalMealkit(request);
 		 UserDAO.getMkdao().loginCheck(request);
+		 request.setAttribute("mealkitPage", "./mk_Menulist.jsp");
 		 request.setAttribute("contentPage", "mealKit/mk_M.jsp");
-		 request.setAttribute("mealkitPage", "mealKit/mk_Menulist.jsp");
 		 request.getRequestDispatcher("index.jsp").forward(request, response);
 		 
 		 
