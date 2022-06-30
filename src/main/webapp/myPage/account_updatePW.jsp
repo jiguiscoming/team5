@@ -9,16 +9,11 @@
 <body>
 
 
-<form action="account_updatePWRC" method="post" name="pwform"
-		onsubmit="return call()" enctype="multipart/form-data">
-
-
-
-
+<form action="account_updatePWRC" method="post" name="pwform" onsubmit="return call()">
 <table>
 
 <tr>
-<td>변경할 비밀번호를 입력해 주세요.</td>
+<td>변경할 비밀번호를 입력해 주세요!</td>
 
 
 </tr>
@@ -46,10 +41,11 @@
 
 
 </table>
+</form>
 
 
 
-
+</form>
 
 
 

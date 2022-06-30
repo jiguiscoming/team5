@@ -16,3 +16,7 @@ select * from group_message;
 
 -- 정보 넣기
 insert into group_message values(group_message_seq.nextval, 'post writer','sender', 'title', 'txt', sysdate);
+
+DROP SEQUENCE group_message_seq;
+
+CREATE SEQUENCE group_message_seq MINVALUE 5;

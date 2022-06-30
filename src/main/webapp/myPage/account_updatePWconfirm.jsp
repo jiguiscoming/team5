@@ -8,8 +8,7 @@
 </head>
 <body>
 
-<form action="account_updatePWC" method="post" name="pwform"
-		onsubmit="return call()" enctype="multipart/form-data">
+<form action="account_updatePWconfirmC" method="post" >
 
 
 
@@ -17,7 +16,7 @@
 <table>
 
 <tr>
-<td>현재 비밀번호를 입력해 주세요.</td>
+<td>현재 비밀번호를 입력해 주세요!!!!</td>
 
 
 </tr>
@@ -35,7 +34,7 @@
 </table>
 
 
-
+</form>
 
 
 

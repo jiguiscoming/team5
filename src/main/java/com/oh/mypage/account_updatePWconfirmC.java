@@ -41,7 +41,7 @@ public class account_updatePWconfirmC extends HttpServlet {
 		UserDAO.getMkdao().confirmPW(request);
 		
 		
-		request.setAttribute("contentPage", "myPage/account_updatePWconfirm.jsp");
+		
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 		
 		

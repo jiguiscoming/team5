@@ -17,6 +17,9 @@
 <link rel="stylesheet" href="group_css/group_reg.css">
 <link rel="stylesheet" href="group_css/group_update.css">
 <link rel="stylesheet" href="group_css/group_detail.css">
+<link rel="stylesheet" href="mypage_css/mypage_home.css">
+<link rel="stylesheet" href="mypage_css/account_information.css">
+<link rel="stylesheet" href="mypage_css/account_updatePWR.css">
 <script type="text/javascript" src="js/group.js"></script>
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/agree.js"> </script>
@@ -59,7 +62,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td class="index_menu"><div class="index_menu_box"><a href="#">레시피 공유</a></div></td>
+		<td class="index_menu"><div class="index_menu_box"><a href="FoodRecipeC">레시피 공유</a></div></td>
 		<td class="index_menu"><div class="index_menu_box"><a href="GroupController?region=전국&pageNum=1&search=">공구</a></div></td>
 		<td class="index_menu"><div class="index_menu_box"><a href="Mk_MenuC">밀키트 몰</a></div></td>
 		<td class="index_menu"><div class="index_menu_box"><a href="#">오늘 뭐 먹지?</a></div></td>

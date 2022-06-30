@@ -51,11 +51,8 @@ public class UserDAO {
 		String join_profile = mr.getFilesystemName("join_profile");
 		System.out.println(join_profile);
 		request.setAttribute("join_profile", join_profile);
-		
 
 		System.out.println(join_profile);
-
-		
 
 		String join_name = mr.getParameter("join_name");
 		String join_nick = mr.getParameter("join_nick");
@@ -105,7 +102,9 @@ public class UserDAO {
 	public void createAccount(HttpServletRequest request) throws IOException {
 		// TODO Auto-generated method stub
 
+
 		PreparedStatement pstmt = null;	
+
 
 		String path = request.getSession().getServletContext().getRealPath("account/img");
 		System.out.println(path);
@@ -114,11 +113,10 @@ public class UserDAO {
 
 		String join_profile = mr.getParameter("join_profile");
 		System.out.println(join_profile);
-		//request.setAttribute("join_profile", join_profile);
-		
-		
+		// request.setAttribute("join_profile", join_profile);
+
 		try {
-		
+
 			request.setCharacterEncoding("utf-8");
 			String sql = "insert into oh_account values(?,?,?,?,?,?,'오',?,?,?,?,?,?,?,?,?,?,sysdate)";
 			pstmt = con.prepareStatement(sql);
@@ -129,25 +127,25 @@ public class UserDAO {
 			String join_pw = mr.getParameter("join_pw");
 			String join_gender = mr.getParameter("join_gender");
 			String join_birth = mr.getParameter("join_birth");
-		//	String join_addr = request.getParameter("join_addr");
+			// String join_addr = request.getParameter("join_addr");
 			String join_age = mr.getParameter("join_age");
 			String join_pwquestion = mr.getParameter("join_pwquestion");
 			String join_pwquestiona = mr.getParameter("join_pwquestiona");
 			String join_email = mr.getParameter("join_email");
-		//	String join_profile = mr.getParameter("join_profile");
+			// String join_profile = mr.getParameter("join_profile");
 			String join_phone = mr.getParameter("join_phone");
 			String join_agree1 = mr.getParameter("join_agree1");
 			String join_agree2 = mr.getParameter("join_agree2");
 			String join_agree3 = mr.getParameter("join_agree3");
 			String join_agree4 = mr.getParameter("join_agree4");
-			
+
 			pstmt.setString(1, join_name);
 			pstmt.setString(2, join_nick);
 			pstmt.setString(3, join_id);
 			pstmt.setString(4, join_pw);
 			pstmt.setString(5, join_gender);
 			pstmt.setString(6, join_birth);
-			
+
 //			pstmt.setString(7, join_addr);
 //			pstmt.setString(8, join_age);
 //			pstmt.setString(9, join_phone);
@@ -173,9 +171,6 @@ public class UserDAO {
 
 			if (pstmt.executeUpdate() == 1) {
 				request.setAttribute("r", join_nick + "님, 환영합니다!");
-				
-
-				
 
 			}
 
@@ -264,13 +259,10 @@ public class UserDAO {
 					a.setAccount_agree4(rs.getString("account_agree4"));
 					a.setAccount_date(rs.getString("account_date"));
 
-					
-					
 					HttpSession hs = request.getSession();
 					hs.setAttribute("accountInfo", a);
 					hs.setMaxInactiveInterval(6000);
-					
-					
+
 					request.setAttribute("loginPage", "account/loginOK.jsp");
 
 				} else {
@@ -281,12 +273,6 @@ public class UserDAO {
 				request.setAttribute("r", "가입하지 않은 회원입니다!!!");
 				request.setAttribute("loginPage", "account/loginBtn.jsp");
 			}
-			
-			
-
-			
-			
-			
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -303,7 +289,7 @@ public class UserDAO {
 		hs.invalidate();
 
 		request.setAttribute("r", "또 오세요!");
-		
+
 	}
 
 // 세션 유지를 위해 모든 컨트롤러에 넣어 주세요.!
@@ -439,14 +425,13 @@ public class UserDAO {
 
 	}
 
-	
 	// 비밀번호 0000으로 변경
 	public void findPW(HttpServletRequest request) {
 		// TODO Auto-generated method stub
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+
 		String W_id = request.getParameter("W_id");
 		String W_pwquestiona = request.getParameter("W_pwquestiona");
 		String W_pwquestion = request.getParameter("W_pwquestion");
@@ -457,35 +442,32 @@ public class UserDAO {
 
 			pstmt.setString(1, W_id);
 			rs = pstmt.executeQuery();
-			
+
 			System.out.println(W_id);
-			
-			
+
 			if (rs.next()) {
 
-					if (W_pwquestiona.equals(rs.getString("account_pwquestiona"))) {
+				if (W_pwquestiona.equals(rs.getString("account_pwquestiona"))) {
 
-						String sql0000 = "UPDATE oh_account SET account_pw = '0000' WHERE account_id = ?";
-						
-						pstmt = con.prepareStatement(sql0000);
+					String sql0000 = "UPDATE oh_account SET account_pw = '0000' WHERE account_id = ?";
 
-						pstmt.setString(1, W_id);
-						rs = pstmt.executeQuery();
-						System.out.println(rs.getString("account_pw"));
-						
-						request.setAttribute("r", "비밀번호가 0000으로 변경되었습니다!");
-						
-						System.out.println(rs.getString("account_pw"));
+					pstmt = con.prepareStatement(sql0000);
 
-					} else {
-						request.setAttribute("r", "계정을 찾을 수 없습니다..");
+					pstmt.setString(1, W_id);
+					rs = pstmt.executeQuery();
+					System.out.println(rs.getString("account_pw"));
 
-					}
+					request.setAttribute("r", "비밀번호가 0000으로 변경되었습니다!");
+
+					System.out.println(rs.getString("account_pw"));
+
 				} else {
 					request.setAttribute("r", "계정을 찾을 수 없습니다..");
+
 				}
-			
-			
+			} else {
+				request.setAttribute("r", "계정을 찾을 수 없습니다..");
+			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -497,163 +479,252 @@ public class UserDAO {
 
 	public static void information(HttpServletRequest request) {
 		// TODO Auto-generated method stub
-		
+
 		HttpSession hs = request.getSession();
 		accountB acc = (accountB) hs.getAttribute("accountInfo");
 
-		
-		
-		
-		
-		
-		
-		
 	}
+
 
 
 
 	public void confirmPW(HttpServletRequest request) {
+
 		// TODO Auto-generated method stub
-		
 
+		HttpSession hs = request.getSession();
+		accountB acc = (accountB) hs.getAttribute("accountInfo");
+
+		
+		String W_pw = request.getParameter("W_pw");
+
+		System.out.println(acc.getAccount_pw());
+		System.out.println(W_pw);
+
+		if (W_pw.equals(acc.getAccount_pw())) {
+			/*
+			 * request.setAttribute("r", "비밀번호가 틀렸습니다!");
+			 */
+			request.setAttribute("contentPage", "myPage/account_updatePW.jsp");
+
+		} else {
+			request.setAttribute("r", "비밀번호가 틀렸습니다!");
+			request.setAttribute("contentPage", "myPage/account_updatePWR.jsp");
+
+		}
+
+	}
+
+	public void updatePW(HttpServletRequest request) throws IOException {
 
 		HttpSession hs = request.getSession();
 		accountB acc = (accountB) hs.getAttribute("accountInfo");
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
-		
-		
+
+		String path = request.getSession().getServletContext().getRealPath("account/img");
+		System.out.println(path);
+		MultipartRequest mr = new MultipartRequest(request, path, 20 * 1024 * 1024, "utf-8",
+				new DefaultFileRenamePolicy());
+
+		String W_pw = mr.getParameter("W_pw");
+		String W_pw2 = mr.getParameter("W_pw2");
+
+		System.out.println(W_pw);
+		System.out.println(W_pw2);
+
 		try {
-			String sql = "select * from oh_account where account_id= ?";
-			pstmt = con.prepareStatement(sql);
 
-			String W_id = acc.getAccount_id();
-			String W_pw = request.getParameter("W_pw");
-			
-			pstmt.setString(1, W_id);
-			
-			System.out.println(rs.getString("account_pw"));
-			
+			String A_id = acc.getAccount_id();
+			System.out.println(A_id);
+			System.out.println(W_pw);
 
+			if (W_pw.equals(W_pw2)) {
+				String sql = "update oh_account set account_pw = ? where account_id = ?";
 
-				if (W_pw.equals(rs.getString("account_pw"))) {
-					/*
-					 * request.setAttribute("r", "비밀번호가 틀렸습니다!");
-					 */
-					request.setAttribute("contentPage", "myPage/account_updatePWconfirmPW.jsp");
-					
-					
-					
-			} else {
-				request.setAttribute("r", "비밀번호가 틀렸습니다!");
-				request.setAttribute("contentPage", "myPage/account_updatePW.jsp");
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, W_pw);
+				pstmt.setString(2, A_id);
+
+				rs = pstmt.executeQuery();
+
+				if (pstmt.executeUpdate() == 1) {
+
+					request.setAttribute("r", "비밀번호 변경 성공!");
+					request.setAttribute("contentPage", "myPage/account_updatePWR.jsp");
+				} else {
+					request.setAttribute("r", "비밀번호가 일치하지 않습니다!");
+					request.setAttribute("contentPage", "myPage/account_updatePWR.jsp");
+				}
+
 			}
-			
+
+			else {
+				request.setAttribute("r", "비밀번호가 일치하지 않습니다!");
+				request.setAttribute("contentPage", "myPage/account_updatePWR.jsp");
+			}
 		}
 
-		 catch (SQLException e) {
+		catch (
+
+		SQLException e) {
 			e.printStackTrace();
 		} finally {
-			
 			DBManager.getDbm().close(null, pstmt, null);
 		}
 
-	
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 	}
 
-	public void updatePW(HttpServletRequest request) {
-
-
+	public void informationUpdate(HttpServletRequest request) {
 
 		HttpSession hs = request.getSession();
 		accountB acc = (accountB) hs.getAttribute("accountInfo");
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
-		
-		
+
+		String U_name = request.getParameter("U_name");
+		String U_nick = request.getParameter("U_nick");
+		// String U_gender = request.getParameter("U_gender");
+		String U_email = request.getParameter("U_email");
+		String U_phone = request.getParameter("U_phone");
+
 		try {
-			String sql = "select * from oh_account where account_id= ?";
-			pstmt = con.prepareStatement(sql);
 
-			String W_id = acc.getAccount_id();
-			String W_pw = request.getParameter("W_pw");
-			
-			pstmt.setString(1, W_id);
-			
+			String A_id = acc.getAccount_id();
+			String A_name = acc.getAccount_name();
+			String A_nick = acc.getAccount_nick();
+			// String A_gender = acc.getAccount_gender();
+			String A_email = acc.getAccount_email();
+			String A_phone = acc.getAccount_phone();
 
-			
+			System.out.println(U_name);
+			System.out.println(U_nick);
+			// System.out.println(U_gender);
+			System.out.println(U_email);
+			System.out.println(U_phone);
+			System.out.println(U_nick);
+			System.out.println(A_id);
+
+			if (rs.next()) {
 
 
-				if (W_pw.equals(rs.getString("account_pw"))) {
-					/*
-					 * request.setAttribute("r", "비밀번호가 틀렸습니다!");
-					 */
-					request.setAttribute("contentPage", "myPage/account_updatePW.jsp");
+				if (A_name != U_name || A_nick != U_nick ||  A_email != U_email|| A_phone != U_phone) {
+					String sql = "update oh_account set account_name = ?, account_nick = ?, account_email = ?, account_phone = ? where account_id = ?";
+
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, U_name);
+					pstmt.setString(2, U_nick);
+					pstmt.setString(3, U_email);
+					pstmt.setString(4, U_phone);
+					pstmt.setString(5, A_id);
 					
+					rs = pstmt.executeQuery();
 					
+					request.setAttribute("r", "업데이트 성공!");
+
 					
-			} else {
-				request.setAttribute("r", "비밀번호가 틀렸습니다!");
-				request.setAttribute("contentPage", "myPage/account_updatePW.jsp");
+
+				}
+
+			
+				
+			 else {
+					request.setAttribute("r", "업데이트 실패.. 관리자에게 문의해 주세요");
+
+				}
+
 			}
-			
+
 		}
 
-		 catch (SQLException e) {
+		catch (
+
+		SQLException e) {
 			e.printStackTrace();
 		} finally {
 			DBManager.getDbm().close(null, pstmt, null);
 		}
 
-	
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	}
+		/*
+		 * if(rs.next()) {
+		 * 
+		 * con = DBManager.connect();
+		 * 
+		 * if (A_name != U_name) { String sql =
+		 * "update oh_account set account_name = ? where account_id = ?";
+		 * 
+		 * 
+		 * pstmt = con.prepareStatement(sql); pstmt.setString(1, U_name);
+		 * pstmt.setString(2, A_id); rs = pstmt.executeQuery();
+		 * 
+		 * 
+		 * }
+		 * 
+		 * if (A_nick != U_nick) { String sql =
+		 * "update oh_account set account_nick = ? where account_id = ?";
+		 * 
+		 * pstmt = con.prepareStatement(sql); pstmt.setString(1, U_nick);
+		 * pstmt.setString(2, A_id); rs = pstmt.executeQuery();
+		 * 
+		 * 
+		 * }
+		 * 
+		 * 
+		 * 
+		 * if (A_age != U_age) { String sql =
+		 * "update oh_account set account_age = ? where account_id = ?";
+		 * 
+		 * pstmt = con.prepareStatement(sql); pstmt.setString(1, U_age);
+		 * pstmt.setString(2, A_id); rs = pstmt.executeQuery();
+		 * 
+		 * 
+		 * }
+		 * 
+		 * 
+		 * 
+		 * 
+		 * if (A_gender != U_gender) { String sql =
+		 * "update oh_account set account_gender = ? where account_id = ?";
+		 * 
+		 * con = DBManager.connect(); pstmt = con.prepareStatement(sql);
+		 * pstmt.setString(1, U_gender); pstmt.setString(2, A_id);
+		 * 
+		 * }
+		 * 
+		 * 
+		 * if (A_birth != U_birth) { String sql =
+		 * "update oh_account set account_birth = ? where account_id = ?";
+		 * 
+		 * pstmt = con.prepareStatement(sql); pstmt.setString(1, U_birth);
+		 * pstmt.setString(2, A_id); rs = pstmt.executeQuery();
+		 * 
+		 * }
+		 * 
+		 * 
+		 * 
+		 * if (A_email != U_email) { String sql =
+		 * "update oh_account set account_email = ? where account_id = ?";
+		 * 
+		 * pstmt = con.prepareStatement(sql); pstmt.setString(1, U_email);
+		 * pstmt.setString(2, A_id); rs = pstmt.executeQuery();
+		 * 
+		 * 
+		 * }
+		 * 
+		 * if (A_phone != U_phone) { String sql =
+		 * "update oh_account set account_phone = ? where account_id = ?";
+		 * 
+		 * pstmt = con.prepareStatement(sql); pstmt.setString(1, U_phone);
+		 * pstmt.setString(2, A_id); rs = pstmt.executeQuery();
+		 * 
+		 * 
+		 * }
+		 * 
+		 */
 
-	public static void informationUpdate(HttpServletRequest request) {
-		
-		HttpSession hs = request.getSession();
-		accountB acc = (accountB) hs.getAttribute("accountInfo");
-
-		
-		
-		
+		// 혹시 몰라서..
 		
 	}
 

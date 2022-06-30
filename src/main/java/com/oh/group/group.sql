@@ -71,3 +71,7 @@ select count(*) from(select * from group_purchase where group_area='서울') whe
 
 -- 랜덤
 select * from (select * from group_purchase order by DBMS_RANDOM.RANDOM) where rownum < 6
+
+DROP SEQUENCE group_purchase_seq;
+
+CREATE SEQUENCE group_purchase_seq MINVALUE 100;

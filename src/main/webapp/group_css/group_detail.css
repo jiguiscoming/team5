@@ -91,6 +91,12 @@
 	margin-left: 10px;
 }
 
+.group_comment_member > img{
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+}
+
 .group_commentTd > textarea{
 	width: 500px;
 	height: 80px;

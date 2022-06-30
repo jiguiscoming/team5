@@ -16,7 +16,7 @@ public class FoodRecipeC extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		RecipeDAO.getAllRecipe(request);
+		RecipeDAO.getMkdao().getAllRecipe(request); // getMkda().객체안에 있는 con를 쓰는 기능만 
 		RecipeDAO.paging(1, request);
 		
 		

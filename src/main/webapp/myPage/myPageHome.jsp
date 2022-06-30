@@ -7,42 +7,40 @@
 <title>Insert title here</title>
 </head>
 <body>
+<table class="mypage_btb"></table>
+	<table class="mypage_tb">
 
-	<table>
-
 		<tr>
-			<td clospan="2"><img alt="" src="img/<!-- 이미지의  attribute 명 -->"></td>
-
-			<td><a href="account_mypostC"> 내 게시글 / 댓글!</a></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td> <a href="account_informationC">내 정보 </a>
+			<td rowspan="7" class="box"><img width="300px" class="profile" alt="" src="account/img/${sessionScope.accountInfo.account_img}"></td>
+			<TD  rowspan="7" width="15px"></TD>
+			<td>
+				<button class="information_2" onclick="location.href='account_mypostC'">내 게시글 /
+					댓글!</button>
 			</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td><a href="account_wishlistC"> 찜</a>
+			<td>
+				<button class="information_1" onclick="location.href='account_informationC'">내 정보</button>
 			</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td><a href="account_paymentC">결제정보</a>
+			<td><button class="information_2" onclick="location.href='account_wishlistC'">찜</button>
 			</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td> <a href="account_secessionC">탈퇴! </a>
+			<td><button class="information_1" onclick="location.href='account_paymentC'">결제정보</button>
 			</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td> <a href="account_noticeC">공지사항</a>
+			<td><button class="information_2" onclick="location.href='account_secessionC'">탈퇴!</button>
 			</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td> <a href="account_helpC">1:1 문의하기</a>
+			<td><button class="information_1" onclick="location.href='account_noticeC'">공지사항</button>
+			</td>
+		</tr>
+		<tr>
+			<td><button class="information_2" onclick="location.href='account_helpC'">1:1 문의하기</button>
 
 			</td>
 		</tr>
