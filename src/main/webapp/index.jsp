@@ -55,7 +55,7 @@
 <div class="index_login_box">
 	<div><jsp:include page="${loginPage}"></jsp:include></div>
 </div>
-<table id="indexTbl" border="1">
+<table id="indexTbl">
 	<tr>
 		<td class="index_titleTd" colspan="5">
 			<div class="index_title">

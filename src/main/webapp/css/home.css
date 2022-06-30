@@ -5,6 +5,7 @@
 
 .homeTd{
 	text-align: center;
+	height: 400px;
 }
 
 .home_img1, .home_img2{
@@ -28,7 +29,7 @@
 	font-weight: 700;
 }
 
-.home_img1 > input{
+.home_img1_input{
 	position: absolute;
 	top: 370px;
 	left: 200px;
@@ -40,7 +41,7 @@
 	font-size: 13pt;
 }
 
-.home_img1 > button{
+.home_img1_btn{
 	position: absolute;
 	top: 390px;
 	left: 530px;
@@ -55,7 +56,7 @@
 	cursor: pointer;
 } 
 
-.home_img1 > button:hover{
+.home_img1_btn:hover{
 	background-color: rgb(229,193,197);
 	border: 2px solid white;
 	color: white;
@@ -110,7 +111,8 @@
 	width: 230px;
 	height: 230px;
 	display: inline-block;
-	margin-bottom: 10px;
+	overflow: hidden;
+	margin: 5px;
 }
 
 .home_mealkit > a{
@@ -133,7 +135,8 @@
 	width: 230px;
 	height: 230px;
 	display: inline-block;
-	margin-bottom: 10px;
+	overflow: hidden;
+	margin: 5px;
 }
 
 .home_recipe >a{

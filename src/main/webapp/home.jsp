@@ -8,14 +8,16 @@
 <title>야너두 레시피</title>
 </head>
 <body>
-<table id="homeTbl" border="1">
+<table id="homeTbl">
 	<tr>
 		<td >
 			<div class="home_img1">
 				<img src="img/omurice.jpg">
 				<span class="home_img_txt1">오늘 저녁 뭐 먹을지 고민이신가요?</span>
- 					<input name="search" placeholder="레시피를 검색해보세요">
-					<button>검색</button>
+ 					<form action="RecipeSearchC">
+ 					<input class="home_img1_input" name="search" placeholder="레시피를 검색해보세요">
+					<button class="home_img1_btn">검색</button>
+ 					</form>
 			</div>
 			<div class="home_img2">
 				<img src="img/mate.jpg">
@@ -31,7 +33,7 @@
 			<h2>새로 들어온 밀키트</h2>
 			<c:forEach var="mealkit" items="${mealkits}">
 			<div class="home_mealkit">
-			<a href="location.href='Mk_MenuInfoC?no=${m.mealkit_no}'">
+			<a href="Mk_MenuInfoC?no=${mealkit.mealkit_no}">
 				<div class="home_mealkit_img"><img src="${mealkit.mealkit_img }"></div>
 				<div>${mealkit.mealkit_name}</div>
 				<div>${mealkit.mealkit_price }</div>
@@ -44,12 +46,12 @@
 		<td class="homeTd">
 			<h2>오늘의 레시피</h2>
 			<c:forEach var="recipe" items="${recipes}">
-				<div class="home_recipe">
-				<a href="#">
-				<div class="home_recipe_img"><img src="${recipe.recipe_img_url }"></div>
+			<div class="home_recipe">
+			<a href="RecipeCookingProcessC?recipeSummary=${recipe.recipe_basic_no }">
+				<div class="home_recipe_img"><img src="${recipe.recipe_img_url}"></div>
 				<div>${recipe.recipe_nm_ko}</div>
-				</div>
 			</a>	
+			</div>
 			</c:forEach>
 		</td>
 	</tr>
