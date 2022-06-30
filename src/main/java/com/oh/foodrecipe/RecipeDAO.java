@@ -7,26 +7,54 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.oh.main.DBManager;
+import com.oh.main.HomeDAO;
+
+
+
 
 
 public class RecipeDAO {
+	
+	//--------------------------------코드추가부분//
+	private Connection con;
+
+	private static final RecipeDAO RPDAO = new RecipeDAO(DBManager.getDbm().connect());
+
+	private RecipeDAO() {
+		// TODO Auto-generated constructor stub
+	}
+
+	private RecipeDAO(Connection con) {
+		super();
+		this.con = con;
+	}
+
+	public static RecipeDAO getMkdao() {
+		return RPDAO;
+	}
+
+	//--------------------------------코드추가부분//
+	//CONNECTION con = null; <다 지우기
+	// 메서드 STATIC 다 지우기
+	// FINALLY 밑 블락에 DBManager.getDbm().close(null, pstmt, null); 로 바꿔주기
+	// DBManager. 뒤에 DBManager.getDbm().로 바꿔주기
+	
 
 	private static ArrayList<recipe> recipes;
 	
 	
-	public static void getAllRecipe(HttpServletRequest request) {
+	public void getAllRecipe(HttpServletRequest request) {
 
 		// ��ü ��ȸ ��. crud - r
 		
 		// ������
-		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		try {
 			
 			String sql = "select * from RecipeBasicCourse";
-			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			
 			rs = pstmt.executeQuery();
@@ -63,21 +91,19 @@ public class RecipeDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			DBManager.close(con, pstmt, rs);
+			DBManager.getDbm().close(null, pstmt, null);
 		}
 	}
 	
 	
-	public static void getRecipe(HttpServletRequest request) {
+	public void getRecipe(HttpServletRequest request) {
 		
-		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		try {
 			
 			String sql = "select * from RecipeBasicCourse where RECIPE_BASIC_NO=?";
-			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			int recipeSummary = Integer.parseInt(request.getParameter("recipeSummary"));
 			pstmt.setInt(1, recipeSummary);
@@ -105,7 +131,7 @@ public class RecipeDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			DBManager.close(con, pstmt, rs);
+			DBManager.getDbm().close(null, pstmt, null);
 		}
 		
 		
@@ -114,8 +140,7 @@ public class RecipeDAO {
 	}
 
 
-	public static void getingredients(HttpServletRequest request) {
-		Connection con = null;
+	public void getingredients(HttpServletRequest request) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
@@ -125,7 +150,6 @@ public class RecipeDAO {
 					+ "from RecipeBasicCourse, RecipeIngredients\r\n"
 					+ "where RECIPE_BASIC_NO(+) = RECIPE_IN_ID\r\n"
 					+ "and RECIPE_BASIC_NO=?";
-			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			int recipeSummary = Integer.parseInt(request.getParameter("recipeSummary"));
 			pstmt.setInt(1, recipeSummary);
@@ -153,14 +177,13 @@ public class RecipeDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			DBManager.close(con, pstmt, rs);
+			DBManager.getDbm().close(null, pstmt, null);
 		}
 		
 		
 		
 	}
-	public static void getrecipeprocessinformation(HttpServletRequest request) {
-		Connection con = null;
+	public void getrecipeprocessinformation(HttpServletRequest request) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
@@ -170,7 +193,6 @@ public class RecipeDAO {
 					+ "from RecipeBasicCourse, Recipeprocessinformation\r\n"
 					+ "where RECIPE_BASIC_NO = RECIPE_PRO_ID\r\n"
 					+ "and RECIPE_BASIC_NO=?";
-			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			int recipeSummary = Integer.parseInt(request.getParameter("recipeSummary"));
 			pstmt.setInt(1, recipeSummary);
@@ -197,7 +219,7 @@ public class RecipeDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			DBManager.close(con, pstmt, rs);
+			DBManager.getDbm().close(null, pstmt, null);
 		}
 		
 	}

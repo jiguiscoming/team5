@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 public class RecipeCookingProcessC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		RecipeDAO.getRecipe(request);
-		RecipeDAO.getingredients(request);
-		RecipeDAO.getrecipeprocessinformation(request);
+		RecipeDAO.getMkdao().getRecipe(request);
+		RecipeDAO.getMkdao().getingredients(request);
+		RecipeDAO.getMkdao().getrecipeprocessinformation(request);
 		
 		request.setAttribute("loginPage", "account/loginBtn_recipe.jsp");
 		request.setAttribute("contentPage", "recipe/recipe_jsp/recipe_cooking_process.jsp");
