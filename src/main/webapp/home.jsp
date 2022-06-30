@@ -35,7 +35,7 @@
 			<div class="home_mealkit">
 			<a href="Mk_MenuInfoC?no=${mealkit.mealkit_no}">
 				<div class="home_mealkit_img"><img src="${mealkit.mealkit_img }"></div>
-				<div>${mealkit.mealkit_name}</div>
+				<div class="home_info">${mealkit.mealkit_name}</div>
 				<div>${mealkit.mealkit_price }</div>
 			</a>	
 			</div>
@@ -49,7 +49,7 @@
 			<div class="home_recipe">
 			<a href="RecipeCookingProcessC?recipeSummary=${recipe.recipe_basic_no }">
 				<div class="home_recipe_img"><img src="${recipe.recipe_img_url}"></div>
-				<div>${recipe.recipe_nm_ko}</div>
+				<div class="home_info">${recipe.recipe_nm_ko}</div>
 			</a>	
 			</div>
 			</c:forEach>
@@ -62,7 +62,7 @@
 			<div class="home_group">
 			<a href="GroupDetailController?no=${group.no}">
 				<div class="home_group_img"><img src="group_imgFolder/${group.img }"></div>
-				<div class="home_group_title">[${group.area }]${group.title}</div>
+				<div class="home_info">[${group.area }]${group.title}</div>
 				<div>${group.nickname }</div>
 			</a>	
 			</div>

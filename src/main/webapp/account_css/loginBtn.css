@@ -2,8 +2,9 @@
 
 #loginTbl{
 	padding: 3px;
-	width: 100%;
+	width: 600px;
 	height: 100%;
+	margin-left: 670px;
 }
 
 .login_id > input{

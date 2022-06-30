@@ -26,8 +26,10 @@
 .group_update_pwBtn > button{
 	width: 60px;
 	height: 30px;
-	border: 2px solid black;
-	background-color: transparent;
+	border: 2px solid rgb(229,193,197);
+	color:#77262d;
+	background-color: rgb(229,193,197);
+	border-radius: 5px;
 }
 
 #group_updateTble{
@@ -37,6 +39,12 @@
 	margin: 50px auto;
 	border: 2px solid gray;
 	border-radius: 10px;
+}
+
+.group_update_info{
+	font-size: 15pt;
+	font-weight: 600;
+	height: 100px;
 }
 
 .group_update_title > select{
@@ -71,11 +79,26 @@
 	margin: 10px;
 }
 
-.group_update_btn > button{
+.group_update_btn{
 	width: 60px;
 	height: 30px;
-	border: 2px solid black;
-	background-color: transparent;
+	border: 2px solid rgb(229,193,197);
+	border-radius: 5px;
+	background-color: rgb(229,193,197);
+	color:#77262d;
 	margin-top: 10px;
 	margin-bottom: 20px;
+	cursor: pointer;
+}
+
+.group_update_del{
+	width: 60px;
+	height: 30px;
+	border: 2px solid rgb(229,193,197);
+	border-radius: 5px;
+	background-color: transparent;
+	color:#77262d;
+	margin-top: 10px;
+	margin-bottom: 20px;
+	cursor: pointer;
 }

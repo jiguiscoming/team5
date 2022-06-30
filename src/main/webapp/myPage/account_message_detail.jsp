@@ -9,8 +9,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-<div class="account_message_detail_box"><div>쪽지 보기</div></div>
+<div id="account_message_detail_box">
+<div class="account_message_detail_info"><div>쪽지 보기</div></div>
 <div class="account_message_detail_btn">
 	<button onclick="history.back()">뒤로가기</button>
 	<a href="javascript:groupMessage('${message.message_sender}','${receiver_nick}','${sessionScope.accountInfo.account_id}')">답장</a>
@@ -29,6 +29,7 @@
 		<td class="account_message_detail_txt" colspan="2">${message.message_txt}</td>
 	</tr>
 </table>
+</div>
 
 
 </body>
