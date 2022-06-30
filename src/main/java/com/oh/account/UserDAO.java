@@ -477,7 +477,7 @@ public class UserDAO {
 
 	}
 
-	public static void information(HttpServletRequest request) {
+	public void information(HttpServletRequest request) {
 		// TODO Auto-generated method stub
 
 		HttpSession hs = request.getSession();
@@ -582,7 +582,6 @@ public class UserDAO {
 		accountB acc = (accountB) hs.getAttribute("accountInfo");
 
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
 
 		String U_name = request.getParameter("U_name");
 		String U_nick = request.getParameter("U_nick");
@@ -607,10 +606,6 @@ public class UserDAO {
 			System.out.println(U_nick);
 			System.out.println(A_id);
 
-			if (rs.next()) {
-
-
-				if (A_name != U_name || A_nick != U_nick ||  A_email != U_email|| A_phone != U_phone) {
 					String sql = "update oh_account set account_name = ?, account_nick = ?, account_email = ?, account_phone = ? where account_id = ?";
 
 					pstmt = con.prepareStatement(sql);
@@ -620,24 +615,12 @@ public class UserDAO {
 					pstmt.setString(4, U_phone);
 					pstmt.setString(5, A_id);
 					
-					rs = pstmt.executeQuery();
-					
-					request.setAttribute("r", "업데이트 성공!");
-
-					
-
-				}
-
-			
-				
-			 else {
-					request.setAttribute("r", "업데이트 실패.. 관리자에게 문의해 주세요");
-
-				}
-
+					if(pstmt.executeUpdate() == 1) {
+						request.setAttribute("r", "업데이트 성공!");
+					}else {
+						request.setAttribute("r", "업데이트 실패.. 관리자에게 문의해 주세요");
+				} 
 			}
-
-		}
 
 		catch (
 

@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 import com.oh.account.UserDAO;
 
 
-@WebServlet("/account_wishlistC")
-public class account_wishlistC extends HttpServlet {
+@WebServlet("/account_messageC")
+public class account_messageC extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		UserDAO.getMkdao().loginCheck(request);
 
-		request.setAttribute("contentPage", "myPage/account_wishlist.jsp");
+		request.setAttribute("contentPage", "myPage/account_message.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	
 	
