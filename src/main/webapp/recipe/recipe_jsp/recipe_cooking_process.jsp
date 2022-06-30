@@ -7,6 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="recipe/recipe_css/recipe.css">
+
 </head>
 <body>
 	
@@ -23,38 +25,35 @@
 	</table>
 	
 	<table>
-	
-		
 		<tr>
+			<td> ${recipe.recipe_qnt }</td>
 			<td> ${recipe.recipe_cooking_time } </td>
 			<td> ${recipe.recipe_level_nm }</td>
-			<td> ${recipe.recipe_qnt }</td>
 		</tr>
 	</table>
+	
+	<!-- 재료 -->	
+	<table>
+	
+	<c:forEach items="${recipeingredients }" var="r">
+		<tr>
+			<td> ${r.recipe_irdnt_nm }</td>
+			<td> ${r.recipe_irdnt_cpcty }</td>
+		</tr>
+	</c:forEach>
+	</table>
+	
 	
 	<!-- 
 		조리순서
 	 -->
 	
 	<table>
-	
-	<c:forEach items="${recipeingredients }" var="s">
-		<tr>
-			<td> ${s.recipe_irdnt_nm }</td>
-			<td> ${s.recipe_irdnt_cpcty }</td>
-		</tr>
-	</c:forEach>
-	</table>
-	
-	
-	
-	<table>
-	
+	<c:forEach items="${recipeprocessinformation }" var="r">
 	<tr>
-		<td>조리설명</td>
-		<td>조리사진</td>
+		<td>${r.recipe_cooking_dc }</td>
 	</tr>
-	
+	</c:forEach>
 	</table>
 	
 	

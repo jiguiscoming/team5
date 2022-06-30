@@ -16,9 +16,9 @@ public class RecipeDAO {
 	
 	public static void getAllRecipe(HttpServletRequest request) {
 
-		// ÀüÃ¼ Á¶È¸ ÀÏ. crud - r
+		// ï¿½ï¿½Ã¼ ï¿½ï¿½È¸ ï¿½ï¿½. crud - r
 		
-		// ²®µ¥±â
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -136,7 +136,7 @@ public class RecipeDAO {
 			recipeingredient ingredient = null;
 			
 			
-			if(rs.next()) {
+			while(rs.next()) {
 				// bean
 				ingredient = new recipeingredient();
 				
@@ -159,6 +159,48 @@ public class RecipeDAO {
 		
 		
 	}
+	public static void getrecipeprocessinformation(HttpServletRequest request) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			
+			String sql = "select RECIPE_COOKING_DC, RECIPE_STRE_STEP_IMAGE_URL\r\n"
+					+ "from RecipeBasicCourse, Recipeprocessinformation\r\n"
+					+ "where RECIPE_BASIC_NO = RECIPE_PRO_ID\r\n"
+					+ "and RECIPE_BASIC_NO=?";
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			int recipeSummary = Integer.parseInt(request.getParameter("recipeSummary"));
+			pstmt.setInt(1, recipeSummary);
+			
+			ArrayList<recipeprocessinformation> processinformations = new ArrayList<recipeprocessinformation>();
+			
+			rs = pstmt.executeQuery();
+			recipeprocessinformation processinformation = null;
+			
+			
+			while(rs.next()) {
+				// bean
+				processinformation = new recipeprocessinformation();
+				
+				processinformation.setRecipe_cooking_dc(rs.getString("RECIPE_COOKING_DC"));  
+				
+				
+				
+				processinformations.add(processinformation);
+			
+			}
+			request.setAttribute("recipeprocessinformation", processinformations);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(con, pstmt, rs);
+		}
+		
+	}
 	
 	
 	
@@ -166,25 +208,25 @@ public class RecipeDAO {
 		
 		req.setAttribute("curPageNo", page);
 		
-		int cnt = 12;		// ÇÑ ÆäÀÌÁö´ç º¸¿©ÁÙ °³¼ö
-		int total = recipes.size();		// ÃÑ µ¥ÀÌÅÍ °³¼ö
+		int cnt = 20;		
+		int total = recipes.size();		
 		int pageCount = (int) Math.ceil((double)total / cnt);
 		req.setAttribute("recipesData", total);
 		req.setAttribute("pageCount", pageCount);
 		
-		req.setAttribute("totalData", total);
 		int start = total - (cnt * (page -1));
 		int end = (page == pageCount)? -1 : start - (cnt + 1);
 		
 		ArrayList<recipe> items = new ArrayList<recipe>(); 
-		for (int i = start-1; i > end; i--) {
+		for (int i = start - 1; i > end; i--) {
 			items.add(recipes.get(i));
 		}
 		req.setAttribute("recipes", items);
 	
 		
-	
 	}
+
+
 
 
 
