@@ -7,22 +7,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/RecipeCookingProcessC")
-public class RecipeCookingProcessC extends HttpServlet {
+@WebServlet("/RecipePageC")
+public class RecipePageC extends HttpServlet {
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		RecipeDAO.getRecipe(request);
-		RecipeDAO.getingredients(request);
-		RecipeDAO.getrecipeprocessinformation(request);
+		
+		int p = Integer.parseInt(request.getParameter("p"));
+		
+		RecipeDAO.getAllRecipe(request);
+		RecipeDAO.paging(p, request);
+		
 		
 		request.setAttribute("loginPage", "account/loginBtn_recipe.jsp");
-		request.setAttribute("contentPage", "recipe/recipe_jsp/recipe_cooking_process.jsp");
+		request.setAttribute("contentPage", "recipe/recipe_jsp/food_recipe.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+	
 	}
 
 }
