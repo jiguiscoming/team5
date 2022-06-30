@@ -35,10 +35,10 @@ public class account_informationUpdateC extends HttpServlet {
 	
 	
 		// 세션 불러옴
-		UserDAO.information(request);
+		UserDAO.getMkdao().information(request);
 		
 		// 세션 데이터 수정
-		UserDAO.informationUpdate(request);
+		UserDAO.getMkdao().informationUpdate(request);
 		
 		
 		

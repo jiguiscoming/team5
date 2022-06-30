@@ -33,7 +33,7 @@ public class account_informationC extends HttpServlet {
 	
 	
 		UserDAO.getMkdao().loginCheck(request);
-		UserDAO.informationUpdate(request);
+		UserDAO.getMkdao().informationUpdate(request);
 		
 		request.setAttribute("contentPage", "myPage/account_information.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
