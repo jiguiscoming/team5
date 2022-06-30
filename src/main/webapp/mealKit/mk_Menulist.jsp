@@ -4,7 +4,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+<script type="text/javascript" src="mealkit_js/mealkit.js"></script>
+<script type="text/javascript" src="mealkit_js/mk_slide.js"></script>
+<script type="text/javascript" src="mealkit_js/mk_info.js"></script>
+<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="mealkit_css/mk_slide.css">
+<link rel="stylesheet" type="text/css" href="mealkit_css/mk_M.css">
+<link rel="stylesheet" type="text/css" href="mealkit_css/mk_info.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 <script type="text/javascript">
 	$(function() {
 
@@ -25,6 +34,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+
+
+
 			<div class="menu">
 		
 
@@ -210,33 +223,7 @@
 			
 			
 	
-	<%-- <table border="1"
-		class="mk_Menulistbl1" border="1">
-		<tr>
-			<td ><c:forEach var="m" items="${mealkits }">
-					<table border="1" class="mk_MLtbl_1"
-						onclick="location.href='Mk_MenuInfoC?no=${m.mealkit_no}'"
-						>
-						<tr>
-							<td class="mk_Ml_td1"><img
-							 class="mk_Ml_img"	src="img/${m.mealkit_img }"></td>
-						</tr>
-						<tr>
-							<td>${m.mealkit_name }</td>
-						</tr>
-						<tr>
-							<td>${m.mealkit_no }</td>
-						</tr>
-						<tr>
-							<td>${m.mealkit_price }</td>
-						</tr>
-					</table>
 
-				</c:forEach></td>
-		</tr>
-	</table>
- --%>
-	
 
 </body>
 </html>

@@ -16,7 +16,6 @@ public class account_informationUpdateC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		UserDAO.getMkdao().loginCheck(request);
-		UserDAO.information(request);
 		
 		
 		
@@ -33,12 +32,9 @@ public class account_informationUpdateC extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-	
-		// 세션 불러옴
-		UserDAO.information(request);
-		
+		UserDAO.getMkdao().loginCheck(request);
 		// 세션 데이터 수정
-		UserDAO.informationUpdate(request);
+		UserDAO.getMkdao().informationUpdate(request);
 		
 		
 		
