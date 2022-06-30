@@ -475,12 +475,8 @@ public class UserDAO {
 		HttpSession hs = request.getSession();
 		accountB acc = (accountB) hs.getAttribute("accountInfo");
 
-		String path = request.getSession().getServletContext().getRealPath("account/img");
-		System.out.println(path);
-		MultipartRequest mr = new MultipartRequest(request, path, 20 * 1024 * 1024, "utf-8",
-				new DefaultFileRenamePolicy());
-
-		String W_pw = mr.getParameter("W_pw");
+	
+		String W_pw = request.getParameter("W_pw");
 
 		System.out.println(acc.getAccount_pw());
 		System.out.println(W_pw);
