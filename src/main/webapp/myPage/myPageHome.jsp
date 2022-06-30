@@ -24,7 +24,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td><button class="information_2" onclick="location.href='account_wishlistC'">찜</button>
+			<td><button class="information_2" onclick="location.href='account_messageC'">쪽지</button>
 			</td>
 		</tr>
 		<tr>
