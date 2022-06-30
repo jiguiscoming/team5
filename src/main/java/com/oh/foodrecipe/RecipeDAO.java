@@ -248,6 +248,7 @@ public class RecipeDAO {
 		
 	}
 
+	// 이것도 홈화면 검색기능으로 만듭니다.(지수)
 	public void searchRecipe(HttpServletRequest request) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
