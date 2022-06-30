@@ -14,7 +14,7 @@ public class RecipePageC extends HttpServlet {
 		
 		int p = Integer.parseInt(request.getParameter("p"));
 		
-		RecipeDAO.getAllRecipe(request);
+		RecipeDAO.getMkdao().getAllRecipe(request);
 		RecipeDAO.paging(p, request);
 		
 		

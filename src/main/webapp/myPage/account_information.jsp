@@ -8,12 +8,12 @@
 </head>
 <body>
 
-내 정보 !!
+${r }
 
 <table>
 
 <tr>
-<td colspan="2">회원가입!!@!</td>
+<td colspan="2"> 내 정보~ </td>
 </tr>
 
 
@@ -77,7 +77,7 @@
 
 <tr>
 <td></td>
-<td><button onclick="form.action='account_informationUpdateC'">수정하기!!!</button>
+<td><button onclick="location.href='account_informationUpdateC'">수정하기!!!</button>
 
 </tr>
 
