@@ -1,23 +1,45 @@
 @charset "UTF-8";
 
 .account_message_box{
+	text-align: center;
+}
+
+.account_message_box >div{
 	display: inline-block;
 	font-size: 15pt;
 	font-weight: 600;
 	border-bottom: 2px solid black;
 	padding-bottom: 5px;
+	margin-bottom: 20px;
 }
+
 
 #account_messageTbl{
 	width: 60%;
-	height: 500px;
 	text-align: center;
 	margin: 0 auto;
 	border: 2px solid gray;
 	border-radius: 5px;
 }
 
+
 .account_message_title{
 	font-size: 13pt;
 	font-weight: 600;
+	height: 50px;
+}
+
+.account_message_contents{
+	height: 40px;
+		
+}
+
+.account_message_contents > a{
+	text-decoration: none;
+	color: black;
+}
+
+.account_message_contentsTr:hover{
+	background-color: rgb(229,193,197);
+	cursor: pointer;
 }
