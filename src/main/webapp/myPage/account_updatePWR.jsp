@@ -7,8 +7,22 @@
 <title>Insert title here</title>
 </head>
 <body>
-${r }
+<table id="pwUpdate_result">
+<tr>
+<td  class="pwUpdate_result_txt">${r }!
+</td>
+</tr>
 
 
+<tr>
+<td class="pwUpdate_td"><button  class="pwUpdate_result_button" onclick="location.href='mypageHomeC'"> 마이페이지로 돌아가기! </button>
+</td>
+
+
+</tr>
+
+
+
+</table>
 </body>
 </html>

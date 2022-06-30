@@ -11,7 +11,7 @@
 <form method="post" name="account"
 		onsubmit="return call()" enctype="multipart/form-data" >
 
-<table>
+<table class="joinusTb">
 
 <tr>
 <td colspan="2">회원가입!!@!</td>

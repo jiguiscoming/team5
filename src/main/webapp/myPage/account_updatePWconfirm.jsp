@@ -8,7 +8,10 @@
 </head>
 <body>
 
-<form action="account_updatePWC" method="post" name="pwform" onsubmit="return call()">
+<form action="account_updatePWconfirmC" method="post" >
+
+
+
 
 <table>
 
@@ -29,9 +32,9 @@
 
 
 </table>
+
+
 </form>
-
-
 
 
 
