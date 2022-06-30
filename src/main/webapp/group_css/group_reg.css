@@ -42,9 +42,22 @@
 	padding: 10px;
 }
 
-.group_reg_btn > button{
+.group_reg_return{
 	width: 60px;
 	height: 30px;
-	border: 2px solid black;
+	color: #77262d;
+	border: 2px solid rgb(229,193,197);
+	border-radius: 5px;
 	background-color: transparent;
+	cursor: pointer;	
+}
+
+.group_reg_btn{
+	width: 60px;
+	height: 30px;
+	color: #77262d;
+	border: 2px solid rgb(229,193,197);
+	border-radius: 5px;
+	background-color: rgb(229,193,197);
+	cursor: pointer;
 }

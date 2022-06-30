@@ -44,13 +44,6 @@ body{
 	padding: 5px;
 }
 
-.index_login_box > div{
-	display:inline-block;
-	width: 500px;
-	height: 100%;
-	float: right;
-}
-
 .index_menu{
 	width: 130px;
 	text-align: center;

@@ -1,19 +1,30 @@
 @charset "UTF-8";
 
-.account_message_detail_box{
+#account_message_detail_box{
+	border: 2px solid gray;
+	border-radius: 5px;
+	width: 50%;
+	margin: 20px auto;
+}
+
+.account_message_detail_info{
 	text-align: center;
+	font-size: 15pt;
+	font-weight: 600;
+	padding: 10px;
+	
 }
 
 .account_message_detail_box > div{
 	display: inline-block;
 	border-bottom: 2px solid black;
-	font-size: 15pt;
+	font-size: 12pt;
 	font-weight: 600;
 	padding-bottom: 5px;
 	margin-bottom: 20px;
 }
 .account_message_detail_btn{
-	width: 50%;
+	width: 100%;
 	margin: 10px auto;
 	text-align: right;
 }
@@ -21,7 +32,9 @@
 .account_message_detail_btn > button{
 	width: 70px;
 	height: 30px;
-	border: 2px solid black;
+	color:#77262d;
+	border: 2px solid rgb(229,193,197);
+	border-radius:5px;
 	cursor: pointer;
 	background-color: transparent;
 	font-weight: 600;
@@ -31,26 +44,28 @@
 
 .account_message_detail_btn > a{
 	text-decoration: none;
-	color: black;
+	color:#77262d;
 	font-size: 10pt;
 	font-weight: 600;
-	border: 2px solid black;
+	border: 2px solid rgb(229,193,197);
+	border-radius:5px;
+	background-color: rgb(229,193,197);
 	padding: 4px 12px 4px 12px;
 	margin-right: 10px;	
 }
 
 
 #account_message_detailTbl{
-	width: 50%;
+	width: 100%;
 	text-align: center;
 	margin: 0 auto;
-	border: 2px solid gray;
+	border-collapse: collapse;
 	border-radius: 5px;
 }
 
 .account_message_detail_title{
 	height: 50px;
-	font-size: 15pt;
+	font-size: 12pt;
 	font-weight: 600;
 }
 

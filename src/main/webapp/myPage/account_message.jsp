@@ -11,7 +11,7 @@
 <body>
 
 <div class="account_message_box"><div >내 쪽지</div></div>
-
+<div class="account_message_back"><button onclick="history.back()">마이페이지 돌아가기</button></div>
 <table id="account_messageTbl">
 	<tr>
 		<td class="account_message_title">보낸 사람</td>

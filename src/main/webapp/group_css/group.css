@@ -37,6 +37,10 @@
 	font-size: 10pt;
 }
 
+.group_regionTd > a:hover{
+	color: rgb(229,193,197);
+}
+
 .group_search > input{
 	width: 300px;
 	height: 30px;
@@ -47,10 +51,11 @@
 .group_search > button{
 	width: 50px;
 	height: 30px;
-	border: 2px solid gray;
+	border: 2px solid rgb(229,193,197);
 	border-radius: 10px;
 	cursor: pointer;
-	background-color: transparent;
+	background-color: rgb(229,193,197);
+	color: white;
 	font-weight: 900;
 	font-size: 8pt;
 }
@@ -62,8 +67,10 @@
 .group_write > button{
 	width: 60px;
 	height: 30px;
-	border: 2px solid black;
+	border: 2px solid rgb(229,193,197);
+	border-radius:5px;
 	cursor: pointer;
+	color: #77262d;
 	background-color: transparent;
 	font-weight: 600;
 	font-size: 10pt;
@@ -83,13 +90,17 @@
 }
 
 .group_list_img_box{
-	border: 2px solid gray;
 	border-radius: 10px;
 	width: 200px;
 	height: 170px;
 	margin: auto;
 	position: relative;
 	overflow: hidden;
+}
+
+.group_list_img_box >a{
+	text-decoration: none;
+	color: black;
 }
 
 .group_list_img_box > a > img{
