@@ -526,9 +526,6 @@ public class GroupDAO {
 		try {
 			pstmt = con.prepareStatement(sql);
 			
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
-			
 			//첫번째 ? = 시작 게시글 번호 , 두번째 ? = 끝 게시글 번호
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
