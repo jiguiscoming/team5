@@ -712,28 +712,27 @@ public class GroupDAO {
 		}
 	}
 
-	public static void sendMessage(HttpServletRequest request) {
-		Connection con = null;
+	public void sendMessage(HttpServletRequest request) {
+		
 		PreparedStatement pstmt = null;
 		String sql = "insert into group_message values(group_message_seq.nextval, ?, ?, ?, ?, sysdate)";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
-
-//			id세션받기
-			HttpSession session = request.getSession();
-			accountB user = (accountB)session.getAttribute("accountInfo");
-			String userId = user.getAccount_id();
 			
-			String writer = request.getParameter("writer_id");
+			String sender = request.getParameter("send_id");
+			String writer = request.getParameter("writer");
 			String title = request.getParameter("message_title");
 			String txt = request.getParameter("message_txt");
-			
+			System.out.println("보낸이" + sender);
+			System.out.println("받는이" + writer);
+			System.out.println("title" + title);
+			System.out.println("txt" + txt);
 			
 			pstmt.setString(1, writer);
-			pstmt.setString(2, title);
-			pstmt.setString(3, txt);
-			pstmt.setString(4, userId);
+			pstmt.setString(2, sender); //title
+			pstmt.setString(3, title);//txt
+			pstmt.setString(4, txt);//sender
 			
 			if(pstmt.executeUpdate() == 1) {
 				System.out.println("메세지 성공");
@@ -747,5 +746,107 @@ public class GroupDAO {
 		}
 		
 	}
+	
+	public void getMessages(HttpServletRequest request) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		HttpSession session = request.getSession();
+		accountB user = (accountB)session.getAttribute("accountInfo");
+		String userId = user.getAccount_id();
+		System.out.println("세션 부름");
+		
+		try {
+			String sql = "select * from group_message where group_message_writer= ? order by group_message_date desc";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			rs = pstmt.executeQuery();
+			System.out.println("값 넣음");
+			
+			GroupMessage message;
+			ArrayList<GroupMessage> messages = new ArrayList<GroupMessage>();
+			while(rs.next()) {
+				System.out.println("읽음");
+				int no = rs.getInt("group_message_no");
+				String writer = rs.getString("group_message_writer");
+				String sender = rs.getString("group_message_sender");
+				String title = rs.getString("group_message_title");
+				String txt = rs.getString("group_message_txt");
+				Date date = rs.getDate("group_message_date");
+				
+				System.out.println(sender);
+				System.out.println(title);
+				System.out.println(txt);
+				
+				message = new GroupMessage(no, writer, sender, title, txt, date);
+				messages.add(message);
+				System.out.println("넣음");
+			}
+			
+			request.setAttribute("messages", messages);
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.getDbm().close(null, pstmt, rs);
+		}
+	}
 
+	public void getMessage(HttpServletRequest request) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		int message_no = Integer.parseInt(request.getParameter("no"));
+		
+		try {
+			String sql = "select * from group_message where group_message_no= ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, message_no);
+			rs = pstmt.executeQuery();
+			
+			GroupMessage message;
+			while(rs.next()) {
+				int no = rs.getInt("group_message_no");
+				String writer = rs.getString("group_message_writer");
+				String sender = rs.getString("group_message_sender");
+				String title = rs.getString("group_message_title");
+				String txt = rs.getString("group_message_txt");
+				Date date = rs.getDate("group_message_date");
+				
+				message = new GroupMessage(no, writer, sender, title, txt, date);
+				request.setAttribute("message", message);
+			}
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.getDbm().close(null, pstmt, rs);
+		}
+	}
+
+	public void getNick(HttpServletRequest request) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String message_id = request.getParameter("receiver");
+		Group group;
+		try {
+			String sql = "select * from oh_account where account_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, message_id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+			request.setAttribute("receiver_nick",rs.getString("account_nick"));
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 }

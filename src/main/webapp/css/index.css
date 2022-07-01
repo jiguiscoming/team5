@@ -44,13 +44,6 @@ body{
 	padding: 5px;
 }
 
-.index_login_box > div{
-	display:inline-block;
-	width: 500px;
-	height: 100%;
-	float: right;
-}
-
 .index_menu{
 	width: 130px;
 	text-align: center;
@@ -63,6 +56,8 @@ body{
 .index_menu_box > a {
 	text-decoration: none;
 	color: black;
+	border-bottom: 3px solid rgb(229,193,197);
+	padding-bottom: 5px;
 }
 
 .index_menu_box{

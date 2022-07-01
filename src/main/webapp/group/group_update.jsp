@@ -10,7 +10,7 @@
 <form name="groupUpdateForm" action="GroupUpdateController" method="post" enctype="multipart/form-data" onsubmit=" return groupUpdate_isEmpty()">
 <table id="group_updateTble">
 	<tr>
-		<td>게시글 수정하기</td>
+		<td class="group_update_info">게시글 수정하기</td>
 	</tr>
 	<tr>
 		<td class="group_update_title">
@@ -46,10 +46,10 @@
 		<td class="group_update_file"><input type="file" name="newFile"></td>
 	</tr>
 	<tr>
-		<td class="group_update_btn">
+		<td>
 			<input type="hidden" name="oldFile" value="${group.img }">
-			<button name="no" value="${group.no }">수정</button>
-			<button onclick="groupDel(${group.no})">삭제</button>
+			<button class="group_update_btn" name="no" value="${group.no }">수정</button>
+			<button class="group_update_del" onclick="groupDel(${group.no})">삭제</button>
 		</td>
 	</tr>
 </table>
