@@ -7,16 +7,28 @@
 <title>Insert title here</title>
 </head>
 <body>
-<table id="pwUpdate_result">
+
+<table id="login_result">
 <tr>
-<td  class="pwUpdate_result_txt">${r }
-</td>
+
+<td class="login_result_txt">아직 아무것도 없네요....</td>
+
+
+
+
+</tr>
+<tr>
+
+<td class="login_result_txt"> <img width="300px" src="account/img/f2a97051023973972cb879b693a7b97d.jpg"> </td>
+
+
+
+
 </tr>
 
 
-
-
 </table>
+
 
 
 </body>
