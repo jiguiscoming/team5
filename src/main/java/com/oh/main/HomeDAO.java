@@ -103,7 +103,7 @@ public class HomeDAO {
 				String img = rs.getString("RECIPE_IMG_URL");
 				String det = rs.getString("RECIPE_DET_URL");
 				
-				recipe = new recipe(no, id, nm_ko, sumry, nation_code, nation_nm, ty_code, ty_nm, time, calorie, qnt, level, irdnt_code, pc_nm, img, det);
+				recipe = new recipe(no, id, nm_ko, sumry, nation_code, nation_nm, ty_code, ty_nm, time, calorie, qnt, level, irdnt_code, pc_nm, img, det, id, qnt, pc_nm, irdnt_code, ty_code, ty_nm, id, irdnt_code, pc_nm, img, det);
 				recipes.add(recipe);
 			}
 			

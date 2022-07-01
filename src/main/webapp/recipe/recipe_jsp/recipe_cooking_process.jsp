@@ -1,12 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
     
+
+
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&display=swap" rel="stylesheet">
@@ -26,14 +30,37 @@
 			<td> <img src="${recipe.recipe_img_url }"></td>
 		</tr>
 		<tr class="rcp_sumry">
+
+</head>
+<body>
+	
+	<form action="RecipeCookingProcessC">
+	
+	<table>
+		<tr>
+			<td> <img src="${recipe.recipe_img_url }"></td>
+		</tr>
+		<tr>
+
 			<td>${recipe.recipe_sumry}</td>
 		</tr>
 	</table>
 	
+
 	<table class="rcp_area2">
 		<tr class="rcp_summary_info">
 			<td> ${recipe.recipe_qnt }</td>
 			<td> ${recipe.recipe_cooking_time } </td>
+
+	<table>
+		<tr>
+			<td> ${recipe.recipe_cooking_time } </td>
+		</tr>
+	</table>
+	
+	<table>
+		<tr>
+
 			<td> ${recipe.recipe_level_nm }</td>
 		</tr>
 	</table>
@@ -72,5 +99,8 @@
 	</form>
 	
 	
+
+	</form>
+
 </body>
 </html>

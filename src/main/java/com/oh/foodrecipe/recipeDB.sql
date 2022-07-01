@@ -24,8 +24,13 @@ insert into RecipeBasicCourse values(RecipeBasicCourse_seq.nextval,'레시피코
 select * from RecipeBasicCourse;
 
 create sequence RecipeBasicCourse_seq start with 1 increment by 1;
+
 drop table RecipeBasicCourse;
 drop sequence RecipeBasicCourse_seq;
+
+create sequence RecipeInformation_seq;
+drop table RecipeInformation;
+
 -----------------------------------------
 
 CREATE TABLE RecipeIngredients(
@@ -44,6 +49,7 @@ select * from RecipeIngredients;
 
 create sequence RecipeIngredients_seq start with 1 increment by 1;
 drop table RecipeIngredients;
+
 drop sequence RecipeIngredients_seq;
 
 /*
@@ -54,6 +60,7 @@ select RECIPE_IRDNT_NM, RECIPE_IRDNT_CPCTY
 from RecipeBasicCourse, RecipeIngredients
 where RECIPE_BASIC_ID = RECIPE_IN_ID
 and RECIPE_BASIC_NO=1
+
 
 
 
@@ -75,6 +82,7 @@ select * from Recipeprocessinformation;
 create sequence Recipeprocessinformation_seq start with 1 increment by 1;
 
 drop table Recipeprocessinformation;
+
 drop sequence Recipeprocessinformation_seq;
 
 
@@ -85,5 +93,13 @@ select RECIPE_COOKING_DC, RECIPE_STRE_STEP_IMAGE_URL
 from RecipeBasicCourse, Recipeprocessinformation
 where RECIPE_BASIC_NO = RECIPE_PRO_ID
 and RECIPE_BASIC_NO=1;
+
+
+
+---------------------------------------
+
+select m_name, m_price, r_name, r_place
+from menu, RESTAURANT
+where r_no = m_place
 
 
