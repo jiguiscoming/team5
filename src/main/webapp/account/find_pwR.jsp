@@ -7,8 +7,17 @@
 <title>Insert title here</title>
 </head>
 <body>
+<table id="pwUpdate_result">
+<tr>
+<td  class="pwUpdate_result_txt">${r }
+</td>
+</tr>
 
-${r }
+
+
+
+</table>
+
 
 </body>
 </html>

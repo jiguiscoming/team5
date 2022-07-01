@@ -13,6 +13,8 @@
 <link rel="stylesheet" href="account_css/loginBtn.css">
 <link rel="stylesheet" href="account_css/loginOK.css">
 <link rel="stylesheet" href="account_css/loginResult.css">
+<link rel="stylesheet" href="account_css/account_find.css">
+<link rel="stylesheet" href="account_css/account_table.css">
 <link rel="stylesheet" href="group_css/group.css">
 <link rel="stylesheet" href="group_css/group_reg.css">
 <link rel="stylesheet" href="group_css/group_update.css">
@@ -20,6 +22,8 @@
 <link rel="stylesheet" href="mypage_css/mypage_home.css">
 <link rel="stylesheet" href="mypage_css/account_information.css">
 <link rel="stylesheet" href="mypage_css/account_updatePWR.css">
+<link rel="stylesheet" href="mypage_css/account_message.css">
+<link rel="stylesheet" href="mypage_css/account_message_detail.css">
 <script type="text/javascript" src="js/group.js"></script>
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/agree.js"> </script>
@@ -51,9 +55,9 @@
 <!-- href="#"는 이동 안 되게 넣어뒀습니다. 본인 컨트롤러로 이동하게 만드시면 됩니다. -->
 
 <div class="index_login_box">
-	<div><jsp:include page="${loginPage}"></jsp:include></div>
+	<jsp:include page="${loginPage}"></jsp:include>
 </div>
-<table id="indexTbl" border="1">
+<table id="indexTbl">
 	<tr>
 		<td class="index_titleTd" colspan="5">
 			<div class="index_title">

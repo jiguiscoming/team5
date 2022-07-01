@@ -45,9 +45,9 @@
 		<td align="left" style="padding-left: 80px;"><input type="file" name="file"></td>
 	</tr>
 	<tr>
-		<td class="group_reg_btn">
-			<button type="button" onclick="history.back()">취소</button>
-			<button name="pageNum" value="1">등록</button>
+		<td>
+			<button class="group_reg_return" type="button" onclick="history.back()">취소</button>
+			<button class="group_reg_btn" name="pageNum" value="1">등록</button>
 		</td>
 	</tr>
 </table>

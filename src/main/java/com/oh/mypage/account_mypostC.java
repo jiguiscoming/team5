@@ -17,7 +17,8 @@ public class account_mypostC extends HttpServlet {
 
 		UserDAO.getMkdao().loginCheck(request);
 
-		request.setAttribute("contentPage", "myPage/account_mypost.jsp");
+		request.setAttribute("contentPage", "myPage/mypage_maintenance.jsp");
+		//request.setAttribute("contentPage", "myPage/account_mypost.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	
 	

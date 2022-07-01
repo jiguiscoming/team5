@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+
+
+#account_table{
+	width: auto;
+	margin: auto;
+	
+    	width: auto;
+	height: 400px;
+	text-align: center;
+}
+
+
+table.account_table {
+  border-collapse: collapse;
+  text-align: left;
+  line-height: 1.5;
+  border: 1px solid #ccc;
+  margin: 20px 10px;
+}
+table.account_table thead {
+  border-right: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  background:  rgb(229,193,197);
+}
+table.account_table thead th {
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  color: #fff;
+}
+table.account_table tbody th {
+  width: 150px;
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+  background:  #fff0f0;
+}
+table.account_table td {
+  width: 350px;
+  padding: 10px;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+}

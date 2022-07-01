@@ -20,7 +20,7 @@
 	</div>
 	<div class="group_detail_btn">
 	<!-- (쪽지)회원만 이용가능 / (수정)작성자만 이용가능 -->
-		<a href="javascript:groupMessage(${group.no})" onclick="groupMessageOK()">쪽지</a>
+		<a href="javascript:groupMessage('${group.id }','${group.nickname }','${sessionScope.accountInfo.account_id}')">쪽지</a>
 		<button onclick="updateMember('${group.id}','${sessionScope.accountInfo.account_id}', '${group.no}')">수정</button>
 	</div>
 </div>
@@ -29,7 +29,7 @@
 <!-- 글내용 -->
 <table id="group_detailTbl">
 	<tr>
-		<td>작성자 ${group.id }</td>
+		<td>작성자 ${group.nickname }</td>
 	</tr>
 	<tr>
 		<td class="group_detail_content">
