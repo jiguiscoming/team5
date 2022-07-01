@@ -2,5 +2,57 @@
 
 .rcp_detail{
 	font-family: 'Dongle', sans-serif;
-	width: 1400px; margin: 0 auto;
+	width: 1200px;
+	position: relative;
+	border: 1px solid;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.rcp_area1{
+	margin: 0 auto;
+	width: 800px;
+}
+
+.rcp_pic{
+	width: 800px;
+	height: 600px;
+}
+
+.rcp_pic img{
+	width: 800px;
+	height: 600px;
+	
+}
+
+.rcp_sumry{
+
+	font-size: 30pt;
+	width: 800px;
+	height: 100px;
+}
+
+.rcp_area2{
+	margin: 0 auto;
+	width: 500px;
+	height: 50px;
+
+}
+
+.rcp_summary_info{
+	font-size: 27pt;
+	word-spacing: 50px;
+	text-align: center;
+}
+
+.rcp_area3{
+	border: 1px solid;
+	width: 300px;
+	height: 300px;
+	margin-top: 100px;
+}
+
+
+.rcp_area4{
+	
 }

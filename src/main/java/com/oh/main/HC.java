@@ -17,7 +17,7 @@ public class HC extends HttpServlet {
 		/* 첨에 있던 loginBtn은 빼주시고요 */
 		
 		// 밀키트 new
-//		HomeDAO.getMkdao().getMealkits(request); 
+		HomeDAO.getMkdao().getMealkits(request); 
 		
 		// 레시피 랜덤 5개
 		HomeDAO.getMkdao().getRecipes(request);

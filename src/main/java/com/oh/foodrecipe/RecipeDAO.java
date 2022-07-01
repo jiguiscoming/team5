@@ -113,7 +113,7 @@ public class RecipeDAO {
 			recipe r = null;
 			
 			
-			if(rs.next()) {
+			while(rs.next()) {
 				// bean
 				r = new recipe();
 				r.setRecipe_basic_no(rs.getInt("RECIPE_BASIC_NO"));
@@ -126,6 +126,7 @@ public class RecipeDAO {
 				
 				
 				request.setAttribute("recipe", r);
+				System.out.println(r);
 			}
 			
 		} catch (Exception e) {
@@ -148,7 +149,7 @@ public class RecipeDAO {
 			
 			String sql = "select RECIPE_IRDNT_NM, RECIPE_IRDNT_CPCTY\r\n"
 					+ "from RecipeBasicCourse, RecipeIngredients\r\n"
-					+ "where RECIPE_BASIC_NO(+) = RECIPE_IN_ID\r\n"
+					+ "where RECIPE_BASIC_NO = RECIPE_IN_ID\r\n"
 					+ "and RECIPE_BASIC_NO=?";
 			pstmt = con.prepareStatement(sql);
 			int recipeSummary = Integer.parseInt(request.getParameter("recipeSummary"));
@@ -166,7 +167,6 @@ public class RecipeDAO {
 				
 				ingredient.setRecipe_irdnt_nm(rs.getString("RECIPE_IRDNT_NM"));  
 				ingredient.setRecipe_irdnt_cpcty(rs.getString("RECIPE_IRDNT_CPCTY"));
-				
 				
 				
 				ingredients.add(ingredient);
@@ -201,8 +201,12 @@ public class RecipeDAO {
 			
 			rs = pstmt.executeQuery();
 			recipeprocessinformation processinformation = null;
+			rs.next();
+			System.out.println(rs.getString("RECIPE_COOKING_DC"));
 			
 			
+			System.err.println("ftftyfyfty");
+			/*
 			while(rs.next()) {
 				// bean
 				processinformation = new recipeprocessinformation();
@@ -210,12 +214,13 @@ public class RecipeDAO {
 				processinformation.setRecipe_cooking_dc(rs.getString("RECIPE_COOKING_DC"));  
 				
 				
-				
 				processinformations.add(processinformation);
-			
 			}
+			*/
 			request.setAttribute("recipeprocessinformation", processinformations);
-			
+
+			System.out.println(processinformation);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
