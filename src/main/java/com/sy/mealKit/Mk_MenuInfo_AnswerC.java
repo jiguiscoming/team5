@@ -7,15 +7,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.oh.account.UserDAO;
 import com.sy.function.MealkitDAO;
 
 @WebServlet("/Mk_MenuInfo_AnswerC")
 public class Mk_MenuInfo_AnswerC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		MealkitDAO.getMkdao().UpAnswerQnAMealkit(request);
-	
-	}
+		
+		
+		 UserDAO.getMkdao().loginCheck(request);
+		 MealkitDAO.getMkdao().UpAnswerQnAMealkit(request);
+		 request.setAttribute("mealkitPage","./mk_info.jsp" );
+		 // ./ 현재폴더 경로  ../ 밖으로 나가는거
+		 
+		 request.setAttribute("contentPage", "mealKit/mk_M.jsp");
+		 request.getRequestDispatcher("index.jsp").forward(request, response);
+			
+	}	
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	}

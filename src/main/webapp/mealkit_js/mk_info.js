@@ -13,3 +13,24 @@ function setThumbnail(event) {
 }
 
 
+
+/*function idCheck(id){
+	if(!id){
+		alert('회원만 상품후기가 가능합니다.');
+					
+	}if(id){
+		
+		alert('안녕')
+			window.open("../mealKit/mk_Review.jsp", "Review" , "width = 800 , height=1200" )
+				
+		
+	}
+}*/
+
+function reviewQnA_delete(no ,pw){
+	
+	alert(no)
+	alert(pw)
+	window.open("mealKit/mk_Review_delete.jsp?no=" + no + "?pw=" + pw , "Review" , "width = 350 , height=350" )
+	
+}

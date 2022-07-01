@@ -300,12 +300,12 @@ public class MealkitDAO {
 			pstmt.setString(8, mealkit_Answer_QnA_txt);
 
 			if (pstmt.executeUpdate() == 1) {
-				request.setAttribute("r", "��ϼ���");
+				request.setAttribute("r", "등록성공");
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("r", "��������");
+			request.setAttribute("r", "등록실패");
 		} finally {
 			DBManager.getDbm().close(null, pstmt, null);
 		}
@@ -331,6 +331,7 @@ public class MealkitDAO {
 				m = new MealkitQnA();
 				m.setMealkit_QnA_no(rs.getInt("mealkit_QnA_no"));
 				m.setMealkit_QnA_id(rs.getString("mealkit_QnA_id"));
+				m.setMealkit_QnA_pw(rs.getInt("mealkit_QnA_pw"));
 				m.setMealkit_QnA_title(rs.getString("mealkit_QnA_title"));
 				m.setMealkit_QnA_txt(rs.getString("mealkit_QnA_txt"));
 				m.setMealkit_QnA_date(rs.getDate("mealkit_QnA_date"));
@@ -339,10 +340,10 @@ public class MealkitDAO {
 				m.setMealkit_QnA_Answer_txt(rs.getString("mealkit_QnA_Answer_txt"));
 
 				if (rs.getInt("mealkit_QnA_Answer_Confirm") == 0) {
-					m.setMealkit_QnA_Answer_Confirm("�亯�����");
+					m.setMealkit_QnA_Answer_Confirm("답변대기중");
 				} else {
 
-					m.setMealkit_QnA_Answer_Confirm("�亯�Ϸ�");
+					m.setMealkit_QnA_Answer_Confirm("답변완료");
 				}
 
 				MealkitQnAlist.add(m);
@@ -387,12 +388,12 @@ public class MealkitDAO {
 			pstmt.setString(3, mealkit_Answer_txt);
 
 			if (pstmt.executeUpdate() == 1) {
-				request.setAttribute("r", "��ϼ���");
+				request.setAttribute("r", "등록성공");
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("r", "��������");
+			request.setAttribute("r", "등록실패");
 		} finally {
 			DBManager.getDbm().close(null, pstmt, null);
 		}
@@ -466,7 +467,7 @@ public class MealkitDAO {
 			System.out.println(no);
 
 			if (pstmt.executeUpdate() == 1) {
-				System.out.println("���� ����");
+				System.out.println("등록성공");
 			}
 
 		} catch (Exception e) {
@@ -651,6 +652,32 @@ public class MealkitDAO {
 		} finally {
 			DBManager.getDbm().close(null, pstmt, null);
 		}
+	}
+
+	public void delReviewMealkit(HttpServletRequest request) {
+		PreparedStatement pstmt = null;
+
+		try {
+			String sql = "delete mealkit_review_test where mealkit_review_no=?";
+			pstmt = con.prepareStatement(sql);
+
+			// ? no 값을 하나 받아와야 하네
+			int no = Integer.parseInt(request.getParameter("mealkit_review_no"));
+			int pw = Integer.parseInt(request.getParameter("mealkit_review_pw"));
+
+			pstmt.setInt(1, no); 
+
+			if (pstmt.executeUpdate() == 1) {
+				request.setAttribute("r", "삭제 성공했습니다.");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("r", "Server Error....");
+		} finally {
+			DBManager.getDbm().close(null, pstmt, null);
+		}
+		
 	}
 
 }

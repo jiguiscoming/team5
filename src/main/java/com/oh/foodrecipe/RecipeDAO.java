@@ -91,7 +91,7 @@ public class RecipeDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			DBManager.getDbm().close(null, pstmt, null);
+			DBManager.getDbm().close(null, pstmt, rs);
 		}
 	}
 	
@@ -131,7 +131,7 @@ public class RecipeDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			DBManager.getDbm().close(null, pstmt, null);
+			DBManager.getDbm().close(null, pstmt, rs);
 		}
 		
 		
@@ -177,7 +177,7 @@ public class RecipeDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			DBManager.getDbm().close(null, pstmt, null);
+			DBManager.getDbm().close(null, pstmt, rs);
 		}
 		
 		
@@ -219,7 +219,7 @@ public class RecipeDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			DBManager.getDbm().close(null, pstmt, null);
+			DBManager.getDbm().close(null, pstmt, rs);
 		}
 		
 	}

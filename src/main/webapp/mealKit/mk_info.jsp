@@ -19,12 +19,32 @@
 <script type="text/javascript">
 	function review_QnA_A(no) {
 		alert(no);
-			
+		
 		window.open('mealKit/mk_QnA_A.jsp?no=' + no , "QnA_Answer" , "width = 800 , height=1200" )
 			 
 	}
 
 </script>
+
+<script type="text/javascript">
+
+	function idCheck(userid){
+		if(!userid){
+			alert('회원만 상품후기가 가능합니다.');
+			
+		} else {
+			
+			alert('안녕')
+			window.open("mealKit/mk_Review.jsp", "Review" , "width = 800 , height=1200" )
+
+		}
+	}
+
+
+
+</script>
+
+
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 	integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
@@ -46,6 +66,20 @@
 
 </head>
 <body onload="init();">
+
+		<table >
+		
+		<tr>
+			<td >상품QnA</td>
+			<td >  <a onclick="idCheck(${sessionScope.accountInfo.account_id })" >
+					<!--  <input type="hidden" id="mk_no" value="${Mealkit.mealkit_no }">-->
+					상품문의 글쓰기
+			</a></td>
+
+		</tr>
+
+	</table>
+
 
 	<div class="myslides_main">
 		<div class="slideshow-container">
@@ -227,17 +261,18 @@
 		</tr>
 	</table>
 
+	--------------	
+	
 
+	
 
 	<table class="mk_Info_write" >
 		<tr>
 			<td class="mk_Info_wirte_td1">상품후기</td>
 			<td style="text-align: right;">
 				
-				<a href=#none id="show" class="mk_info_write_btn"
-					onclick="if(hide.style.display=='none')
-					{hide.style.display='';show.innerText='▲취소'}
-					else {hide.style.display='none';show.innerText='상품후기글쓰기'}">상품후기 글쓰기
+				<a href=#none id="show" class="mk_info_write_btn" value="${Mealkit.mealkit_no }"
+					onclick="idCheck(${sessionScope.accountInfo.account_id })">상품후기 글쓰기
 				</a>
 			</td>
 		</tr>
@@ -389,7 +424,7 @@
 			<tr class="faq-content">
 				<td style="width: 60px; text-align: center; font-size: 12px">
 					${q.mealkit_QnA_no }</td>
-				<td><button class="Qna" id="q-${q.mealkit_QnA_no }">${q.mealkit_QnA_title }</button></td>
+				<td><button class="Qna" id="q-${q.mealkit_QnA_no }" >${q.mealkit_QnA_title }</button></td>
 				<td class="QnA_td" style="width:10%">${q.mealkit_QnA_id }</td>
 				<td class="QnA_td">${q.mealkit_QnA_date }</td>
 				<td class="QnA_td">${q.mealkit_QnA_Answer_Confirm }</td>
@@ -417,8 +452,10 @@
 			</tr>
 
 			<tr>
+				<td> <button onclick="reviewQnA_delete(${q.mealkit_QnA_no}, '${q.mealkit_QnA_pw }')"> ${q.mealkit_QnA_pw }삭제</button> </td>
+				
 				<td style="text-align: right;">
-					<button onclick="review_QnA_A(${q.mealkit_QnA_no })">${q.mealkit_QnA_no }답글
+					<button onclick="review_QnA_A(${q.mealkit_QnA_no } )">${q.mealkit_QnA_no }답글
 						달기</button>
 				</td>
 			</tr>
