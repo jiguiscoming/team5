@@ -13,15 +13,15 @@ import com.sy.function.MealkitDAO;
 public class Mk_MenuInfo_RegQnAC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
+		MealkitDAO.getMkdao().delQnAMealkit(request);
+		
+		
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		MealkitDAO.getMkdao().RegQnAMealkit(request);
-		request.setAttribute("mealkitPage","./mk_info.jsp" );
-		 // ./ 현재폴더 경로  ../ 밖으로 나가는거
-		 
-		 request.setAttribute("contentPage", "mealKit/mk_M.jsp");
-		 request.getRequestDispatcher("index.jsp").forward(request, response);
+	
 			
 		
 		

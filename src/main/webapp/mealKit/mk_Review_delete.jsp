@@ -7,10 +7,26 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	
-		function passwordconfirm(no, pw) {
+		function passwordconfirm(pw) {
 			
-			alert(no);
-			alert(pw);
+		let pwcf = document.getElementById('pwcf').value;
+		let QnA_no = document.getElementById('mealkit_QnA_no').value;
+	
+		
+			
+			if (pwcf == pw) {
+				
+				alert('게시글 삭제가 성공했습니다.')
+				location.href='../Mk_MenuInfo_RegQnAC?QnA_no=' + QnA_no ; 
+				window.close()
+			} else {
+				
+				alert('비밀번호가 틀렸습니다.')
+				window.close()
+
+
+				
+			}
 		
 			
 		}
@@ -18,19 +34,19 @@
 </script>
 </head>
 <body>
-		
-		<form action="ReviewDelC">
+				
 			<table>
 			<tr>
 			<td> 비밀번호 입력</td>
-			<td> <input id="pw" name="mealkit_review_pw"> </td>
+			<td> <input id="pwcf" name="mealkit_review_pw"> </td>
 			</tr>
 			<tr>
-			<td> <button  name="mealkit_review_no" onclick="passwordconfirm(${param.no } , ${param.pw })">삭제 </button> </td>
+			 <td> <input type="hidden" id="mealkit_QnA_no" value="${param.no }"> </td>
+			<td> <button  name="mealkit_review_no" onclick="passwordconfirm(${param.pw })">삭제 </button> </td>
 			<td> <button onclick="window.close()"> 취소</button> </td>
 			</tr>
 			</table>
-		</form>
+	
 		
 </body>
 </html>

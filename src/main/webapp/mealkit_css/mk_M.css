@@ -1,8 +1,10 @@
 @charset "UTF-8";
 
 .mk_Menulistbl1 {
-	margin-left: auto;
-	margin-right: auto;
+	margin-left:auto;
+	margin-right:auto;
+	border-bottom-color: red;
+	width: 1800px;
 
 }
 
@@ -10,7 +12,7 @@
 	float: left;
 	width: 300px;
 	height: 345px;
-	margin-left: 50px;
+	margin-left: 40px;
 	margin-top: 1%;
 	margin-bottom: 1%;
 	text-align: center;
@@ -22,12 +24,13 @@
 }
 
 .mk_Ml_td_price{
-	
-	font-weight: bold;
+	height:18px;
+	font-weight: 580;
 }
 .mk_Ml_td_name{
 	font-family: 'Nanum Gothic', sans-serif;
 	color: #333333;
+	height:30px;
 }
 
 .mk_Ml_img {

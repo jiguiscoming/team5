@@ -17,11 +17,7 @@ public class Mk_MenuInfo_AnswerC extends HttpServlet {
 		
 		 UserDAO.getMkdao().loginCheck(request);
 		 MealkitDAO.getMkdao().UpAnswerQnAMealkit(request);
-		 request.setAttribute("mealkitPage","./mk_info.jsp" );
-		 // ./ 현재폴더 경로  ../ 밖으로 나가는거
-		 
-		 request.setAttribute("contentPage", "mealKit/mk_M.jsp");
-		 request.getRequestDispatcher("index.jsp").forward(request, response);
+	
 			
 	}	
 

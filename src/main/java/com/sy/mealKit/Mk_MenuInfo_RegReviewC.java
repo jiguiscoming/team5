@@ -14,7 +14,7 @@ import com.sy.function.MealkitDAO;
 public class Mk_MenuInfo_RegReviewC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 				
-		MealkitDAO.getMkdao().delReviewMealkit(request);
+		
 	
 	}
 
@@ -28,8 +28,8 @@ public class Mk_MenuInfo_RegReviewC extends HttpServlet {
 		 */
 		UserDAO.getMkdao().loginCheck(request);
 		MealkitDAO.getMkdao().regReviewMealkit(request);
-		MealkitDAO.getMkdao().viewReviewMealkit(request);	
-		request.getRequestDispatcher("mealKit/mk_test.jsp").forward(request, response);
+			
+		
 	}
 
 }

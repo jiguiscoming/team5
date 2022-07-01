@@ -45,7 +45,7 @@ public class MealkitDAO {
 			String sql = "insert into mealkit_test values (mealkit_test_seq.nextval , ?,?,?,?,?,sysdate )";
 			pstmt = con.prepareStatement(sql);
 
-			String saveDirectory = request.getServletContext().getRealPath("img");
+			String saveDirectory = request.getServletContext().getRealPath("mk_img");
 			System.out.println(saveDirectory);
 
 			MultipartRequest mr = new MultipartRequest(request, saveDirectory, 31467280, "utf-8",
@@ -159,10 +159,10 @@ public class MealkitDAO {
 		PreparedStatement pstmt = null;
 
 		try {
-			String sql = "insert into mealkit_review_test values (mealkit_review_test_seq.nextval ,?,?,?,?,?,sysdate )";
+			String sql = "insert into mealkit_review_test values (mealkit_review_test_seq.nextval ,?,?,?,?,?,?,sysdate )";
 			pstmt = con.prepareStatement(sql);
 
-			String saveDirectory = request.getServletContext().getRealPath("img");
+			String saveDirectory = request.getServletContext().getRealPath("mk_img");
 			System.out.println(saveDirectory);
 
 			MultipartRequest mr = new MultipartRequest(request, saveDirectory, 31467280, "utf-8",
@@ -172,6 +172,7 @@ public class MealkitDAO {
 			String mealkit_review_title = mr.getParameter("mealkit_review_title");
 			String mealkit_review_img = mr.getFilesystemName("mealkit_review_img");
 			String mealkit_review_txt = mr.getParameter("mealkit_review_txt");
+			String mealkit_review_id = mr.getParameter("mealkit_review_id");
 			int mealkit_review_star = Integer.parseInt(mr.getParameter("starpoint"));
 			int mealkit_review_mk_no = Integer.parseInt(mr.getParameter("mealkit_review_mk_no"));
 
@@ -181,14 +182,17 @@ public class MealkitDAO {
 			System.out.println(mealkit_review_txt);
 			System.out.println(mealkit_review_star);
 			System.out.println(mealkit_review_mk_no);
+			System.out.println(mealkit_review_id);
 
 			// pstmt.setString(1, mealkit_review_id);
 			pstmt.setInt(1, mealkit_review_mk_no);
-			pstmt.setString(2, mealkit_review_title);
-			pstmt.setString(3, mealkit_review_img);
-			pstmt.setString(4, mealkit_review_txt);
-			pstmt.setInt(5, mealkit_review_star);
-
+			pstmt.setString(2, mealkit_review_id);
+			pstmt.setString(3, mealkit_review_title);
+			pstmt.setString(4, mealkit_review_img);
+			pstmt.setString(5, mealkit_review_txt);
+			pstmt.setInt(6, mealkit_review_star);
+			
+			
 			if (pstmt.executeUpdate() == 1) {
 				request.setAttribute("r", "��ϼ���");
 			}
@@ -222,6 +226,7 @@ public class MealkitDAO {
 				m.setMealkit_review_no(rs.getInt("mealkit_review_no"));
 				m.setMealkit_review_title(rs.getString("mealkit_review_title"));
 				m.setMealkit_review_txt(rs.getString("mealkit_review_txt"));
+				m.setMealkit_review_id(rs.getString("mealkit_review_id"));
 				m.setMealkit_review_date(rs.getDate("mealkit_review_date"));
 
 				if (rs.getInt("mealkit_review_star") == 10) {
@@ -268,7 +273,7 @@ public class MealkitDAO {
 			String sql = "insert into mealkit_QnA_test values (mealkit_QnA_test_seq.nextval ,?,?,?,?,?,?,?,?,0, sysdate )";
 			pstmt = con.prepareStatement(sql);
 
-			String saveDirectory = request.getServletContext().getRealPath("img");
+			String saveDirectory = request.getServletContext().getRealPath("mk_img");
 			System.out.println(saveDirectory);
 
 			MultipartRequest mr = new MultipartRequest(request, saveDirectory, 31467280, "utf-8",
@@ -368,7 +373,7 @@ public class MealkitDAO {
 			String sql = "insert into mealkit_Answer_test values (mealkit_Answer_test_seq.nextval ,?,?,?,sysdate )";
 			pstmt = con.prepareStatement(sql);
 
-			String saveDirectory = request.getServletContext().getRealPath("img");
+			String saveDirectory = request.getServletContext().getRealPath("mk_img");
 			System.out.println(saveDirectory);
 
 			MultipartRequest mr = new MultipartRequest(request, saveDirectory, 31467280, "utf-8",
@@ -654,18 +659,18 @@ public class MealkitDAO {
 		}
 	}
 
-	public void delReviewMealkit(HttpServletRequest request) {
+	public void delQnAMealkit(HttpServletRequest request) {
 		PreparedStatement pstmt = null;
 
 		try {
-			String sql = "delete mealkit_review_test where mealkit_review_no=?";
-			pstmt = con.prepareStatement(sql);
+			String sql = "delete MEALKIT_QNA_TEST where MEALKIT_QNA_NO=?";
 
 			// ? no 값을 하나 받아와야 하네
-			int no = Integer.parseInt(request.getParameter("mealkit_review_no"));
-			int pw = Integer.parseInt(request.getParameter("mealkit_review_pw"));
-
+			int no = Integer.parseInt(request.getParameter("QnA_no"));
+			System.out.println(no);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, no); 
+
 
 			if (pstmt.executeUpdate() == 1) {
 				request.setAttribute("r", "삭제 성공했습니다.");
