@@ -3,37 +3,44 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 
+	<table id="find_T">
+		<form action="find_pwCR">
 
-	<form action="find_pwCR">
+			<tr>
+				<td class="find_title">비밀번호 찾기!!!</td>
+			</tr>
+
+
+			<tr>
+				<td class="find_txt6">알맞은 아이디와 가입할 때 썼던 비밀번호 질문을 입력해 주세요!<br>
+					등록된 정보가 같아야 비밀번호를 찾을 수 있습니다. <br> 개인정보 보호를 위해 비밀번호가 0000으로
+					변경됩니다.
+				</td>
+			</tr>
+			<tr>
+				<td class="find_txt">등록된 아이디를 입력해 주세요</td>
+			</tr>
+		<tr>
+			<td><input name="W_id" class="login_result_txt"></td>
+		</tr>
+
+
 
 		<tr>
-			<td>알맞은 아이디와 가입할 때 썼던 비밀번호 질문을 입력해 주세요!</td>
+			<td class="find_txt">비밀번호 확인 질문</td>
+
 		</tr>
 		<tr>
-			<td>등록된 정보가 같아야 비밀번호를 찾을 수 있습니다. 개인정보 보호를 위해 비밀번호가 0000으로 변경됩니다.</td>
-		</tr>
-
-		<td>등록된 아이디를 입력해 주세요</td>
-		</tr>
-		<tr>
-			<td><input name="W_id"></td>
-		</tr>
 
 
 
-		<tr>
-			<td>비밀번호 확인 질문</td>
-			
-			</tr><tr>
-			
-			
-			
-			<td><select name="W_pwquestion">
+			<td><select name="W_pwquestion" class="login_result_txt2">
 					<option value=" 기억에 남는 추억의 장소는?">기억에 남는 추억의 장소는?</option>
 					<option value="자신의 인생 좌우명은?">자신의 인생 좌우명은?</option>
 					<option value="자신의 보물 제1호는?">자신의 보물 제1호는?</option>
@@ -56,18 +63,16 @@
 					<option value="내가 좋아하는 캐릭터는?">내가 좋아하는 캐릭터는?</option>
 			</select></td>
 		</tr>
-		
-		
+
+
 		<tr>
-			<td>
-				답변
-			</td>
+			<td class="find_txt">답변</td>
 		</tr>
-		
-		
+
+
 		<tr>
 
-			<td><input name="W_pwquestiona"></td>
+			<td><input class="login_result_txt" name="W_pwquestiona"></td>
 
 		</tr>
 
@@ -75,11 +80,11 @@
 
 		<tr>
 			<td>
-				<button>확인</button>
+				<button class="find_button">확인</button>
 			</td>
 		</tr>
-	</form>
-
+		</form>
+	</table>
 
 
 </body>

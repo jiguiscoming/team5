@@ -569,11 +569,9 @@ public int idCheck(String id) {
 
 					pstmt.setString(1, W_id);
 					rs = pstmt.executeQuery();
-					System.out.println(rs.getString("account_pw"));
 
+				
 					request.setAttribute("r", "비밀번호가 0000으로 변경되었습니다!");
-
-					System.out.println(rs.getString("account_pw"));
 
 				} else {
 					request.setAttribute("r", "계정을 찾을 수 없습니다..");

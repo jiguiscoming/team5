@@ -17,11 +17,11 @@ public class account_secessionRC2 extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		// Å»Åğ ¾ÈÇÔ °á°úÆäÀÌÁö
+		// Å»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		
 
 		
-			request.setAttribute("r", "°¨»çÇÕ´Ï´Ù!");
+			request.setAttribute("r", "ê°ì‚¬í•©ë‹ˆë‹¤!");
 			request.setAttribute("loginPage", "account/loginOK.jsp");
 		
 	
