@@ -106,6 +106,34 @@ public class UserDAO {
 		PreparedStatement pstmt = null;	
 
 
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	
+	try {
+		request.setCharacterEncoding("utf-8");
+		String sql = "insert into oh_account values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		con = DBManager_account.connect();
+		pstmt = con.prepareStatement(sql);
+		
+		String join_name=request.getParameter("join_name");
+		String join_nick=request.getParameter("join_nick");
+		String join_id=request.getParameter("join_id");
+		String join_pw=request.getParameter("join_pw");
+		String join_gender=request.getParameter("join_gender");
+		String join_birth=request.getParameter("join_birth");
+		String join_addr=request.getParameter("join_addr");
+		String join_age=request.getParameter("join_age");
+		String join_pwquestion=request.getParameter("join_pwquestion");
+		String join_pwquestiona=request.getParameter("join_pwquestiona");
+		String join_email=request.getParameter("join_email");
+		String join_profile=request.getParameter("join_profile");
+		String join_phone=request.getParameter("join_phone");
+		String agree1=request.getParameter("agree1");
+		String agree2=request.getParameter("agree2");
+		String agree3=request.getParameter("agree3");
+		String agree4=request.getParameter("agree4");
+
+
 		String path = request.getSession().getServletContext().getRealPath("account/img");
 		System.out.println(path);
 		MultipartRequest mr = new MultipartRequest(request, path, 20 * 1024 * 1024, "utf-8",
@@ -182,6 +210,16 @@ public class UserDAO {
 			DBManager.getDbm().close(null, pstmt, null);
 		}
 
+		
+		
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+		request.setAttribute("r", "서버 오류..");
+	
+	}finally {
+		DBManager_account.close(con, pstmt, null);
+
 	}
 
 	public static void confirmJoin(HttpServletRequest request) {
@@ -216,6 +254,54 @@ public class UserDAO {
 //		request.setAttribute("join_phone", join_phone);
 //		request.setAttribute("join_addr", join_addr);
 //		System.out.println(join_name);
+
+
+public static void login(HttpServletRequest request) {
+
+	String userId= request.getParameter("id");
+	String userPw = request.getParameter("pw");
+	
+	
+	
+	
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	
+	try {
+		String sql = "select * from oh_account where account_id= ?";
+		con = DBManager_account.connect();
+		pstmt = con.prepareStatement(sql);
+		
+		pstmt.setString(1, userId);
+		rs = pstmt.executeQuery();
+		
+		
+		if (rs.next()) {
+			if (userPw.equals(rs.getString("account_pw"))) {
+				request.setAttribute("r", "어서 오세요!");
+				
+				accountB a = new accountB();
+				
+				a.setaccount_id(rs.getString("account_id"));
+				a.setaccount_pw(rs.getString("account_pw"));
+				a.setaccount_name(rs.getString("account_name"));
+				
+				HttpSession hs = request.getSession();
+				hs.setAttribute("accountInfo", a);
+				hs.setMaxInactiveInterval(600);
+				
+			}else {
+				request.setAttribute("r", "패스워드를 확인해 주세요!");
+			}
+		} else {
+			request.setAttribute("r", "가입하지 않은 회원입니다!");  
+		}
+	
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally {
+		DBManager_account.close(con, pstmt, rs);
 
 	}
 
@@ -306,6 +392,34 @@ public class UserDAO {
 			request.setAttribute("loginPage", "account/loginOK.jsp");
 
 		}
+
+
+	
+	
+}
+
+ // id 중복체크
+public int idCheck(String id) {
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	int value = 0;
+	
+	try {
+	    String sql = "select account_id from oh_account where account_id = ?";
+	    
+		con = DBManager_account.connect();
+		pstmt = con.prepareStatement(sql);
+	    pstmt.setString(1,  id);
+	    rs = pstmt.executeQuery();
+	    
+	    if(rs.next()) value = 1;
+	    
+	}catch (Exception e) {
+	    e.printStackTrace();
+
+	} finally {
+		DBManager_account.close(con, pstmt, rs);
 
 	}
 

@@ -16,6 +16,7 @@ public class HC extends HttpServlet {
 		/* 정연씨가 만든 로그인체크 기능 모든 컨트롤러에 넣어주세요! */
 		/* 첨에 있던 loginBtn은 빼주시고요 */
 		
+
 		// 밀키트 new
 		HomeDAO.getMkdao().getMealkits(request); 
 		
@@ -24,6 +25,8 @@ public class HC extends HttpServlet {
 		// 공구 지역에 맞게 최신 5개
 		HomeDAO.getMkdao().getGroups(request);
 		UserDAO.getMkdao().loginCheck(request);
+
+		request.setAttribute("loginPage", "account/loginBtn_recipe.jsp");
 
 		request.setAttribute("contentPage", "home.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
