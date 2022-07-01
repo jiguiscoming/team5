@@ -7,9 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="loginC" method="post">
+	<form action="loginC" method="post"></form>
 		<table id="loginTbl">
 			<tr>
+				<td width="150px"></td>
 				<td class="login_id">ID <input name="id"></td>
 				<td class="login_pw">PW <input name="pw"></td>
 				<td class="login_btn"><button type="submit" >로그인!</button></td>

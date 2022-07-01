@@ -14,7 +14,7 @@
 		<td width="150px"></td>
 		
 		<td class="loginOK_hello">
-			 ${sessionScope.accountInfo.account_name }님 안녕하세요!
+			 ${sessionScope.accountInfo.account_nick }님 안녕하세요!
 		
 			<button class="loginOK_mypage" onclick="location.href='mypageHomeC'">마이 페이지</button>	
 		
