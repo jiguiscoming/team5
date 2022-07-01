@@ -16,9 +16,9 @@ public class RecipeDAO {
 	
 	public static void getAllRecipe(HttpServletRequest request) {
 
-		// ¿¸√º ¡∂»∏ ¿œ. crud - r
+		// Ï†ÑÏ≤¥ Ï°∞Ìöå Ïùº. crud - r
 		
-		// ≤Æµ•±‚
+		// ÍªçÎç∞Í∏∞
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -63,7 +63,9 @@ public class RecipeDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			DBManager.close(con, pstmt, rs);
+
+			DBManager.getDbm().close(null, pstmt, rs);
+
 		}
 	}
 	
@@ -103,7 +105,9 @@ public class RecipeDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			DBManager.close(con, pstmt, rs);
+
+			DBManager.getDbm().close(null, pstmt, rs);
+
 		}
 		
 		
@@ -112,6 +116,90 @@ public class RecipeDAO {
 	}
 
 
+	public void getingredients(HttpServletRequest request) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			
+			String sql = "select RECIPE_IRDNT_NM, RECIPE_IRDNT_CPCTY\r\n"
+					+ "from RecipeBasicCourse, RecipeIngredients\r\n"
+					+ "where RECIPE_BASIC_NO(+) = RECIPE_IN_ID\r\n"
+					+ "and RECIPE_BASIC_NO=?";
+			pstmt = con.prepareStatement(sql);
+			int recipeSummary = Integer.parseInt(request.getParameter("recipeSummary"));
+			pstmt.setInt(1, recipeSummary);
+			
+			ArrayList<recipeingredient> ingredients = new ArrayList<recipeingredient>();
+			
+			rs = pstmt.executeQuery();
+			recipeingredient ingredient = null;
+			
+			
+			while(rs.next()) {
+				// bean
+				ingredient = new recipeingredient();
+				
+				ingredient.setRecipe_irdnt_nm(rs.getString("RECIPE_IRDNT_NM"));  
+				ingredient.setRecipe_irdnt_cpcty(rs.getString("RECIPE_IRDNT_CPCTY"));
+				
+				
+				
+				ingredients.add(ingredient);
+			
+			}
+			request.setAttribute("recipeingredients", ingredients);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.getDbm().close(null, pstmt, rs);
+		}
+		
+		
+		
+	}
+	public void getrecipeprocessinformation(HttpServletRequest request) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			
+			String sql = "select RECIPE_COOKING_DC, RECIPE_STRE_STEP_IMAGE_URL\r\n"
+					+ "from RecipeBasicCourse, Recipeprocessinformation\r\n"
+					+ "where RECIPE_BASIC_NO = RECIPE_PRO_ID\r\n"
+					+ "and RECIPE_BASIC_NO=?";
+			pstmt = con.prepareStatement(sql);
+			int recipeSummary = Integer.parseInt(request.getParameter("recipeSummary"));
+			pstmt.setInt(1, recipeSummary);
+			
+			ArrayList<recipeprocessinformation> processinformations = new ArrayList<recipeprocessinformation>();
+			
+			rs = pstmt.executeQuery();
+			recipeprocessinformation processinformation = null;
+			
+			
+			while(rs.next()) {
+				// bean
+				processinformation = new recipeprocessinformation();
+				
+				processinformation.setRecipe_cooking_dc(rs.getString("RECIPE_COOKING_DC"));  
+				
+				
+				
+				processinformations.add(processinformation);
+			
+			}
+			request.setAttribute("recipeprocessinformation", processinformations);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.getDbm().close(null, pstmt, rs);
+		}
+		
+	}
+
 	
 	
 	
@@ -119,8 +207,8 @@ public class RecipeDAO {
 		
 		req.setAttribute("curPageNo", page);
 		
-		int cnt = 12;		// «— ∆‰¿Ã¡ˆ¥Á ∫∏ø©¡Ÿ ∞≥ºˆ
-		int total = recipes.size();		// √— µ•¿Ã≈Õ ∞≥ºˆ
+		int cnt = 12;		// Ìïú ÌéòÏù¥ÏßÄÎãπ Î≥¥Ïó¨Ï§Ñ Í∞úÏàò
+		int total = recipes.size();		// Ï¥ù Îç∞Ïù¥ÌÑ∞ Í∞úÏàò
 		int pageCount = (int) Math.ceil((double)total / cnt);
 		req.setAttribute("recipesData", total);
 		req.setAttribute("pageCount", pageCount);

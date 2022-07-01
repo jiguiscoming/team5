@@ -19,12 +19,13 @@
 <script type="text/javascript">
 	function review_QnA_A(no) {
 		alert(no);
-			
+		
 		window.open('mealKit/mk_QnA_A.jsp?no=' + no , "QnA_Answer" , "width = 800 , height=1200" )
 			 
 	}
 
 </script>
+
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 	integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
@@ -47,13 +48,14 @@
 </head>
 <body onload="init();">
 
+
 	<div class="myslides_main">
 		<div class="slideshow-container">
 
 
 			<div class="mySlides fade">
 				<div class="numbertext">1 / 3</div>
-				<img src="img/${Mealkit.mealkit_img }" style="width: 100%">
+				<img src="mk_img/${Mealkit.mealkit_img }" style="width: 100%">
 				<!-- <div class="text">Caption Text</div> -->
 			</div>
 
@@ -130,7 +132,7 @@
 			<tr>
 				 <tr>
             <td colspan="2" style="text-align: center;"><button class="mk_Info_td3_button1">찜하기</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <button class="mk_Info_td3_button">구매하기</button> </td>
+                <button class="mk_Info_td3_button" onclick="">구매하기</button> </td>
         </tr>
 			</tr>
 		</table>
@@ -228,108 +230,25 @@
 	</table>
 
 
+	
+
+	
 
 	<table class="mk_Info_write" >
 		<tr>
 			<td class="mk_Info_wirte_td1">상품후기</td>
 			<td style="text-align: right;">
 				
-				<a href=#none id="show" class="mk_info_write_btn"
-					onclick="if(hide.style.display=='none')
-					{hide.style.display='';show.innerText='▲취소'}
-					else {hide.style.display='none';show.innerText='상품후기글쓰기'}">상품후기 글쓰기
+				<a id="show" class="mk_info_write_btn" 
+				onclick="mk_review_reg('${sessionScope.accountInfo.account_id }', ${Mealkit.mealkit_no })">${sessionScope.accountInfo.account_id }상품후기 글쓰기
 				</a>
 			</td>
 		</tr>
 	</table>
-	<table id="hide" style="display: none;">
-		<tr>
-		<td>
-		<form name="form" method="POST" action="Mk_MenuInfo_RegReviewC"
-			enctype="multipart/form-data">
-			<input name="mealkit_review_mk_no" type="hidden"
-				value="${Mealkit.mealkit_no }">
-
-			<table class="form-group"
-				style="t-style: solid; margin-left: 50%" border="1">
-				<tr>
-					<td>제목</td>
-					<td><input placeholder="제목을 입력하세요"
-						name="mealkit_review_title" style="width: 80%"></td>
-				</tr>
-				<tr style="border-style: solid;">
-					<td>평점</td>
-					<td>
-						<div class="starpoint_wrap" style="margin-left: 10%">
-							<div class="starpoint_box">
-								<label for="starpoint_1" class="label_star" title="0.5"><span
-									class="blind">0.5점</span></label> <label for="starpoint_2"
-									class="label_star" title="1"><span class="blind">1점</span></label>
-								<label for="starpoint_3" class="label_star" title="1.5"><span
-									class="blind">1.5점</span></label> <label for="starpoint_4"
-									class="label_star" title="2"><span class="blind">2점</span></label>
-								<label for="starpoint_5" class="label_star" title="2.5"><span
-									class="blind">2.5점</span></label> <label for="starpoint_6"
-									class="label_star" title="3"><span class="blind">3점</span></label>
-								<label for="starpoint_7" class="label_star" title="3.5"><span
-									class="blind">3.5점</span></label> <label for="starpoint_8"
-									class="label_star" title="4"><span class="blind">4점</span></label>
-								<label for="starpoint_9" class="label_star" title="4.5"><span
-									class="blind">4.5점</span></label> <label for="starpoint_10"
-									class="label_star" title="5"><span class="blind">5점</span></label>
-								<input type="radio" name="starpoint" id="starpoint_1"
-									class="star_radio" value="1"> <input type="radio"
-									name="starpoint" id="starpoint_2" class="star_radio" value="2">
-								<input type="radio" name="starpoint" id="starpoint_3"
-									class="star_radio" value="3"> <input type="radio"
-									name="starpoint" id="starpoint_4" class="star_radio" value="4">
-								<input type="radio" name="starpoint" id="starpoint_5"
-									class="star_radio" value="5"> <input type="radio"
-									name="starpoint" id="starpoint_6" class="star_radio" value="6">
-								<input type="radio" name="starpoint" id="starpoint_7"
-									class="star_radio" value="7"> <input type="radio"
-									name="starpoint" id="starpoint_8" class="star_radio" value="8">
-								<input type="radio" name="starpoint" id="starpoint_9"
-									class="star_radio" value="9"> <input type="radio"
-									name="starpoint" id="starpoint_10" class="star_radio"
-									value="10"> <span class="starpoint_bg"></span>
-							</div>
-						</div>
-					</td>
-				</tr>
 
 
-				<tr>
-					<td>내용</td>
-					<td colspan="2"><textarea onclick="this.value=''"
-							name="mealkit_review_txt" style="width: 500px; height: 500px;">내용을 입력하세요 </textarea></td>
-				</tr>
 
-				<tr>
-					<td colspan="1"><input class="form-control form-control-user"
-						type="file" name="mealkit_review_img" id="mealkit_review_img"
-						onchange="setThumbnail(event);"></td>
-					<td><div id="image_container"></div></td>
-				</tr>
-
-			</table>
-			<table class="pt-1 text-right" style="margin-left: auto">
-			<tr>
-			<td>
-				<button class="btn btn btn-success" type="submit"
-					style="width: 10%; padding: 5px;">상품후기등록</button>
-			</td>
-			</tr>
-			</table>
-		</form>
-		</td>
-	</tr>
-
-
-	</table>
-
-
-	<table class="mk_Info_review" >
+	<table class="mk_Info_review"  >
 
 		<c:forEach var="r" items="${MealkitReviewlist }">
 			<!-- <table id="faq-title" border="1"> -->
@@ -337,10 +256,11 @@
 				<td class='star-rating' style="height: 19px;"><span
 					style="width:${r.mealkit_review_star }%;"> </span></td>
 				<td><button class="question" id="que-${r.mealkit_review_no }">${r.mealkit_review_title }</button></td>
-				<td style="text-align: center; font-size: 12px; width: 150;">${r.mealkit_review_date }</td>
+				<td style="text-align: center; font-size: 12px; width: 150px;">${r.mealkit_review_id }</td>
+				<td style="text-align: center; font-size: 12px; width: 150px;">${r.mealkit_review_date }</td>
 			</tr>
 			<tr class="mk_Info_review_ans" >
-				<td colspan="3" class="answer" id="ans-${r.mealkit_review_no }">
+				<td colspan="4" class="answer" id="ans-${r.mealkit_review_no }">
 					${r.mealkit_review_txt }</td>
 			</tr>
 			<tr></tr>
@@ -387,9 +307,9 @@
 		<table class="mk_Info_QnA">
 
 			<tr class="faq-content">
-				<td style="width: 60px; text-align: center; font-size: 12px">
+				<td style="width: 60px; padding-left:10px; text-align: center; font-size: 12px">
 					${q.mealkit_QnA_no }</td>
-				<td><button class="Qna" id="q-${q.mealkit_QnA_no }">${q.mealkit_QnA_title }</button></td>
+				<td><button class="Qna" id="q-${q.mealkit_QnA_no }" >${q.mealkit_QnA_title }</button></td>
 				<td class="QnA_td" style="width:10%">${q.mealkit_QnA_id }</td>
 				<td class="QnA_td">${q.mealkit_QnA_date }</td>
 				<td class="QnA_td">${q.mealkit_QnA_Answer_Confirm }</td>
@@ -409,7 +329,10 @@
 				<td>${q.mealkit_QnA_txt }</td>
 			</tr>
 			<tr>
-				<td><img src="mealkit_img/icon_qna_a.png">
+				<td> <button onclick="reviewQnA_delete(${q.mealkit_QnA_no}, ${q.mealkit_QnA_pw })">삭제</button> <td>
+			</tr>
+			<tr>
+				<td ><img src="mealkit_img/icon_qna_a.png">
 					${q.mealkit_QnA_Answer_title }</td>
 			</tr>
 			<tr>
@@ -417,9 +340,9 @@
 			</tr>
 
 			<tr>
+				
 				<td style="text-align: right;">
-					<button onclick="review_QnA_A(${q.mealkit_QnA_no })">${q.mealkit_QnA_no }답글
-						달기</button>
+					<button onclick="review_QnA_A(${q.mealkit_QnA_no } )">답글 달기</button>
 				</td>
 			</tr>
 

@@ -13,10 +13,18 @@ import com.sy.function.MealkitDAO;
 public class Mk_MenuInfo_RegQnAC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
+		MealkitDAO.getMkdao().delQnAMealkit(request);
+		
+		
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			
+		
 		MealkitDAO.getMkdao().RegQnAMealkit(request);
+	
+			
+		
+		
 	
 	}
 
