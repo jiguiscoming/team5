@@ -10,20 +10,24 @@
 	
 	
 	
-	<table>
+	<table id="find_T">
 
 		<tr>
-			<td>정말 탈퇴하시겠습니까!!!!!!</td>
+			<td class="find_title">회원 탈퇴</td>
 		</tr>
 		<tr>
-			<td>~ 님과 우리가 함께 한 시간....</td>
+			<td  class="find_txt3">탈퇴하시겠습니까?</td>
 		</tr>
 		<tr>
-			<td>00:00:00</td>
+			<td  class="find_txt5">계정 삭제 후 복구는 불가하며, <br> 
+			소중한 추억도 함께 사라지는데... 정말 가시는 건가요?</td>
 		</tr>
+		<!-- <tr>
+			<td>~님과 우리가 함께한 시간..00:00:00</td>
+		</tr> -->
 		<tr>
-			<td><button onclick="location.href='account_secessionRC'"  >예~</button></td>
-			<td><button  onclick="location.href='account_secessionRC2'">좀 더 생각해 볼까?</button></td>
+			<td><button  class="find_button" onclick="location.href='account_secessionRC'"  >예~</button>
+			<button  class="find_button"  onclick="location.href='account_secessionRC2'">...좀 더 생각해 볼까?</button></td>
 		</tr>
 
 

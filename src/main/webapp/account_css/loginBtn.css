@@ -6,11 +6,23 @@
 	height: 100%;
 }
 
+.login_id {
+	
+	font-size:8pt;
+	
+	}
+
+.login_pw {
+	
+	font-size:8pt;
+	
+	}
 .login_id > input{
 	width: 120px;
 	height: 15px;
 	border-radius: 5px;
 	margin-bottom: 5px;
+
 }
 
 .login_pw > input{
@@ -18,6 +30,7 @@
 	height: 15px;
 	border-radius: 5px;
 	margin-bottom: 5px;
+	
 }
 
 .login_btn > button{
@@ -25,7 +38,7 @@
 	height: 30px;
 	background-color: rgb(229,193,197);
 	border-radius: 5px;
-	color: black;
+	color: #77262d;
 	border: none;
 	cursor: pointer;
 }
@@ -37,17 +50,17 @@
 	border: 2px solid rgb(229,193,197);
 	border-radius: 5px;
 	background-color: transparent;
-	font-size: 9pt;
+	;
 	cursor: pointer;
 }
 
 .find_btn > input{
-	width: 70px;
+	width: 85px;
 	height: 30px;
 	border: 2px solid rgb(229,193,197);
 	border-radius: 5px;
 	text-align:center;
 	background-color: transparent;
-	font-size: 8pt;
+	
 	cursor: pointer;
 }

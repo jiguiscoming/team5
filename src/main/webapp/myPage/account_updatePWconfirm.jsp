@@ -13,22 +13,22 @@
 
 
 
-<table>
+<table id="find_T" >
 
 <tr>
-<td>현재 비밀번호를 입력해 주세요!!!!</td>
+<td class="find_txt">현재 비밀번호를 입력해 주세요!</td>
 
 
 </tr>
 
 <tr>
-<td> <input name="W_pw"> </td>
+<td> <input class="login_result_txt"  name="W_pw"> </td>
 
 
 </tr>
 
 <tr>
-<td> <button>확인</button> </td>
+<td> <button  class="find_button">확인</button> </td>
 
 
 </table>

@@ -7,9 +7,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-${r }
+<table id="pwUpdate_result">
+<tr>
+<td  class="pwUpdate_result_txt">${r }
+</td>
+</tr>
 
-이런 건 어떠세요?
-밀키트 추천.. 뭐.. 추천해주기
+
+
+
+</table>
+
+
 </body>
 </html>

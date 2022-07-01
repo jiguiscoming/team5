@@ -13,6 +13,8 @@
 <link rel="stylesheet" href="account_css/loginBtn.css">
 <link rel="stylesheet" href="account_css/loginOK.css">
 <link rel="stylesheet" href="account_css/loginResult.css">
+<link rel="stylesheet" href="account_css/account_find.css">
+<link rel="stylesheet" href="account_css/account_table.css">
 <link rel="stylesheet" href="group_css/group.css">
 <link rel="stylesheet" href="group_css/group_reg.css">
 <link rel="stylesheet" href="group_css/group_update.css">
