@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.oh.account.UserDAO;
+
 @WebServlet("/RecipePageC")
 public class RecipePageC extends HttpServlet {
 
@@ -14,9 +16,9 @@ public class RecipePageC extends HttpServlet {
 		
 		int p = Integer.parseInt(request.getParameter("p"));
 		
+		UserDAO.getMkdao().loginCheck(request);
 		RecipeDAO.getMkdao().getAllRecipe(request);
-		RecipeDAO.paging(p, request);
-		
+		RecipeDAO.getMkdao().paging(p, request);
 		
 		request.setAttribute("loginPage", "account/loginBtn_recipe.jsp");
 		request.setAttribute("contentPage", "recipe/recipe_jsp/food_recipe.jsp");
