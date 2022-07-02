@@ -18,6 +18,7 @@ RECIPE_DET_URL varchar2(1000 char) not null
 );
 
 
+
 insert into RecipeBasicCourse values(RecipeBasicCourse_seq.nextval,'레시피코드1', '레시피이름1', '요약소개1', '유형코드1', '유형분류1'
 , '음식분류코드1', '음식분류1', '조리시간1', '칼로리1', '분량1', '난이도1', '재료별 분류명1', '가격별 분류1', '이미지1', 'DET1');
 
@@ -58,7 +59,7 @@ drop sequence RecipeIngredients_seq;
 
 select RECIPE_IRDNT_NM, RECIPE_IRDNT_CPCTY
 from RecipeBasicCourse, RecipeIngredients
-where RECIPE_BASIC_ID = RECIPE_IN_ID
+where RECIPE_BASIC_NO = RECIPE_IN_ID
 and RECIPE_BASIC_NO=1
 
 
@@ -89,7 +90,7 @@ drop sequence Recipeprocessinformation_seq;
 /*
  *조리설명
  */
-select RECIPE_COOKING_DC, RECIPE_STRE_STEP_IMAGE_URL
+select RECIPE_COOKING_DC,RECIPE_COOKING_NO, RECIPE_STRE_STEP_IMAGE_URL
 from RecipeBasicCourse, Recipeprocessinformation
 where RECIPE_BASIC_NO = RECIPE_PRO_ID
 and RECIPE_BASIC_NO=1;
