@@ -727,9 +727,9 @@ public class GroupDAO {
 			System.out.println("txt" + txt);
 			
 			pstmt.setString(1, writer);
-			pstmt.setString(2, sender); //title
-			pstmt.setString(3, title);//txt
-			pstmt.setString(4, txt);//sender
+			pstmt.setString(2, sender); 
+			pstmt.setString(3, title);
+			pstmt.setString(4, txt);
 			
 			if(pstmt.executeUpdate() == 1) {
 				System.out.println("메세지 성공");
@@ -804,7 +804,7 @@ public class GroupDAO {
 			rs = pstmt.executeQuery();
 			
 			GroupMessage message;
-			while(rs.next()) {
+			if(rs.next()) {
 				int no = rs.getInt("group_message_no");
 				String writer = rs.getString("group_message_writer");
 				String sender = rs.getString("group_message_sender");
