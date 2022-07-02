@@ -18,7 +18,7 @@
 	</tr>
 	<tr>
 		<td class="group_update_pwBtn">
-			<input type="hidden" name="no" value="${param.no }">
+			<input type="hidden" name="no" value="${param.no}">
 			<button name="pw" value="${sessionScope.accountInfo.account_pw}">입력</button>
 		</td>
 	</tr>

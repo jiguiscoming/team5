@@ -13,7 +13,6 @@ import com.oh.account.UserDAO;
 public class GroupDeleteController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
 		//게시글 삭제
 		GroupDAO.getMkdao().groupDelete(request);
 		// 페이징
