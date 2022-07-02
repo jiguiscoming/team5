@@ -8,19 +8,30 @@
 </head>
 <body>
 
-<form action="account_updatePWconfirmC" method="post" >
 
 <div><br><br></div>
+
+
+
+
+<form action="account_secessionpwC" method="post" >
+
+
+
+<div><br><br></div>
+
+
+
+
+
 <div class="account_message_box"><div >비밀번호 확인</div></div>
-
-
-<div><br></div>
- 
 
 <table id="find_T" >
 
 <tr>
-<td class="find_txt">현재 비밀번호를 입력해 주세요!</td>
+<td class="find_txt">
+본인 확인을 위해 <br>
+현재 비밀번호를 입력해 주세요!</td>
 
 
 </tr>
@@ -42,6 +53,9 @@
 
 
 <div><br><br></div>
+
+
+
 
 
 

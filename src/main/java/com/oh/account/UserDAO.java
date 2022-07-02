@@ -353,13 +353,9 @@ public class UserDAO {
 			System.out.println(acc.getAccount_id());
 
 			int row = pstmt.executeUpdate();
-			/* acc.getAccount_id() */
-			/*
-			 * if(row == 1) { System.out.println("삭제되었습니다"); }else {
-			 * System.out.println("삭제 실패.."); }
-			 */
+		
 
-			request.setAttribute("r", "안녕히!");
+			request.setAttribute("r", "또 오세요!");
 			request.setAttribute("loginPage", "account/loginBtn.jsp");
 
 		} catch (Exception e) {
@@ -399,7 +395,7 @@ public class UserDAO {
 		ResultSet rs = null;
 
 		try {
-			String sql = "select * from oh_account where account_name= ?";
+			String sql = "select * from oh_account where account_name= ?";                                       
 			pstmt = con.prepareStatement(sql);
 
 			pstmt.setString(1, W_name);
@@ -512,8 +508,35 @@ public class UserDAO {
 		}
 
 	}
+	
+	public void confirmPW_S(HttpServletRequest request) {
+		
+		// TODO Auto-generated method stub
+		
+		HttpSession hs = request.getSession();
+		accountB acc = (accountB) hs.getAttribute("accountInfo");
+		
+		
+		String W_pw = request.getParameter("W_pw");
+		
+		System.out.println(acc.getAccount_pw());
+		System.out.println(W_pw);
+		
+		if (W_pw.equals(acc.getAccount_pw())) {
+			/*
+			 * request.setAttribute("r", "비밀번호가 틀렸습니다!");
+			 */
+			request.setAttribute("contentPage", "myPage/secession.jsp");
+			
+		} else {
+			request.setAttribute("r", "비밀번호가 틀렸습니다!");
+			request.setAttribute("contentPage", "myPage/account_secession_pw.jsp");
+			
+		}
+		
+	}
 
-	public void updatePW(HttpServletRequest request) throws IOException {
+	public void updatePW(HttpServletRequest request)  {
 
 		HttpSession hs = request.getSession();
 		accountB acc = (accountB) hs.getAttribute("accountInfo");
@@ -521,13 +544,8 @@ public class UserDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String path = request.getSession().getServletContext().getRealPath("account/img");
-		System.out.println(path);
-		MultipartRequest mr = new MultipartRequest(request, path, 20 * 1024 * 1024, "utf-8",
-				new DefaultFileRenamePolicy());
-
-		String W_pw = mr.getParameter("W_pw");
-		String W_pw2 = mr.getParameter("W_pw2");
+		String W_pw = request.getParameter("W_pw");
+		String W_pw2 = request.getParameter("W_pw2");
 
 		System.out.println(W_pw);
 		System.out.println(W_pw2);
