@@ -44,19 +44,7 @@
 	</table>
 
 
-	<h1>-------------------------------------------------</h1>
-
-	<form action="Mk_MenuInsertC" method="get">
-		<table>
-			<tr>
-				<td>
-					<button>등록</button>
-				</td>
-			</tr>
-		</table>
-	</form>
-
-
+	
 
 
 

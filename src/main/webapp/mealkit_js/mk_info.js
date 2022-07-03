@@ -13,3 +13,29 @@ function setThumbnail(event) {
 }
 
 
+
+
+function mk_review_reg(id, no) {
+
+
+	if (id == "") {
+
+		alert('로그인이 필요합니다.')
+
+	} else {
+		window.open("mealKit/mk_Review.jsp?id=" + id + "&no=" + no, "Review", "width = 800 , height=1200")
+	}
+
+
+
+
+
+}
+
+
+function reviewQnA_delete(no, pw) {
+
+
+	window.open("mealKit/mk_Review_delete.jsp?no=" + no + "&pw=" + pw, "Review", "width = 350 , height=350")
+
+}

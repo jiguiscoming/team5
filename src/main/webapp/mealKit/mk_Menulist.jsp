@@ -61,14 +61,12 @@
 						>
 						<tr>
 							<td class="mk_Ml_td1"><img
-							 class="mk_Ml_img"	src="img/${m.mealkit_img }"></td>
+							 class="mk_Ml_img"	src="mk_img/${m.mealkit_img }"></td>
 						</tr>
 						<tr>
 							<td class="mk_Ml_td_name">${m.mealkit_name }</td>
 						</tr>
-						<tr>
-							<td>${m.mealkit_no }</td>
-						</tr>
+					
 						<tr>
 							<td class="mk_Ml_td_price">${m.mealkit_price }원</td>
 						</tr>
@@ -222,6 +220,20 @@
 	</div>
 			
 			
+	
+	
+	<h1>-------------------------------------------------</h1>
+
+	<form action="Mk_MenuInsertC" method="get">
+		<table>
+			<tr>
+				<td>
+					<button>등록</button>
+				</td>
+			</tr>
+		</table>
+	</form>
+
 	
 
 

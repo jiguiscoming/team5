@@ -2,5 +2,53 @@
 
 .rcp_detail{
 	font-family: 'Dongle', sans-serif;
-	width: 1400px; margin: 0 auto;
+	width: 1800px; margin: 0 auto;
+	margin-top: 50px;
+}
+.rcp_area1{
+
+	margin: 0 auto;
+	width: 800px;
+	height: 500px;
+	}
+	
+.rcp_pic img{
+	width: 600px;
+	height: 400px;
+}
+.rcp_sumry{
+	font-size: 45pt;
+	
+}
+
+.rcp_area2{
+	margin: 0 auto;
+	margin-top: 50px;
+	width: 300px;
+	
+}
+.rcp_summary_info{
+	font-size: 35pt;
+	word-spacing:100px;
+}
+.rcp_area3{
+	margin-top: 100px;
+	margin-left: 200px;
+	width: 600px;
+	height: 800px;
+}
+.rcp_ingredients{
+	font-size: 28pt;
+	
+}
+.rcp_area4{
+	margin-top: 200px;
+	margin-left: 200px;
+	width: 1400px;
+	height: 800px;
+}
+
+.rcp_cooking_order{
+	
+	font-size: 28pt;
 }

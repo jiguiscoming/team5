@@ -73,10 +73,5 @@
 	</tr>
 </table>
 
-<title>Insert title here</title>
-</head>
-<body>
-<h1>home</h1>
-
 </body>
 </html>

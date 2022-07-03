@@ -21,6 +21,7 @@ public class Mk_MenuC extends HttpServlet {
 		 MealkitDAO.getMkdao().viewJpnMealkit(request);
 		 MealkitDAO.getMkdao().viewChnMealkit(request);
 		 MealkitDAO.getMkdao().viewSalMealkit(request);
+		 
 		 UserDAO.getMkdao().loginCheck(request);
 
 		 
