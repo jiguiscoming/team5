@@ -12,7 +12,7 @@
 <body>
 <!-- 시간 계산을 위한 변수 설정 -->
 	<jsp:useBean id="now" class="java.util.Date" />
-	<fmt:formatDate value="${now}" pattern="hhmm" var="now" />
+	<fmt:formatDate value="${now}" pattern="HHmm" var="now" />
 	<fmt:parseDate var="morning_time" value="1100"  pattern="HHmm"/>
 	<fmt:parseDate var="lunch_time" value="1700"  pattern="HHmm"/>
 	<fmt:parseDate var="dinner_time" value="2100"  pattern="HHmm"/>
@@ -30,7 +30,7 @@
 			<div class="home_img1">
 				<img src="img/omurice.jpg">
 				<c:choose>
-					<c:when test="${now < morning}">
+					<c:when test="${late_night < now < morning}">
 						<span class="home_img_txt1">오늘 아침 뭐 먹을지 고민이신가요?</span>
 					</c:when>
 					<c:when test="${now < lunch}">
@@ -39,12 +39,9 @@
 					<c:when test="${now < dinner}">
 						<span class="home_img_txt1">오늘 저녁 뭐 먹을지 고민이신가요?</span>
 					</c:when>
-					<c:when test="${now < late_night}">
+					<c:when test="${dinner < now < late_night}">
 						<span class="home_img_txt1">오늘 야식 뭐 먹을지 고민이신가요?</span>
 					</c:when>
-					<c:otherwise>
-						<span class="home_img_txt1">오늘 뭐 먹을지 고민이신가요?</span>
-					</c:otherwise>
 				</c:choose>
  					<form action="RecipeSearchC">
  					<input class="home_img1_input" name="search" placeholder="레시피를 검색해보세요">
@@ -66,7 +63,7 @@
 			<c:forEach var="mealkit" items="${mealkits}">
 			<div class="home_mealkit">
 			<a href="Mk_MenuInfoC?no=${mealkit.mealkit_no}">
-				<div class="home_mealkit_img"><img src="${mealkit.mealkit_img }"></div>
+				<div class="home_mealkit_img"><img src="mk_img/${mealkit.mealkit_img }"></div>
 				<div class="home_info">${mealkit.mealkit_name}</div>
 				<div>${mealkit.mealkit_price }</div>
 			</a>	
