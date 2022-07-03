@@ -10,7 +10,20 @@
 </head>
 <body>
 
+
+<div><br><br></div>
+
+
+
+
 <div class="account_message_box"><div >내 쪽지</div></div>
+
+
+<div><br><br></div>
+
+
+
+
 <div class="account_message_back"><button onclick="history.back()">마이페이지 돌아가기</button></div>
 <table id="account_messageTbl">
 	<tr>
@@ -29,6 +42,12 @@
 	
 	</c:forEach>
 </table>
+
+
+<div><br><br></div>
+
+
+
 
 
 </body>

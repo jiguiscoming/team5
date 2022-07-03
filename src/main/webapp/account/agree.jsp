@@ -8,14 +8,21 @@
 </head>
  
 <body>
+<div><br><br></div>
+<div class="account_message_box"><div >아너두 레시피에 오신 것을 환영합니다</div></div>
+
+
+<div><br><br></div>
+ 
+
 
 <!-- 이용 약관 동의 -->
 
 <form action="joinusC" >
 
-<h1> 야너두 레시피!!! </h1>
-<h5> 이용 약관</h5>
-<div style="overflow: scroll; width: 700px; height: 300px;" >
+<div id="A_button_table" style="overflow: scroll; width: 700px; height: 300px;" >
+<div><h5> 이용 약관</h5></div>
+<div><br><br></div>
  
 
  <table >
@@ -141,12 +148,18 @@
  </tr>
  </table>
 </div>
+<div><br><br><br><br></div>
+ 
 
-<h5> 개인정보 수집 및 이용 동의</h5>
-<div style="overflow: scroll; width: 700px; height: 300px;" >
+<div id="A_button_table"  style="overflow: scroll; width: 700px; height: 300px;" >
  
 
  <table  >
+
+<h5> 개인정보 수집 및 이용 동의</h5>
+<div><br><br><br><br></div>
+ 
+
    <tr>
     <td>개인정보보호법에 따라 야너두 레시피에 회원가입 신청하시는 분께 수집하는 개인정보의 항목, 개인정보의 수집 및 이용목적, 개인정보의 보유 및 이용기간, 동의 거부권 및 동의 거부 시 불이익에 관한 사항을 안내 드리오니 자세히 읽은 후 동의하여 주시기 바랍니다.
 
@@ -212,12 +225,15 @@ eXpert 서비스 및 eXpert 센터 가입 등록정보 : 신청일로부터 6개
  </tr>
  </table>
 </div>
-
-<h5> 프로모션 정보 수신 동의(선택)</h5>
-<div style="overflow: scroll; width: 700px; height: 300px;" >
+<div><br><br><br><br></div>
+<div id="A_button_table"  style="overflow: scroll; width: 700px; height: 300px;" >
  
 
  <table >
+<h5> 프로모션 정보 수신 동의(선택)</h5>
+ <div><br><br><br><br></div>
+ 
+ 
    <tr>
     <td> 프로모션 정보 수신 동의(선택)
 야너두 레시피에서 제공하는 이벤트/혜택 등 다양한 정보를 휴대전화(야너두 레시피앱 알림 또는 문자), 이메일로 받아보실 수 있습니다. 일부 서비스(별도 회원 체계로 운영하거나 야너두 레시피 가입 이후 추가 가입하여 이용하는 서비스 등)의 경우, 개별 서비스에 대해 별도 수신 동의를 받을 수 있으며, 이때에도 수신 동의에 대해 별도로 안내하고 동의를 받습니다.
@@ -226,12 +242,17 @@ eXpert 서비스 및 eXpert 센터 가입 등록정보 : 신청일로부터 6개
  </table>
 </div>
 
+<div><br><br><br><br></div>
+ 
 
-<h5> 위치기반서비스 이용약관 동의(선택)</h5>
-<div style="overflow: scroll; width: 700px; height: 300px;" >
+<div id="A_button_table"  style="overflow: scroll; width: 700px; height: 300px;" >
  
 
  <table >
+<h5> 위치기반서비스 이용약관 동의(선택)</h5>
+<div><br><br><br><br></div>
+ 
+
    <tr>
     <td>위치기반서비스 이용약관에 동의하시면, 위치를 활용한 광고 정보 수신 등을 포함하는 야너두 레시피 위치기반 서비스를 이용할 수 있습니다.
 
@@ -308,25 +329,31 @@ eXpert 서비스 및 eXpert 센터 가입 등록정보 : 신청일로부터 6개
  </table>
 </div>
 
+<div><br><br><br><br></div>
+ 
+
+<table>
+
 <!--  <p> <input type="checkbox" name="agree" value="selectall" onclick='selectAll(this)'>전체 선택~ </p> -->
-<p> <input type="checkbox" name="agree1" value="O" id="agree1" onclick='is_checked(this)'>이용 약관 동의 </p>
-<p> <input type="checkbox" name="agree2" value="O" id="agree2" onclick='is_checked(this)'>개인정보 수집 및 이용 동의 </p>
-<p> <input type="checkbox" name="agree3" value="O" id="agree3" onclick='is_checked(this)'>프로모션 정보 수신 동의(선택) </p>
-<p> <input type="checkbox" name="agree4" value="O" id="agree4" onclick='is_checked(this)'>위치기반서비스 이용약관 동의(선택) </p>
+<p class="find_txt"> <input type="checkbox" name="agree1" value="O" id="agree1" onclick='is_checked(this)'>이용 약관 동의 </p>
+<p  class="find_txt"> <input type="checkbox" name="agree2" value="O" id="agree2" onclick='is_checked(this)'>개인정보 수집 및 이용 동의 </p>
+<p class="find_txt"> <input type="checkbox" name="agree3" value="O" id="agree3" onclick='is_checked(this)'>프로모션 정보 수신 동의(선택) </p>
+<p class="find_txt"> <input type="checkbox" name="agree4" value="O" id="agree4" onclick='is_checked(this)'>위치기반서비스 이용약관 동의(선택) </p>
 <input type="hidden" name="agree1" value='X' id="agree1_hidden"/>
 <input type="hidden" name="agree2" value='X' id="agree2_hidden"/>
 <input type="hidden" name="agree3" value='X' id="agree3_hidden"/>
 <input type="hidden" name="agree4" value='X' id="agree4_hidden"/>
 
 
+</table>
 
 
+<div><br><br></div>
 
 
-
-<table>
+<table id="A_button_table">
 <tr>
-<td><button> 가입하기 </button> </td>
+<td><button class="Account_table_button2"> 가입하기 </button> </td>
 
 </tr>
 

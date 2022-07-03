@@ -8,14 +8,23 @@
 </head>
 <body>
 
+
+
+<div><br><br></div>
+<div class="account_message_box"><div >아이디 찾기</div></div>
+
+
+<div><br></div>
+ 
+
 <form action="find_idCR">
 <table   id="find_T">
-<tr>
+<!-- <tr>
 <td class="find_title">아이디 찾기!!</td>
 </tr>
 
 
-
+ -->
 <tr>
 <td class="find_txt" >등록된 이메일을 입력해 주세요.<br>
 
@@ -32,8 +41,17 @@
 <td> <input name="W_name"  clospan="2"  class="login_result_txt"> </td>
 </tr>
 
+<div><br><br></div>
+
+
+ 
+
+
 <tr>
 <td> <button  class="find_button"> 확인 </button> 
+
+
+
 
 
 </form>
@@ -47,6 +65,11 @@
 
 
 </table>
+
+
+<div><br></div>
+ 
+
 
 
 

@@ -16,58 +16,6 @@
 	});
 </script>
 
-<script type="text/javascript">
-
-$(function() {
-	
-	$("#join_id").keyup(function () {
-		
-	let inputID = $("#join_id").val()
-	
-	$.ajax({
-		type :'post',
-		url : 'idCheck.jsp',
-		dataType : 'json',
-		data : {"id": inputID},
-		success : function(result) {
-		
-			console.log(result);
-			
-			
-			
-			
-			/* 	
-			if (result.r==1) {
-				$("#showResult").text("사용 불가 ID")
-				$("#showResult").css("colol", "red");
-				
-			}else{
-				$("#showResult").text("사용 가능 ID")
-				$("#showResult").css("colol", "blue");
-				
-				 */
-		
-			},
-		
-			error : function(request, status, error) {
-				console.log(error)
-				
-			}
-			
-		
-		
-		
-	})
-	
-
-	
-	
-})
-});
-
-
-</script>
-
 
 
 
@@ -80,82 +28,88 @@ $(function() {
 	<form action="joinusC" method="post" name="account"
 		onsubmit="return call()" enctype="multipart/form-data">
 
-		<table>
+<input type="hidden" name="join_agree1" value="${param.agree1 }">
+				
+					<input type="hidden" name="join_agree2" value="${param.agree2 }">
+					<input type="hidden"  name="join_agree3" value="${param.agree3 }">
+					<input  type="hidden" name="join_agree4" value="${param.agree4 }">
+		
 
 
+
+<div><br><br></div>
+<div class="account_message_box"><div >회원가입</div></div>
+
+
+<div><br><br></div>
+ 
+
+		<table  class="account_table">
+
+<!-- 
 
 
 			<tr>
 				<td colspan="2">회원가입</td>
 			</tr>
-
+ -->
 	
 			<tr>
-				<td><input type="hidden" name="join_agree1" value="${param.agree1 }">
-				</td><td>
-					<input type="hidden" name="join_agree2" value="${param.agree2 }"></td><td>
-					<input type="hidden"  name="join_agree3" value="${param.agree3 }"></td><td>
-					<input  type="hidden" name="join_agree4" value="${param.agree4 }">
-				</td>
-			</tr>
-
-			<tr>
-				<td>이름!~</td>
+				<th scope="row">이름</th>
 				<td><input name="join_name" placeholder="이름을 입력하세요"></td>
 			</tr>
 
 
 			<tr>
-				<td>닉네임</td>
+				<th scope="row">닉네임</th>
 				<td><input name="join_nick" placeholder="닉네임을 입력하세요"></td>
 			</tr>
 
 
 			<tr>
-				<td>나이</td>
+				<th scope="row">나이</th>
 				<td><input name="join_age" type="number"
 					placeholder="나이를 입력하세요!!""></td>
 			</tr>
 
 
 			<tr>
-				<td>성별</td>
+				<th scope="row">성별</th>
 				<td><input name="join_gender" type="radio" checked="checked"
 					value="남">남<input name="join_gender" type="radio" value="여">여</td>
 			</tr>
 
 
 			<tr>
-				<td>생년월일</td>
+				<th scope="row">생년월일</th>
 				<td><input name="join_birth"
 					placeholder="주민등록상으로 기재된 생년월일을 입력해 주세요"></td>
 			</tr>
 
 			<!-- jquery 필요 -->
 			<tr>
-				<td>아이디</td>
+				<th scope="row">아이디</th>
 				<td><input id="join_id" name="join_id"
 					placeholder="아이디를 입력하세요" /> <!-- id 중복검사를 위한 class -->
-				<td><span id="showResult"></span></td>
 			</tr>
 
 
 			<tr>
-				<td>비밀번호</td>
+				<th scope="row">비밀번호</th>
 				<td><input type="password" name="join_pw"
 					placeholder="8~15글자로 대문자, 소문자, 숫자 포함하여 만들어 주세요"></td>
 			</tr>
 
 
 			<tr>
-				<td>비밀번호 확인</td>
+				<th scope="row">비밀번호 확인</th>
 				<td><input type="password" name="join_pw2"
 					placeholder="비밀번호를 한 번 더 입력해 주세요"></td>
 			</tr>
 
 
 			<tr>
-				<td>비밀번호 확인 질문</td>
+				<th scope="row">비밀번호 확인 질문</th>
 				<td><select name="join_pwquestion">
 						<option value="기억에 남는 추억의 장소는?">기억에 남는 추억의 장소는?</option>
 						<option value="자신의 인생 좌우명은?">자신의 인생 좌우명은?</option>
@@ -177,20 +131,20 @@ $(function() {
 
 
 			<tr>
-				<td>답변</td>
+				<th scope="row">답변</th>
 				<td><input name="join_pwquestiona"<%--  placeholder="${비밀번호확인질문 }" --%>></td>
 			</tr>
 
 
 			<tr>
-				<td>이메일</td>
+				<th scope="row">이메일</th>
 				<td><input name="join_email" type="email"
 					placeholder="이메일을 입력하세요"></td>
 			</tr>
 
 
 			<tr>
-				<td>휴대폰</td>
+				<th scope="row">휴대폰</th>
 				<td><input name="join_phone" placeholder="전화번호를 입력하세요"></td>
 			</tr>
 
@@ -201,21 +155,25 @@ $(function() {
  -->
 
 			<tr>
-				<td>프로필 사진 등록</td>
+				<th scope="row">프로필 사진</th>
 				<td><input type="file" name="join_profile" id=""></td>
 			</tr>
+</table>
+
+
+
+
+<div><br><br></div>
+
+
+
+
+
+ <table id="A_button_table">
 
 			<tr>
-				<td><button onclick="submit">가입하기</button></td>
+				<td><button class="Account_table_button" onclick="submit">가입하기</button></td>
 			</tr>
-
-
-			<tr>
-				<td></td>
-			</tr>
-
-
-
 
 
 		</table>

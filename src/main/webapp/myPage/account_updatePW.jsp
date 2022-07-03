@@ -9,7 +9,21 @@
 <body>
 
 
+
+<div><br><br></div>
+
+
+
+
+<div class="account_message_box"><div >비밀번호 변경</div></div>
 <form action="account_updatePWRC" method="post" name="pwform" onsubmit="return call()">
+
+
+<div><br><br></div>
+
+
+
+
 <table  id="find_T" >
 
 <tr>
@@ -19,7 +33,7 @@
 </tr>
 
 <tr>
-<td > <input class="login_result_txt" name="W_pw"> </td>
+<td > <input  type="password" class="login_result_txt" name="W_pw"> </td>
 
 
 </tr>
@@ -31,7 +45,7 @@
 </tr>
 
 <tr>
-<td> <input  class="login_result_txt" name="W_pw2"> </td>
+<td> <input type="password"   class="login_result_txt" name="W_pw2"> </td>
 
 
 </tr>
@@ -45,7 +59,9 @@
 
 
 
-</form>
+<div><br><br></div>
+
+
 
 
 

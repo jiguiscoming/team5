@@ -7,6 +7,15 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+
+<div><br><br></div>
+<div class="account_message_box"><div >마이페이지</div></div>
+
+
+<div><br></div>
+ 
+
 <table class="mypage_btb"></table>
 	<table class="mypage_tb">
 
@@ -32,7 +41,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td><button class="information_2" onclick="location.href='account_secessionC'">탈퇴!</button>
+			<td><button class="information_2" onclick="location.href='account_secessionpwC'">탈퇴!</button>
 			</td>
 		</tr>
 		<tr>
@@ -50,6 +59,9 @@
 		</tr>
 
 	</table>
+
+
+<div><br><br></div>
 
 
 
