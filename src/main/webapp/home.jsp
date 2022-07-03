@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -10,12 +10,42 @@
 <title>야너두 레시피</title>
 </head>
 <body>
+<!-- 시간 계산을 위한 변수 설정 -->
+	<jsp:useBean id="now" class="java.util.Date" />
+	<fmt:formatDate value="${now}" pattern="hhmm" var="now" />
+	<fmt:parseDate var="morning_time" value="1100"  pattern="HHmm"/>
+	<fmt:parseDate var="lunch_time" value="1700"  pattern="HHmm"/>
+	<fmt:parseDate var="dinner_time" value="2100"  pattern="HHmm"/>
+	<fmt:parseDate var="late_night_time" value="0200"  pattern="HHmm"/>
+	
+	<fmt:formatDate value="${morning_time}" pattern="HHmm" var="morning"/>
+	<fmt:formatDate value="${lunch_time}" pattern="HHmm" var="lunch"/>
+	<fmt:formatDate value="${dinner_time}" pattern="HHmm" var="dinner"/>
+	<fmt:formatDate value="${late_night_time}" pattern="HHmm" var="late_night"/>
+	
+	
 <table id="homeTbl">
 	<tr>
 		<td >
 			<div class="home_img1">
 				<img src="img/omurice.jpg">
-				<span class="home_img_txt1">오늘 저녁 뭐 먹을지 고민이신가요?</span>
+				<c:choose>
+					<c:when test="${now < morning}">
+						<span class="home_img_txt1">오늘 아침 뭐 먹을지 고민이신가요?</span>
+					</c:when>
+					<c:when test="${now < lunch}">
+						<span class="home_img_txt1">오늘 점심 뭐 먹을지 고민이신가요?</span>
+					</c:when>
+					<c:when test="${now < dinner}">
+						<span class="home_img_txt1">오늘 저녁 뭐 먹을지 고민이신가요?</span>
+					</c:when>
+					<c:when test="${now < late_night}">
+						<span class="home_img_txt1">오늘 야식 뭐 먹을지 고민이신가요?</span>
+					</c:when>
+					<c:otherwise>
+						<span class="home_img_txt1">오늘 뭐 먹을지 고민이신가요?</span>
+					</c:otherwise>
+				</c:choose>
  					<form action="RecipeSearchC">
  					<input class="home_img1_input" name="search" placeholder="레시피를 검색해보세요">
 					<button class="home_img1_btn">검색</button>
