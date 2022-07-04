@@ -30,7 +30,7 @@
 			<div class="home_img1">
 				<img src="img/omurice.jpg">
 				<c:choose>
-					<c:when test="${now < morning}">
+					<c:when test="${late_night < now && now < morning}">
 						<span class="home_img_txt1">오늘 아침 뭐 먹을지 고민이신가요?</span>
 					</c:when>
 					<c:when test="${now < lunch}">
@@ -39,7 +39,7 @@
 					<c:when test="${now < dinner}">
 						<span class="home_img_txt1">오늘 저녁 뭐 먹을지 고민이신가요?</span>
 					</c:when>
-					<c:when test="${now < late_night}">
+					<c:when test="${dinner < now && now < late_night}">
 						<span class="home_img_txt1">오늘 야식 뭐 먹을지 고민이신가요?</span>
 					</c:when>
 				</c:choose>
