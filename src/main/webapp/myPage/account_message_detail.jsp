@@ -18,7 +18,7 @@
 
 <table id="account_message_detailTbl" border="1">
 	<tr>
-		<td class="account_message_detail_title">보낸 사람 <span>${message.message_sender}</span></td>
+		<td class="account_message_detail_title">보낸 사람 <span>${receiver_nick}(${message.message_sender})</span></td>
 		<td class="account_message_detail_title">보낸 날짜 <span>${message.message_date}</span></td>
 	</tr>
 	<tr>

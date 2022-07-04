@@ -15,6 +15,7 @@ public class RecipeSearchC extends HttpServlet {
 			// 선엽씨 이거 제가 home화면에 검색창 기능 활성화 하려고 만든 컨트롤러 입니다.(지수)
 		
 			RecipeDAO.getMkdao().getSearchRecipe(request);
+//			RecipeDAO.getMkdao().paging(1, request);
 			UserDAO.getMkdao().loginCheck(request);
 			request.setAttribute("contentPage", "recipe/recipe_jsp/food_recipe.jsp");
 			request.getRequestDispatcher("index.jsp").forward(request, response);

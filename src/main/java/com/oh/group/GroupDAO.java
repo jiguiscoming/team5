@@ -751,19 +751,16 @@ public class GroupDAO {
 		HttpSession session = request.getSession();
 		accountB user = (accountB)session.getAttribute("accountInfo");
 		String userId = user.getAccount_id();
-		System.out.println("세션 부름");
 		
 		try {
 			String sql = "select * from group_message where group_message_writer= ? order by group_message_date desc";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, userId);
 			rs = pstmt.executeQuery();
-			System.out.println("값 넣음");
 			
 			GroupMessage message;
 			ArrayList<GroupMessage> messages = new ArrayList<GroupMessage>();
 			while(rs.next()) {
-				System.out.println("읽음");
 				int no = rs.getInt("group_message_no");
 				String writer = rs.getString("group_message_writer");
 				String sender = rs.getString("group_message_sender");
@@ -777,7 +774,6 @@ public class GroupDAO {
 				
 				message = new GroupMessage(no, writer, sender, title, txt, date);
 				messages.add(message);
-				System.out.println("넣음");
 			}
 			
 			request.setAttribute("messages", messages);
