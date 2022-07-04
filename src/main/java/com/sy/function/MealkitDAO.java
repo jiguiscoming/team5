@@ -70,12 +70,12 @@ public class MealkitDAO {
 			pstmt.setString(5, mealkit_txt);
 
 			if (pstmt.executeUpdate() == 1) {
-				request.setAttribute("r", "��ϼ���");
+				request.setAttribute("r", "등록성공");
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("r", "��������");
+			request.setAttribute("r", "등록실패");
 		} finally {
 			DBManager.getDbm().close(null, pstmt, null);
 		}
