@@ -99,7 +99,7 @@
 							<a href="RecipePageC?p=${curPageNo >= -1 }">[이전]</a>
 						</c:if>
 							<c:forEach var="i" begin="1" end="${pageCount }">
-								<a href="RecipePageC?p=${i }">[${i }]</a>
+								<a href="RecipePageC?p=${i }">[${i }] </a>
 							</c:forEach>
 						<c:if test="${curPageNo != pageCount }">	
 							<a href="RecipePageC?p=${curPageNo + 1 }">[다음]</a>

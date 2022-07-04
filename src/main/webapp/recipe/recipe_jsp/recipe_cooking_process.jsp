@@ -16,61 +16,63 @@
 </head>
 <body>
 	
+	<div class="rcp_detail">
 	
 	<form action="RecipeCookingProcessC">
 	
-	<div class="rcp_detail">
-	
-	<table class="rcp_area1">
-		<tr class="rcp_pic">
-			<td> <img src="${recipe.recipe_img_url }"></td>
-		</tr>
-		<tr class="rcp_sumry">
-			<td>${recipe.recipe_sumry}</td>
-		</tr>
-	</table>
-	
-	<table class="rcp_area2">
-		<tr class="rcp_summary_info">
-			<td> ${recipe.recipe_qnt }</td>
-			<td> ${recipe.recipe_cooking_time } </td>
-			<td> ${recipe.recipe_level_nm }</td>
-		</tr>
-	</table>
+		<table class="rcp_area1">
+			<tr class="rcp_pic">
+				<td valign="top"><img src="${recipe.recipe_img_url }"></td>
+			</tr>
+			<tr class="rcp_sumry">
+				<td valign="top">${recipe.recipe_sumry}</td>
+			</tr>
+		</table>
+		
+		<table class="rcp_area2">
+			<tr class="rcp_summary_info">
+				<td> ${recipe.recipe_qnt }</td>
+				<td> ${recipe.recipe_cooking_time } </td>
+				<td> ${recipe.recipe_level_nm }</td>
+			</tr>
+		</table>
 	
 	<!-- 재료 -->	
-	<table class="rcp_area3">
-	
-		<tr>
-			<td>재료</td>
-		</tr>
-	
-	<c:forEach items="${recipeingredients }" var="r">
-		<tr class="rcp_ingredients">
-			<td> ${r.recipe_irdnt_nm }</td>
-			<td> ${r.recipe_irdnt_cpcty }</td>
-		</tr>
-	</c:forEach>
-	</table>
+
+		<table class="rcp_area3">
+			<tr>
+				<td valign="top" style="font-weight: bold; font-size: 50pt; ">재료</td>
+			</tr>
+			<c:forEach items="${recipeingredients }" var="r">
+				<tr class="rcp_ingredients">
+					<td> ${r.recipe_irdnt_nm}</td>
+					<td> ${r.recipe_irdnt_cpcty}</td>
+				</tr>
+			</c:forEach>
+		</table>
 	
 	
 	<!-- 
 		조리순서
 	 -->
 	
-	<table class="rcp_area4">
-	<c:forEach items="${recipeprocessinformation }" var="r">
-	<tr class="rcp_cooking_order">
-		<td>${r.recipe_cooking_dc }</td>
-	</tr>
-	</c:forEach>
-	</table>
-	
-	
-	</div>
+		<table class="rcp_area4">
+			<tr>
+				<td style="font-weight: bold; font-size: 35pt;">조리순서</td>
+			</tr>
 		
+			<c:forEach items="${recipeprocessinformation }" var="r">
+				<tr class="rcp_cooking_order">
+					<td>${r.recipe_cooking_no }</td>
+					<td>${r.recipe_cooking_dc }</td>
+					<td> <img src="${r.recipe_stre_step_image_url }" alt=""> </td>
+				</tr>
+			</c:forEach>
+		</table>
+	
+	
 	</form>
 	
-	
+	</div>
 </body>
 </html>

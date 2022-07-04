@@ -41,7 +41,7 @@ public class RecipeDAO {
 	// DBManager. 뒤에 DBManager.getDbm().로 바꿔주기
 	
 
-	private static ArrayList<recipe> recipes;
+	private ArrayList<recipe> recipes;
 	
 	
 	public void getAllRecipe(HttpServletRequest request) {
@@ -62,27 +62,27 @@ public class RecipeDAO {
 			recipe r = null;
 			
 			
+			
 			while (rs.next()) {
 				// bean
 				r = new recipe();
 				r.setRecipe_basic_no(rs.getInt("RECIPE_BASIC_NO"));
-				r.setRecipe_basic_id(rs.getString("RECIPE_BASIC_ID"));
+				r.setRecipe_basic_id(rs.getString("RECIPE_ID"));
 				r.setRecipe_nm_ko(rs.getString("RECIPE_NM_KO"));
-				r.setRecipe_sumry(rs.getString("RECIPE_SUMRY"));
-				r.setRecipe_nation_code(rs.getString("RECIPE_NATION_CODE"));
-				r.setRecipe_nation_nm(rs.getString("RECIPE_NATION_NM"));
-				r.setRecipe_ty_code(rs.getString("RECIPE_TY_CODE"));
-				r.setRecipe_ty_nm(rs.getString("RECIPE_TY_NM"));
-				r.setRecipe_cooking_time(rs.getString("RECIPE_COOKING_TIME"));
-				r.setRecipe_calorie(rs.getString("RECIPE_CALORIE"));
-				r.setRecipe_qnt(rs.getString("RECIPE_QNT"));
-				r.setRecipe_level_nm(rs.getString("RECIPE_LEVEL_NM"));
-				r.setRecipe_irdnt_code(rs.getString("RECIPE_IRDNT_CODE"));
-				r.setRecipe_pc_nm(rs.getString("RECIPE_PC_NM"));
-				r.setRecipe_img_url(rs.getString("RECIPE_IMG_URL"));
-				r.setRecipe_det_url(rs.getString("RECIPE_DET_URL"));
+				r.setRecipe_sumry(rs.getString("SUMRY"));
+				r.setRecipe_nation_code(rs.getString("NATION_CODE"));
+				r.setRecipe_nation_nm(rs.getString("NATION_NM"));
+				r.setRecipe_ty_code(rs.getString("TY_CODE"));
+				r.setRecipe_ty_nm(rs.getString("TY_NM"));
+				r.setRecipe_cooking_time(rs.getString("COOKING_TIME"));
+				r.setRecipe_calorie(rs.getString("CALORIE"));
+				r.setRecipe_qnt(rs.getString("QNT"));
+				r.setRecipe_level_nm(rs.getString("LEVEL_NM"));
+				r.setRecipe_irdnt_code(rs.getString("IRDNT_CODE"));
+				r.setRecipe_pc_nm(rs.getString("PC_NM"));
+				r.setRecipe_img_url(rs.getString("IMG_URL"));
+				r.setRecipe_det_url(rs.getString("DET_URL"));
 		
-				
 				
 				recipes.add(r);
 			}
@@ -91,7 +91,7 @@ public class RecipeDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			DBManager.getDbm().close(null, pstmt, rs);
+			DBManager.getDbm().close(null, pstmt, null);
 		}
 	}
 	
@@ -113,25 +113,26 @@ public class RecipeDAO {
 			recipe r = null;
 			
 			
-			if(rs.next()) {
+			while(rs.next()) {
 				// bean
 				r = new recipe();
 				r.setRecipe_basic_no(rs.getInt("RECIPE_BASIC_NO"));
-				r.setRecipe_basic_id(rs.getString("RECIPE_BASIC_ID"));
-				r.setRecipe_img_url(rs.getString("RECIPE_IMG_URL"));
-				r.setRecipe_sumry(rs.getString("RECIPE_SUMRY"));
-				r.setRecipe_qnt(rs.getString("RECIPE_QNT"));
-				r.setRecipe_cooking_time(rs.getString("RECIPE_COOKING_TIME"));
-				r.setRecipe_level_nm(rs.getString("RECIPE_LEVEL_NM"));
+				r.setRecipe_basic_id(rs.getString("RECIPE_ID"));
+				r.setRecipe_img_url(rs.getString("IMG_URL"));
+				r.setRecipe_sumry(rs.getString("SUMRY"));
+				r.setRecipe_qnt(rs.getString("QNT"));
+				r.setRecipe_cooking_time(rs.getString("COOKING_TIME"));
+				r.setRecipe_level_nm(rs.getString("LEVEL_NM"));
 				
 				
 				request.setAttribute("recipe", r);
+				System.out.println(r);
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			DBManager.getDbm().close(null, pstmt, rs);
+			DBManager.getDbm().close(null, pstmt, null);
 		}
 		
 		
@@ -146,9 +147,9 @@ public class RecipeDAO {
 		
 		try {
 			
-			String sql = "select RECIPE_IRDNT_NM, RECIPE_IRDNT_CPCTY\r\n"
+			String sql = "select IRDNT_NM, IRDNT_CPCTY\r\n"
 					+ "from RecipeBasicCourse, RecipeIngredients\r\n"
-					+ "where RECIPE_BASIC_NO(+) = RECIPE_IN_ID\r\n"
+					+ "where RECIPE_BASIC_NO = RECIPE_IN_ID\r\n"
 					+ "and RECIPE_BASIC_NO=?";
 			pstmt = con.prepareStatement(sql);
 			int recipeSummary = Integer.parseInt(request.getParameter("recipeSummary"));
@@ -164,20 +165,19 @@ public class RecipeDAO {
 				// bean
 				ingredient = new recipeingredient();
 				
-				ingredient.setRecipe_irdnt_nm(rs.getString("RECIPE_IRDNT_NM"));  
-				ingredient.setRecipe_irdnt_cpcty(rs.getString("RECIPE_IRDNT_CPCTY"));
-				
+				ingredient.setRecipe_irdnt_nm(rs.getString("IRDNT_NM"));  
+				ingredient.setRecipe_irdnt_cpcty(rs.getString("IRDNT_CPCTY"));
 				
 				
 				ingredients.add(ingredient);
-			
+				
 			}
 			request.setAttribute("recipeingredients", ingredients);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			DBManager.getDbm().close(null, pstmt, rs);
+			DBManager.getDbm().close(null, pstmt, null);
 		}
 		
 		
@@ -189,7 +189,7 @@ public class RecipeDAO {
 		
 		try {
 			
-			String sql = "select RECIPE_COOKING_DC, RECIPE_STRE_STEP_IMAGE_URL\r\n"
+			String sql = "select COOKING_NO, COOKING_DC, STRE_STEP_IMAGE_URL\r\n"
 					+ "from RecipeBasicCourse, Recipeprocessinformation\r\n"
 					+ "where RECIPE_BASIC_NO = RECIPE_PRO_ID\r\n"
 					+ "and RECIPE_BASIC_NO=?";
@@ -203,34 +203,38 @@ public class RecipeDAO {
 			recipeprocessinformation processinformation = null;
 			
 			
+			
 			while(rs.next()) {
 				// bean
 				processinformation = new recipeprocessinformation();
 				
-				processinformation.setRecipe_cooking_dc(rs.getString("RECIPE_COOKING_DC"));  
 				
-				
+				processinformation.setRecipe_cooking_no(rs.getString("COOKING_NO"));  
+				processinformation.setRecipe_cooking_dc(rs.getString("COOKING_DC"));  
+				processinformation.setRecipe_stre_step_image_url(rs.getString("STRE_STEP_IMAGE_URL"));
 				
 				processinformations.add(processinformation);
-			
 			}
+		
 			request.setAttribute("recipeprocessinformation", processinformations);
-			
+
+			System.out.println(processinformation);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			DBManager.getDbm().close(null, pstmt, rs);
+			DBManager.getDbm().close(null, pstmt, null);
 		}
 		
 	}
 	
 	
 	
-	public static void paging(int page, HttpServletRequest req) {
+	public void paging(int page, HttpServletRequest req) {
 		
 		req.setAttribute("curPageNo", page);
 		
-		int cnt = 20;		
+		int cnt = 15;		
 		int total = recipes.size();		
 		int pageCount = (int) Math.ceil((double)total / cnt);
 		req.setAttribute("recipesData", total);
@@ -248,44 +252,42 @@ public class RecipeDAO {
 		
 	}
 
-	// 이것도 홈화면 검색기능으로 만듭니다.(지수)
-	public void searchRecipe(HttpServletRequest request) {
+	public void getSearchRecipe(HttpServletRequest request) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+		String search = request.getParameter("search");		
 		try {
-			String recipeSearch = request.getParameter("search");
 			
-			String sql = "select * from RecipeBasicCourse where recipe_nm_ko like ?";
+			String sql = "select * from RecipeBasicCourse where RECIPE_NM_KO like ?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, "%" + recipeSearch + "%");
+			pstmt.setString(1, "%" + search + "%");
 			
 			rs = pstmt.executeQuery();
 			recipes = new ArrayList<recipe>();
 			recipe r = null;
 			
 			
+			
 			while (rs.next()) {
 				// bean
 				r = new recipe();
 				r.setRecipe_basic_no(rs.getInt("RECIPE_BASIC_NO"));
-				r.setRecipe_basic_id(rs.getString("RECIPE_BASIC_ID"));
+				r.setRecipe_basic_id(rs.getString("RECIPE_ID"));
 				r.setRecipe_nm_ko(rs.getString("RECIPE_NM_KO"));
-				r.setRecipe_sumry(rs.getString("RECIPE_SUMRY"));
-				r.setRecipe_nation_code(rs.getString("RECIPE_NATION_CODE"));
-				r.setRecipe_nation_nm(rs.getString("RECIPE_NATION_NM"));
-				r.setRecipe_ty_code(rs.getString("RECIPE_TY_CODE"));
-				r.setRecipe_ty_nm(rs.getString("RECIPE_TY_NM"));
-				r.setRecipe_cooking_time(rs.getString("RECIPE_COOKING_TIME"));
-				r.setRecipe_calorie(rs.getString("RECIPE_CALORIE"));
-				r.setRecipe_qnt(rs.getString("RECIPE_QNT"));
-				r.setRecipe_level_nm(rs.getString("RECIPE_LEVEL_NM"));
-				r.setRecipe_irdnt_code(rs.getString("RECIPE_IRDNT_CODE"));
-				r.setRecipe_pc_nm(rs.getString("RECIPE_PC_NM"));
-				r.setRecipe_img_url(rs.getString("RECIPE_IMG_URL"));
-				r.setRecipe_det_url(rs.getString("RECIPE_DET_URL"));
+				r.setRecipe_sumry(rs.getString("SUMRY"));
+				r.setRecipe_nation_code(rs.getString("NATION_CODE"));
+				r.setRecipe_nation_nm(rs.getString("NATION_NM"));
+				r.setRecipe_ty_code(rs.getString("TY_CODE"));
+				r.setRecipe_ty_nm(rs.getString("TY_NM"));
+				r.setRecipe_cooking_time(rs.getString("COOKING_TIME"));
+				r.setRecipe_calorie(rs.getString("CALORIE"));
+				r.setRecipe_qnt(rs.getString("QNT"));
+				r.setRecipe_level_nm(rs.getString("LEVEL_NM"));
+				r.setRecipe_irdnt_code(rs.getString("IRDNT_CODE"));
+				r.setRecipe_pc_nm(rs.getString("PC_NM"));
+				r.setRecipe_img_url(rs.getString("IMG_URL"));
+				r.setRecipe_det_url(rs.getString("DET_URL"));
 		
-				
 				
 				recipes.add(r);
 			}
@@ -296,7 +298,7 @@ public class RecipeDAO {
 		}finally {
 			DBManager.getDbm().close(null, pstmt, null);
 		}
-		
+	
 	}
 
 
@@ -308,4 +310,3 @@ public class RecipeDAO {
 
 
 }
-

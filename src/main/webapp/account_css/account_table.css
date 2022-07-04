@@ -1,46 +1,109 @@
 @charset "UTF-8";
 
-
-
-#account_table{
-	width: auto;
-	margin: auto;
+#A_table_air{
 	
-    	width: auto;
-	height: 400px;
+	height:200px;
+	width: 100px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	
+	
+	
+}
+
+#A_button_table {
+	width: auto;
+	margin-left: auto;
+	margin-right: auto;
 	text-align: center;
 }
 
-
 table.account_table {
-  border-collapse: collapse;
-  text-align: left;
-  line-height: 1.5;
-  border: 1px solid #ccc;
-  margin: 20px 10px;
+	width: auto;
+	height: auto; 
+	margin : auto;
+	text-align: center;
+	border-collapse: collapse;
+	line-height: 1.5;
+	border: 1px solid #ccc;
+	margin: auto
+	/* margin: 20px 10px; */
 }
+
 table.account_table thead {
-  border-right: 1px solid #ccc;
-  border-left: 1px solid #ccc;
-  background:  rgb(229,193,197);
+	border-right: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	background: rgb(229, 193, 197);
 }
+
 table.account_table thead th {
-  padding: 10px;
-  font-weight: bold;
-  vertical-align: top;
-  color: #fff;
+	padding: 10px;
+	font-weight: bold;
+	vertical-align: top;
+	color: #fff;
 }
+
 table.account_table tbody th {
-  width: 150px;
-  padding: 10px;
-  font-weight: bold;
-  vertical-align: top;
-  border-bottom: 1px solid #ccc;
-  background:  #fff0f0;
+	width: 150px;
+	padding: 10px;
+	font-weight: bold;
+	vertical-align: top;
+	border-bottom: 1px solid #ccc;
+	background: #fff0f0;
 }
+
 table.account_table td {
-  width: 350px;
-  padding: 10px;
-  vertical-align: top;
-  border-bottom: 1px solid #ccc;
+	width: 350px;
+	padding: 10px;
+	vertical-align: top;
+	border-bottom: 1px solid #ccc;
 }
+
+.Account_table_button {
+	width: 90px;
+	height: 30px;
+	background-color: rgb(229, 193, 197);
+	border-radius: 5px;
+	color: #77262d;
+	border: none;
+	cursor: pointer;
+}
+
+.Account_table_button2 {
+	width: 90px;
+	height: 30px;
+	text-align: center;
+	border: 2px solid rgb(229, 193, 197);
+	border-radius: 5px;
+	color: #77262d;
+	background-color: transparent;
+	cursor: pointer;
+}
+
+/* 
+
+HTML CSSResult Skip Results Iframe
+EDIT ON
+<table class="type07">
+  <thead>
+  <tr>
+    <th scope="cols">타이틀</th>
+    <th scope="cols">내용</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <th scope="row">항목명</th>
+    <td>내용이 들어갑니다.</td>
+  </tr>
+  <tr>
+    <th scope="row">항목명</th>
+    <td>내용이 들어갑니다.</td>
+  </tr>
+  <tr>
+    <th scope="row">항목명</th>
+    <td>내용이 들어갑니다.</td>
+  </tr>
+  </tbody>
+</table> */

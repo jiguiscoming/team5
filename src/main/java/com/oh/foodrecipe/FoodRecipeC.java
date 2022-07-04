@@ -17,11 +17,11 @@ import com.oh.account.UserDAO;
 public class FoodRecipeC extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
+		UserDAO.getMkdao().loginCheck(request);
 		RecipeDAO.getMkdao().getAllRecipe(request); // getMkda().객체안에 있는 con를 쓰는 기능만 
-		RecipeDAO.paging(1, request);
+		RecipeDAO.getMkdao().paging(1, request);
 		
-		request.setAttribute("loginPage", "account/loginBtn_recipe.jsp");
 		request.setAttribute("contentPage", "recipe/recipe_jsp/food_recipe.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}

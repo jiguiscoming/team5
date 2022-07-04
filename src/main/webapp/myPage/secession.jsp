@@ -8,13 +8,17 @@
 </head>
 <body>
 	
-	
-	
-	<table id="find_T">
+<div><br><br></div>
+<div class="account_message_box"><div >회원 탈퇴</div></div>
 
+
+<div><br></div>
+ 
+	<table id="find_T">
+<!-- 
 		<tr>
 			<td class="find_title">회원 탈퇴</td>
-		</tr>
+		</tr> -->
 		<tr>
 			<td  class="find_txt3">탈퇴하시겠습니까?</td>
 		</tr>
@@ -31,6 +35,9 @@
 		</tr>
 
 
+
+<div><br></div>
+ 
 
 
 

@@ -9,18 +9,25 @@
 </head>
 <body>
 
+
+
+
+
+
+
 	<table id="find_T">
 		<form action="find_pwCR">
 
-			<tr>
-				<td class="find_title">비밀번호 찾기!!!</td>
-			</tr>
+			
+<div><br><br></div>
+<div class="account_message_box"><div >비밀번호 찾기</div></div>
 
 
+ 
 			<tr>
 				<td class="find_txt6">알맞은 아이디와 가입할 때 썼던 비밀번호 질문을 입력해 주세요!<br>
 					등록된 정보가 같아야 비밀번호를 찾을 수 있습니다. <br> 개인정보 보호를 위해 비밀번호가 0000으로
-					변경됩니다.
+					변경됩니다.<br><br>
 				</td>
 			</tr>
 			<tr>
@@ -78,6 +85,12 @@
 
 
 
+</table>
+<div><br><br></div>
+
+
+
+<table id="A_button_table">
 		<tr>
 			<td>
 				<button class="find_button">확인</button>
@@ -86,6 +99,7 @@
 		</form>
 	</table>
 
+<div><br><br></div>
 
 </body>
 </html>

@@ -14,71 +14,16 @@
 	
 </script>
 
-<script type="text/javascript">
-	$(function() {
-			
-		$("#join_id").keyup(function() {
-	
-			
-	});
-	});
-</script>
-
-<script type="text/javascript">
-
-$(function() {
-	
-	$("#join_id").keyup(function () {
-		
-	let inputID = $("#join_id").val()
-	
-	$.ajax({
-		type :'post',
-		url : 'idCheck.jsp',
-		dataType : 'json',
-		data : {"id": inputID},
-		success : function(result) {
-		
-			console.log(result);
-			
-			
-			
-			
-			/* 	
-			if (result.r==1) {
-				$("#showResult").text("사용 불가 ID")
-				$("#showResult").css("colol", "red");
-				
-			}else{
-				$("#showResult").text("사용 가능 ID")
-				$("#showResult").css("colol", "blue");
-				
-				 */
-		
-			},
-		
-			error : function(request, status, error) {
-				console.log(error)
-				
-			}
-			
-		
-		
-		
-	})
-	
-
-	
-	
-})
-});
-
 
 </script>
 
 
+<div><br><br></div>
+<div class="account_message_box"><div >회원가입</div></div>
 
 
+<div><br><br></div>
+ 
 
 
 <title>Insert title here</title>
@@ -215,28 +160,32 @@ $(function() {
 				<td><input type="file" name="join_profile" id=""  value="${join_name }"></td>
 			</tr>
 
+
+
+</table>
+<div><br><br></div>
+
+
+
+<table id="A_button_table">
+
 			<tr>
 				<td><button onclick="submit">가입하기</button></td>
 			</tr>
 
 
-			<tr>
-				<td></td>
-			</tr>
+	
 
-			<tr>
+
+		</table>
+
+	
 				<td><input name="agree1" value="${agree1 }">
 					<input type="hidden" name="agree2" value="${agree2 }">
 					<input type="hidden" name="agree3" value="${agree3 }">
 					<input type="hidden" name="agree4" value="${agree4 }">
 				</td>
-			</tr>
-
-
-
-
-		</table>
-
+	
 
 	</form>
 

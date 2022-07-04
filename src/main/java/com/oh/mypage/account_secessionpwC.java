@@ -1,4 +1,4 @@
-package com.oh.foodrecipe;
+package com.oh.mypage;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -9,23 +9,44 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.oh.account.UserDAO;
 
-@WebServlet("/RecipePageC")
-public class RecipePageC extends HttpServlet {
+
+@WebServlet("/account_secessionpwC")
+public class account_secessionpwC extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		
-		int p = Integer.parseInt(request.getParameter("p"));
+	
+	UserDAO.getMkdao().loginCheck(request);
 		
-		UserDAO.getMkdao().loginCheck(request);
-		RecipeDAO.getMkdao().getAllRecipe(request);
-		RecipeDAO.getMkdao().paging(p, request);
 		
-		request.setAttribute("loginPage", "account/loginBtn_recipe.jsp");
-		request.setAttribute("contentPage", "recipe/recipe_jsp/food_recipe.jsp");
+		
+		request.setAttribute("contentPage", "myPage/account_secession_pw.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
+		
+		
+	
 	}
 
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+		
+	
+	
+	
+		
+		
+		UserDAO.getMkdao().loginCheck(request);
+		UserDAO.getMkdao().confirmPW_S(request);
+		
+		
+		
+		request.getRequestDispatcher("index.jsp").forward(request, response);
+		
+		
+		
+	 
 	
 	}
 

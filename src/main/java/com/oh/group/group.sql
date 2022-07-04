@@ -54,7 +54,7 @@ select * from group_purchase where group_no=3;
 select rownum,group_purchase.* from group_purchase;
 
 -- 최신순으로 정렬뒤 rownum 활용해서 제한된 게시글 뽑기
-select * from (select rownum as num, a.* from (select * from group_purchase order by group_date desc)a) where num between 6 and 10;
+select * from (select rownum as num, a.* from (select * from group_purchase order by group_date desc)a) where 1 between 5 ;
 
 -- 서울을 클릭한 게시글 최신순으로 하고 rownum으로 제한된 게시글 뽑기
 select * from (select rownum as num, a.* from (select * from group_purchase where group_purchase.group_area='서울' order by group_date desc)a) where num between 1 and 5;

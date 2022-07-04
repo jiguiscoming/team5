@@ -18,13 +18,12 @@ public class HC extends HttpServlet {
 		
 		// 밀키트 new
 		HomeDAO.getMkdao().getMealkits(request); 
-		
 		// 레시피 랜덤 5개
 		HomeDAO.getMkdao().getRecipes(request);
 		// 공구 지역에 맞게 최신 5개
 		HomeDAO.getMkdao().getGroups(request);
 		UserDAO.getMkdao().loginCheck(request);
-
+		
 		request.setAttribute("contentPage", "home.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	

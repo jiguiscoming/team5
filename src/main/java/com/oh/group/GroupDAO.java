@@ -526,9 +526,6 @@ public class GroupDAO {
 		try {
 			pstmt = con.prepareStatement(sql);
 			
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
-			
 			//첫번째 ? = 시작 게시글 번호 , 두번째 ? = 끝 게시글 번호
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
@@ -730,9 +727,9 @@ public class GroupDAO {
 			System.out.println("txt" + txt);
 			
 			pstmt.setString(1, writer);
-			pstmt.setString(2, sender); //title
-			pstmt.setString(3, title);//txt
-			pstmt.setString(4, txt);//sender
+			pstmt.setString(2, sender); 
+			pstmt.setString(3, title);
+			pstmt.setString(4, txt);
 			
 			if(pstmt.executeUpdate() == 1) {
 				System.out.println("메세지 성공");
@@ -754,19 +751,16 @@ public class GroupDAO {
 		HttpSession session = request.getSession();
 		accountB user = (accountB)session.getAttribute("accountInfo");
 		String userId = user.getAccount_id();
-		System.out.println("세션 부름");
 		
 		try {
 			String sql = "select * from group_message where group_message_writer= ? order by group_message_date desc";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, userId);
 			rs = pstmt.executeQuery();
-			System.out.println("값 넣음");
 			
 			GroupMessage message;
 			ArrayList<GroupMessage> messages = new ArrayList<GroupMessage>();
 			while(rs.next()) {
-				System.out.println("읽음");
 				int no = rs.getInt("group_message_no");
 				String writer = rs.getString("group_message_writer");
 				String sender = rs.getString("group_message_sender");
@@ -780,7 +774,6 @@ public class GroupDAO {
 				
 				message = new GroupMessage(no, writer, sender, title, txt, date);
 				messages.add(message);
-				System.out.println("넣음");
 			}
 			
 			request.setAttribute("messages", messages);
@@ -807,7 +800,7 @@ public class GroupDAO {
 			rs = pstmt.executeQuery();
 			
 			GroupMessage message;
-			while(rs.next()) {
+			if(rs.next()) {
 				int no = rs.getInt("group_message_no");
 				String writer = rs.getString("group_message_writer");
 				String sender = rs.getString("group_message_sender");

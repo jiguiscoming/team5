@@ -84,29 +84,30 @@ public class HomeDAO {
 			rs = pstmt.executeQuery();
 			
 			ArrayList<recipe> recipes = new ArrayList<recipe>();
-			recipe recipe = null;
-			while(rs.next()) {
-				int no = rs.getInt("RECIPE_BASIC_NO");
-				String id = rs.getString("RECIPE_BASIC_ID");
-				String nm_ko = rs.getString("RECIPE_NM_KO");
-				String sumry = rs.getString("RECIPE_SUMRY");
-				String nation_code = rs.getString("RECIPE_NATION_CODE");
-				String nation_nm = rs.getString("RECIPE_NATION_NM");
-				String ty_code = rs.getString("RECIPE_TY_CODE");
-				String ty_nm = rs.getString("RECIPE_TY_NM");
-				String time = rs.getString("RECIPE_COOKING_TIME");
-				String calorie = rs.getString("RECIPE_CALORIE");
-				String qnt = rs.getString("RECIPE_QNT");
-				String level = rs.getString("RECIPE_LEVEL_NM");
-				String irdnt_code = rs.getString("RECIPE_IRDNT_CODE");
-				String pc_nm = rs.getString("RECIPE_PC_NM");
-				String img = rs.getString("RECIPE_IMG_URL");
-				String det = rs.getString("RECIPE_DET_URL");
+			recipe r = null;
+			while (rs.next()) {
+				// bean
+				r = new recipe();
+				r.setRecipe_basic_no(rs.getInt("RECIPE_BASIC_NO"));
+				r.setRecipe_basic_id(rs.getString("RECIPE_ID"));
+				r.setRecipe_nm_ko(rs.getString("RECIPE_NM_KO"));
+				r.setRecipe_sumry(rs.getString("SUMRY"));
+				r.setRecipe_nation_code(rs.getString("NATION_CODE"));
+				r.setRecipe_nation_nm(rs.getString("NATION_NM"));
+				r.setRecipe_ty_code(rs.getString("TY_CODE"));
+				r.setRecipe_ty_nm(rs.getString("TY_NM"));
+				r.setRecipe_cooking_time(rs.getString("COOKING_TIME"));
+				r.setRecipe_calorie(rs.getString("CALORIE"));
+				r.setRecipe_qnt(rs.getString("QNT"));
+				r.setRecipe_level_nm(rs.getString("LEVEL_NM"));
+				r.setRecipe_irdnt_code(rs.getString("IRDNT_CODE"));
+				r.setRecipe_pc_nm(rs.getString("PC_NM"));
+				r.setRecipe_img_url(rs.getString("IMG_URL"));
+				r.setRecipe_det_url(rs.getString("DET_URL"));
+		
 				
-				recipe = new recipe(no, id, nm_ko, sumry, nation_code, nation_nm, ty_code, ty_nm, time, calorie, qnt, level, irdnt_code, pc_nm, img, det);
-				recipes.add(recipe);
+				recipes.add(r);
 			}
-			
 			request.setAttribute("recipes", recipes);
 					
 		} catch (Exception e) {

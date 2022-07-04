@@ -88,6 +88,8 @@ let group_message;
 function groupMessage(receiver,receiver_nick,userid){
 	if(!userid){
 		alert('회원만 이용가능한 서비스 입니다');
+	}else if(userid == receiver){
+		alert('본인에게는 메세지를 보낼 수 없습니다')
 	}else{
 	group_message = window.open("group/group_message.jsp?nick=" + receiver_nick + "&writer=" + receiver, "message", "width=640 , height=400" );
 	}
