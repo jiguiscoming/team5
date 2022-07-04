@@ -52,11 +52,11 @@
 		<section class="menu__wrapper">
 			<article id="item-1" class="menu__item item-active">
 				<h3>전체</h3>
-				<table border="1"
-		class="mk_Menulistbl1" border="1">
+				<table 
+		class="mk_Menulistbl1" >
 		<tr>
 			<td ><c:forEach var="m" items="${mealkits }">
-					<table border="1" class="mk_MLtbl_1"
+					<table  class="mk_MLtbl_1"
 						onclick="location.href='Mk_MenuInfoC?no=${m.mealkit_no}'"
 						>
 						<tr>
@@ -88,7 +88,7 @@
 						>
 						<tr>
 							<td class="mk_Ml_td1"><img
-							 class="mk_Ml_img"	src="img/${m.mealkit_img }"></td>
+							 class="mk_Ml_img"	src="mk_img/${m.mealkit_img }"></td>
 						</tr>
 						<tr>
 							<td class="mk_Ml_td_name">${m.mealkit_name }</td>
@@ -117,7 +117,7 @@
 						>
 						<tr>
 							<td class="mk_Ml_td1"><img
-							 class="mk_Ml_img"	src="img/${m.mealkit_img }"></td>
+							 class="mk_Ml_img"	src="mk_img/${m.mealkit_img }"></td>
 						</tr>
 						<tr>
 							<td class="mk_Ml_td_name">${m.mealkit_name }</td>
@@ -145,7 +145,7 @@
 						>
 						<tr>
 							<td class="mk_Ml_td1"><img
-							 class="mk_Ml_img"	src="img/${m.mealkit_img }"></td>
+							 class="mk_Ml_img"	src="mk_img/${m.mealkit_img }"></td>
 						</tr>
 						<tr>
 							<td class="mk_Ml_td_name">${m.mealkit_name }</td>
@@ -172,7 +172,7 @@
 						>
 						<tr>
 							<td class="mk_Ml_td1"><img
-							 class="mk_Ml_img"	src="img/${m.mealkit_img }"></td>
+							 class="mk_Ml_img"	src="mk_img/${m.mealkit_img }"></td>
 						</tr>
 						<tr>
 							<td class="mk_Ml_td_name">${m.mealkit_name }</td>
@@ -199,7 +199,7 @@
 						>
 						<tr>
 							<td class="mk_Ml_td1"><img
-							 class="mk_Ml_img"	src="img/${m.mealkit_img }"></td>
+							 class="mk_Ml_img"	src="mk_img/${m.mealkit_img }"></td>
 						</tr>
 						<tr>
 							<td class="mk_Ml_td_name">${m.mealkit_name }</td>
