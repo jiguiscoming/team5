@@ -1,0 +1,64 @@
+@charset "UTF-8";
+
+.account_message_box{
+	text-align: center;
+}
+
+.account_message_back{
+	width: 60%;
+	margin: 5px auto;
+	text-align: right;
+}
+
+.account_message_back>button{
+	width: 150px;
+	height: 30px;
+	color:#77262d;
+	border: 2px solid rgb(229,193,197);
+	border-radius:5px;
+	cursor: pointer;
+	background-color: transparent;
+	font-weight: 600;
+	font-size: 10pt;
+	margin-right: 10px;
+}
+
+.account_message_box >div{
+	display: inline-block;
+	font-size: 15pt;
+	font-weight: 600;
+	border-bottom: 2px solid black;
+	padding-bottom: 5px;
+	margin-bottom: 20px;
+}
+
+
+#account_messageTbl{
+	width: 60%;
+	text-align: center;
+	margin: 0 auto;
+	border: 2px solid gray;
+	border-radius: 5px;
+}
+
+
+.account_message_title{
+	font-size: 13pt;
+	font-weight: 600;
+	height: 50px;
+}
+
+.account_message_contents{
+	height: 40px;
+		
+}
+
+.account_message_contents > a{
+	text-decoration: none;
+	color: black;
+}
+
+.account_message_contentsTr:hover{
+	background-color: rgb(229,193,197);
+	cursor: pointer;
+}

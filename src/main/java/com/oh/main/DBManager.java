@@ -1,4 +1,4 @@
-package com.oh.main;
+ï»¿package com.oh.main;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,32 +6,77 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-//DB °ü·Ã ÀÛ¾÷À» ÇÒ¶§ ¸Å¹ø ¿¬°áÄÚµå¸¦ ¾´ ÀÌÈÄ ÀÛ¾÷ ÇØ¿È
-
-// ±×°Å AOPÇÏÀÚ
+// DBï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½Å¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Úµå¸¦ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¬ï¿½ï¿½ 
+// ï¿½×°ï¿½ AOP ï¿½ï¿½ï¿½ï¿½
 public class DBManager {
-	
-	//db ÀÛ¾÷½Ã¿£ ¾îÂ¶µç ¿¬°á ÇØ¾ßµÊ
-	public static Connection connect() throws SQLException {
-		
-		String url = "jdbc:oracle:thin:@localhost:1521:xe";
-		return DriverManager.getConnection(url,"js","js");
-		
+
+	// db ì‘ì—…ì‹œì—” ì–´ì¨Œë“  ì—°ê²° í•´ì•¼ë¨
+	private static final DBManager DBM = new DBManager();
+	private DBManager() {
+		// TODO Auto-generated constructor stub
 	}
-	
-	// ´İÀ»°Ô ¸¹Àºµ¥ ÇÑ¹ø¿¡ ´İ±â
-	public static void close(Connection con, PreparedStatement pstmt, ResultSet rs) {
+	public static DBManager getDbm() {
+		return DBM;
+	}
+
+	public Connection connect() {
+		// ìƒì˜
+		String url = "jdbc:oracle:thin:@db202204301707_medium?TNS_ADMIN=C:/Users/soldesk/Downloads/Wallet_DB202204301707";
+		
+		// ì§€êµ¬
+		//String url = "jdbc:oracle:thin:@db202204301707_medium?TNS_ADMIN=C:/JS/Wallet_DB202204301707";
+		
+		// ì„ ì—½
+
+		//String url = "jdbc:oracle:thin:@db202204301707_medium?TNS_ADMIN=C:/ksy/Wallet_DB202204301707";
+
+		// ì •ì—° 
+		//String url = "jdbc:oracle:thin:@db202204301707_medium?TNS_ADMIN=C:/yoon/Wallet_DB202204301707"; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+
+
+//		String url = "jdbc:oracle:thin:@db202204301707_medium?TNS_ADMIN=C:/ksy/Wallet_DB202204301707";
+
+		// ì •ì—° 
+//		String url = "jdbc:oracle:thin:@db202204301707_medium?TNS_ADMIN=C:/yoon/Wallet_DB202204301707"; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		
 		try {
-			if (rs != null) {
-				rs.close();
-			}
-			pstmt.close();
-			con.close();
+			return DriverManager.getConnection(url, "SYP", "YJ802soldesk");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}	
+//		ì •ì—°
+		//return DriverManager.getConnection(url, "DB_JY", "LMJSoldesk802");
+		return null;
 		}
+
+		//ì •ì—°
+		// return DriverManager.getConnection(url, "DB_JY", "LMJSoldesk802");
+		 
+	
+	public void close(Connection con, PreparedStatement pstmt, ResultSet rs) {
+	try {
+		if (rs != null) {
+			rs.close();
+		}
+		
+		pstmt.close();
+		
+		if (con != null) {
+			
+			con.close();
+		}
+		
+		
+		
+	} catch (SQLException e) {
+		
+		e.printStackTrace();
 	}
 	
+	
+	}
+	
+		
+	}
 
-}

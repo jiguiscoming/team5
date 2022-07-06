@@ -1,0 +1,118 @@
+@charset "UTF-8";
+
+body{
+	margin: 0;
+}
+
+#indexTbl{
+	width: 90%;
+	height: 200px;
+	margin: 0 auto;
+}
+
+.index_titleTd{
+	height: 150px;
+	text-align: center;
+}
+
+.index_title > a {
+	display: inline-block;
+	font-family: 'Sunflower', sans-serif;
+	text-decoration: none;
+	color:black;
+	margin-bottom: 10px;
+	font-weight: 500;
+	font-size: 30pt;
+	margin: 10px;
+}
+
+.index_title > a > img{
+	width: 50px;
+	margin-bottom: -12px;
+	margin-left: -10px;
+}
+
+#index_contentTbl{
+	width: 90%;
+	margin: 10px auto 0px auto;
+}
+
+.index_login_box{
+	width: 90%;
+	height: 50px;
+	margin: 5px auto;
+	padding: 5px;
+}
+
+.index_menu{
+	width: 100%;
+	height: 35px;
+	border-bottom: 3px solid rgb(229,193,197);
+	margin: 0 auto;
+}
+
+.index_menu_box{
+	padding-bottom: 3px;
+	text-align: center;
+	float: left;
+	width: 130px;
+	
+}
+
+.index_menu_box > a:hover{
+	color: rgb(229,193,197);
+}
+
+.index_menu_box > a {
+	text-decoration: none;
+	color: black;
+	padding-bottom: 5px;
+}
+
+
+#footerTbl{
+	width: 100%;
+	margin: 50px 0 0 0;
+	background-color: #ebebeb;
+	border-left: none;
+	border-right: none;
+	border-bottom: none;
+	border-top: 2px solid black;
+	padding: 100px;
+}
+
+.footer_title{
+	font-family: 'Sunflower', sans-serif;
+	color:black;
+	margin-bottom: 10px;
+	font-weight: 500;
+	font-size: 20pt;
+	margin: 10px;
+}
+
+.footer_title > img{
+	width: 50px;
+	margin-bottom: -12px;
+	margin-left: -10px;
+}
+
+.footer_call , .footer_work{
+	font-size: 14pt;
+	font-weight: 600;
+}
+
+.footer_phone{
+	font-size: 16pt;
+	font-weight: 600;
+}
+
+.footer_dayoff{
+	color: #400080;
+	font-weight: 600;
+}
+
+.footer_info > span{
+	color: #747474;
+	font-size: 10pt;
+	
+}
