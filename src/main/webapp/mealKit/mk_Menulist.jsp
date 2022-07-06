@@ -79,11 +79,11 @@
 			
 			<article id="item-2" class="menu__item">
 				<h3>한식</h3>
-				<table border="1"
-		class="mk_Menulistbl1" border="1">
+				<table 
+		class="mk_Menulistbl1" >
 		<tr>
 			<td ><c:forEach var="m" items="${korlist }">
-					<table border="1" class="mk_MLtbl_1"
+					<table  class="mk_MLtbl_1"
 						onclick="location.href='Mk_MenuInfoC?no=${m.mealkit_no}'"
 						>
 						<tr>
@@ -108,11 +108,11 @@
 
 			<article id="item-3" class="menu__item">
 				<h3>양식</h3>
-	<table border="1"
-		class="mk_Menulistbl1" border="1">
+	<table 
+		class="mk_Menulistbl1">
 		<tr>
 			<td ><c:forEach var="m" items="${amelist }">
-					<table border="1" class="mk_MLtbl_1"
+					<table  class="mk_MLtbl_1"
 						onclick="location.href='Mk_MenuInfoC?no=${m.mealkit_no}'"
 						>
 						<tr>
@@ -136,11 +136,11 @@
 	
 			<article id="item-4" class="menu__item">
 				<h3>일식</h3>
-	<table border="1"
-		class="mk_Menulistbl1" border="1">
+	<table
+		class="mk_Menulistbl1">
 		<tr>
 			<td ><c:forEach var="m" items="${jpnlist }">
-					<table border="1" class="mk_MLtbl_1"
+					<table  class="mk_MLtbl_1"
 						onclick="location.href='Mk_MenuInfoC?no=${m.mealkit_no}'"
 						>
 						<tr>
@@ -163,11 +163,11 @@
 	</table>			</article>
 	<article id="item-5" class="menu__item">
 				<h3>중식</h3>
-	<table border="1"
-		class="mk_Menulistbl1" border="1">
+	<table
+		class="mk_Menulistbl1" >
 		<tr>
 			<td ><c:forEach var="m" items="${chnlist }">
-					<table border="1" class="mk_MLtbl_1"
+					<table  class="mk_MLtbl_1"
 						onclick="location.href='Mk_MenuInfoC?no=${m.mealkit_no}'"
 						>
 						<tr>
@@ -190,11 +190,11 @@
 	</table>			</article>
 	<article id="item-6" class="menu__item">
 				<h3>샐러드</h3>
-	<table border="1"
-		class="mk_Menulistbl1" border="1">
+	<table 
+		class="mk_Menulistbl1">
 		<tr>
 			<td ><c:forEach var="m" items="${sallist }">
-					<table border="1" class="mk_MLtbl_1"
+					<table  class="mk_MLtbl_1"
 						onclick="location.href='Mk_MenuInfoC?no=${m.mealkit_no}'"
 						>
 						<tr>
